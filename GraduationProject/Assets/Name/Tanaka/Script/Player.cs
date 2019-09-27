@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     //速度
     [SerializeField]
     private float m_vel;
+    //2Dカメラ ↔ 3Dカメラへ動くクラス
+    [SerializeField]
+    MoveFrom2DTo3D m_movecamera2Dto3D;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +35,20 @@ public class Player : MonoBehaviour
         float dx = m_joystick.Horizontal;
         float dy = m_joystick.Vertical;
 
-        //移動
-        transform.Translate(dx * m_vel, 0.0f, dy * m_vel);
+        //2Dカメラか3Dカメラかのフラグ
+        bool camera2Dor3DFlag = m_movecamera2Dto3D.IsAppearCamera3D;
+        //2Dカメラの時
+        if (!camera2Dor3DFlag)
+        {
+            //2Dの移動
+            transform.Translate(dx * m_vel, 0.0f, 0.0f);
+        }
+        //3Dカメラの時
+        else
+        {
+            //3Dの移動
+            transform.Translate(dy * m_vel, 0.0f, -dx * m_vel);
+        }
     }
 
     
