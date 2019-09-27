@@ -1,14 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//======================================================================================= 
+﻿//======================================================================================= 
 //! @file       GameFinish
 //! @brief      Escapeキーを押したらゲーム終了する
 //! @author     長尾昌輝
 //! @date       2019/09/26
 //! @note       PCでゲーム終了させるように
 //=======================================================================================
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class GameFinish : MonoBehaviour
 {
