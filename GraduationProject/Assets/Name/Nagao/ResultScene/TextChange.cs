@@ -13,7 +13,7 @@ using UnityEngine.UI;
 public class TextChange : MonoBehaviour
 {
     //Textの表示
-    [SerializeField]　private Text text;
+    [SerializeField] private Text text = default;
 
     //ゲームの結果判定フラグ
     [SerializeField]  private bool resultFlag = false;
