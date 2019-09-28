@@ -28,6 +28,9 @@ public class CameraFollowPlayer : MonoBehaviour
     // プレイヤー
     private GameObject Player;
 
+    // カメラがプレイヤーに追従するのにかかる時間(/s) <カメラのブレを防止するため>
+    private float FollowingTime = 5.0f;
+
     /// <summary>
     /// 開始処理
     /// </summary>
@@ -46,12 +49,29 @@ public class CameraFollowPlayer : MonoBehaviour
     /// <summary>
     /// 更新処理
     /// </summary>
-    void Update()
+    void LateUpdate()
     {
         // 2Dカメラは、常に一定の距離でプレイヤーに追従する
-        Camera2D.transform.position = Player.transform.position + Direction2DCameraPlayerPos;
+        FollowPlayer(Camera2D, Direction2DCameraPlayerPos);
 
         // 3Dカメラは、常に一定の距離でプレイヤーに追従する
-        Camera3D.transform.position = Player.transform.position + Direction3DCameraPlayerPos;
+        FollowPlayer(Camera3D, Direction3DCameraPlayerPos);
+    }
+
+    /// <summary>
+    /// カメラは、常に一定の距離でプレイヤーに追従する
+    /// </summary>
+    /// <param name="camera">カメラ</param>
+    /// <param name="direction">カメラとプレイヤーの距離</param>
+    void FollowPlayer(GameObject camera,Vector3 direction)
+    {
+        // 現在のカメラの位置
+        Vector3 NowPos = camera.transform.position;
+
+        // カメラが次へ進む目的地の位置 
+        Vector3 NextPos = Player.transform.position + direction;
+
+        // 時間をかけて、カメラはプレイヤーに追従する <カメラのブレ防止>
+        camera.transform.position = Vector3.Lerp(NowPos, NextPos, FollowingTime * Time.deltaTime); 
     }
 }

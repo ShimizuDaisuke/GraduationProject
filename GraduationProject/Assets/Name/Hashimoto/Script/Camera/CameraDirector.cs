@@ -1,18 +1,17 @@
 ﻿// -----------------------------------------------------------------------------------------
-//! @file       CameraMoveFrom2DTo3D.cs
+//! @file       CameraDirector.cs
 //!
-//! @brief      2Dカメラ ↔ 3Dカメラへ動く
+//! @brief      カメラの監督
 //!
 //! @author     橋本 奉武
 //!
 //! @date       2019.9.26
 // -----------------------------------------------------------------------------------------
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMoveFrom2DTo3D : MonoBehaviour
+public class CameraDirector : MonoBehaviour
 {
     // 2Dカメラ
     [SerializeField]
@@ -98,7 +97,7 @@ public class CameraMoveFrom2DTo3D : MonoBehaviour
         // <テスト>----------------------------------------------------------------
 
         // スペースキーを押されたらカメラを切り替える
-        if ((Input.GetKeyDown(KeyCode.Space))&&(IsNowMove2DCamera3DCamera == false))
+        if ((Input.GetKeyDown(KeyCode.Space)) && (IsNowMove2DCamera3DCamera == false))
         {
             // 2D ↔ 3Dカメラに切り替える
             IsNowChange3DCamera = !IsNowChange3DCamera;
@@ -211,9 +210,9 @@ public class CameraMoveFrom2DTo3D : MonoBehaviour
     /// 取得・設定関数
     /// </summary>
 
-        //  2Dカメラと3Dカメラの間へ移動しているか
-        public bool IsMove2D3DCameraPos { get { return IsNowMove2DCamera3DCamera; } set { IsNowMove2DCamera3DCamera = value; } }
+    //  2Dカメラと3Dカメラの間へ移動しているか
+    public bool IsMove2D3DCameraPos { get { return IsNowMove2DCamera3DCamera; } set { IsNowMove2DCamera3DCamera = value; } }
 
-        // 3Dカメラを表示しているか(false：2Dカメラ表示 / true：3Dカメラ表示)
-        public bool IsAppearCamera3D { get { return IsNowChange3DCamera; } private set { IsNowChange3DCamera = value; } }
+    // 3Dカメラを表示しているか(false：2Dカメラ表示 / true：3Dカメラ表示)
+    public bool IsAppearCamera3D { get { return IsNowChange3DCamera; } private set { IsNowChange3DCamera = value; } }
 }
