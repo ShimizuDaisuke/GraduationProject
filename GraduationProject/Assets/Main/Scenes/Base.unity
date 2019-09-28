@@ -495,13 +495,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244933534}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: 0.46349156, y: 0.08270654, z: 0.60030615, w: 0.6465043}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 50, z: 100}
 --- !u!1 &461810164
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +513,7 @@ GameObject:
   - component: {fileID: 461810165}
   - component: {fileID: 461810167}
   - component: {fileID: 461810166}
+  - component: {fileID: 461810168}
   m_Layer: 0
   m_Name: CameraDirection
   m_TagString: Untagged
@@ -567,6 +568,20 @@ MonoBehaviour:
   - {fileID: 906094187}
   ObjBy3DCamera:
   - {fileID: 1997894847}
+--- !u!114 &461810168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461810164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eabe401a2c460d74282cbc240dff0ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Camera2D: {fileID: 1241420933}
+  Camera3D: {fileID: 1467097877}
 --- !u!1 &500047260
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,7 +805,7 @@ GameObject:
   - component: {fileID: 547527561}
   m_Layer: 0
   m_Name: MoveFrom3DTo2DCamera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1345,7 +1360,7 @@ GameObject:
   - component: {fileID: 1241420934}
   m_Layer: 0
   m_Name: 2DCamera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1521,7 +1536,7 @@ GameObject:
   - component: {fileID: 1298037297}
   m_Layer: 0
   m_Name: MoveFrom2DTo3DCamera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1622,7 +1637,7 @@ GameObject:
   - component: {fileID: 1467097879}
   m_Layer: 0
   m_Name: 3DCamera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

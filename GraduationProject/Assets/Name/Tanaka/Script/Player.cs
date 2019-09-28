@@ -14,13 +14,13 @@ public class Player : MonoBehaviour
 {
     //ジェイスティック
     [SerializeField]
-    private Joystick m_joystick = null;
+    private Joystick m_joystick = default;
     //速度
     [SerializeField]
-    private float m_vel;
+    private float m_vel = default;
     //2Dカメラ ↔ 3Dカメラへ動くクラス
     [SerializeField]
-    MoveFrom2DTo3D m_movecamera2Dto3D;
+    CameraMoveFrom2DTo3D m_movecamera2Dto3D = default;
 
     // Start is called before the first frame update
     void Start()

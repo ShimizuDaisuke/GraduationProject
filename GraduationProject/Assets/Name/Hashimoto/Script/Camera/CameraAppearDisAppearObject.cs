@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------------------------
-//! @file       AppearDisAppearObject.cs
+//! @file       CameraAppearDisAppearObject.cs
 //!
 //! @brief      「2Dカメラのみ」もしくは「3Dカメラのみ」に表示されるオブジェクト
 //!
@@ -11,15 +11,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AppearDisAppearObject : MonoBehaviour
+public class CameraAppearDisAppearObject : MonoBehaviour
 {
     // 2Dカメラのみ表示されるオブジェクト
     [SerializeField]
-    private GameObject[] ObjBy2DCamera;
+    private GameObject[] ObjBy2DCamera = default;
 
     // 3Dカメラのみ表示されるオブジェクト
     [SerializeField]
-    private GameObject[] ObjBy3DCamera;
+    private GameObject[] ObjBy3DCamera = default;
 
 
     /// <summary>

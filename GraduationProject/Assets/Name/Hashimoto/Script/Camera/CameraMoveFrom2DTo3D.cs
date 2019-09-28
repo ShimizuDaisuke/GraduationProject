@@ -1,7 +1,7 @@
 ﻿// -----------------------------------------------------------------------------------------
-//! @file       MoveFrom2DTo3D.cs
+//! @file       CameraMoveFrom2DTo3D.cs
 //!
-//! @brief     2Dカメラ ↔ 3Dカメラへ動く
+//! @brief      2Dカメラ ↔ 3Dカメラへ動く
 //!
 //! @author     橋本 奉武
 //!
@@ -12,23 +12,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveFrom2DTo3D : MonoBehaviour
+public class CameraMoveFrom2DTo3D : MonoBehaviour
 {
     // 2Dカメラ
     [SerializeField]
-    private GameObject Camera2D;
+    private GameObject Camera2D = default;
 
     // 3Dカメラ
     [SerializeField]
-    private GameObject Camera3D;
+    private GameObject Camera3D = default;
 
     // 「3Dカメラから2Dカメラへ」移動用のカメラ
     [SerializeField]
-    private GameObject MoveFrom3DTo2DCamera;
+    private GameObject MoveFrom3DTo2DCamera = default;
 
     //「2Dカメラから3Dカメラへ」移動用のカメラ
     [SerializeField]
-    private GameObject MoveFrom2DTo3DCamera;
+    private GameObject MoveFrom2DTo3DCamera = default;
 
     // 移動時間
     [SerializeField]
@@ -61,7 +61,7 @@ public class MoveFrom2DTo3D : MonoBehaviour
     private bool IsNowChange3DCamera = true;
 
     // スクリプト :「2Dカメラのみ」もしくは「3Dカメラのみ」に表示されるオブジェクト
-    private AppearDisAppearObject Script_AppearDisAppearObjByCamera;
+    private CameraAppearDisAppearObject Script_AppearDisAppearObjByCamera;
 
 
     /// <summary>
@@ -85,7 +85,7 @@ public class MoveFrom2DTo3D : MonoBehaviour
         MoveFrom2DTo3DCamera.SetActive(false);
 
         // 「2Dカメラのみ」もしくは「3Dカメラのみ」に表示されるオブジェクトの設定
-        Script_AppearDisAppearObjByCamera = GetComponent<AppearDisAppearObject>();
+        Script_AppearDisAppearObjByCamera = GetComponent<CameraAppearDisAppearObject>();
 
         // 2Dや3Dカメラのみ表示されるオブジェクトを表示非表示させる
         Script_AppearDisAppearObjByCamera.ChangeObjByCamera(IsNowChange3DCamera);
@@ -203,9 +203,9 @@ public class MoveFrom2DTo3D : MonoBehaviour
         else
         // カメラの移動時間が超えていない場合
         {
-            // 位置を動かす
+            // メインとなるカメラの位置を動かす
             maincamera.transform.position = startcamera.transform.position + Velocity * MoveTime;
-            // 回転する
+            // メインとなるカメラを回転する
             maincamera.transform.rotation = Quaternion.Euler(startcamera.transform.localEulerAngles + RotatingSpeed * MoveTime);
         }
     }
