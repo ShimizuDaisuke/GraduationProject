@@ -48,8 +48,14 @@ public class TimerController : MonoBehaviour
             //文字列にしてからテキストに表示
             timerText.text = seconds.ToString();
 
+            //テスト動作Zキーを押している間制限時間が減る
+            if (Input.GetKey(KeyCode.Z))
+            {
+                seconds--;
+            }
+
             //もしタイマーが0以下になりそうになったら
-            if(seconds < 0)
+            if (seconds < 0)
             {
                 //タイマーを停止
                 timerFlag = false;
