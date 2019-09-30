@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private float m_vel = default;
     //2Dカメラ ↔ 3Dカメラへ動くクラス
     [SerializeField]
-    CameraMoveFrom2DTo3D m_movecamera2Dto3D = default;
+    CameraDirector m_cameradirector = default;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         float dy = m_joystick.Vertical;
 
         //2Dカメラか3Dカメラかのフラグ
-        bool camera2Dor3DFlag = m_movecamera2Dto3D.IsAppearCamera3D;
+        bool camera2Dor3DFlag = m_cameradirector.IsAppearCamera3D;
         //2Dカメラの時
         if (!camera2Dor3DFlag)
         {
