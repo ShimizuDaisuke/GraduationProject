@@ -13,6 +13,15 @@ using UnityEngine;
 
 public class CameraDirector : MonoBehaviour
 {
+    // カメラの状態
+    enum CameraState
+    {
+        ERR = -1,           // 例外
+        FOLLOWPLAYER,       // カメラがプレイヤーに追従する
+        MOVE2D3D,           // カメラが2D⇔3Dへ動く
+        NOMOVE              // カメラを動かさない
+    }
+
     // 2Dカメラ
     [SerializeField] private GameObject Camera2D = default;
 
