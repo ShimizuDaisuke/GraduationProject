@@ -2,13 +2,15 @@
 //! @file       TimerController
 //! @brief      プレイシーンの時計の処理
 //! @author     服部晃大
-//! @date       9/27
+//! @date       9/28
 //! @note       
 //===============================================
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+//シーン遷移に必要なためSceneManager追加
+using UnityEngine.SceneManagement;
 
 public class TimerController : MonoBehaviour
 {
@@ -46,8 +48,14 @@ public class TimerController : MonoBehaviour
             //文字列にしてからテキストに表示
             timerText.text = seconds.ToString();
 
+            //テスト動作Zキーを押している間制限時間が減る
+            if (Input.GetKey(KeyCode.Z))
+            {
+                seconds--;
+            }
+
             //もしタイマーが0以下になりそうになったら
-            if(seconds < 0)
+            if (seconds < 0)
             {
                 //タイマーを停止
                 timerFlag = false;
@@ -58,6 +66,8 @@ public class TimerController : MonoBehaviour
 
                 //文字列にしてからテキストに表示
                 timerText.text = seconds.ToString();
+
+                SceneManager.LoadScene("Result");
             }
         }
     }
