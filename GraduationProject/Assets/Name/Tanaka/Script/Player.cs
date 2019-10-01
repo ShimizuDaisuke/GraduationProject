@@ -14,13 +14,13 @@ public class Player : MonoBehaviour
 {
     //ジェイスティック
     [SerializeField]
-    private Joystick m_joystick = null;
+    private Joystick m_joystick = default;
     //速度
     [SerializeField]
-    private float m_vel;
+    private float m_vel = default;
     //2Dカメラ ↔ 3Dカメラへ動くクラス
     [SerializeField]
-    MoveFrom2DTo3D m_movecamera2Dto3D;
+    CameraDirector m_cameradirector = default;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         float dy = m_joystick.Vertical;
 
         //2Dカメラか3Dカメラかのフラグ
-        bool camera2Dor3DFlag = m_movecamera2Dto3D.IsAppearCamera3D;
+        bool camera2Dor3DFlag = m_cameradirector.IsAppearCamera3D;
         //2Dカメラの時
         if (!camera2Dor3DFlag)
         {
