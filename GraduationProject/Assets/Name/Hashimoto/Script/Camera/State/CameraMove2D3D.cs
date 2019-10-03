@@ -64,24 +64,11 @@ public class CameraMove2D3D : MonoBehaviour
     }
 
     /// <summary>
-<<<<<<< HEAD:GraduationProject/Assets/Name/Hashimoto/Script/Camera/State/CameraMove2D3D.cs
-    /// 2Dカメラと3Dカメラの間による移動処理
-=======
-    /// 更新処理
-    /// </summary>
-    void Update()
-    {
-
-    }
-
-    /// <summary>
     /// 2Dカメラと3Dカメラの間による移動する準備
->>>>>>> master:GraduationProject/Assets/Name/Hashimoto/Script/Camera/CameraMove2D3D.cs
     /// </summary>
     /// <param name="maincamera">移動用のカメラ</param>
     /// <param name="startcamera">開始位置にいるカメラ</param>
     /// <param name="endcamera">終了位置にいるカメラ</param>
-<<<<<<< HEAD:GraduationProject/Assets/Name/Hashimoto/Script/Camera/State/CameraMove2D3D.cs
     /// <param name="nowstate">カメラの今の状態</param>
     /// <param name="isdifferstatenowonce">カメラの状態が今と前で異なっているか</param>
     /// <param name="iscamera3d">最終的に3Dカメラになるのか</param>
@@ -95,9 +82,8 @@ public class CameraMove2D3D : MonoBehaviour
 
             // 開始位置にいるカメラを非表示する
             startcamera.SetActive(false);
-=======
-    /// <param name="iscamera3d">最終的に3Dカメラになるのか</param>
-    public void PrepareMiddle2D3DCameraPos(GameObject maincamera, GameObject startcamera, GameObject endcamera, bool iscamera3d)
+
+       public void PrepareMiddle2D3DCameraPos(GameObject maincamera, GameObject startcamera, GameObject endcamera, bool iscamera3d)
     {
         // 開始位置にいるカメラを非表示する
         startcamera.SetActive(false);
