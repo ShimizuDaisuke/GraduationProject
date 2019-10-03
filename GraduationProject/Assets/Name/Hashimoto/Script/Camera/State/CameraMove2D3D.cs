@@ -12,6 +12,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 型名を省略する
+using CameraState = CameraDirector.CameraState;     // カメラの状態
+
 public class CameraMove2D3D : MonoBehaviour
 {
 
@@ -62,27 +65,22 @@ public class CameraMove2D3D : MonoBehaviour
     }
 
     /// <summary>
-    /// 更新処理
-    /// </summary>
-    void Update()
-    {
-
-    }
-
-    /// <summary>
     /// 2Dカメラと3Dカメラの間による移動処理
     /// </summary>
     /// <param name="maincamera">移動用のカメラ</param>
     /// <param name="startcamera">開始位置にいるカメラ</param>
     /// <param name="endcamera">終了位置にいるカメラ</param>
-    /// <param name="isnowmove">2Dカメラと3Dカメラの間へ移動しているか</param>
-    /// <param name="isoncemove">以前「3Dカメラから2Dカメラ」もしくは「2Dカメラから3Dカメラ」へ移動したか</param>
+    /// <param name="nowstate">カメラの今の状態</param>
+    /// <param name="isdifferstatenowonce">カメラの状態が今と前で異なっているか</param>
     /// <param name="iscamera3d">最終的に3Dカメラになるのか</param>
-    public void MoveMiddle2D3DCameraPos(GameObject maincamera, GameObject startcamera, GameObject endcamera,ref bool isnowmove,bool isoncemove,bool iscamera3d)
+    public void MoveMiddle2D3DCameraPos(GameObject maincamera, GameObject startcamera, GameObject endcamera,ref CameraState nowstate,ref bool isdifferstatenowonce, bool iscamera3d)
     {
         // 初めて「3Dカメラから2Dカメラへ」「2Dカメラから3Dカメラへ」移動する場合
-        if (isoncemove == false)
+        if (isdifferstatenowonce == true)
         {
+            // カメラの今と前の状態を同じにする
+            isdifferstatenowonce = false;
+
             // 開始位置にいるカメラを非表示する
             startcamera.SetActive(false);
 
@@ -129,11 +127,14 @@ public class CameraMove2D3D : MonoBehaviour
         // カメラの移動時間が超えた場合
         if (MoveTime >= Speed_Move2DCamera3DCamera)
         {
+            // カメラの動きを止める
+            nowstate = CameraState.STOP;
+
+            // カメラの今と前の状態が異なる
+            isdifferstatenowonce = true;
+
             // 初めて「3Dカメラから2Dカメラへ」「2Dカメラから3Dカメラへ」移動して経過した時間をリセットする
             MoveTime = 0.0f;
-
-            // 2Dカメラと3Dカメラの間へ移動しないようにする
-            isnowmove = false;
 
             // 移動用のカメラを非表示する
             maincamera.SetActive(false);

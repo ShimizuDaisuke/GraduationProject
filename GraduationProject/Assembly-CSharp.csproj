@@ -63,9 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Name\Hashimoto\Script\Camera\CameraAppearDisAppearObject.cs" />
-    <Compile Include="Assets\Name\Hashimoto\Script\Camera\CameraDirector.cs" />
-    <Compile Include="Assets\Name\Hashimoto\Script\Camera\CameraFollowPlayer.cs" />
-    <Compile Include="Assets\Name\Hashimoto\Script\Camera\CameraMove2D3D.cs" />
+    <Compile Include="Assets\Name\Hashimoto\Script\Camera\Main\CameraDirector.cs" />
+    <Compile Include="Assets\Name\Hashimoto\Script\Camera\State\CameraFollowPlayer.cs" />
+    <Compile Include="Assets\Name\Hashimoto\Script\Camera\State\CameraMove2D3D.cs" />
+    <Compile Include="Assets\Name\Hashimoto\Script\Camera\State\CameraStop.cs" />
     <Compile Include="Assets\Name\Hashimoto\Script\Player\PlayerPosByCamera2D3D.cs" />
     <Compile Include="Assets\Name\Hattori\TimerController.cs" />
     <Compile Include="Assets\Name\Nagao\ResultScene\ResultSceneController.cs" />

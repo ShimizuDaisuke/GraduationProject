@@ -43,14 +43,6 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     }
 
     /// <summary>
-    /// 更新処理
-    /// </summary>
-    void Update()
-    {
-        
-    }
-
-    /// <summary>
     /// 2Dカメラ⇔3Dカメラへ移動した場合、プレイヤーの位置を変える
     /// </summary>
     /// <param name="IsCamera3D">最終的に3Dカメラになるのか</param>
