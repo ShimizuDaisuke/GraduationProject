@@ -17,6 +17,7 @@ using CameraState = CameraDirector.CameraState;     // カメラの状態
 
 public class CameraMove2D3D : MonoBehaviour
 {
+
     // 移動時間
     [SerializeField]
     private float Speed_Move2DCamera3DCamera = 0.5f;
@@ -64,7 +65,7 @@ public class CameraMove2D3D : MonoBehaviour
     }
 
     /// <summary>
-    /// 2Dカメラと3Dカメラの間による移動する準備
+    /// 2Dカメラと3Dカメラの間による移動処理
     /// </summary>
     /// <param name="maincamera">移動用のカメラ</param>
     /// <param name="startcamera">開始位置にいるカメラ</param>
@@ -83,66 +84,41 @@ public class CameraMove2D3D : MonoBehaviour
             // 開始位置にいるカメラを非表示する
             startcamera.SetActive(false);
 
-       public void PrepareMiddle2D3DCameraPos(GameObject maincamera, GameObject startcamera, GameObject endcamera, bool iscamera3d)
-    {
-        // 開始位置にいるカメラを非表示する
-        startcamera.SetActive(false);
+            // 終了位置にいるカメラを非表示する
+            endcamera.SetActive(false);
 
-        // 終了位置にいるカメラを非表示する
-        endcamera.SetActive(false);
+            // 移動用のカメラを表示する
+            maincamera.SetActive(true);
 
-        // 移動用のカメラを表示する
-        maincamera.SetActive(true);
->>>>>>> master:GraduationProject/Assets/Name/Hashimoto/Script/Camera/CameraMove2D3D.cs
+            // ----------------------------------------------------------------------------------------------
 
-        // ----------------------------------------------------------------------------------------------
+            // 3Dカメラと2Dカメラの距離
+            Vector3 direction = endcamera.transform.position - startcamera.transform.position;
 
-        // 3Dカメラと2Dカメラの距離
-        Vector3 direction = endcamera.transform.position - startcamera.transform.position;
+            //  移動速度を計算する
+            Velocity = direction / Speed_Move2DCamera3DCamera;
 
-        //  移動速度を計算する
-        Velocity = direction / Speed_Move2DCamera3DCamera;
+            // ----------------------------------------------------------------------------------------------
 
-        // ----------------------------------------------------------------------------------------------
+            // 3Dカメラと2Dカメラの回転差
+            Vector3 rotate = endcamera.transform.localEulerAngles - startcamera.transform.localEulerAngles;
 
-        // 3Dカメラと2Dカメラの回転差
-        Vector3 rotate = endcamera.transform.localEulerAngles - startcamera.transform.localEulerAngles;
+            // 回転速度を計算する
+            RotatingSpeed = rotate / Speed_Move2DCamera3DCamera;
 
-        // 回転速度を計算する
-        RotatingSpeed = rotate / Speed_Move2DCamera3DCamera;
+            // ----------------------------------------------------------------------------------------------
 
-        // ----------------------------------------------------------------------------------------------
+            // 「3Dカメラから2Dカメラへ」「2Dカメラから3Dカメラへ」移動用のカメラを初期化する
+            maincamera.transform.position = startcamera.transform.position;                           // 位置
+            maincamera.transform.rotation = Quaternion.Euler(startcamera.transform.localEulerAngles); // 回転
 
-        // 「3Dカメラから2Dカメラへ」「2Dカメラから3Dカメラへ」移動用のカメラを初期化する
-        maincamera.transform.position = startcamera.transform.position;                           // 位置
-        maincamera.transform.rotation = Quaternion.Euler(startcamera.transform.localEulerAngles); // 回転
+            // ----------------------------------------------------------------------------------------------
 
-        // ----------------------------------------------------------------------------------------------
+            // 2Dや3Dカメラのみ表示されるオブジェクトを表示非表示させる
+            Script_AppearDisAppearObjByCamera.ChangeObjByCamera(iscamera3d);
 
-        // 2Dや3Dカメラのみ表示されるオブジェクトを表示非表示させる
-        Script_AppearDisAppearObjByCamera.ChangeObjByCamera(iscamera3d);
-
-        // カメラが移動する前に、プレイヤーの位置を記憶する
-        Script_PlayerPosByCamera2D3D.PlayerOncePos = Player.transform.position;
-
-    }
-
-    /// <summary>
-    /// 2Dカメラと3Dカメラの間による移動処理
-    /// </summary>
-    /// <param name="maincamera">移動用のカメラ</param>
-    /// <param name="startcamera">開始位置にいるカメラ</param>
-    /// <param name="endcamera">終了位置にいるカメラ</param>
-    /// <param name="isnowmove">2Dカメラと3Dカメラの間へ移動しているか</param>
-    /// <param name="isoncemove">以前「3Dカメラから2Dカメラ」もしくは「2Dカメラから3Dカメラ」へ移動したか</param>
-    /// <param name="iscamera3d">最終的に3Dカメラになるのか</param>
-    public void MoveMiddle2D3DCameraPos(GameObject maincamera, GameObject startcamera, GameObject endcamera,ref bool isnowmove,bool isoncemove,bool iscamera3d)
-    {
-        // 初めて「3Dカメラから2Dカメラへ」「2Dカメラから3Dカメラへ」移動する場合
-        if (isoncemove == false)
-        {
-            //  2Dカメラと3Dカメラの間による移動する準備を行う
-            PrepareMiddle2D3DCameraPos(maincamera, startcamera, endcamera, iscamera3d);
+            // カメラが移動する前に、プレイヤーの位置を記憶する
+            Script_PlayerPosByCamera2D3D.PlayerOncePos = Player.transform.position;
         }
 
         // 初めて「3Dカメラから2Dカメラへ」「2Dカメラから3Dカメラへ」移動して経過した時間を計る

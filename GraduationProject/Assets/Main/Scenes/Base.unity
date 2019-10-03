@@ -531,6 +531,7 @@ GameObject:
   - component: {fileID: 461810167}
   - component: {fileID: 461810166}
   - component: {fileID: 461810168}
+  - component: {fileID: 461810170}
   m_Layer: 0
   m_Name: CameraDirection
   m_TagString: Untagged
@@ -611,6 +612,18 @@ MonoBehaviour:
   Camera3D: {fileID: 1467097877}
   MoveFrom2DTo3DCamera: {fileID: 1298037295}
   MoveFrom3DTo2DCamera: {fileID: 547527559}
+--- !u!114 &461810170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461810164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59da2cfbad6696449b48cc5ce21a30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &500047260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,7 +1812,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 20442bb62fa051f4d81245fdef47ac59, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

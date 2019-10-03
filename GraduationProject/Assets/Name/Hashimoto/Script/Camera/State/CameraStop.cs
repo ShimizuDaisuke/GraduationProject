@@ -22,6 +22,14 @@ public class CameraStop : MonoBehaviour
     // 時間 :　カメラの動きを止めてから、カメラをプレイヤーに追従させるまでの時間
     private float StopTime_NextFollowPlayer = 0.5f;
 
+    // 透明度 : 通常の透明度 
+    private float NormalTransparence = 1.0f;
+
+    // 透明度 : プレイヤーが地面以外に当たったオブジェクトの透明度
+    private float PlayerHitObjTransparence = 0.2f;
+
+    // --------------------------------------------------------------------------------------
+
     // プレイヤー
     private GameObject Player;
     
@@ -72,6 +80,9 @@ public class CameraStop : MonoBehaviour
             {
                 // カメラの動きを止めた後に、カメラの状態を2D⇔3Dに動くように設定する
                 NextStateAfterCameraStop = CameraState.MOVE2D3D;
+
+                // プレイヤーの地面以外のオブジェクトを透明にする
+                Script_PlayerPosByCamera2D3D.MakeTransparencePlayerHitObjNoGround(PlayerHitObjTransparence);
             }
             else
             {
@@ -92,6 +103,9 @@ public class CameraStop : MonoBehaviour
                 //  時間 :　カメラの動きを止めてから、カメラをプレイヤーに追従させるまでの時間が経過した場合
                 if (TimeAfterCameraStop >= StopTime_NextFollowPlayer)
                 {
+                    // 時間をリセットする
+                    TimeAfterCameraStop = 0.0f;
+
                     // カメラの動きを止めた後の「カメラの状態」をリセットする
                     NextStateAfterCameraStop = CameraState.ERR;
 
@@ -100,6 +114,10 @@ public class CameraStop : MonoBehaviour
 
                     // カメラの今と前の状態が異なる
                     isdifferstatenowonce = true;
+
+                    // ---------------------------------------------------------------------------------
+
+                    
 
                     // カメラが2D⇔3Dへ動かすのを終了させる
                     Script_CameraDirector.IsMove2D3DCameraPos = false;
@@ -114,6 +132,9 @@ public class CameraStop : MonoBehaviour
                 // カメラの動きを止めてから、カメラを2D⇔3Dへ動かすまでの時間が経過した場合
                 if (TimeAfterCameraStop >= StopTime_NextMove2D3D)
                 {
+                    // 時間をリセットする
+                    TimeAfterCameraStop = 0.0f;
+
                     // カメラの動きを止めた後の「カメラの状態」をリセットする
                     NextStateAfterCameraStop = CameraState.ERR;
 
@@ -123,8 +144,13 @@ public class CameraStop : MonoBehaviour
                     // カメラの今と前の状態が異なる
                     isdifferstatenowonce = true;
 
+                    // ---------------------------------------------------------------------------------
+
                     // 2D ↔ 3Dカメラに切り替える
                     Script_CameraDirector.IsAppearCamera3D = !Script_CameraDirector.IsAppearCamera3D;
+
+                    // プレイヤーの地面以外のオブジェクトの透明度を元に戻す
+                    Script_PlayerPosByCamera2D3D.MakeTransparencePlayerHitObjNoGround(NormalTransparence);
 
                     // プレイヤーの地面以外のオブジェクトの当たり判定をリセットする
                     Script_PlayerPosByCamera2D3D.IsHitPlayerNoGroundObj = false;
