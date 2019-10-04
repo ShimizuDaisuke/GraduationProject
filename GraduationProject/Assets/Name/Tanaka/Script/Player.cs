@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private float m_vel = default;
     //2Dカメラ ↔ 3Dカメラへ動くクラス
     [SerializeField]
-    CameraDirector m_cameradirector = default;
+    private CameraDirector m_cameradirector = default;
 
     // Start is called before the first frame update
     void Start()
