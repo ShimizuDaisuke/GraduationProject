@@ -33,7 +33,7 @@ public class TitleSceneController : MonoBehaviour
     //======================================================================================= 
     public void OnRetry()
     {
-        //Resultに切り替える切り替える
-        SceneManager.LoadScene("Result");
+        //Baseに切り替える切り替える
+        SceneManager.LoadScene("Base");
     }
 }

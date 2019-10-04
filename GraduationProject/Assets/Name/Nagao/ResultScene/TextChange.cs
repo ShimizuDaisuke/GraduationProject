@@ -13,22 +13,28 @@ using UnityEngine.UI;
 public class TextChange : MonoBehaviour
 {
     //Textの表示
-    [SerializeField] private Text text = default;
+    [SerializeField] private Text text;
 
-    //ゲームの結果判定フラグ
-    [SerializeField]  private bool resultFlag = false;
+    //リザルトメインのスクリプト
+    private ClearManagement clearManager;
 
-   // Start is called before the first frame update
-   void Start()
+    //破棄しないように設定したオブジェクト
+    [SerializeField]
+    private GameObject ClearObject;
+
+
+    // Start is called before the first frame update
+    void Start()
     {
-        
+        ///リザルトメインのスクリプトの割り当て
+        clearManager = ClearObject.GetComponent<ClearManagement>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if (resultFlag == true)
+        if (clearManager.IsPlayerClear == true)
         {
             //ゲームクリアした時
             text.text = "GameClear";
