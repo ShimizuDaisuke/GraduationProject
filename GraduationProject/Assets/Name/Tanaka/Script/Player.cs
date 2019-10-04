@@ -31,6 +31,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //移動処理
+        Move();
+        
+    }
+
+    //移動処理
+    private void Move()
+    {
         //２Dと３Dのカメラの切り替え中フラグ
         bool cameraSwitch2D3D = m_cameradirector.IsMove2D3DCameraPos;
 
@@ -56,8 +64,19 @@ public class Player : MonoBehaviour
                 transform.Translate(dy * m_vel, 0.0f, -dx * m_vel);
             }
         }
-        
     }
 
-    
+    void OnCollisionEnter(Collision other)
+    {
+        //消しカスに当たったら
+        if (other.gameObject.tag == "KS")
+        {
+            //ゲージを増やす
+
+            //消しカスを消滅
+            
+            
+        }
+    }
+
 }

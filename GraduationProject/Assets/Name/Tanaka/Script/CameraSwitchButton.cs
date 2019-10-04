@@ -38,9 +38,10 @@ public class CameraSwitchButton : MonoBehaviour
         //ボタンの色を白色に設定
         m_button.image.color = m_buttonColor1;
 
+        //ボタンのサイズの設定
         m_btnSmallScale = new Vector2(140, 110);
         m_btnDefaultScale = new Vector2(150, 120);
-
+        //ボタンのサイズの初期化
         GetComponent<RectTransform>().sizeDelta = m_btnDefaultScale;
     }
 
@@ -70,11 +71,13 @@ public class CameraSwitchButton : MonoBehaviour
 
     }
 
+    //ボタンが押されているとき
     public void PointUp()
     {
         GetComponent<RectTransform>().sizeDelta = m_btnDefaultScale;
     }
 
+    //ボタンが離されたとき
     public void PointDown()
     {
         GetComponent<RectTransform>().sizeDelta = m_btnSmallScale;
