@@ -25,11 +25,11 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     [SerializeField]
     private GameObject CameraDirector = default;
 
+    // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーに当たった地面以外のオブジェクト
+    private GameObject ObjHitNoGround;
+
     // 2Dカメラ⇔3Dカメラへ移動する前にプレイヤーがいた位置
     private Vector3 OncePos;
-
-    // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーに当たった地面以外のオブジェクト
-    private GameObject HitNoGroundObj;
 
     // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが地面以外のオブジェクトに当たったか
     private bool IsHitNoGroundObj;
@@ -38,14 +38,6 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     /// 開始処理
     /// </summary>
     void Start()
-    {
-        
-    }
-
-    /// <summary>
-    /// 更新処理
-    /// </summary>
-    void Update()
     {
         
     }
@@ -87,6 +79,9 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
             {
                 // 「プレイヤーが地面以外のオブジェクトに当たった」とする
                 IsHitNoGroundObj = true;
+
+                // プレイヤーに当たったオブジェクトを記憶する
+                ObjHitNoGround = collision.gameObject;
             }
 
             // --------------------------------------------------------------------------
@@ -94,12 +89,34 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     }
 
     /// <summary>
+    /// 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが当たった地面以外のオブジェクトの透明度を変える
+    /// ※「プレイヤーが当たった地面以外のオブジェクト」material:RenderingMode Opaque以外にする
+    /// </summary>
+    /// <param name="transparence">透明度</param>
+    public void MakeTransparencePlayerHitObjNoGround(float transparence)
+    {
+        // プレイヤーに当たった地面以外のオブジェクトの色を取得する
+        Color color = ObjHitNoGround.GetComponent<Renderer>().material.color;
+
+        // プレイヤーに当たった地面以外のオブジェクトの透明度を変える
+        color.a = transparence;
+
+        // プレイヤーに当たった地面以外のオブジェクトの透明度を反映させる
+        ObjHitNoGround.GetComponent<Renderer>().material.color = color;
+    }
+
+    /// <summary>
     /// 取得・設定関数
     /// </summary>
 
-        // 2Dカメラ⇔3Dカメラへ移動する前にプレイヤーがいた位置
-        public Vector3 PlayerOncePos { get { return OncePos; } set { OncePos = value; } }
+    // 2Dカメラ⇔3Dカメラへ移動する前にプレイヤーがいた位置
+    public Vector3 PlayerOncePos { get { return OncePos; } set { OncePos = value; } }
+
+        // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが当たった地面以外のオブジェクト
+        public GameObject PlayerHitObjNoGround { get { return ObjHitNoGround; } set { ObjHitNoGround = value; } }
 
         // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが地面以外のオブジェクトに当たったか
         public bool IsHitPlayerNoGroundObj { get { return IsHitNoGroundObj; } set { IsHitNoGroundObj = value; } }
+
+        
 }

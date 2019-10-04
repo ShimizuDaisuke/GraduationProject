@@ -51,7 +51,7 @@ public class TimerController : MonoBehaviour
             //テスト動作Zキーを押している間制限時間が減る
             if (Input.GetKey(KeyCode.Z))
             {
-                seconds--;
+                totalTime--;
             }
 
             //もしタイマーが0以下になりそうになったら
