@@ -26,11 +26,21 @@ public class TimerController : MonoBehaviour
     //時を進めるフラグ
     bool timerFlag;
 
+    //破棄しないように設定したオブジェクト
+    [SerializeField]
+    private GameObject ClearObject;
+
+    //リザルトメインのスクリプト
+    private ClearManagement clearManager;
+
     // Start is called before the first frame update
     void Start()
     {
         //実行時にタイマー作動させるため
         timerFlag = true;
+
+        //リザルトメインのスクリプトの割り当て
+        clearManager = ClearObject.GetComponent<ClearManagement>();
     }
 
     // Update is called once per frame
@@ -67,6 +77,10 @@ public class TimerController : MonoBehaviour
                 //文字列にしてからテキストに表示
                 timerText.text = seconds.ToString();
 
+                //ゲームを失敗判定に
+                clearManager.IsPlayerClear = false;
+
+                //リザルトシーンへ
                 SceneManager.LoadScene("Result");
             }
         }
