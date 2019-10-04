@@ -622,12 +622,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8170153792821263252, guid: 0d230cc8be529a542a08cb878ab14b18,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 54628aafa20f64b40ae661038ee7abf0,
-        type: 3}
     - target: {fileID: 8170153792821263258, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -658,6 +652,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8170153792821263252, guid: 0d230cc8be529a542a08cb878ab14b18,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 54628aafa20f64b40ae661038ee7abf0,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
 --- !u!1 &628124984
@@ -1483,6 +1483,7 @@ GameObject:
   - component: {fileID: 1789586110}
   - component: {fileID: 1789586109}
   - component: {fileID: 1789586113}
+  - component: {fileID: 1789586114}
   m_Layer: 0
   m_Name: CameraDirector
   m_TagString: Untagged
@@ -1563,6 +1564,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera2D: {fileID: 418454770}
   Camera3D: {fileID: 645172163}
+--- !u!114 &1789586114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789586108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59da2cfbad6696449b48cc5ce21a30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1802352800
 GameObject:
   m_ObjectHideFlags: 0
