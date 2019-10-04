@@ -87,19 +87,10 @@ public class CameraDirector : MonoBehaviour
         // <テスト>----------------------------------------------------------------
 
         // スペースキーを押されたらカメラを切り替える
-        if ((Input.GetKeyDown(KeyCode.Space)) && (IsMove2DCamera3DCamera == false))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            // カメラが 2D ⇔ 3Dに動くように設定する
-            NowState = CameraState.MOVE2D3D;
-
-            // カメラの今と前の状態が異なる
-            IsDifferCameraStateNowOnce = true;
-
-            // 「2Dカメラと3Dカメラの間へ移動する準備を行う
-            IsMove2DCamera3DCamera = true;
-
-            // 2D ↔ 3Dカメラに切り替える
-            IsNowChange3DCamera = !IsNowChange3DCamera;
+            // カメラが2D⇔3Dへ切り替える準備を行う
+            ChangeCamera2D3D();
         }
 
         // -------------------------------------------------------------------------
@@ -151,11 +142,33 @@ public class CameraDirector : MonoBehaviour
     }
 
     /// <summary>
+    /// カメラが2D⇔3Dへ切り替える準備を行う
+    /// </summary>
+    public void ChangeCamera2D3D()
+    {
+        // カメラが2D⇔3Dへ切り替え途中ではなかった場合
+        if (IsMove2DCamera3DCamera == false)
+        {
+            // カメラが 2D ⇔ 3Dに動くように設定する
+            NowState = CameraState.MOVE2D3D;
+
+            // カメラの今と前の状態が異なる
+            IsDifferCameraStateNowOnce = true;
+
+            // 「2Dカメラと3Dカメラの間へ移動する準備を行う
+            IsMove2DCamera3DCamera = true;
+
+            // 2D ↔ 3Dカメラに切り替える
+            IsNowChange3DCamera = !IsNowChange3DCamera;
+        }
+    }
+
+    /// <summary>
     /// 取得・設定関数
     /// </summary>
-        
-        // カメラの今の状態 
-        public CameraState State { get { return NowState; } set{ NowState = value; } }
+
+    // カメラの今の状態 
+    public CameraState State { get { return NowState; } set{ NowState = value; } }
 
         // カメラの今と前の状態が異なっているか
         public bool IsDifferStateNowOnce { get { return IsDifferCameraStateNowOnce; } set { IsDifferCameraStateNowOnce = value; } } 
