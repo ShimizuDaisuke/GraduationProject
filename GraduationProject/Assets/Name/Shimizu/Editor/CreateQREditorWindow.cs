@@ -36,7 +36,7 @@ public class CreateQREditorWindow : EditorWindow
 
     void OnGUI()
     {
-        string savePath = Application.dataPath + "/qr.png";
+        string savePath = Application.dataPath + "/Name/Shimizu/qr.png";
         _content = GUILayout.TextArea(_content, GUILayout.Height(30f));
         _size = (QRImageSize)EditorGUILayout.EnumPopup(_size);
         EditorGUI.BeginDisabledGroup(string.IsNullOrEmpty(_content));
