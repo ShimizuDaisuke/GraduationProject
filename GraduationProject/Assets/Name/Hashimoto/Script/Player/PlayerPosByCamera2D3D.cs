@@ -25,11 +25,14 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     [SerializeField]
     private GameObject CameraDirector = default;
 
+    // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーに当たった地面以外のオブジェクト
+    private GameObject ObjHitNoGround;
+
     // 2Dカメラ⇔3Dカメラへ移動する前にプレイヤーがいた位置
     private Vector3 OncePos;
 
-    // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーに当たった地面以外のオブジェクト
-    private GameObject HitNoGroundObj;
+    // 2Dカメラ⇔3Dカメラへ移動中にいるプレイヤーの位置
+    private Vector3 NowPos;
 
     // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが地面以外のオブジェクトに当たったか
     private bool IsHitNoGroundObj;
@@ -43,32 +46,45 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     }
 
     /// <summary>
-    /// 更新処理
+    /// 2Dカメラ⇔3Dカメラへ移動する際にいるプレイヤーの位置を決める
     /// </summary>
-    void Update()
+    /// <param name="IsCamera3D">最終的に3Dカメラになるのか</param>
+    public void CreatePlayerPosByCameraMove2D3D(bool IsCamera3D)
     {
-        
+        // 2Dカメラから3Dカメラに移動する場合
+        if (IsCamera3D == true)
+        {
+            // プレイヤーの位置を決める
+            NowPos = new Vector3(OncePos.x, OncePos.y, ZPos_CameraFrom2DTo3D);
+        }
+        else
+        // 3Dカメラから2Dカメラに移動する場合
+        {
+            // プレイヤーの位置を決める
+            NowPos = new Vector3(OncePos.x, OncePos.y, ZPos_CameraFrom3DTo2D);
+        }
+    }
+
+    /// <summary>
+    /// 2Dカメラ⇔3Dカメラへ移動する際にいるプレイヤーの位置を決める
+    /// </summary>
+    /// <param name="pos">プレイヤーの位置</param>
+    public void CreatePlayerPosByCameraMove2D3D(Vector3 pos)
+    {
+        // 2Dカメラ⇔3Dカメラへ移動する際にいるプレイヤーの位置を決める
+        NowPos = pos;
     }
 
     /// <summary>
     /// 2Dカメラ⇔3Dカメラへ移動した場合、プレイヤーの位置を変える
     /// </summary>
-    /// <param name="IsCamera3D">最終的に3Dカメラになるのか</param>
-    public void KeepPlayerPosByCameraMove2D3D(bool IsCamera3D)
+    public void KeepPlayerPosByCameraMove2D3D()
     {
-        // 2Dカメラから3Dカメラに移動する場合
-        if(IsCamera3D==true)
-        {
-            // プレイヤーの位置を維持する
-            transform.position = new Vector3(OncePos.x, OncePos.y, ZPos_CameraFrom2DTo3D);
-        }
-        else
-        // 3Dカメラから2Dカメラに移動する場合
-        {
-            // プレイヤーの位置を維持する
-            transform.position = new Vector3(OncePos.x, OncePos.y, ZPos_CameraFrom3DTo2D);
-        }
+        // プレイヤーの位置を維持する
+        transform.position = NowPos;
     }
+
+    // ===============================================================================================
 
     /// <summary>
     /// 当たり判定
@@ -87,10 +103,32 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
             {
                 // 「プレイヤーが地面以外のオブジェクトに当たった」とする
                 IsHitNoGroundObj = true;
+
+                // プレイヤーに当たったオブジェクトを記憶する
+                ObjHitNoGround = collision.gameObject;
             }
 
             // --------------------------------------------------------------------------
         }
+    }
+
+    // ===============================================================================================
+
+    /// <summary>
+    /// 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが当たった地面以外のオブジェクトの透明度を変える
+    /// ※「プレイヤーが当たった地面以外のオブジェクト」material:RenderingMode Opaque以外にする
+    /// </summary>
+    /// <param name="transparence">透明度</param>
+    public void MakeTransparencePlayerHitObjNoGround(float transparence)
+    {
+        // プレイヤーに当たった地面以外のオブジェクトの色を取得する
+        Color color = ObjHitNoGround.GetComponent<Renderer>().material.color;
+
+        // プレイヤーに当たった地面以外のオブジェクトの透明度を変える
+        color.a = transparence;
+
+        // プレイヤーに当たった地面以外のオブジェクトの透明度を反映させる
+        ObjHitNoGround.GetComponent<Renderer>().material.color = color;
     }
 
     /// <summary>
@@ -100,6 +138,11 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
         // 2Dカメラ⇔3Dカメラへ移動する前にプレイヤーがいた位置
         public Vector3 PlayerOncePos { get { return OncePos; } set { OncePos = value; } }
 
+        // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが当たった地面以外のオブジェクト
+        public GameObject PlayerHitObjNoGround { get { return ObjHitNoGround; } set { ObjHitNoGround = value; } }
+
         // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが地面以外のオブジェクトに当たったか
         public bool IsHitPlayerNoGroundObj { get { return IsHitNoGroundObj; } set { IsHitNoGroundObj = value; } }
+
+        
 }

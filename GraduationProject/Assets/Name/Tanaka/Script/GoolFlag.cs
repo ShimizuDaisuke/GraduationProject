@@ -13,10 +13,21 @@ using UnityEngine.SceneManagement;
 //ゴールフラグのクラス
 public class GoolFlag : MonoBehaviour
 {
+    //ゲームの結果判定フラグ
+    public static bool resultFlag = false;
+
+    //リザルトメインのスクリプト
+    private ClearManagement clearManager;
+
+    //破棄しないように設定したオブジェクト
+    [SerializeField]
+    private GameObject ClearObject;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        //リザルトメインのスクリプトの割り当て
+        clearManager = ClearObject.GetComponent<ClearManagement>();
     }
 
     // Update is called once per frame
@@ -34,8 +45,12 @@ public class GoolFlag : MonoBehaviour
         //ゴールの旗に当たったら
         if (other.gameObject.tag == "Player")
         {
+            //ゲームを成功判定に
+            clearManager.IsPlayerClear = true;
             //リザルトシーンへ
             SceneManager.LoadScene("Result");
         }
     }
+
+
 }

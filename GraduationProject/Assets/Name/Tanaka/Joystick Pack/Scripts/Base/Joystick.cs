@@ -33,6 +33,10 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     [SerializeField] protected RectTransform background = null;
     [SerializeField] private RectTransform handle = null;
+
+    //2Dカメラ ↔ 3Dカメラへ動くクラス
+    [SerializeField] protected CameraDirector m_cameradirector = null;
+
     private RectTransform baseRect = null;
 
     private Canvas canvas;
