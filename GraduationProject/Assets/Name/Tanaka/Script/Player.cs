@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     //2Dカメラ ↔ 3Dカメラへ動くクラス
     [SerializeField]
     private CameraDirector m_cameradirector = default;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -65,18 +66,4 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    void OnCollisionEnter(Collision other)
-    {
-        //消しカスに当たったら
-        if (other.gameObject.tag == "KS")
-        {
-            //ゲージを増やす
-
-            //消しカスを消滅
-            
-            
-        }
-    }
-
 }
