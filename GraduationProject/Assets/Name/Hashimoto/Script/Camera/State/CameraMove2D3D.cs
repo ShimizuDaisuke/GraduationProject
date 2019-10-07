@@ -154,7 +154,7 @@ public class CameraMove2D3D : MonoBehaviour
             maincamera.transform.rotation = Quaternion.Euler(startcamera.transform.localEulerAngles + RotatingSpeed * MoveTime);
 
             // プレイヤーの位置を維持する
-            Script_PlayerPosByCamera2D3D.KeepPlayerPosByCameraMove2D3D(iscamera3d);
+            Script_PlayerPosByCamera2D3D.KeepPlayerPosByCameraMove2D3D();
         }
     }
 }
