@@ -33,7 +33,7 @@ public class CameraDirector : MonoBehaviour
 
     //「3Dカメラから2Dカメラへ」移動用のカメラ
     [SerializeField] private GameObject MoveFrom3DTo2DCamera = default;
-
+    
     // カメラの今の状態
     private CameraState NowState = CameraState.ERR;
 
@@ -158,8 +158,16 @@ public class CameraDirector : MonoBehaviour
             // 「2Dカメラと3Dカメラの間へ移動する準備を行う
             IsMove2DCamera3DCamera = true;
 
+
             // 2D ↔ 3Dカメラに切り替える
             IsNowChange3DCamera = !IsNowChange3DCamera;
+
+            // カメラが移動する前に、プレイヤーの位置を記憶する
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPosByCamera2D3D>().PlayerOncePos = GameObject.FindGameObjectWithTag("Player").transform.position;
+
+            // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPosByCamera2D3D>().CreatePlayerPosByCameraMove2D3D(IsNowChange3DCamera);
+
         }
     }
 
@@ -167,8 +175,8 @@ public class CameraDirector : MonoBehaviour
     /// 取得・設定関数
     /// </summary>
 
-    // カメラの今の状態 
-    public CameraState State { get { return NowState; } set{ NowState = value; } }
+        // カメラの今の状態 
+        public CameraState State { get { return NowState; } set{ NowState = value; } }
 
         // カメラの今と前の状態が異なっているか
         public bool IsDifferStateNowOnce { get { return IsDifferCameraStateNowOnce; } set { IsDifferCameraStateNowOnce = value; } } 

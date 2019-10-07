@@ -14,6 +14,7 @@ using UnityEngine.SceneManagement;
 
 public class TimerController : MonoBehaviour
 {
+
     // 書き込む変数
     public Text timerText;
 
@@ -26,28 +27,22 @@ public class TimerController : MonoBehaviour
     //時を進めるフラグ
     bool timerFlag;
 
-    //破棄しないように設定したオブジェクト
-    [SerializeField]
-    private GameObject ClearObject;
+    //残り時間の桁数
+    string remainingTime = "D3";
 
-    //リザルトメインのスクリプト
-    private ClearManagement clearManager;
 
     // Start is called before the first frame update
     void Start()
     {
         //実行時にタイマー作動させるため
         timerFlag = true;
-
-        //リザルトメインのスクリプトの割り当て
-        clearManager = ClearObject.GetComponent<ClearManagement>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //負の数(-1とか)にならないようにするif文
-        if(timerFlag)
+        if (timerFlag)
         {
             //フレームごとにフレームの秒数を引いてる
             totalTime -= Time.deltaTime;
@@ -74,23 +69,19 @@ public class TimerController : MonoBehaviour
                 seconds = 0;
                 totalTime = 0.0f;
 
-                //文字列にしてからテキストに表示
-                timerText.text = seconds.ToString();
-
-                //ゲームを失敗判定に
-                clearManager.IsPlayerClear = false;
-
-                //リザルトシーンへ
                 SceneManager.LoadScene("Result");
+            
             }
-        }
-    }
 
+        }
+        
+        //文字列にしてからテキストに表示
+        timerText.text = seconds.ToString(remainingTime);
+    }
     /// <summary>
     /// 取得・設定関数
     /// </summary>
-        
-        // 残り時間
-        public int Int_RemainingTime { get { return seconds; } private set { seconds = value; } }
 
+    // 残り時間
+    public int Int_RemainingTime { get { return seconds; } private set { seconds = value; } }
 }

@@ -20,7 +20,7 @@ public class CameraStop : MonoBehaviour
     private float StopTime_NextMove2D3D = 1.0f;
 
     // 時間 :　カメラの動きを止めてから、カメラをプレイヤーに追従させるまでの時間
-    private float StopTime_NextFollowPlayer = 0.5f;
+    private float StopTime_NextFollowPlayer = 0.3f;
 
     // 透明度 : 通常の透明度 
     private float NormalTransparence = 1.0f;
@@ -116,9 +116,7 @@ public class CameraStop : MonoBehaviour
                     isdifferstatenowonce = true;
 
                     // ---------------------------------------------------------------------------------
-
-                    
-
+                 
                     // カメラが2D⇔3Dへ動かすのを終了させる
                     Script_CameraDirector.IsMove2D3DCameraPos = false;
                 }
@@ -149,14 +147,16 @@ public class CameraStop : MonoBehaviour
                     // 2D ↔ 3Dカメラに切り替える
                     Script_CameraDirector.IsAppearCamera3D = !Script_CameraDirector.IsAppearCamera3D;
 
+                    // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する
+                    Script_PlayerPosByCamera2D3D.CreatePlayerPosByCameraMove2D3D(Script_CameraDirector.IsAppearCamera3D);
+
                     // プレイヤーの地面以外のオブジェクトの透明度を元に戻す
                     Script_PlayerPosByCamera2D3D.MakeTransparencePlayerHitObjNoGround(NormalTransparence);
 
                     // プレイヤーの地面以外のオブジェクトの当たり判定をリセットする
                     Script_PlayerPosByCamera2D3D.IsHitPlayerNoGroundObj = false;
                 }
-
-                break;
+                    break;
             }
         }
 
