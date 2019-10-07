@@ -2,81 +2,53 @@
 //! @file   Player.cs
 //! @brief  プレイヤーの処理
 //! @author 田中歩夢
-//! @date   9月27日
+//! @date   10月07日
 //! @note   ない
 //=======================================================================================
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//プレイヤークラス
+//プレイヤーのクラス
 public class Player : MonoBehaviour
 {
-    //ジェイスティック
+    //最大HP
     [SerializeField]
-    private Joystick m_joystick = default;
-    //速度
+    private int m_MaxHP = 100;
+    //最大残機
     [SerializeField]
-    private float m_vel = default;
-    //2Dカメラ ↔ 3Dカメラへ動くクラス
-    [SerializeField]
-    private CameraDirector m_cameradirector = default;
+    private int m_MaxLife = 5;
+    //プレイヤーを守っている消しゴムのカバー
+    private GameObject m_cover = null;
+    //現在の体力
+    private int m_HP;
+    //残機
+    private int m_life;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //初期化
+        m_HP = m_MaxHP;
+        m_life = m_MaxLife;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //移動処理
-        Move();
         
     }
 
-    //移動処理
-    private void Move()
-    {
-        //２Dと３Dのカメラの切り替え中フラグ
-        bool cameraSwitch2D3D = m_cameradirector.IsMove2D3DCameraPos;
 
-        //２Dと３Dのカメラの切り替え中かどうか
-        if (!cameraSwitch2D3D)
-        {
-            //ジョイスティックで動かした方向
-            float dx = m_joystick.Horizontal;
-            float dy = m_joystick.Vertical;
-
-            //2Dカメラか3Dカメラかのフラグ
-            bool camera2Dor3DFlag = m_cameradirector.IsAppearCamera3D;
-            //2Dカメラの時
-            if (!camera2Dor3DFlag)
-            {
-                //2Dの移動
-                transform.Translate(dx * m_vel, 0.0f, 0.0f);
-            }
-            //3Dカメラの時
-            else
-            {
-                //3Dの移動
-                transform.Translate(dy * m_vel, 0.0f, -dx * m_vel);
-            }
-        }
-    }
-
-    void OnCollisionEnter(Collision other)
-    {
-        //消しカスに当たったら
-        if (other.gameObject.tag == "KS")
-        {
-            //ゲージを増やす
-
-            //消しカスを消滅
-            
-            
-        }
-    }
-
+    //プレイヤーの最大HPを取得・設定
+    public int MaxHP { get { return m_MaxHP; } set { m_MaxHP = value; } }
+    //プレイヤーの最大残機を取得・設定
+    public int MaxLife { get { return m_MaxLife; } set { m_MaxLife = value; } }
+    //プレイヤーを守っているカバーを取得・設定
+    public GameObject Cover { get { return m_cover; } set { m_cover = value; } }
+    //プレイヤーのHPを取得・設定
+    public int HP { get { return m_HP; } set { m_HP = value; } }
+    //プレイヤーの残機を取得・設定
+    public int Life { get { return m_life; } set { m_life = value; } }
+    
 }
