@@ -16,6 +16,7 @@ public class GoolFlag : MonoBehaviour
     //ゲームの結果判定フラグ
     public static bool resultFlag = false;
 
+
     //リザルトメインのスクリプト
     private ClearManagement clearManager;
 
