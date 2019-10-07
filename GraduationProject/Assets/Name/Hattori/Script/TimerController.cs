@@ -76,7 +76,7 @@ public class TimerController : MonoBehaviour
         }
         
         //文字列にしてからテキストに表示
-        timerText.text = seconds.ToString("D3");
+        timerText.text = seconds.ToString(remainingTime);
     }
     /// <summary>
     /// 取得・設定関数
