@@ -1,7 +1,15 @@
-﻿using System.Collections;
+﻿//=======================================================================================
+//! @file   PlayerAddScore.cs
+//! @brief  スコアを増やす処理
+//! @author 田中歩夢
+//! @date   10月07日
+//! @note   ない
+//=======================================================================================
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//スコアの増やすクラス
 public class PlayerAddScore : MonoBehaviour
 {
     //スコア
