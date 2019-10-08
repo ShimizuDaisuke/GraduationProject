@@ -83,6 +83,6 @@ public class HPGaugeController : MonoBehaviour
         // プレイヤーの体力によって、画像サイズを変更する
         imageRectSize.sizeDelta = nowSize;
 
-        Script_Player.HP--;
+        //Script_Player.HP--;
     }
 }
