@@ -14,7 +14,7 @@ public class PlayerAddScore : MonoBehaviour
 {
     //スコア
     [SerializeField]
-    private int m_score = 0;
+    private Score m_score = default;
     //消しカスのクラス
     private EraserDust m_eraserDust = default;
     //ノートブックのクラス
@@ -29,7 +29,7 @@ public class PlayerAddScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(m_score);
+        Debug.Log(m_score.Int_EraserScore);
     }
 
     //衝突判定
@@ -45,7 +45,7 @@ public class PlayerAddScore : MonoBehaviour
             if (m_eraserDust.IsEraserDustKind == EraserDust.EraserDustKIND.NORMAL)
             {
                 // スコアを増やす
-                m_score += m_eraserDust.Point;
+                m_score.Int_EraserScore += m_eraserDust.Point;
                 //衝突した消しカスを消す
                 Destroy(collider.gameObject);
             }
@@ -61,7 +61,7 @@ public class PlayerAddScore : MonoBehaviour
             if (m_notebook.Graffiti)
             {
                 // スコアを増やす
-                m_score += m_notebook.Score;
+                m_score.Int_EraserScore += m_notebook.Score;
                 // 衝突した落書きを消す
                 m_notebook.Graffiti = false;
             }
