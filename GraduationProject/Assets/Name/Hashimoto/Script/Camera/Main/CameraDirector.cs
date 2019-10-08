@@ -33,7 +33,10 @@ public class CameraDirector : MonoBehaviour
 
     //「3Dカメラから2Dカメラへ」移動用のカメラ
     [SerializeField] private GameObject MoveFrom3DTo2DCamera = default;
-    
+
+    // プレイヤー
+    private GameObject PlayerObj;
+
     // カメラの今の状態
     private CameraState NowState = CameraState.ERR;
 
@@ -71,6 +74,9 @@ public class CameraDirector : MonoBehaviour
 
         // カメラがプレイヤーに追従するように設定する
         NowState  = CameraState.FOLLOWPLAYER;
+
+        // プレイヤーを探す
+        PlayerObj = GameObject.FindGameObjectWithTag("Player");
 
         // スクリプト: 2Dカメラ ↔ 3Dカメラへ動く の設定
         Script_CameraMove2D3D = GetComponent<CameraMove2D3D>();
@@ -158,16 +164,17 @@ public class CameraDirector : MonoBehaviour
             // 「2Dカメラと3Dカメラの間へ移動する準備を行う
             IsMove2DCamera3DCamera = true;
 
-
             // 2D ↔ 3Dカメラに切り替える
             IsNowChange3DCamera = !IsNowChange3DCamera;
 
             // カメラが移動する前に、プレイヤーの位置を記憶する
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPosByCamera2D3D>().PlayerOncePos = GameObject.FindGameObjectWithTag("Player").transform.position;
+            PlayerObj.GetComponent<PlayerPosByCamera2D3D>().PlayerOncePos = GameObject.FindGameObjectWithTag("Player").transform.position;
 
             // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPosByCamera2D3D>().CreatePlayerPosByCameraMove2D3D(IsNowChange3DCamera);
+            PlayerObj.GetComponent<PlayerPosByCamera2D3D>().CreatePlayerPosByCameraMove2D3D(IsNowChange3DCamera);
 
+            // プレイヤーの「Rigidbody」の位置と回転を固定(フリーズ)させる
+            PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 
