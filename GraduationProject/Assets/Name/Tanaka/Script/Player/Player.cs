@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //プレイヤーのクラス
 public class Player : MonoBehaviour
@@ -25,9 +26,18 @@ public class Player : MonoBehaviour
     //残機
     private int m_life;
 
+    //リザルトメインのスクリプト
+    private ClearManagement clearManager;
+
+    //破棄しないように設定したオブジェクト
+    [SerializeField]
+    private GameObject ClearObject;
+
     // Start is called before the first frame update
     void Start()
     {
+        //リザルトメインのスクリプトの割り当て
+        clearManager = ClearObject.GetComponent<ClearManagement>();
         //初期化
         m_HP = m_MaxHP;
         m_life = m_MaxLife;
@@ -36,7 +46,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // プレイヤーの体力が0以下になったら
+        if(m_HP <= 0)
+        {
+            //ゲームを成功判定に
+            clearManager.IsPlayerClear = false;
+            //リザルトシーンへ
+            SceneManager.LoadScene("Result");
+        }
+
     }
 
 
