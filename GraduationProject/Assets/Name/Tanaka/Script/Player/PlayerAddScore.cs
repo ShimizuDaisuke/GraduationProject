@@ -9,6 +9,8 @@ public class PlayerAddScore : MonoBehaviour
     private int m_score = 0;
     //消しカスのクラス
     private EraserDust m_eraserDust = default;
+    //ノートブックのクラス
+    private Notebook m_notebook = default;
 
     // Start is called before the first frame update
     void Start()
@@ -39,8 +41,22 @@ public class PlayerAddScore : MonoBehaviour
                 //衝突した消しカスを消す
                 Destroy(collider.gameObject);
             }
+        }
 
-           
+        //ノートブックに当たったら
+        if(collider.gameObject.tag == "Notebook")
+        {
+            //消しカスのクラスを取得
+            m_notebook = collider.gameObject.GetComponent<Notebook>();
+
+            // ノートブックに落書きがあるとき
+            if (m_notebook.Graffiti)
+            {
+                // スコアを増やす
+                m_score += m_notebook.Score;
+                // 衝突した落書きを消す
+                m_notebook.Graffiti = false;
+            }
         }
     }
 }
