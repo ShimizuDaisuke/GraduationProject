@@ -10,13 +10,14 @@ using UnityEngine;
 
 public class PlayerFlashing : MonoBehaviour
 {
-    //無敵時間
+    // 点滅の時間間隔
     [SerializeField]
-    float invincibleTime = 0.0f;
+    private float intervalTime;
+    // 点滅による時間
+    private float invincibleTime = 0.0f;
 
-    //無敵時間の最大値
     [SerializeField]
-    float invincibleMaxTime = 0.0f;
+    private float invincibleMaxTime;
 
     // 点滅したか
     [SerializeField]
@@ -41,11 +42,6 @@ public class PlayerFlashing : MonoBehaviour
             //無敵状態に
             unrivaled();
         }
-        else
-        {
-            // 常に表示する
-            player.SetActive(true);
-        }
     }
 
     //======================================================================================= 
@@ -53,11 +49,21 @@ public class PlayerFlashing : MonoBehaviour
     //======================================================================================= 
     void Flashing()
     {
-       // 現在のプレイヤーの表示状態
-       bool state = player.activeInHierarchy;
+        // 点滅時間を計る
+        invincibleTime += Time.deltaTime;
+        // 点滅するか
+        if (invincibleTime >= intervalTime)
+        {
+            // 時間をリセットする
+            invincibleTime += -intervalTime;
+        }
 
-       // 表示非表示を反転する
-       player.SetActive(!state);
+        // 現在のプレイヤーの表示状態
+        bool state = player.activeInHierarchy;
+
+        // 表示非表示を反転する
+        player.SetActive(!state);
+
     }
 
 
@@ -70,7 +76,7 @@ public class PlayerFlashing : MonoBehaviour
         if (invincibleMaxTime > invincibleTime)
         {
             //無敵時間のカウントアップ
-            invincibleTime += 1.0f;
+            invincibleTime += Time.deltaTime;
         }
         else
         {
@@ -79,6 +85,12 @@ public class PlayerFlashing : MonoBehaviour
 
             //無敵時間のリセット
             invincibleTime = 0.0f;
+
+            //点滅時間のリセット
+            invincibleTime = 0.0f;
+
+            // 表示非表示を反転する
+            player.SetActive(true);
         }
     }
 
