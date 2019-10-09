@@ -27,6 +27,8 @@ public class QRReadID : MonoBehaviour
     // 読み込んだQRの結果
     private SampleQRReader qrResult;
 
+    QRText qRText;
+
     //=======================================================================================
     //! @brief 開始処理
     //! @param[in] なし
@@ -35,7 +37,8 @@ public class QRReadID : MonoBehaviour
     //=======================================================================================
     void Start()
     {
-        qrResult = GetComponent<SampleQRReader>();   
+        qrResult = GetComponent<SampleQRReader>();
+        qRText = GetComponent<QRText>();
     }
 
     //=======================================================================================
@@ -63,9 +66,11 @@ public class QRReadID : MonoBehaviour
                 switch (num)
                 {
                     case (int)ReadResult.INCREASE_TIME:
+                    qRText.IncreaseTime();
                         Debug.Log("制限時間を上げました");
                         break;
                     case (int)ReadResult.ATK_UP:
+                    qRText.PowerUp();
                         Debug.Log("攻撃力を上げました");
                         break;
                 }

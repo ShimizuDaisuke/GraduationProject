@@ -139,7 +139,7 @@ public class SampleQRReader : MonoBehaviour
                 _switch = true;
                 // カメラの起動
                 _webCamTex.Play();
-
+                // RawImageを表示する
                 activeChange.CameraImage.SetActive(true);
             }
             else
@@ -148,7 +148,7 @@ public class SampleQRReader : MonoBehaviour
                 _webCamTex.Stop();
                 // カメラのスイッチ OFF
                 _switch = false;
-
+                // RawImageを非表示にする
                 activeChange.CameraImage.SetActive(false);
             }
         }
@@ -163,11 +163,14 @@ public class SampleQRReader : MonoBehaviour
                 _result = QRCodeHelper.Read(_webCamTex);
                 if (_result != "error")
                 {
+                    // Spotの起動フラグをOffにする
                     qRSpot = false;
                     // カメラの終了
                     _webCamTex.Stop();
                     // カメラのスイッチ OFF
                     _switch = false;
+
+                    activeChange.Text.SetActive(true);
                 }
                 // 読み込んで格納した文字、数値をデバッグ表示
                 Debug.LogFormat("result : " + _result);
