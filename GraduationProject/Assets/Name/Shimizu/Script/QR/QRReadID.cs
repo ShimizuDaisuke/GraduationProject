@@ -70,15 +70,5 @@ public class QRReadID : MonoBehaviour
                         break;
                 }
             }
-        //}
-
-        //string tmp = ReadResult.INCREASE_TIME.ToString();
-
-        //switch (result._result)
-        //{
-        //    case ReadResult.INCREASE_TIME.ToString():
-
-        //        break;
-        //}
     }
 }

@@ -9,19 +9,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class SampleQRReader : MonoBehaviour
 {
-    // メインカメラ
-    public Camera mainCamera;
-
     // 映像をテクスチャとして扱う
-    WebCamTexture _webCam;
+    WebCamTexture _webCamTex;
 
     // 読み込んだ結果格納
     private string _result = null;
 
     // カメラの On Off
     bool _switch = false;
+
+    bool qRSpot = false;
 
     // FPS設定 カメラのインスタンスに使う
     const int FPS = 60;
@@ -36,6 +36,10 @@ public class SampleQRReader : MonoBehaviour
     // 画面サイズ
     const int SCREEN_SIZE = 2;
 
+    [SerializeField]
+    RawImage cameraImage;
+
+    ActiveChange activeChange;
     //=======================================================================================
     //! @brief 開始処理
     //! @param[in] なし
@@ -44,9 +48,6 @@ public class SampleQRReader : MonoBehaviour
     //=======================================================================================
     IEnumerator Start()
     {
-        // メインカメラの情報格納
-        mainCamera = Camera.main;
-
         // カメラを使用する際に許可を求める
         yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
 
@@ -68,23 +69,21 @@ public class SampleQRReader : MonoBehaviour
         }
 
         // スマホ内での処理====================================================================
-        //Quadを画面いっぱいに広げる
-        float _h = mainCamera.orthographicSize * 2;
-        float _w = _h * mainCamera.aspect;
-        // スマホが横ならそのまま
-        if (Input.deviceOrientation == DeviceOrientation.LandscapeLeft)
-        {
-            transform.localScale = new Vector3(_h, _w, 1);
-        }
-        // 縦なら回転させる
-        if (Input.deviceOrientation == DeviceOrientation.FaceUp)
-        {
-            transform.localScale = new Vector3(_h, _w, 1);
-            transform.localRotation *= Quaternion.Euler(0, 0, ROTATION);
-        }
+        ////Quadを画面いっぱいに広げる
+        //float _h = mainCamera.orthographicSize * 2;
+        //float _w = _h * mainCamera.aspect;
+        //// スマホが横ならそのまま
+        //if (Input.deviceOrientation == DeviceOrientation.LandscapeLeft)
+        //{
+        //    transform.localScale = new Vector3(_h, _w, 1);
+        //}
+        //// 縦なら回転させる
+        //if (Input.deviceOrientation == DeviceOrientation.FaceUp)
+        //{
+        //    transform.localScale = new Vector3(_h, _w, 1);
+        //    transform.localRotation *= Quaternion.Euler(0, 0, ROTATION);
+        //}
         // ====================================================================================
-        // カメラのテクスチャをQuadに乗せる
-        Renderer rend = GetComponent<Renderer>();
 
         if (devices.Length > 0)
         {
@@ -94,8 +93,8 @@ public class SampleQRReader : MonoBehaviour
             // カメラに映っているテクスチャを追加する
             WebCamTexture _wCam = new WebCamTexture(cam.name);
 
-            // MaterialTextureに映っているテクスチャを張り付ける
-            rend.material.mainTexture = _webCam;
+            //// rawImageに映っているテクスチャを張り付ける
+            cameraImage.texture = _webCamTex;
 
             // webカメラの起動しテクスチャを現在のレンダラーに割り当てる
             _wCam.Play();
@@ -110,12 +109,15 @@ public class SampleQRReader : MonoBehaviour
                 width *= SCREEN_SIZE;
                 height *= SCREEN_SIZE;
             }
-            // 指定したwebCameraをインスタンスする
-            _webCam = new WebCamTexture(cam.name, Screen.width, Screen.height, FPS);
+
+
+            _webCamTex = new WebCamTexture(cam.name, Screen.width, Screen.height, FPS);
             _wCam.Stop();
 
-            // MaterialTextureに代入
-            rend.material.mainTexture = _webCam;
+
+            _webCamTex = new WebCamTexture();
+            cameraImage.texture = _webCamTex;
+            _webCamTex.Play();
         }
     }
 
@@ -127,36 +129,39 @@ public class SampleQRReader : MonoBehaviour
     //=======================================================================================
     void Update()
     {
-        // カメラの起動
-        if (Input.GetKey(KeyCode.Space))
+        if(_webCamTex != null)
         {
-            // カメラのスイッチ ON
-            _switch = true;
-            // カメラの起動
-            _webCam.Play();
-        }
+            if (qRSpot)
+            {
+                // カメラのスイッチ ON
+                _switch = true;
+                // カメラの起動
+                _webCamTex.Play();
 
-        // カメラを止める
-        if (Input.GetKey(KeyCode.Z))
-        {
-            // カメラの終了
-            _webCam.Stop();
-            // カメラのスイッチ OFF
-            _switch = false;
+                
+            }
+            else
+            {
+                // カメラの終了
+                _webCamTex.Stop();
+                // カメラのスイッチ OFF
+                _switch = false;
+            }
         }
 
         // 映像のテクスチャがあるか
-        if (_webCam != null)
+        if (_webCamTex != null)
         {
             // カメラが起動していた場合
             if (_switch != false)
             {
                 // 読み込んだ情報を格納
-                _result = QRCodeHelper.Read(_webCam);
-                if(_result != "error")
+                _result = QRCodeHelper.Read(_webCamTex);
+                if (_result != "error")
                 {
+
                     // カメラの終了
-                    _webCam.Stop();
+                    _webCamTex.Stop();
                     // カメラのスイッチ OFF
                     _switch = false;
                 }
@@ -170,7 +175,14 @@ public class SampleQRReader : MonoBehaviour
     public string Result
     {
         get { return _result; }
-        private set { _result = value; }
+        set { _result = value; }
     }
+
+    public bool QRSpot
+    {
+        get { return qRSpot; }
+        set { qRSpot = value; }
+    }
+
 }
 
