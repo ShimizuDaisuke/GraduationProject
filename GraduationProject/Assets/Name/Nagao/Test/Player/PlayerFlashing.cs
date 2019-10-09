@@ -12,12 +12,12 @@ public class PlayerFlashing : MonoBehaviour
 {
     // 点滅の時間間隔
     [SerializeField]
-    private float intervalTime;
+    private float intervalTime = default;
     // 点滅による時間
     private float invincibleTime = 0.0f;
 
     [SerializeField]
-    private float invincibleMaxTime;
+    private float invincibleMaxTime = 0.0f;
 
     // 点滅したか
     [SerializeField]
