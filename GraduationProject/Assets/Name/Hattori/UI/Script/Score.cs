@@ -40,5 +40,5 @@ public class Score : MonoBehaviour
     /// 取得・設定関数
     /// </summary>
     // スコア
-    public int Int_EraserScore { get { return eraserScore; } private set { eraserScore = value; } }
+    public int Int_EraserScore { get { return eraserScore; } set { eraserScore = value; } }
 }

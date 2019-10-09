@@ -17,7 +17,7 @@ using CameraState = CameraDirector.CameraState;     // カメラの状態
 public class CameraStop : MonoBehaviour
 {
     // 時間 : カメラの動きを止めてから、カメラを2D⇔3Dへ動かすまでの時間
-    private float StopTime_NextMove2D3D = 1.0f;
+    private float StopTime_NextMove2D3D = 1.5f;
 
     // 時間 :　カメラの動きを止めてから、カメラをプレイヤーに追従させるまでの時間
     private float StopTime_NextFollowPlayer = 0.3f;
@@ -27,6 +27,9 @@ public class CameraStop : MonoBehaviour
 
     // 透明度 : プレイヤーが地面以外に当たったオブジェクトの透明度
     private float PlayerHitObjTransparence = 0.2f;
+
+    // 点滅時間の間隔
+    private float FlashTimeGap = 0.4f;
 
     // --------------------------------------------------------------------------------------
 
@@ -38,6 +41,9 @@ public class CameraStop : MonoBehaviour
 
     // カメラの動きを止めてから経過した時間
     private float TimeAfterCameraStop = 0.0f;
+
+    // 点滅に関する時間
+    private float FlashTime = 0.0f;
 
     // スクリプト：2Dカメラ⇔3Dカメラへ移動時にいるプレイヤーの位置
     private PlayerPosByCamera2D3D Script_PlayerPosByCamera2D3D;
@@ -119,9 +125,15 @@ public class CameraStop : MonoBehaviour
                  
                     // カメラが2D⇔3Dへ動かすのを終了させる
                     Script_CameraDirector.IsMove2D3DCameraPos = false;
+
+                   // プレイヤーの「Rigidbody」の位置と回転の固定(フリーズ)を解除する
+                   Player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                   // プレイヤーの「Rigidbody」の回転のみ固定(フリーズ)する
+                   Player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+
                 }
 
-                break;
+                    break;
             }
 
             // カメラの動きを止めた後に、カメラの状態を2D⇔3Dに動くように設定した場合
@@ -148,14 +160,51 @@ public class CameraStop : MonoBehaviour
                     Script_CameraDirector.IsAppearCamera3D = !Script_CameraDirector.IsAppearCamera3D;
 
                     // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する
-                    Script_PlayerPosByCamera2D3D.CreatePlayerPosByCameraMove2D3D(Script_CameraDirector.IsAppearCamera3D);
+                    Script_PlayerPosByCamera2D3D.CreatePlayerPosByCameraMove2D3D(Script_PlayerPosByCamera2D3D.PlayerOncePos);
 
                     // プレイヤーの地面以外のオブジェクトの透明度を元に戻す
                     Script_PlayerPosByCamera2D3D.MakeTransparencePlayerHitObjNoGround(NormalTransparence);
 
                     // プレイヤーの地面以外のオブジェクトの当たり判定をリセットする
                     Script_PlayerPosByCamera2D3D.IsHitPlayerNoGroundObj = false;
+
+                    // プレイヤーが地面以外に当たったオブジェクト
+                    GameObject obj = Script_PlayerPosByCamera2D3D.PlayerHitObjNoGround;
+                    // そのオブジェクトを表示させる
+                    obj.SetActive(true);
+                    // 点滅に関する時間をリセットする
+                    FlashTime = 0.0f;
+
                 }
+                    else
+                // カメラを2D⇔3Dへ動かすまでの時間がまだ経過していない場合
+                {
+                    // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する
+                    Script_PlayerPosByCamera2D3D.CreatePlayerPosByCameraMove2D3D(Script_PlayerPosByCamera2D3D.PlayerOncePos);
+
+                    // プレイヤーの位置がずれないように保つ
+                    Script_PlayerPosByCamera2D3D.KeepPlayerPosByCameraMove2D3D();
+
+                        // 点滅に関する時間を計る
+                        FlashTime += Time.deltaTime;
+
+                        // オブジェクトの表示非表示を切り替える
+                        if(FlashTime >= FlashTimeGap)
+                        {
+                            // 点滅に関する時間をリセットする
+                            FlashTime += -FlashTimeGap;
+
+                            // プレイヤーが地面以外に当たったオブジェクト
+                            GameObject obj = Script_PlayerPosByCamera2D3D.PlayerHitObjNoGround;
+
+                            // そのオブジェクトの状態
+                            bool state = obj.activeInHierarchy;
+
+                            // そのオブジェクトを表示非表示させる
+                            obj.SetActive(!state);
+                        }
+                }
+
                     break;
             }
         }
