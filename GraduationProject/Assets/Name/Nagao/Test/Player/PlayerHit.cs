@@ -31,6 +31,9 @@ public class PlayerHit : MonoBehaviour
     // スクリプト : プレイヤー
     private Player Script_Player;
 
+    // 消しゴムのカバーを付けたか
+    private bool IsFixCover = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,11 +52,24 @@ public class PlayerHit : MonoBehaviour
     }
 
 
-    //OnTriggerEnter
+
+    void OnTriggerEnter(Collider col)
+    {
+        //消しゴムカバーと当たった時
+        if(col.gameObject.tag == "EraserDustCover")
+        {
+            col.gameObject.transform.parent = this.gameObject.transform;
+            col.gameObject.transform.position = this.gameObject.transform.position;
+
+            // 消しゴムにカバーを付けた
+            IsFixCover = true;
+        }
+    }
+    
     void OnTriggerStay(Collider col)
     {
-
-        if ((col.gameObject.tag == "Sword") && (Script_PlayerFlashing.IsPlayerFlashing == false))
+        //刃物との当たり判定
+        if ((col.gameObject.tag == "Sword") && (Script_PlayerFlashing.IsPlayerFlashing == false)&& (IsFixCover == false))
         {
             Debug.Log("うんち！");
 
@@ -71,7 +87,9 @@ public class PlayerHit : MonoBehaviour
             // プレイヤーが刃物に触れた
             Script_PlayerFlashing.IsPlayerFlashing = true;
 
-
+            Debug.Log(Script_Player.HP);
         }
     }
+
+    public bool FixCover { get { return IsFixCover; } set { IsFixCover = value; } }
 }

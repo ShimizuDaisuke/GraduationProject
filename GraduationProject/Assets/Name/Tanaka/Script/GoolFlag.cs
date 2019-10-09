@@ -22,7 +22,7 @@ public class GoolFlag : MonoBehaviour
 
     //破棄しないように設定したオブジェクト
     [SerializeField]
-    private GameObject ClearObject;
+    private GameObject ClearObject = default;
 
     // Start is called before the first frame update
     void Start()
