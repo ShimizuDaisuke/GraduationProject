@@ -23,6 +23,8 @@ public class SampleQRReader : MonoBehaviour
 
     bool qRSpot = false;
 
+    float timer = 0.0f;
+
     // FPS設定 カメラのインスタンスに使う
     const int FPS = 60;
 
@@ -175,6 +177,17 @@ public class SampleQRReader : MonoBehaviour
                 // 読み込んで格納した文字、数値をデバッグ表示
                 Debug.LogFormat("result : " + _result);
                 Debug.LogFormat(_result);
+            }
+        }
+
+        if(activeChange.Text.activeInHierarchy)
+        {
+            timer += Time.deltaTime;
+            Debug.Log(timer);
+            if(timer > 5.0f)
+            {
+                activeChange.Text.SetActive(false);
+                timer = 0.0f;
             }
         }
     }
