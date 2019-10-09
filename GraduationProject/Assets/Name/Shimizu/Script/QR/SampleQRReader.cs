@@ -48,6 +48,8 @@ public class SampleQRReader : MonoBehaviour
     //=======================================================================================
     IEnumerator Start()
     {
+        activeChange = GetComponent<ActiveChange>();
+
         // カメラを使用する際に許可を求める
         yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
 
@@ -138,7 +140,7 @@ public class SampleQRReader : MonoBehaviour
                 // カメラの起動
                 _webCamTex.Play();
 
-                
+                activeChange.CameraImage.SetActive(true);
             }
             else
             {
@@ -146,6 +148,8 @@ public class SampleQRReader : MonoBehaviour
                 _webCamTex.Stop();
                 // カメラのスイッチ OFF
                 _switch = false;
+
+                activeChange.CameraImage.SetActive(false);
             }
         }
 
@@ -159,7 +163,7 @@ public class SampleQRReader : MonoBehaviour
                 _result = QRCodeHelper.Read(_webCamTex);
                 if (_result != "error")
                 {
-
+                    qRSpot = false;
                     // カメラの終了
                     _webCamTex.Stop();
                     // カメラのスイッチ OFF
