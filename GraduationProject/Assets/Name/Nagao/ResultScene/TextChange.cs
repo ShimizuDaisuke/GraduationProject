@@ -13,14 +13,14 @@ using UnityEngine.UI;
 public class TextChange : MonoBehaviour
 {
     //Textの表示
-    [SerializeField] private Text text;
+    [SerializeField] private Text text = default;
 
     //リザルトメインのスクリプト
     private ClearManagement clearManager;
 
     //破棄しないように設定したオブジェクト
     [SerializeField]
-    private GameObject ClearObject;
+    private GameObject ClearObject = default;
 
 
     // Start is called before the first frame update
