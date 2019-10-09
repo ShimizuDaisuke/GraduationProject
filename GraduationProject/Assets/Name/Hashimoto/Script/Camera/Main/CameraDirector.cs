@@ -168,7 +168,7 @@ public class CameraDirector : MonoBehaviour
             IsNowChange3DCamera = !IsNowChange3DCamera;
 
             // カメラが移動する前に、プレイヤーの位置を記憶する
-            PlayerObj.GetComponent<PlayerPosByCamera2D3D>().PlayerOncePos = GameObject.FindGameObjectWithTag("Player").transform.position;
+            PlayerObj.GetComponent<PlayerPosByCamera2D3D>().PlayerOncePos = PlayerObj.transform.position;
 
             // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する
             PlayerObj.GetComponent<PlayerPosByCamera2D3D>().CreatePlayerPosByCameraMove2D3D(IsNowChange3DCamera);
