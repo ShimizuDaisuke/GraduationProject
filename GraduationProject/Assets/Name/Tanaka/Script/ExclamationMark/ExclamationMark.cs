@@ -30,6 +30,10 @@ public class ExclamationMark : MonoBehaviour
     [SerializeField]
     private float m_scaleSpeed = 0.005f;
 
+    //2Dカメラ ↔ 3Dカメラへ動くクラス
+    [SerializeField]
+    private CameraDirector m_cameradirector = default;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,8 +50,10 @@ public class ExclamationMark : MonoBehaviour
     {
         //上下移動
         UpDownMove();
-        //
+        //サイズ変更
         UpDownScale();
+        //２Dと３Dの時に回転して見えるようにする
+        Rotate();
     }
 
     //上下移動
@@ -74,16 +80,39 @@ public class ExclamationMark : MonoBehaviour
         }
     }
 
+    //サイズ変更
     private void UpDownScale()
     {
         if(!m_upDownFlag)
         {
+            //小さくなる
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y - m_scaleSpeed, transform.localScale.z);
         }
         else
         {
+            //元のサイズに戻る
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y + m_scaleSpeed, transform.localScale.z);
         }
     }
+
+    //２Dと３Dの時に回転して見えるようにする
+    private void Rotate()
+    {
+        //2Dカメラか3Dカメラかのフラグ
+        bool camera2Dor3DFlag = m_cameradirector.IsAppearCamera3D;
+        //2Dカメラの時
+        if (!camera2Dor3DFlag)
+        {
+            transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+        }
+        //3Dカメラの時
+        else
+        {
+            float y = 90.0f;
+            transform.rotation = Quaternion.Euler(0.0f, y, 0.0f);
+        }
+        
+    }
+
 
 }
