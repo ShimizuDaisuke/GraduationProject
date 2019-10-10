@@ -10,7 +10,7 @@ public class QRSpotObject : MonoBehaviour
 
     void Start()
     {
-        gm = GameObject.FindWithTag("GameObject");
+        gm = GameObject.FindWithTag("QRDirector");
         spot = gm.gameObject.GetComponent<SampleQRReader>();
     }
     

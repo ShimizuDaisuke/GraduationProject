@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class BackButton : MonoBehaviour
 {
-    GameObject gm;
+    GameObject qRDirector;
 
     SampleQRReader spot;
 
     void Start()
     {
-        gm = GameObject.FindWithTag("GameObject");
+        qRDirector = GameObject.FindWithTag("QRDirector");
 
-        spot = gm.gameObject.GetComponent<SampleQRReader>();
+        spot = qRDirector.gameObject.GetComponent<SampleQRReader>();
     }
 
     public void OnClick()
