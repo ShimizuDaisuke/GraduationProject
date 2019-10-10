@@ -118,9 +118,11 @@ public class SampleQRReader : MonoBehaviour
             _webCamTex = new WebCamTexture(cam.name, Screen.width, Screen.height, FPS);
             _wCam.Stop();
 
-
+            // カメラに映っているテクスチャを追加する
             _webCamTex = new WebCamTexture();
+            // テクスチャを張りつける
             cameraImage.texture = _webCamTex;
+            // カメラの起動
             _webCamTex.Play();
         }
     }
@@ -133,8 +135,10 @@ public class SampleQRReader : MonoBehaviour
     //=======================================================================================
     void Update()
     {
+        // nullチェック
         if(_webCamTex != null)
         {
+            // QRSpotがtrueか(QRSpotに触れた時にtrueになる)
             if (qRSpot)
             {
                 // カメラのスイッチ ON
@@ -142,7 +146,7 @@ public class SampleQRReader : MonoBehaviour
                 // カメラの起動
                 _webCamTex.Play();
                 // RawImageを表示する
-                activeChange.CameraImage.SetActive(true);
+                activeChange.CameraPanel.SetActive(true);
             }
             else
             {
@@ -151,7 +155,7 @@ public class SampleQRReader : MonoBehaviour
                 // カメラのスイッチ OFF
                 _switch = false;
                 // RawImageを非表示にする
-                activeChange.CameraImage.SetActive(false);
+                activeChange.CameraPanel.SetActive(false);
             }
         }
 
@@ -171,33 +175,46 @@ public class SampleQRReader : MonoBehaviour
                     _webCamTex.Stop();
                     // カメラのスイッチ OFF
                     _switch = false;
-
-                    activeChange.Text.SetActive(true);
+                    // テキストPanelの表示
+                    activeChange.TextPanel.SetActive(true);
                 }
-                // 読み込んで格納した文字、数値をデバッグ表示
-                Debug.LogFormat("result : " + _result);
-                Debug.LogFormat(_result);
             }
         }
 
-        if(activeChange.Text.activeInHierarchy)
+        // テキストPanelが表示されているかどうか
+        if(activeChange.TextPanel.activeInHierarchy)
         {
+            // 秒数を数える
             timer += Time.deltaTime;
-            Debug.Log(timer);
+            // 5秒たったら
             if(timer > 5.0f)
             {
-                activeChange.Text.SetActive(false);
+                // テキストPanelを非表示にする
+                activeChange.TextPanel.SetActive(false);
+                // タイマーをリセットする
                 timer = 0.0f;
             }
         }
     }
 
+    //=======================================================================================
+    //! @brief 結果の取得設定
+    //! @param[in] なし
+    //! @param[out] なし
+    //! @return なし
+    //=======================================================================================
     public string Result
     {
         get { return _result; }
         set { _result = value; }
     }
 
+    //=======================================================================================
+    //! @brief QRSpotの取得関数
+    //! @param[in] なし
+    //! @param[out] なし
+    //! @return なし
+    //=======================================================================================
     public bool QRSpot
     {
         get { return qRSpot; }
