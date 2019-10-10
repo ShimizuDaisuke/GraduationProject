@@ -354,10 +354,11 @@ GameObject:
   - component: {fileID: 172631253}
   - component: {fileID: 172631260}
   - component: {fileID: 172631259}
-  - component: {fileID: 172631258}
   - component: {fileID: 172631257}
-  - component: {fileID: 172631256}
+  - component: {fileID: 172631258}
   - component: {fileID: 172631255}
+  - component: {fileID: 172631261}
+  - component: {fileID: 172631256}
   - component: {fileID: 172631254}
   m_Layer: 0
   m_Name: board
@@ -448,7 +449,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 172631252}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 681f77c716e0dea4cbaaefefd1c1490f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -500,6 +501,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 172631252}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &172631261
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172631252}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.17046145, y: 1.407631, z: 0.74694353}
+  m_Center: {x: -0.41476634, y: 0.82684374, z: -0.014621958}
 --- !u!1 &216265665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1468,7 +1482,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628124984}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 681f77c716e0dea4cbaaefefd1c1490f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2059,7 +2073,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128020230}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3404107, y: 1.0936666, z: 2.0118227}
+  m_LocalPosition: {x: 24.28, y: 1.0936666, z: 1.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 216265669}
@@ -2203,7 +2217,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
