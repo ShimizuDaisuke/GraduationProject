@@ -15,7 +15,7 @@ public class CameraSwitchButton : MonoBehaviour
 {
     //2Dカメラ ↔ 3Dカメラへ動くクラス
     [SerializeField]
-    private CameraDirector m_cameradirector = default;
+    private CameraDirector m_cameraDirector = default;
 
     //ゲームオブジェクト（ボタン）
     [SerializeField]
@@ -49,7 +49,7 @@ public class CameraSwitchButton : MonoBehaviour
     void Update()
     {
         //２Dと３Dのカメラの切り替え中フラグ
-        bool cameraSwitch2D3D = m_cameradirector.IsMove2D3DCameraPos;
+        bool cameraSwitch2D3D = m_cameraDirector.IsMove2D3DCameraPos;
 
         //２Dと３Dのカメラの切り替え中かどうか
         if (!cameraSwitch2D3D)
@@ -67,7 +67,7 @@ public class CameraSwitchButton : MonoBehaviour
     //ボタンが押されたとき
     public void OnClick()
     {
-        m_cameradirector.ChangeCamera2D3D();
+        m_cameraDirector.ChangeCamera2D3D();
 
     }
 

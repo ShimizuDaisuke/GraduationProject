@@ -2,7 +2,7 @@
 //! @file   ThrowingObject.cs
 //! @brief  オブジェクトを投げる処理
 //! @author 田中歩夢
-//! @date   10月08日
+//! @date   10月10日
 //! @note   ない
 //=======================================================================================
 using System.Collections;
@@ -12,6 +12,10 @@ using UnityEngine;
 //オブジェクトを投げるクラス
 public class ThrowingObject : MonoBehaviour
 {
+    //イベント管理クラス
+    [SerializeField]
+    private EventDirector m_event = default;
+
     //投げられるオブジェクト
     [SerializeField]
     private GameObject m_throwObject = null;
@@ -22,6 +26,9 @@ public class ThrowingObject : MonoBehaviour
     [SerializeField]
     private float m_throwAngle = 0.0f;
 
+    //たどり着いたかどうかのフラグ
+    private bool m_arriveFlag = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,10 +38,8 @@ public class ThrowingObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            ThrowingObj();
-        }
+        //たどり着いたかどうか
+        Arrive();
     }
 
 
@@ -90,4 +95,25 @@ public class ThrowingObject : MonoBehaviour
         }
 
     }
+
+    //ターゲットにたどり着いたか
+    private void Arrive()
+    {
+        //イベントが投げられたの時
+        if(m_event.IsEventKIND == EventDirector.EventKIND.Thow)
+        {
+            //ターゲットにたどり着いたか
+            if (m_throwObject.transform.position == m_targetObject.transform.position)
+            {
+                //なにも起きていない状態に戻す
+                m_event.IsEventKIND = EventDirector.EventKIND.None;
+            }
+        }
+        
+    }
+
+    //たどり着いたかどうかのフラグを設定・取得
+    public bool ArriveFlag { get { return m_arriveFlag; } set { m_arriveFlag = value; } }
+
+
 }
