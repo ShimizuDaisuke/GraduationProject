@@ -21,8 +21,10 @@ public class SampleQRReader : MonoBehaviour
     // カメラの On Off
     bool _switch = false;
 
+    // QRSpotに触れたかの真偽
     bool qRSpot = false;
 
+    // 時間を図る
     float timer = 0.0f;
 
     // FPS設定 カメラのインスタンスに使う
@@ -38,9 +40,11 @@ public class SampleQRReader : MonoBehaviour
     // 画面サイズ
     const int SCREEN_SIZE = 2;
 
+    // 映ったテクスチャを貼る
     [SerializeField]
     RawImage cameraImage;
 
+    // Activeの変更
     ActiveChange activeChange;
     //=======================================================================================
     //! @brief 開始処理
@@ -50,6 +54,7 @@ public class SampleQRReader : MonoBehaviour
     //=======================================================================================
     IEnumerator Start()
     {
+        // ActiveChangeにアクセス
         activeChange = GetComponent<ActiveChange>();
 
         // カメラを使用する際に許可を求める
@@ -97,7 +102,7 @@ public class SampleQRReader : MonoBehaviour
             // カメラに映っているテクスチャを追加する
             WebCamTexture _wCam = new WebCamTexture(cam.name);
 
-            //// rawImageに映っているテクスチャを張り付ける
+            // rawImageに映っているテクスチャを張り付ける
             cameraImage.texture = _webCamTex;
 
             // webカメラの起動しテクスチャを現在のレンダラーに割り当てる
@@ -114,8 +119,9 @@ public class SampleQRReader : MonoBehaviour
                 height *= SCREEN_SIZE;
             }
 
-
+            // 実態を作成する
             _webCamTex = new WebCamTexture(cam.name, Screen.width, Screen.height, FPS);
+            // カメラを止める
             _wCam.Stop();
 
             // カメラに映っているテクスチャを追加する
@@ -167,6 +173,7 @@ public class SampleQRReader : MonoBehaviour
             {
                 // 読み込んだ情報を格納
                 _result = QRCodeHelper.Read(_webCamTex);
+                // _resultにerror意外だった場合
                 if (_result != "error")
                 {
                     // Spotの起動フラグをOffにする
@@ -222,4 +229,3 @@ public class SampleQRReader : MonoBehaviour
     }
 
 }
-

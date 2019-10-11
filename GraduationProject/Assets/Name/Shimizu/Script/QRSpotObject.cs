@@ -25,9 +25,9 @@ public class QRSpotObject : MonoBehaviour
     //=======================================================================================
     void Start()
     {
-        // QRDirectorを格納
+        // QRDirectorの参照
         qRDirector = GameObject.FindWithTag("QRDirector");
-        // SampleQRReaderを格納
+        // SampleQRReaderにアクセス
         spot = qRDirector.gameObject.GetComponent<SampleQRReader>();
     }
 

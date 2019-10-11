@@ -25,10 +25,10 @@ public class BackButton : MonoBehaviour
     //=======================================================================================
     void Start()
     {
-        // QRDirectorの格納
+        // QRDirectorのオブジェクト参照
         qRDirector = GameObject.FindWithTag("QRDirector");
 
-        // SampleQRReaderの格納
+        // SampleQRReaderにアクセス
         spot = qRDirector.gameObject.GetComponent<SampleQRReader>();
     }
 

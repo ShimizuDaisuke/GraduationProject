@@ -22,6 +22,7 @@ public class StatusFunction : MonoBehaviour
     //=======================================================================================
     public void IncreaseTime(ref float time)
     {
+        // 時間を増やす
         time += addTime;
     }
     
