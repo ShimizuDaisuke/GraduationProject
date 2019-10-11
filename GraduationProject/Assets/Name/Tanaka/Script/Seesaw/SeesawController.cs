@@ -2,7 +2,7 @@
 //! @file   SeesawController.cs
 //! @brief  シーソーの処理
 //! @author 田中歩夢
-//! @date   10月08日
+//! @date   10月10日
 //! @note   ない
 //=======================================================================================
 using System.Collections;
@@ -15,6 +15,10 @@ public class SeesawController : MonoBehaviour
     //ThrowingObjectクラス
     [SerializeField]
     private ThrowingObject m_throwingObj = default;
+
+    //イベント管理クラス
+    [SerializeField]
+    private EventDirector m_event = default;
 
     //板を元に戻す力
     [SerializeField]
@@ -50,6 +54,8 @@ public class SeesawController : MonoBehaviour
             //プレイヤーを投げる
             m_throwingObj.ThrowingObj();
             m_throwFlag = true;
+            //投げられたイベントにする
+            m_event.IsEventKIND = EventDirector.EventKIND.RULE_THOW;
         }
     }
 
@@ -59,6 +65,7 @@ public class SeesawController : MonoBehaviour
         //投げた後かどうか
         if (m_throwFlag)
         {
+
             //最初の角度より小さいとき徐々に戻していく
             if (transform.rotation.z <= m_startRotZ)
             {
@@ -66,9 +73,9 @@ public class SeesawController : MonoBehaviour
             }
             else
             {
-                
+
                 m_throwFlag = false;
-            }
+            }       
         }
         else
         {
@@ -77,5 +84,8 @@ public class SeesawController : MonoBehaviour
         }
 
     }
+
+    //投げたかどうかのフラグを設定・取得
+    public bool ThrowFlag { get { return m_throwFlag; } set { m_throwFlag = value; } }
 
 }

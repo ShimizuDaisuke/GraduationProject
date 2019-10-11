@@ -2,7 +2,7 @@
 //! @file   PlayerController.cs
 //! @brief  プレイヤー操作の処理
 //! @author 田中歩夢
-//! @date   9月27日
+//! @date   10月10日
 //! @note   ない
 //=======================================================================================
 using System.Collections;
@@ -12,15 +12,22 @@ using UnityEngine;
 //プレイヤーの操作クラス
 public class PlayerController : MonoBehaviour
 {
-    //ジェイスティック
-    [SerializeField]
-    private Joystick m_joystick = default;
-    //速度
-    [SerializeField]
-    private float m_vel = default;
     //2Dカメラ ↔ 3Dカメラへ動くクラス
     [SerializeField]
     private CameraDirector m_cameradirector = default;
+
+    //イベント管理クラス
+    [SerializeField]
+    private EventDirector m_event = default;
+
+    //ジョイスティッククラス
+    [SerializeField]
+    private Joystick m_joystick = default;
+
+    //速度
+    [SerializeField]
+    private float m_vel = default;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -42,8 +49,8 @@ public class PlayerController : MonoBehaviour
         //２Dと３Dのカメラの切り替え中フラグ
         bool cameraSwitch2D3D = m_cameradirector.IsMove2D3DCameraPos;
 
-        //２Dと３Dのカメラの切り替え中かどうか
-        if (!cameraSwitch2D3D)
+        //２Dと３Dのカメラの切り替え中かどうか,イベントが何も起きていないか
+        if ((!cameraSwitch2D3D) && (m_event.IsEventKIND == EventDirector.EventKIND.NONE))
         {
             //ジョイスティックで動かした方向
             float dx = m_joystick.Horizontal;

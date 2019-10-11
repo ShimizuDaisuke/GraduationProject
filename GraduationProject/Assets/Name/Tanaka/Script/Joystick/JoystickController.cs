@@ -19,6 +19,10 @@ public class JoystickController : MonoBehaviour
     [SerializeField]
     private CameraDirector m_cameradirector = default;
 
+    //イベント管理クラス
+    [SerializeField]
+    private EventDirector m_event = default;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,13 +36,13 @@ public class JoystickController : MonoBehaviour
         bool cameraSwitch2D3D = m_cameradirector.IsMove2D3DCameraPos;
 
         //２Dと３Dのカメラの切り替え中かどうか
-        if (cameraSwitch2D3D)
+        if ((!cameraSwitch2D3D) && (m_event.IsEventKIND == EventDirector.EventKIND.NONE))
         {
-            m_joystick.SetActive(false);
+            m_joystick.SetActive(true);
         }
         else
         {
-            m_joystick.SetActive(true);
+            m_joystick.SetActive(false);
         }
     }
 }
