@@ -58,7 +58,16 @@ public class PlayerHit : MonoBehaviour
         //消しゴムカバーと当たった時
         if(col.gameObject.tag == "EraserDustCover")
         {
+            // プレイヤーのサイズをMAXに変更する
+            transform.localScale = maxSize;
+
+            //プレイヤーのHPをMAXにする
+            Script_Player.HP = Script_Player.MaxHP;
+
+            //プレイヤーとカバーを親子関係にする
             col.gameObject.transform.parent = this.gameObject.transform;
+
+            //プレイヤーとカバーを同じ位置にする
             col.gameObject.transform.position = this.gameObject.transform.position;
 
             // 消しゴムにカバーを付けた
