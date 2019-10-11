@@ -46,7 +46,7 @@ public class HPGaugeCover : MonoBehaviour
         imageRectSize = GetComponent<RectTransform>();
 
         // 画像の位置を取得
-        basePos = imageRectSize.position;
+        basePos = imageRectSize.localPosition;
 
         //現在の位置の初期化
         nowPos = basePos;
@@ -73,14 +73,13 @@ public class HPGaugeCover : MonoBehaviour
         // HPの割合を元に画像サイズを変更
         nowSize.x = rate * baseSize.x;
 
-        // HPが減った画像サイズ
-        float remainsSize = baseSize.x - nowSize.x;
-
-        // カバーの体力によって、画像の位置をずらす
-        imageRectSize.transform.position = new Vector2(basePos.x - ((float)remainsSize / 2.0f), basePos.y);
-
         // カバーの体力によって、画像サイズを変更する
         imageRectSize.sizeDelta = nowSize;
+
+        // カバーの体力によって、画像の位置をずらす
+        imageRectSize.localPosition = new Vector2(basePos.x - baseSize.x / 2 + imageRectSize.sizeDelta.x / 2, basePos.y);
+
+
 
     }
 }

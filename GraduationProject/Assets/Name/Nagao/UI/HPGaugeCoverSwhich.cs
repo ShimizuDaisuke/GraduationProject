@@ -12,7 +12,7 @@ public class HPGaugeCoverSwhich : MonoBehaviour
 
     //カバーのUI
     [SerializeField]
-    private GameObject cover = default;
+    private GameObject coverUI = default;
 
     // Start is called before the first frame update
     void Start()
@@ -30,11 +30,11 @@ public class HPGaugeCoverSwhich : MonoBehaviour
         //Playerがカバーをしている時
         if (Script_PlayerHit.FixCover == true)
         {
-            cover.SetActive(true);
+            coverUI.SetActive(true);
         }
         else
         {
-            cover.SetActive(false);
+            coverUI.SetActive(false);
         }
     }
 }
