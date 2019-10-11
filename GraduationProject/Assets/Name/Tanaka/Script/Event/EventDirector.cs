@@ -19,7 +19,7 @@ public class EventDirector : MonoBehaviour
         NONE,                   //何も起きていない
         RULE_THOW,              //投げられた
         RULE_MOVE_STRAIGHT,     //直進移動
-        NOTEBOOK_ERASEMOVE,     //ノートを消す動き
+        RULE_DOMINO             //ドミノ倒し
     };
 
     //イベント

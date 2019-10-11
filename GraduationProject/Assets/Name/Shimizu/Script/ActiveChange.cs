@@ -1,25 +1,45 @@
-﻿using System.Collections;
+﻿//=======================================================================================
+//! @file   ActiveChange
+//! @brief  Activeの管理
+//! @author 志水大輔
+//! @date   10/9
+//! @note   書き換える可能性あり
+//=======================================================================================
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ActiveChange : MonoBehaviour
 {
+    // カメラPanelの変数
     [SerializeField]
-    GameObject cameraImage;
+    GameObject cameraPanel;
 
+    // textPanelの変数
     [SerializeField]
-    GameObject text;
+    GameObject textPanel;
 
-    public GameObject CameraImage
+    //=======================================================================================
+    //! @brief カメラパネルの取得設定
+    //! @param[in] なし
+    //! @param[out] なし
+    //! @return なし
+    //=======================================================================================
+    public GameObject CameraPanel
     {
-        get { return cameraImage; }
-        set { cameraImage = value; }
+        get { return cameraPanel; }
+        set { cameraPanel = value; }
     }
 
-    public GameObject Text
+    //=======================================================================================
+    //! @brief テキストパネルの取得設定
+    //! @param[in] なし
+    //! @param[out] なし
+    //! @return なし
+    //=======================================================================================
+    public GameObject TextPanel
     {
-        get { return text; }
-        set { text = value; }
+        get { return textPanel; }
+        set { textPanel = value; }
     }
-
 }

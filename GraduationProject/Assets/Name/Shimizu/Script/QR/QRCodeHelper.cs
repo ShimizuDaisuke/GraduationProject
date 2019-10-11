@@ -28,9 +28,9 @@ public class QRCodeHelper
         int h = tex.height;
 
         // Color32形式のピクセルカラー配列の取得
-        var pixel32s = tex.GetPixels32();
+        Color32[] pixel32s = tex.GetPixels32();
         // QRコードの解析
-        var r = reader.Decode(pixel32s, w, h);
+        Result r = reader.Decode(pixel32s, w, h);
         return r.Text;
     }
 
@@ -48,10 +48,10 @@ public class QRCodeHelper
         int w = tex.width;
         int h = tex.height;
         // Color32形式のピクセルカラー配列の取得
-        var pixel32s = tex.GetPixels32();
+        Color32[] pixel32s = tex.GetPixels32();
 
         // コードの解析
-        var r = reader.Decode(pixel32s, w, h);
+        Result r = reader.Decode(pixel32s, w, h);
         if (r != null)
         {
             return r.Text;
@@ -76,7 +76,7 @@ public class QRCodeHelper
         int w = tex.width;
         int h = tex.height;
         // Color32形式のピクセルカラー配列の取得
-        var pixel32s = tex.GetPixels32();
+        Color32[] pixel32s = tex.GetPixels32();
 
         // QRコードの解析
         Result r = reader.Decode(pixel32s, w, h);
@@ -93,10 +93,10 @@ public class QRCodeHelper
     static public Texture2D CreateQRCode(string str, int w, int h)
     {
         // QRコードの細かい色設定
-        var tex = new Texture2D(w, h, TextureFormat.ARGB32, false);
+        Texture2D tex = new Texture2D(w, h, TextureFormat.ARGB32, false);
 
         // 色の情報を書き込む
-        var content = Write(str, w, h);
+        Color32[] content = Write(str, w, h);
 
         // ピクセルカラーの配列の設定
         tex.SetPixels32(content);
@@ -105,6 +105,7 @@ public class QRCodeHelper
         // 作成されたテクスチャを渡す
         return tex;
     }
+
     //=======================================================================================
     //! @brief 色の情報を書き込む関数
     //! @param[in] content = 書き込まれる情報の引数, w = 幅, h = 高さ
@@ -127,7 +128,7 @@ public class QRCodeHelper
                 Height = h
             }
         };
-        // contentという情報のQRコードの書き込み
+        // contentにQRコードの書き込み
         return writer.Write(content);
     }
 }
