@@ -55,7 +55,7 @@ public class SeesawController : MonoBehaviour
             m_throwingObj.ThrowingObj();
             m_throwFlag = true;
             //投げられたイベントにする
-            m_event.IsEventKIND = EventDirector.EventKIND.Thow;
+            m_event.IsEventKIND = EventDirector.EventKIND.RULE_THOW;
         }
     }
 

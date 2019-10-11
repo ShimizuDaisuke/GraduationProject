@@ -36,7 +36,7 @@ public class JoystickController : MonoBehaviour
         bool cameraSwitch2D3D = m_cameradirector.IsMove2D3DCameraPos;
 
         //２Dと３Dのカメラの切り替え中かどうか
-        if ((!cameraSwitch2D3D) && (m_event.IsEventKIND == EventDirector.EventKIND.None))
+        if ((!cameraSwitch2D3D) && (m_event.IsEventKIND == EventDirector.EventKIND.NONE))
         {
             m_joystick.SetActive(true);
         }
