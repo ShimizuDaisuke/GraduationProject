@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         bool cameraSwitch2D3D = m_cameradirector.IsMove2D3DCameraPos;
 
         //２Dと３Dのカメラの切り替え中かどうか,イベントが何も起きていないか
-        if ((!cameraSwitch2D3D) && (m_event.IsEventKIND == EventDirector.EventKIND.None))
+        if ((!cameraSwitch2D3D) && (m_event.IsEventKIND == EventDirector.EventKIND.NONE))
         {
             //ジョイスティックで動かした方向
             float dx = m_joystick.Horizontal;

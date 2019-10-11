@@ -16,13 +16,14 @@ public class EventDirector : MonoBehaviour
     public enum EventKIND
     {
         ERR = -1,       //エラー
-        None,           //何も起きていない
-        Thow,           //投げられた
+        NONE,           //何も起きていない
+        RULE_THOW,           //投げられた
+        RULE_MOVE_STRAIGHT,  //直進移動
     };
 
     //イベント
     [SerializeField]
-    private EventKIND m_event = EventKIND.None;
+    private EventKIND m_event = EventKIND.NONE;
 
     // Start is called before the first frame update
     void Start()

@@ -32,12 +32,12 @@ public class TargetCol : MonoBehaviour
     void OnTriggerEnter(Collider collider)
     {
         //投げられたとき
-        if(m_event.IsEventKIND == EventDirector.EventKIND.Thow)
+        if(m_event.IsEventKIND == EventDirector.EventKIND.RULE_THOW)
         {
             //プレイヤーがターゲット座標にたどり着いたか
             if(collider.gameObject.tag == "Player")
             {
-                m_event.IsEventKIND = EventDirector.EventKIND.None;
+                m_event.IsEventKIND = EventDirector.EventKIND.NONE;
             }
         }
 

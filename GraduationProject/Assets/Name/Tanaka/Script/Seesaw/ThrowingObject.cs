@@ -100,13 +100,13 @@ public class ThrowingObject : MonoBehaviour
     private void Arrive()
     {
         //イベントが投げられたの時
-        if(m_event.IsEventKIND == EventDirector.EventKIND.Thow)
+        if(m_event.IsEventKIND == EventDirector.EventKIND.RULE_THOW)
         {
             //ターゲットにたどり着いたか
             if (m_throwObject.transform.position == m_targetObject.transform.position)
             {
                 //なにも起きていない状態に戻す
-                m_event.IsEventKIND = EventDirector.EventKIND.None;
+                m_event.IsEventKIND = EventDirector.EventKIND.NONE;
             }
         }
         
