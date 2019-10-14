@@ -8,6 +8,10 @@ public class BallMove : MonoBehaviour
     [SerializeField]
     private EventDirector m_event = default;
 
+    // ドミノ倒しのスクリプト
+    [SerializeField]
+    private Domin Script_Domin;
+
     //弾の角度
     [SerializeField]
     private Vector3 angle = new Vector3(0, 0, 0);
@@ -19,17 +23,21 @@ public class BallMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //
+        //m_event = GameObject.FindGameObjectWithTag("Player");
+
+        // プレイヤーのスクリプトを取得
+        //Script_Domin = m_event.GetComponent<Domin>();
     }
 
     // Update is called once per frame
     void Update()
     { 
-        var direction = Quaternion.Euler(angle) * Vector3.forward;
-
         //ドミノ倒しのイベントなら
-        if (m_event.IsEventKIND == EventDirector.EventKIND.RULE_DOMINO)
+        if (Script_Domin.HitFlag == true)
         {
+            var direction = Quaternion.Euler(angle) * Vector3.forward;
+
             //弾の移動
             transform.position += direction * speed * Time.deltaTime;
         }

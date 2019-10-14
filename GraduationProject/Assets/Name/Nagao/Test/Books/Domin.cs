@@ -29,9 +29,9 @@ public class Domin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((m_hitFlag == true)&& (m_event.IsEventKIND == EventDirector.EventKIND.RULE_DOMINO))
+        if ((m_event.IsEventKIND == EventDirector.EventKIND.RULE_DOMINO) && (m_hitFlag == true))
         {
-            //プレイヤーとカバーを同じ位置にする
+            //プレイヤーの固定
             Player.gameObject.transform.position = m_stopPos;
         }
     }
