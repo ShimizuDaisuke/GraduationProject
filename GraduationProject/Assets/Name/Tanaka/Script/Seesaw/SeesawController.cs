@@ -25,7 +25,7 @@ public class SeesawController : MonoBehaviour
     private float m_retunBoardPower = 1.0f;
 
     //板の最初のZの角度
-    private float m_startRotZ;
+    private Quaternion m_startRot;
 
     //投げたフラグ
     private bool m_throwFlag;
@@ -34,7 +34,7 @@ public class SeesawController : MonoBehaviour
     void Start()
     {
         //最初のZの角度を保存
-        m_startRotZ = transform.rotation.z;
+        m_startRot = transform.rotation;
 
         m_throwFlag = false;
     }
@@ -67,7 +67,7 @@ public class SeesawController : MonoBehaviour
         {
 
             //最初の角度より小さいとき徐々に戻していく
-            if (transform.rotation.z <= m_startRotZ)
+            if (transform.rotation.z <= m_startRot.z)
             {
                 transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z + m_retunBoardPower));
             }
@@ -79,8 +79,12 @@ public class SeesawController : MonoBehaviour
         }
         else
         {
-            //最初の角度に固定
-            transform.Rotate(new Vector3(0, 0, 0));
+            //プレイヤーが直進移動以外の時は
+            if (m_event.IsEventKIND != EventDirector.EventKIND.RULE_MOVE_STRAIGHT)
+            {
+                //最初の角度に固定
+                transform.rotation = m_startRot;
+            }    
         }
 
     }
