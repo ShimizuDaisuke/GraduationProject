@@ -22,6 +22,8 @@ public class DominoEnd : MonoBehaviour
         {
             //ドミノ倒しのイベントに設定
             m_event.IsEventKIND = EventDirector.EventKIND.NONE;
+
+            Destroy(collider.gameObject);
         }
     }
 }
