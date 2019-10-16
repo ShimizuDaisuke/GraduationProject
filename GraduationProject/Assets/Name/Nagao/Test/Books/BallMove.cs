@@ -5,12 +5,12 @@ using UnityEngine;
 public class BallMove : MonoBehaviour
 {
     //イベント管理クラス
-    [SerializeField]
-    private EventDirector m_event = default;
+    //[SerializeField]
+    //private EventDirector m_event = default;
 
     // ドミノ倒しのスクリプト
     [SerializeField]
-    private Domin Script_Domin;
+    private Domin Script_Domin = default;
 
     //弾の角度
     [SerializeField]
