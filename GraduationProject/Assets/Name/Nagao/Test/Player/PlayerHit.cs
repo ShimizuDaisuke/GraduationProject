@@ -80,8 +80,6 @@ public class PlayerHit : MonoBehaviour
         //刃物との当たり判定
         if ((col.gameObject.tag == "Sword") && (Script_PlayerFlashing.IsPlayerFlashing == false)&& (IsFixCover == false))
         {
-            Debug.Log("うんち！");
-
             //スクリプト　：
             EnemyDamage Script_EnemyDamage = col.gameObject.GetComponent<EnemyDamage>();
             // 障害物のダメージ量
@@ -95,8 +93,6 @@ public class PlayerHit : MonoBehaviour
             transform.localScale = minSize + SizeDifference * sizerate;
             // プレイヤーが刃物に触れた
             Script_PlayerFlashing.IsPlayerFlashing = true;
-
-            Debug.Log(Script_Player.HP);
         }
     }
 

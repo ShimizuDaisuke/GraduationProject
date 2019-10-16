@@ -15,10 +15,11 @@ public class EventDirector : MonoBehaviour
     //イベント
     public enum EventKIND
     {
-        ERR = -1,       //エラー
-        NONE,           //何も起きていない
-        RULE_THOW,           //投げられた
-        RULE_MOVE_STRAIGHT,  //直進移動
+        ERR = -1,               //エラー
+        NONE,                   //何も起きていない
+        RULE_THOW,              //投げられた
+        RULE_MOVE_STRAIGHT,     //直進移動
+        RULE_DOMINO             //ドミノ倒し
     };
 
     //イベント

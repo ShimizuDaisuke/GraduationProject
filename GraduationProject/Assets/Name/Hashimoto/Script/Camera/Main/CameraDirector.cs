@@ -20,6 +20,7 @@ public class CameraDirector : MonoBehaviour
         FOLLOWPLAYER,       // プレイヤーに追従する
         MOVE2D3D,           // 2D ⇔ 3Dへ動く
         STOP,               // 動きを止める
+        EVENT,              // イベント用のカメラ
     }
 
     // 2Dカメラ
@@ -33,6 +34,9 @@ public class CameraDirector : MonoBehaviour
 
     //「3Dカメラから2Dカメラへ」移動用のカメラ
     [SerializeField] private GameObject MoveFrom3DTo2DCamera = default;
+
+    // イベント用の監督
+    [SerializeField] private GameObject EventDirectorObj = default;
 
     // プレイヤー
     private GameObject PlayerObj;
@@ -54,6 +58,9 @@ public class CameraDirector : MonoBehaviour
 
     // スクリプト : カメラの動きを止める
     private CameraStop Script_CameraStop;
+
+    // スクリプト：イベント用のカメラの動き
+    private CameraEvent Script_CameraEvent;
 
     /// <summary>
     /// 開始処理
@@ -83,7 +90,10 @@ public class CameraDirector : MonoBehaviour
 
         // スクリプト：カメラの動きを止める　の設定
         Script_CameraStop = GetComponent<CameraStop>();
-    }
+
+        // スクリプト：イベント用のカメラの動き の設定
+        //Script_CameraEvent = GetComponent<CameraEvent>();
+    } 
 
     /// <summary>
     /// サブ更新処理
@@ -144,6 +154,16 @@ public class CameraDirector : MonoBehaviour
                 
                 break;
             }
+
+            // イベント用でカメラを動かす場合
+            case CameraState.EVENT:
+            {
+                // イベントごとにカメラの動きを変える
+                //Script_CameraEvent.EventUpdate(EventDirectorObj.IsEventKIND);
+
+                break;
+            }
+
         }
     }
 

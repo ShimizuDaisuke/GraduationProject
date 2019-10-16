@@ -13,6 +13,12 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
+    //シーンのスコア
+    [SerializeField]
+    private GameObject ScoreDirector = default;
+    // スクリプト：スコアマネージャー
+    private ScoreManager Script_Score; 
+
     //スコアを表示する
     public Text scoreText;
 
@@ -25,13 +31,15 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //スコアの初期化
-        eraserScore = 0;
+        Script_Score = ScoreDirector.GetComponent<ScoreManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // スコアに
+        Script_Score.IsPlayerScore = eraserScore;
+
         //文字列にしてからテキストに表示
         scoreText.text = eraserScore.ToString(remainingScore);
     }

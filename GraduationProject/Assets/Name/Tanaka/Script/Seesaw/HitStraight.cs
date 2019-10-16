@@ -19,9 +19,13 @@ public class HitStraight : MonoBehaviour
     //プレイヤーのゲームオブジェクト
     private GameObject m_player = null;
 
-    //速度
+    //速度X
     [SerializeField]
-    private float m_speed = 0.1f;
+    private float m_speedX = 0.1f;
+
+    //速度Z
+    [SerializeField]
+    private float m_speedZ = 0.01f;
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +57,25 @@ public class HitStraight : MonoBehaviour
     {
         if(m_event.IsEventKIND == EventDirector.EventKIND.RULE_MOVE_STRAIGHT)
         {
-            m_player.transform.position = new Vector3(m_player.transform.position.x + m_speed, m_player.transform.position.y, m_player.transform.position.z);
+            
+            //Z軸を調整する
+            if(m_player.transform.position.z > transform.position.z)
+            {
+                m_player.transform.position = new Vector3(m_player.transform.position.x + m_speedX, m_player.transform.position.y, m_player.transform.position.z - m_speedZ);
+
+            }
+            else if (m_player.transform.position.z < transform.position.z)
+            {
+                
+                m_player.transform.position = new Vector3(m_player.transform.position.x + m_speedX, m_player.transform.position.y, m_player.transform.position.z + m_speedZ);
+
+            }
+            else
+            {
+                m_player.transform.position = new Vector3(m_player.transform.position.x + m_speedX, m_player.transform.position.y, m_player.transform.position.z);
+
+            }
+
         }
     }
 
