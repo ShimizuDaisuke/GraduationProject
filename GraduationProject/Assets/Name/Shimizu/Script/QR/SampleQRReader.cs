@@ -31,21 +31,24 @@ public class SampleQRReader : MonoBehaviour
     const int FPS = 60;
 
     // カメラの回転
-    const int ROTATION = -90;
+    const int ROTATION = 180;
 
     // 最大画面幅、高さ
-    const int SCREEN_WIDTH = 1280;
-    const int SCREEN_HEIGHT = 720;
+    const int SCREEN_WIDTH = 1920;
+    const int SCREEN_HEIGHT = 1200;
+
+    float baseRotation = 0.0f;
 
     // 画面サイズ
     const int SCREEN_SIZE = 2;
 
     // 映ったテクスチャを貼る
     [SerializeField]
-    RawImage cameraImage;
+    RawImage rawImage;
 
     // Activeの変更
     ActiveChange activeChange;
+
     //=======================================================================================
     //! @brief 開始処理
     //! @param[in] なし
@@ -57,8 +60,16 @@ public class SampleQRReader : MonoBehaviour
         // ActiveChangeにアクセス
         activeChange = GetComponent<ActiveChange>();
 
-        // カメラを使用する際に許可を求める
-        yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
+        //if (rawImage)
+        //{
+        //    if (!rectMask)
+        //    {
+        //        //RectMask2Dの初期化
+        //        initRectMask2D();
+        //    }
+        //}
+            // カメラを使用する際に許可を求める
+            yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
 
         // カメラの許可を行っているか
         if (Application.HasUserAuthorization(UserAuthorization.WebCam) == false)
@@ -78,32 +89,22 @@ public class SampleQRReader : MonoBehaviour
         }
 
         // スマホ内での処理====================================================================
-        ////Quadを画面いっぱいに広げる
-        //float _h = mainCamera.orthographicSize * 2;
-        //float _w = _h * mainCamera.aspect;
-        //// スマホが横ならそのまま
-        //if (Input.deviceOrientation == DeviceOrientation.LandscapeLeft)
-        //{
-        //    transform.localScale = new Vector3(_h, _w, 1);
-        //}
-        //// 縦なら回転させる
-        //if (Input.deviceOrientation == DeviceOrientation.FaceUp)
-        //{
-        //    transform.localScale = new Vector3(_h, _w, 1);
-        //    transform.localRotation *= Quaternion.Euler(0, 0, ROTATION);
-        //}
-        // ====================================================================================
+
+
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            rawImage.rectTransform.localScale = new Vector3(1, -1, 1);
+        }
 
         if (devices.Length > 0)
         {
             // デバイスの情報[0]を格納
             WebCamDevice cam = devices[0];
-
             // カメラに映っているテクスチャを追加する
             WebCamTexture _wCam = new WebCamTexture(cam.name);
 
             // rawImageに映っているテクスチャを張り付ける
-            cameraImage.texture = _webCamTex;
+            rawImage.texture = _webCamTex;
 
             // webカメラの起動しテクスチャを現在のレンダラーに割り当てる
             _wCam.Play();
@@ -127,7 +128,7 @@ public class SampleQRReader : MonoBehaviour
             // カメラに映っているテクスチャを追加する
             _webCamTex = new WebCamTexture();
             // テクスチャを張りつける
-            cameraImage.texture = _webCamTex;
+            rawImage.texture = _webCamTex;
             // カメラの起動
             _webCamTex.Play();
         }
@@ -165,6 +166,18 @@ public class SampleQRReader : MonoBehaviour
             }
         }
 
+        // 向きを取得してRawImageを回転
+        if (Input.deviceOrientation == DeviceOrientation.LandscapeLeft)
+        {
+            // 元に戻す
+            rawImage.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        if (Input.deviceOrientation == DeviceOrientation.LandscapeRight) 
+        {
+            // 180度回転
+            rawImage.rectTransform.rotation = Quaternion.Euler(0, 0, ROTATION);
+        }
+        
         // 映像のテクスチャがあるか
         if (_webCamTex != null)
         {
