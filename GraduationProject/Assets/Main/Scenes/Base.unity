@@ -5988,6 +5988,7 @@ MonoBehaviour:
   Camera3D: {fileID: 1467097877}
   MoveFrom2DTo3DCamera: {fileID: 1298037295}
   MoveFrom3DTo2DCamera: {fileID: 547527559}
+  EventDirectorObj: {fileID: 0}
 --- !u!114 &461810170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17979,6 +17980,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590104fc031871e46890719b00a1dd4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeDirector: {fileID: 6183408894028768473, guid: ea5725414b265c34380f012c48c45e92,
+    type: 3}
   timerText: {fileID: 2042014483}
   totalTime: 300
 --- !u!4 &1130369139
@@ -25210,6 +25213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eb2d8e8fca551c46a8b9aa8965084f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScoreDirector: {fileID: 7434240205899633768, guid: b063b654b4d4fe44783614649ae31199,
+    type: 3}
   scoreText: {fileID: 219494733}
 --- !u!1 &1980702822
 GameObject:
@@ -25257,7 +25262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af44a4ad0731c024ba5f21b12351cf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_event: {fileID: 2088335518}
   Script_Domin: {fileID: 1757785670}
   angle: {x: 0, y: 90, z: 0}
   speed: 4
