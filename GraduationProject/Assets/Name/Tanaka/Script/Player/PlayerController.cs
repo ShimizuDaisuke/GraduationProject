@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         //移動処理
         Move();
-        
+        Debug.Log("プレイヤーの現在のイベント" + m_event.IsEventKIND);
     }
 
     //移動処理

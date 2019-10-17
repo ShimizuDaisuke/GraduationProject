@@ -58,8 +58,8 @@
      <Compile Include="Assets\Name\Hashimoto\Script\Camera\CameraAppearDisAppearObject.cs" />
      <Compile Include="Assets\Name\Hashimoto\Script\Camera\Main\CameraDirector.cs" />
      <Compile Include="Assets\Name\Hashimoto\Script\Camera\State\CamraEvent\CameraEvent.cs" />
-     <Compile Include="Assets\Name\Hashimoto\Script\Camera\State\FollowPlayer\CameraFollowPlayer.cs" />
      <Compile Include="Assets\Name\Hashimoto\Script\Camera\State\Move2D3D\CameraMove2D3D.cs" />
+     <Compile Include="Assets\Name\Hashimoto\Script\Camera\State\Move2D3D\FollowPlayer\CameraFollowPlayer.cs" />
      <Compile Include="Assets\Name\Hashimoto\Script\Camera\State\Stop\Main\CameraStop.cs" />
      <Compile Include="Assets\Name\Hashimoto\Script\CommonObject\AppearDis2D3DObjLink.cs" />
      <Compile Include="Assets\Name\Hashimoto\Script\Player\PlayerPosByCamera2D3D.cs" />
@@ -75,10 +75,11 @@
      <Compile Include="Assets\Name\Nagao\Test\Books\DominoEnd.cs" />
      <Compile Include="Assets\Name\Nagao\Test\CoverOfEraser\CoverOfEraser.cs" />
      <Compile Include="Assets\Name\Nagao\Test\CoverOfEraser\CoverOfEraserHit.cs" />
+     <Compile Include="Assets\Name\Nagao\Test\Crayon\AutoDestroy.cs" />
+     <Compile Include="Assets\Name\Nagao\Test\Crayon\CrayonBreak.cs" />
      <Compile Include="Assets\Name\Nagao\Test\EnemyDamage\EnemyDamage.cs" />
      <Compile Include="Assets\Name\Nagao\Test\Player\PlayerFlashing.cs" />
      <Compile Include="Assets\Name\Nagao\Test\Player\PlayerHit.cs" />
-     <Compile Include="Assets\Name\Nagao\Test\Player\PlayerMove.cs" />
      <Compile Include="Assets\Name\Nagao\TitleScene\TitleSceneController.cs" />
      <Compile Include="Assets\Name\Nagao\UI\HPGaugeCover.cs" />
      <Compile Include="Assets\Name\Nagao\UI\HPGaugeCoverSwhich.cs" />
@@ -94,6 +95,7 @@
      <Compile Include="Assets\Name\Shimizu\Script\QR\SampleQRReader.cs" />
      <Compile Include="Assets\Name\Shimizu\Script\QRSpotObject.cs" />
      <Compile Include="Assets\Name\Shimizu\Script\StatusFunction.cs" />
+     <Compile Include="Assets\Name\Shimizu\Script\WebCameraSize.cs" />
      <Compile Include="Assets\Name\Tanaka\Joystick Pack\Examples\JoystickPlayerExample.cs" />
      <Compile Include="Assets\Name\Tanaka\Joystick Pack\Examples\JoystickSetterExample.cs" />
      <Compile Include="Assets\Name\Tanaka\Joystick Pack\Scripts\Base\Joystick.cs" />
@@ -103,11 +105,14 @@
      <Compile Include="Assets\Name\Tanaka\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
      <Compile Include="Assets\Name\Tanaka\Script\CameraButton\CameraSwitchButton.cs" />
      <Compile Include="Assets\Name\Tanaka\Script\Effect\EffectRote.cs" />
+     <Compile Include="Assets\Name\Tanaka\Script\EraserDust\CreateEraserDust.cs" />
      <Compile Include="Assets\Name\Tanaka\Script\EraserDust\EraserDust.cs" />
+     <Compile Include="Assets\Name\Tanaka\Script\EraserDust\EraserDustController.cs" />
      <Compile Include="Assets\Name\Tanaka\Script\Event\EventDirector.cs" />
      <Compile Include="Assets\Name\Tanaka\Script\ExclamationMark\ExclamationMark.cs" />
      <Compile Include="Assets\Name\Tanaka\Script\Gool\GoolFlag.cs" />
      <Compile Include="Assets\Name\Tanaka\Script\Joystick\JoystickController.cs" />
+     <Compile Include="Assets\Name\Tanaka\Script\Notebook\HitEraseEvent.cs" />
      <Compile Include="Assets\Name\Tanaka\Script\Notebook\Notebook.cs" />
      <Compile Include="Assets\Name\Tanaka\Script\Notebook\NotebookPlayerMove.cs" />
      <Compile Include="Assets\Name\Tanaka\Script\Player\Player.cs" />
@@ -119,31 +124,31 @@
      <Compile Include="Assets\Name\Tanaka\Script\Seesaw\TargetCol.cs" />
      <Compile Include="Assets\Name\Tanaka\Script\Seesaw\ThrowingObject.cs" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/s172098/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/Users/s172126/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/s172098/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>C:/Users/s172126/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/s172098/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/s172126/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/s172098/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/s172126/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/s172098/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Users/s172126/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/s172098/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>C:/Users/s172126/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/s172098/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>C:/Users/s172126/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/s172098/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/s172126/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/s172098/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/s172126/Documents/GraduationProject/GraduationProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -317,13 +322,7 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
  </Reference>
  <Reference Include="zxing.unity">
- <HintPath>C:/Users/s172098/Documents/GraduationProject/GraduationProject/Assets/Name/Shimizu/Plugins/zxing.unity.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions.Common">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
+ <HintPath>C:/Users/s172126/Documents/GraduationProject/GraduationProject/Assets/Name/Shimizu/Plugins/zxing.unity.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

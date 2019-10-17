@@ -45,10 +45,13 @@ public class HitStraight : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            //プレイヤーのオブジェクトを取得
-            m_player = collider.gameObject;
-            //直進移動のイベントに設定
-            m_event.IsEventKIND = EventDirector.EventKIND.RULE_MOVE_STRAIGHT;
+            if(m_event.IsEventKIND == EventDirector.EventKIND.NONE)
+            {
+                //プレイヤーのオブジェクトを取得
+                m_player = collider.gameObject;
+                //直進移動のイベントに設定
+                m_event.IsEventKIND = EventDirector.EventKIND.RULE_MOVE_STRAIGHT;
+            }
         }
     }
 
