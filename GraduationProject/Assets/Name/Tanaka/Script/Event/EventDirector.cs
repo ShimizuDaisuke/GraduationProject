@@ -19,7 +19,8 @@ public class EventDirector : MonoBehaviour
         NONE,                   //何も起きていない
         RULE_THOW,              //投げられた
         RULE_MOVE_STRAIGHT,     //直進移動
-        RULE_DOMINO             //ドミノ倒し
+        RULE_DOMINO,            //ドミノ倒し
+        RULE_QR                 //QRモード
     };
 
     //イベント

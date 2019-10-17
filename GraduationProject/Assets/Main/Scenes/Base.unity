@@ -5561,6 +5561,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e519d6fc7dfefec40a36eb68d7029b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _event: {fileID: 2088335518}
+  cameraDirector: {fileID: 461810164}
 --- !u!65 &244690466
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7601,6 +7603,7 @@ GameObject:
   - component: {fileID: 886112759}
   - component: {fileID: 886112758}
   - component: {fileID: 886112757}
+  - component: {fileID: 886112761}
   - component: {fileID: 886112760}
   m_Layer: 5
   m_Name: BackButton
@@ -7671,18 +7674,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 886112758}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 886112760}
-        m_MethodName: OnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &886112758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7731,6 +7723,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891ef3d954b71924e928365986e019a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backButton: {fileID: 886112757}
+  _event: {fileID: 2088335518}
+--- !u!114 &886112761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886112755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 886112760}
+          m_MethodName: PointerDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 886112760}
+          m_MethodName: PointerUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &896332415
 GameObject:
   m_ObjectHideFlags: 0
@@ -23694,6 +23731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caea8dadf3d235f49b0fbaece6dfaf02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _event: {fileID: 2088335518}
   rawImage: {fileID: 1650365857}
 --- !u!4 &1319218719
 Transform:
