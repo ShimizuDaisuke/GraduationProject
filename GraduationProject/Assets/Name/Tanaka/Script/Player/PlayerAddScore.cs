@@ -33,28 +33,33 @@ public class PlayerAddScore : MonoBehaviour
     }
 
     //衝突判定
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerStay(Collider collider)
     {
         //消しカスに当たったら
         if (collider.gameObject.tag == "EraserDust")
         {
-            //消しカスのクラスを取得
-            m_eraserDust = collider.gameObject.GetComponent<EraserDust>();
-
-            // ノーマルの消しカスによってスコアを増やす
-            if (m_eraserDust.IsEraserDustKind == EraserDust.EraserDustKIND.NORMAL)
+            //レイヤーがデフォルトの時
+            if(collider.gameObject.layer == LayerMask.NameToLayer("Default"))
             {
-                // スコアを増やす
-                m_score.Int_EraserScore += m_eraserDust.Point;
-                //衝突した消しカスを消す
-                Destroy(collider.gameObject);
+                //消しカスのクラスを取得
+                m_eraserDust = collider.gameObject.GetComponent<EraserDust>();
+
+                // ノーマルの消しカスによってスコアを増やす
+                if (m_eraserDust.IsEraserDustKind == EraserDust.EraserDustKIND.NORMAL)
+                {
+                    // スコアを増やす
+                    m_score.Int_EraserScore += m_eraserDust.Point;
+                    //衝突した消しカスを消す
+                    Destroy(collider.gameObject);
+                }
             }
+            
         }
 
         //ノートブックに当たったら
         if(collider.gameObject.tag == "Notebook")
         {
-            //消しカスのクラスを取得
+            //ノートブックのクラスを取得
             m_notebook = collider.gameObject.GetComponent<Notebook>();
 
             // ノートブックに落書きがあるとき
