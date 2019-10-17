@@ -21,6 +21,9 @@ public class CameraAppearDisAppearObject : MonoBehaviour
     [SerializeField]
     private GameObject[] ObjBy3DCamera = default;
 
+    // カメラが3D→2Dへ切り替えたときに、一つの軸を中心に揃えるオブジェクト
+    [SerializeField]
+    private GameObject[] ObjByOneAxitMove = default;
 
     /// <summary>
     /// 2Dや3Dカメラのみ表示されるオブジェクトを表示非表示させる
@@ -59,6 +62,16 @@ public class CameraAppearDisAppearObject : MonoBehaviour
         {
             obj3d.SetActive(false);
         }
+
+        // とある軸を中心にそろえる
+        foreach(GameObject objmoveoneaxit in ObjByOneAxitMove)
+        {
+            // [3D⇒2Dにカメラを切り替えるときに、とある軸を中心にそれぞれのオブジェクトの位置を統一させる位置] のスクリプトを呼ぶ
+            Obj_OneAxitMove script_Obj_OneAxitMove = objmoveoneaxit.GetComponent<Obj_OneAxitMove>();
+
+            // とある軸を中心に位置を揃える
+            script_Obj_OneAxitMove.MoveOneAxit(false);
+        }
     }
 
     /// <summary>
@@ -76,6 +89,16 @@ public class CameraAppearDisAppearObject : MonoBehaviour
         foreach (GameObject obj2d in ObjBy2DCamera)
         {
             obj2d.SetActive(false);
+        }
+
+        // とある軸を中心にそろえる
+        foreach (GameObject objmoveoneaxit in ObjByOneAxitMove)
+        {
+            // [3D⇒2Dにカメラを切り替えるときに、とある軸を中心にそれぞれのオブジェクトの位置を統一させる位置] のスクリプトを呼ぶ
+            Obj_OneAxitMove script_Obj_OneAxitMove = objmoveoneaxit.GetComponent<Obj_OneAxitMove>();
+
+            // とある軸を中心に揃えた位置を元に戻す
+            script_Obj_OneAxitMove.MoveOneAxit(true);
         }
     }
 

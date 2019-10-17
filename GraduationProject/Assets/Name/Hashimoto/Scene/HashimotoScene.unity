@@ -4950,7 +4950,7 @@ Transform:
   - {fileID: 1348408899}
   - {fileID: 958667428}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &339190272
 GameObject:
@@ -5524,6 +5524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_eraserDustKIND: 1
+  m_eraserMove: 0
   m_point: 30
 --- !u!65 &614189535
 BoxCollider:
@@ -5596,7 +5597,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &692195207 stripped
 GameObject:
@@ -5880,7 +5881,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0.296}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &958667427
 GameObject:
@@ -5927,7 +5928,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_event: {fileID: 431827680}
-  m_speed: 0.1
+  m_speedX: 0.1
+  m_speedZ: 0.01
 --- !u!65 &958667430
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6087,7 +6089,7 @@ RectTransform:
   - {fileID: 1337412958}
   - {fileID: 1464411499}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6415,7 +6417,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1102559735
 MonoBehaviour:
@@ -6430,6 +6432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_eraserDustKIND: 2
+  m_eraserMove: 0
   m_point: 1
 --- !u!1 &1139381184
 GameObject:
@@ -7457,6 +7460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eb2d8e8fca551c46a8b9aa8965084f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScoreDirector: {fileID: 7434240205899633768, guid: b063b654b4d4fe44783614649ae31199,
+    type: 3}
   scoreText: {fileID: 1883190338}
 --- !u!114 &1812149127
 MonoBehaviour:
@@ -7531,7 +7536,7 @@ RectTransform:
   m_Children:
   - {fileID: 483193644}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7740,6 +7745,7 @@ GameObject:
   - component: {fileID: 1862214250}
   - component: {fileID: 1862214247}
   - component: {fileID: 1862214252}
+  - component: {fileID: 1862214253}
   m_Layer: 0
   m_Name: CameraDirector
   m_TagString: Untagged
@@ -7773,7 +7779,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1862214249
 MonoBehaviour:
@@ -7820,6 +7826,7 @@ MonoBehaviour:
   Camera3D: {fileID: 1139381184}
   MoveFrom2DTo3DCamera: {fileID: 1464458051}
   MoveFrom3DTo2DCamera: {fileID: 1447213485}
+  EventDirectorObj: {fileID: 431827679}
 --- !u!114 &1862214252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7830,6 +7837,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f59da2cfbad6696449b48cc5ce21a30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1862214253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862214246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50932a7aaf756b34597d44dc43ece153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1875053619
@@ -7937,7 +7956,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0.296}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1883190337
 GameObject:
@@ -13092,7 +13111,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2070493504
 GameObject:
