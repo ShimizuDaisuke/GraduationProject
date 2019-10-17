@@ -141,9 +141,6 @@ public class CameraMove2D3D : MonoBehaviour
 
             // 終了位置にいるカメラを表示する
             endcamera.SetActive(true);
-
-            // それぞれのカメラが時間をかけずにプレイヤーに追従する(この処理がないと、カメラが少し動いてしまう)
-            GetComponent<CameraFollowPlayer>().FllowPlayerNoSlowy();
         }
         else
         // カメラの移動時間が超えていない場合
@@ -152,11 +149,6 @@ public class CameraMove2D3D : MonoBehaviour
             maincamera.transform.localPosition = startcamera.transform.localPosition + Velocity * MoveTime;
             // メインとなるカメラを回転する
             maincamera.transform.rotation = Quaternion.Euler(startcamera.transform.localEulerAngles + RotatingSpeed * MoveTime);
-
-            Debug.Log(endcamera.transform.localPosition);
-
-            // プレイヤーの位置を維持する
-            Script_PlayerPosByCamera2D3D.KeepPlayerPosByCameraMove2D3D();
-        }
+         }
     }
 }
