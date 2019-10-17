@@ -166,7 +166,7 @@ public class CameraDirector : MonoBehaviour
             case CameraState.FOLLOWPLAYER:
             {
                // 一定の距離を保ちながら、プレイヤーに追従させる
-               // Script_CameraFollowPlayer.FollowPlayer();
+                Script_CameraFollowPlayer.FollowPlayer();
                 break;
             }
 
@@ -206,7 +206,7 @@ public class CameraDirector : MonoBehaviour
             case CameraState.EVENT:
             {
                 // イベントごとにカメラの動きを変える
-                //Script_CameraEvent.EventUpdate(nowevent,ref Camera3D,ref Camera2D);
+                Script_CameraEvent.EventUpdate(nowevent,ref Camera3D,ref Camera2D);
 
                 break;
             }
