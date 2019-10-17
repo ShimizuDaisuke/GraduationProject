@@ -37,17 +37,19 @@ public class SampleQRReader : MonoBehaviour
     const int SCREEN_WIDTH = 1920;
     const int SCREEN_HEIGHT = 1200;
 
-    float baseRotation = 0.0f;
-
     // 画面サイズ
     const int SCREEN_SIZE = 2;
 
+    //イベント管理クラス
+    [SerializeField]
+    private EventDirector _event = default;
+
     // 映ったテクスチャを貼る
     [SerializeField]
-    RawImage rawImage;
+    RawImage rawImage = default;
 
     // Activeの変更
-    ActiveChange activeChange;
+    ActiveChange activeChange = default;
 
     //=======================================================================================
     //! @brief 開始処理
@@ -60,16 +62,8 @@ public class SampleQRReader : MonoBehaviour
         // ActiveChangeにアクセス
         activeChange = GetComponent<ActiveChange>();
 
-        //if (rawImage)
-        //{
-        //    if (!rectMask)
-        //    {
-        //        //RectMask2Dの初期化
-        //        initRectMask2D();
-        //    }
-        //}
-            // カメラを使用する際に許可を求める
-            yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
+        // カメラを使用する際に許可を求める
+        yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
 
         // カメラの許可を行っているか
         if (Application.HasUserAuthorization(UserAuthorization.WebCam) == false)
@@ -90,8 +84,7 @@ public class SampleQRReader : MonoBehaviour
 
         // スマホ内での処理====================================================================
 
-
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        if (Application.platform == RuntimePlatform.Android)
         {
             rawImage.rectTransform.localScale = new Vector3(1, -1, 1);
         }
@@ -142,18 +135,20 @@ public class SampleQRReader : MonoBehaviour
     //=======================================================================================
     void Update()
     {
+        Debug.Log(_event);
+        // webカメラの起動,終了処理==========================================================
         // nullチェック
-        if(_webCamTex != null)
+        if (_webCamTex != null)
         {
             // QRSpotがtrueか(QRSpotに触れた時にtrueになる)
             if (qRSpot)
             {
                 // カメラのスイッチ ON
-                _switch = true;
-                // カメラの起動
-                _webCamTex.Play();
+                _switch = true;               
                 // RawImageを表示する
                 activeChange.CameraPanel.SetActive(true);
+                // カメラの起動
+                _webCamTex.Play();
             }
             else
             {
@@ -165,6 +160,7 @@ public class SampleQRReader : MonoBehaviour
                 activeChange.CameraPanel.SetActive(false);
             }
         }
+        // ==================================================================================
 
         // 向きを取得してRawImageを回転
         if (Input.deviceOrientation == DeviceOrientation.LandscapeLeft)
@@ -178,6 +174,7 @@ public class SampleQRReader : MonoBehaviour
             rawImage.rectTransform.rotation = Quaternion.Euler(0, 0, ROTATION);
         }
         
+        // QRの読み込み,テキストの表示処理===================================================
         // 映像のテクスチャがあるか
         if (_webCamTex != null)
         {
@@ -200,9 +197,12 @@ public class SampleQRReader : MonoBehaviour
                 }
             }
         }
+        // ==================================================================================
 
+
+        // テキストの非表示処理==============================================================
         // テキストPanelが表示されているかどうか
-        if(activeChange.TextPanel.activeInHierarchy)
+        if (activeChange.TextPanel.activeInHierarchy)
         {
             // 秒数を数える
             timer += Time.deltaTime;
@@ -211,10 +211,15 @@ public class SampleQRReader : MonoBehaviour
             {
                 // テキストPanelを非表示にする
                 activeChange.TextPanel.SetActive(false);
+
+                // イベントを空にする
+                _event.IsEventKIND = EventDirector.EventKIND.NONE;
+
                 // タイマーをリセットする
                 timer = 0.0f;
             }
         }
+        // ==================================================================================
     }
 
     //=======================================================================================
@@ -223,11 +228,7 @@ public class SampleQRReader : MonoBehaviour
     //! @param[out] なし
     //! @return なし
     //=======================================================================================
-    public string Result
-    {
-        get { return _result; }
-        set { _result = value; }
-    }
+    public string Result { get { return _result; } set { _result = value; } }
 
     //=======================================================================================
     //! @brief QRSpotの取得関数
@@ -235,10 +236,5 @@ public class SampleQRReader : MonoBehaviour
     //! @param[out] なし
     //! @return なし
     //=======================================================================================
-    public bool QRSpot
-    {
-        get { return qRSpot; }
-        set { qRSpot = value; }
-    }
-
+    public bool QRSpot { get { return qRSpot; } set { qRSpot = value; } }
 }

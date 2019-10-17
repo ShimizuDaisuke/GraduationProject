@@ -18,7 +18,6 @@ public class QRText : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(qRText.text);
     }
 
     //=======================================================================================
