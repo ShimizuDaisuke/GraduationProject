@@ -5,8 +5,12 @@ using UnityEngine;
 public class BallMove : MonoBehaviour
 {
     //イベント管理クラス
+    //[SerializeField]
+    //private EventDirector m_event = default;
+
+    // ドミノ倒しのスクリプト
     [SerializeField]
-    private EventDirector m_event = default;
+    private Domin Script_Domin = default;
 
     //弾の角度
     [SerializeField]
@@ -19,17 +23,21 @@ public class BallMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //
+        //m_event = GameObject.FindGameObjectWithTag("Player");
+
+        // プレイヤーのスクリプトを取得
+        //Script_Domin = m_event.GetComponent<Domin>();
     }
 
     // Update is called once per frame
     void Update()
     { 
-        var direction = Quaternion.Euler(angle) * Vector3.forward;
-
         //ドミノ倒しのイベントなら
-        if (m_event.IsEventKIND == EventDirector.EventKIND.RULE_DOMINO)
+        if (Script_Domin.HitFlag == true)
         {
+            var direction = Quaternion.Euler(angle) * Vector3.forward;
+
             //弾の移動
             transform.position += direction * speed * Time.deltaTime;
         }

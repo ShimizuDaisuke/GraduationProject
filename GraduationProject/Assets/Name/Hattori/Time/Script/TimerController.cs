@@ -15,6 +15,12 @@ using UnityEngine.SceneManagement;
 public class TimerController : MonoBehaviour
 {
 
+    //シーンのタイム
+    [SerializeField]
+    private GameObject TimeDirector = default;
+    // スクリプト：タイムマネージャー
+    private TimeManager Script_Time;
+
     // 書き込む変数
     public Text timerText;
 
@@ -34,6 +40,8 @@ public class TimerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Script_Time = TimeDirector.GetComponent<TimeManager>();
+
         //実行時にタイマー作動させるため
         timerFlag = true;
     }
@@ -44,6 +52,9 @@ public class TimerController : MonoBehaviour
         //負の数(-1とか)にならないようにするif文
         if (timerFlag)
         {
+            // スコアに
+            Script_Time.IsPlayerTime = totalTime;
+
             //フレームごとにフレームの秒数を引いてる
             totalTime -= Time.deltaTime;
 
