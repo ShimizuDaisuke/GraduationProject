@@ -43,6 +43,12 @@ public class BackButton : MonoBehaviour
         spot = qRDirector.gameObject.GetComponent<SampleQRReader>();
     }
 
+    //=======================================================================================
+    //! @brief 更新処理
+    //! @param[in] なし
+    //! @param[out] なし
+    //! @return なし
+    //=======================================================================================
     void Update()
     {
         // Flagがtrueだった場合に
@@ -77,7 +83,6 @@ public class BackButton : MonoBehaviour
     //=======================================================================================
     public void PointerDown()
     {
-        pushFlag = true;
         // 小さくする
         backButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     }
@@ -90,8 +95,10 @@ public class BackButton : MonoBehaviour
     //=======================================================================================
     public void PointerUp()
     {
+        // 押した判定にする
+        pushFlag = true;
+
         // 元の大きさに戻す
         backButton.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
-
 }
