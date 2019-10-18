@@ -29,7 +29,7 @@ public class PlayerAddScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(m_score.Int_EraserScore);
+        
     }
 
     //衝突判定

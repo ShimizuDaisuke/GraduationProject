@@ -165,8 +165,6 @@ public class NotebookPlayerMove : MonoBehaviour
             //消しカスの動きを追いかけるにする
             EraseMoveChase();
 
-            Debug.Log(gameObject.name);
-
         }
         
 
