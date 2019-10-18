@@ -6159,8 +6159,7 @@ MonoBehaviour:
   - {fileID: 906094187}
   ObjBy3DCamera:
   - {fileID: 1997894847}
-  ObjByOneAxitMove:
-  - {fileID: 0}
+  ObjByOneAxitMove: []
 --- !u!114 &461810168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7414,7 +7413,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_eraserDustKIND: 2
   m_eraserMove: 0
-  m_point: 1
+  m_pointMin: 0
+  m_pointMax: 0
 --- !u!1 &714056581
 GameObject:
   m_ObjectHideFlags: 0
@@ -13213,7 +13213,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_eraserDustKIND: 1
   m_eraserMove: 0
-  m_point: 30
+  m_pointMin: 0
+  m_pointMax: 0
 --- !u!65 &975503744
 BoxCollider:
   m_ObjectHideFlags: 0
