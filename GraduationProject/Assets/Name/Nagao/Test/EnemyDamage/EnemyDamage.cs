@@ -29,7 +29,7 @@ public class EnemyDamage : MonoBehaviour
     {
         //ダメージ数を決める
         damage = Random.Range(minDamage, maxDamage + 1);
-        Debug.Log(damage + "  START");
+
     }
 
 

@@ -29,7 +29,7 @@ public class CrayonBreak : MonoBehaviour
         if(col.gameObject.tag == "Player")
         {
             destroyObject();
-            Debug.Log("ウンチ！");
+
         }
     }
 
