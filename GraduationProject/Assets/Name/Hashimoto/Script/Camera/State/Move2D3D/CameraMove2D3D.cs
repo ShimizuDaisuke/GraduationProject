@@ -109,8 +109,8 @@ public class CameraMove2D3D : MonoBehaviour
             // ----------------------------------------------------------------------------------------------
 
             // 「3Dカメラから2Dカメラへ」「2Dカメラから3Dカメラへ」移動用のカメラを初期化する
-            maincamera.transform.position = startcamera.transform.position;                           // 位置
-            maincamera.transform.rotation = Quaternion.Euler(startcamera.transform.localEulerAngles); // 回転
+            maincamera.transform.localPosition = startcamera.transform.localPosition;                           // 位置
+            maincamera.transform.rotation = Quaternion.Euler(startcamera.transform.localEulerAngles);           // 回転
 
             // ----------------------------------------------------------------------------------------------
 
@@ -141,20 +141,14 @@ public class CameraMove2D3D : MonoBehaviour
 
             // 終了位置にいるカメラを表示する
             endcamera.SetActive(true);
-
-            // それぞれのカメラが時間をかけずにプレイヤーに追従する(この処理がないと、カメラが少し動いてしまう)
-            GetComponent<CameraFollowPlayer>().FllowPlayerNoSlowy();
         }
         else
         // カメラの移動時間が超えていない場合
         {
             // メインとなるカメラの位置を動かす
-            maincamera.transform.position = startcamera.transform.position + Velocity * MoveTime;
+            maincamera.transform.localPosition = startcamera.transform.localPosition + Velocity * MoveTime;
             // メインとなるカメラを回転する
             maincamera.transform.rotation = Quaternion.Euler(startcamera.transform.localEulerAngles + RotatingSpeed * MoveTime);
-
-            // プレイヤーの位置を維持する
-            Script_PlayerPosByCamera2D3D.KeepPlayerPosByCameraMove2D3D();
-        }
+         }
     }
 }

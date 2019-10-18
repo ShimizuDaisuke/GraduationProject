@@ -55,13 +55,13 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
         if (IsCamera3D == true)
         {
             // プレイヤーの位置を決める
-            NowPos = new Vector3(OncePos.x, OncePos.y, ZPos_CameraFrom2DTo3D);
+            transform.position = new Vector3(OncePos.x, OncePos.y, ZPos_CameraFrom2DTo3D);
         }
         else
         // 3Dカメラから2Dカメラに移動する場合
         {
             // プレイヤーの位置を決める
-            NowPos = new Vector3(OncePos.x, OncePos.y, ZPos_CameraFrom3DTo2D);
+            transform.position = new Vector3(OncePos.x, OncePos.y, ZPos_CameraFrom3DTo2D);
         }
     }
 
@@ -72,16 +72,7 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     public void CreatePlayerPosByCameraMove2D3D(Vector3 pos)
     {
         // 2Dカメラ⇔3Dカメラへ移動する際にいるプレイヤーの位置を決める
-        NowPos = pos;
-    }
-
-    /// <summary>
-    /// 2Dカメラ⇔3Dカメラへ移動した場合、プレイヤーの位置を変える
-    /// </summary>
-    public void KeepPlayerPosByCameraMove2D3D()
-    {
-        // プレイヤーの位置を維持する
-        transform.position = NowPos;
+        transform.position = pos;
     }
 
     // ===============================================================================================

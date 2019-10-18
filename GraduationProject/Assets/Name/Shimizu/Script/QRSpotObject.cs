@@ -11,6 +11,13 @@ using UnityEngine;
 
 public class QRSpotObject : MonoBehaviour
 {
+    //イベント管理クラス
+    [SerializeField]
+    private EventDirector _event = default;
+
+    [SerializeField]
+    private GameObject cameraDirector = default;
+
     // QRDirectorの変数
     GameObject qRDirector;
 
@@ -39,11 +46,17 @@ public class QRSpotObject : MonoBehaviour
     //=======================================================================================
     void OnTriggerEnter(Collider col)
     {
-        // Playerに当たったら
-        if(col.gameObject.tag == "Player")
+        if (cameraDirector.GetComponent<CameraDirector>().IsMove2D3DCameraPos != true)
         {
-            // カメラをオンにするフラグをtrueにする
-            spot.QRSpot = true;
+            // Playerに当たったら
+            if (col.gameObject.tag == "Player")
+            {
+                // カメラをオンにするフラグをtrueにする
+                spot.QRSpot = true;
+
+                // イベントを設定する
+                _event.IsEventKIND = EventDirector.EventKIND.RULE_QR;
+            }
         }
     }
 }

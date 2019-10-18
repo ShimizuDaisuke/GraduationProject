@@ -25,11 +25,7 @@ public class ActiveChange : MonoBehaviour
     //! @param[out] なし
     //! @return なし
     //=======================================================================================
-    public GameObject CameraPanel
-    {
-        get { return cameraPanel; }
-        set { cameraPanel = value; }
-    }
+    public GameObject CameraPanel {get { return cameraPanel; }set { cameraPanel = value; }}
 
     //=======================================================================================
     //! @brief テキストパネルの取得設定
@@ -37,9 +33,5 @@ public class ActiveChange : MonoBehaviour
     //! @param[out] なし
     //! @return なし
     //=======================================================================================
-    public GameObject TextPanel
-    {
-        get { return textPanel; }
-        set { textPanel = value; }
-    }
+    public GameObject TextPanel { get { return textPanel; }set { textPanel = value; } }
 }

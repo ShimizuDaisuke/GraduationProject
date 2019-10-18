@@ -11,6 +11,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 型名省略
+/// </summary>
+
+// イベントの種類
+using EventKind = EventDirector.EventKIND;
+
+
 public class CameraDirector : MonoBehaviour
 {
     // カメラの状態
@@ -53,11 +61,17 @@ public class CameraDirector : MonoBehaviour
     // 2Dカメラと3Dカメラの間へ移動しているか(カメラの状態 :「2D⇔3Dの動き」→「数ミリ秒止める」が含まれる)
     private bool IsMove2DCamera3DCamera = false;
 
+    // スクリプト：カメラがプレイヤーに追従する
+    private CameraFollowPlayer Script_CameraFollowPlayer;
+
     // スクリプト : 2Dカメラ ↔ 3Dカメラへ動く
     private CameraMove2D3D Script_CameraMove2D3D;
 
     // スクリプト : カメラの動きを止める
     private CameraStop Script_CameraStop;
+
+    // スクリプト：イベントの監督
+    private EventDirector Script_EventDirector;
 
     // スクリプト：イベント用のカメラの動き
     private CameraEvent Script_CameraEvent;
@@ -85,6 +99,9 @@ public class CameraDirector : MonoBehaviour
         // プレイヤーを探す
         PlayerObj = GameObject.FindGameObjectWithTag("Player");
 
+        // スクリプト：カメラがプレイヤーに追従する
+        Script_CameraFollowPlayer = GetComponent<CameraFollowPlayer>();
+
         // スクリプト: 2Dカメラ ↔ 3Dカメラへ動く の設定
         Script_CameraMove2D3D = GetComponent<CameraMove2D3D>();
 
@@ -92,7 +109,11 @@ public class CameraDirector : MonoBehaviour
         Script_CameraStop = GetComponent<CameraStop>();
 
         // スクリプト：イベント用のカメラの動き の設定
-        //Script_CameraEvent = GetComponent<CameraEvent>();
+        Script_CameraEvent = GetComponent<CameraEvent>();
+
+        // スクリプト：イベントの監督 の設定
+        Script_EventDirector = EventDirectorObj.GetComponent<EventDirector>();
+
     } 
 
     /// <summary>
@@ -117,6 +138,26 @@ public class CameraDirector : MonoBehaviour
     /// </summary>
     void LateUpdate()
     {
+        // <テスト>------------------------------------------------------------------
+        
+        // 現在のイベント
+        EventKind nowevent = Script_EventDirector.IsEventKIND;
+
+        // イベントが発生した場合 
+        if (nowevent != EventKind.NONE)
+        {
+            // カメラの状態をイベント用にする
+            NowState = CameraState.EVENT;
+        }
+        else
+        //  以前までカメラの状態がイベント用だった場合
+        if(NowState == CameraState.EVENT)
+        {
+            // プレイヤーに追従させる
+            NowState = CameraState.FOLLOWPLAYER;
+        } 
+
+        // ---------------------------------------------------------------------------
 
         // カメラの状態
         switch (NowState)
@@ -124,6 +165,8 @@ public class CameraDirector : MonoBehaviour
             // プレイヤーに追従する
             case CameraState.FOLLOWPLAYER:
             {
+               // 一定の距離を保ちながら、プレイヤーに追従させる
+                Script_CameraFollowPlayer.FollowPlayer();
                 break;
             }
 
@@ -135,12 +178,16 @@ public class CameraDirector : MonoBehaviour
                 {
                     // 2Dカメラから3Dカメラの位置へ移動する
                     Script_CameraMove2D3D.MoveMiddle2D3DCameraPos(MoveFrom2DTo3DCamera, Camera2D, Camera3D, ref NowState, ref IsDifferCameraStateNowOnce, IsNowChange3DCamera);
+                    //MoveFrom2DTo3DCamera.transform.localPosition = Camera3D.transform.localPosition;
+
+
                 }
                 // 最終的に2Dカメラに映す場合
                 else
                 {
                     // 3Dカメラから2Dカメラの位置へ移動する
                     Script_CameraMove2D3D.MoveMiddle2D3DCameraPos(MoveFrom3DTo2DCamera, Camera3D, Camera2D, ref NowState , ref IsDifferCameraStateNowOnce, IsNowChange3DCamera);
+                    //MoveFrom3DTo2DCamera.transform.localPosition = Camera2D.transform.localPosition;
                 }
 
                 break;
@@ -159,7 +206,7 @@ public class CameraDirector : MonoBehaviour
             case CameraState.EVENT:
             {
                 // イベントごとにカメラの動きを変える
-                //Script_CameraEvent.EventUpdate(EventDirectorObj.IsEventKIND);
+                Script_CameraEvent.EventUpdate(nowevent,ref Camera3D,ref Camera2D);
 
                 break;
             }
@@ -192,6 +239,12 @@ public class CameraDirector : MonoBehaviour
 
             // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する
             PlayerObj.GetComponent<PlayerPosByCamera2D3D>().CreatePlayerPosByCameraMove2D3D(IsNowChange3DCamera);
+
+            Debug.Log("前:"+Camera3D.transform.position);
+
+            // プレイヤーの位置が変わったため、カメラの位置もプレイヤーの位置に合わせて変える
+            Script_CameraFollowPlayer.FllowPlayerNoSlowy();
+            Debug.Log("後:" + Camera3D.transform.position);
 
             // プレイヤーの「Rigidbody」の位置と回転を固定(フリーズ)させる
             PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
