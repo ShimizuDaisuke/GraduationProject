@@ -24,4 +24,16 @@ public class FloatingJoystick : Joystick
         background.gameObject.SetActive(false);
         base.OnPointerUp(eventData);
     }
+
+    /// <summary>
+    /// リセットする
+    /// </summary>
+    public void Reset()
+    {
+        // コンソールの値をリセット
+        input = Vector2.zero;
+        // 中のボタンの位置の初期化
+        handle.anchoredPosition = Vector2.zero;
+    }
+
 }

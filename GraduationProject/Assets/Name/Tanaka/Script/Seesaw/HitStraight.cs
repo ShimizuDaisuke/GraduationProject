@@ -64,7 +64,7 @@ public class HitStraight : MonoBehaviour
             //Z軸を調整する
             if(m_player.transform.position.z > transform.position.z)
             {
-                m_player.transform.position = new Vector3(m_player.transform.position.x + m_speedX, m_player.transform.position.y, m_player.transform.position.z - m_speedZ);
+                m_player.transform.position = new Vector3(m_player.transform.position.x + m_speedX,m_player.transform.position.y, m_player.transform.position.z - m_speedZ);
 
             }
             else if (m_player.transform.position.z < transform.position.z)

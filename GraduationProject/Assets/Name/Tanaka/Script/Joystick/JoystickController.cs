@@ -44,5 +44,13 @@ public class JoystickController : MonoBehaviour
         {
             m_joystick.SetActive(false);
         }
+
+        // ジョイスティックをリセットする
+        if(m_joystick.activeInHierarchy == false)
+        {
+            FloatingJoystick floatingJoystick = m_joystick.GetComponent<FloatingJoystick>();
+            floatingJoystick.Reset();
+
+        }
     }
 }
