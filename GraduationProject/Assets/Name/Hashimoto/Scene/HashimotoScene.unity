@@ -5630,7 +5630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe73393c63f84ec4f8e095a2b219d4db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_event: {fileID: 0}
+  m_event: {fileID: 431827680}
 --- !u!65 &552984371
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5988,7 +5988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ce82a136e31d34692f0853a41c3cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_event: {fileID: 0}
+  m_event: {fileID: 431827680}
   m_speedX: 0.1
   m_speedZ: 0.01
 --- !u!65 &842781959
@@ -12086,7 +12086,7 @@ MonoBehaviour:
   m_height: 0.3
   m_moveSpeed: 0.01
   m_scaleSpeed: 0.005
-  m_cameradirector: {fileID: 0}
+  m_cameradirector: {fileID: 1862214251}
 --- !u!64 &1593601965
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18139,7 +18139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_throwingObj: {fileID: 2020215266}
-  m_event: {fileID: 0}
+  m_event: {fileID: 431827680}
   m_retunBoardPower: 0.5
 --- !u!114 &2020215266
 MonoBehaviour:
@@ -18153,8 +18153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78b7097bd913854982a265794b2787b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_event: {fileID: 0}
-  m_throwObject: {fileID: 0}
+  m_event: {fileID: 431827680}
+  m_throwObject: {fileID: 355016713}
   m_targetObject: {fileID: 552984368}
   m_throwAngle: 80
 --- !u!65 &2020215267

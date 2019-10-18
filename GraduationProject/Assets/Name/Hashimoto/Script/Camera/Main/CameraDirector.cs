@@ -240,11 +240,8 @@ public class CameraDirector : MonoBehaviour
             // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する
             PlayerObj.GetComponent<PlayerPosByCamera2D3D>().CreatePlayerPosByCameraMove2D3D(IsNowChange3DCamera);
 
-            Debug.Log("前:"+Camera3D.transform.position);
-
             // プレイヤーの位置が変わったため、カメラの位置もプレイヤーの位置に合わせて変える
             Script_CameraFollowPlayer.FllowPlayerNoSlowy();
-            Debug.Log("後:" + Camera3D.transform.position);
 
             // プレイヤーの「Rigidbody」の位置と回転を固定(フリーズ)させる
             PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
