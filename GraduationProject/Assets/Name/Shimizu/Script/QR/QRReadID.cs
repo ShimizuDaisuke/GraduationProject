@@ -14,6 +14,7 @@ public class QRReadID : MonoBehaviour
     // 読み込んだQRのID
     enum ReadResult
     {
+        NOQR          = 0 << 0,
         // 二進数       1   桁
         INCREASE_TIME = 1 << 0,    // 残りの時間が増える  0000 00001  1
         DEF_UP        = 1 << 1,    // カバーを付ける 　   0000 00010  2
@@ -21,13 +22,16 @@ public class QRReadID : MonoBehaviour
     }
 
     // 読み込んだQRの結果の格納
-    private string result;
+    private string result = "";
 
     // 読み込んだQRの結果
-    private SampleQRReader qrResult;
+    private SampleQRReader qrResult = default;
 
     // テキスト変更の関数を呼ぶ変数
-    QRText qRText;
+    QRText qRText = default;
+
+    // 変換先
+    int num = -1;
 
     //=======================================================================================
     //! @brief 開始処理
@@ -53,27 +57,30 @@ public class QRReadID : MonoBehaviour
     {
         // 読み込んだ結果の値をもらう
         result = qrResult.Result;
-        int num = -1;
 
         // 文字列を数値に変換
-        if (int.TryParse(result, out num))
-        {
+        int.TryParse(result, out num);
+
             // ID処理
-            switch (num)
-            {
-                // 時間を増やす
-                case (int)ReadResult.INCREASE_TIME:
+        switch (num)
+        {
+            case (int)ReadResult.NOQR:
+                qRText.NOQR();
+                break;
+            // 時間を増やす
+            case (int)ReadResult.INCREASE_TIME:
                 qRText.IncreaseTime();
-                    break;
-                // カバーをつける
-                case (int)ReadResult.DEF_UP:
+                break;
+            // カバーをつける
+            case (int)ReadResult.DEF_UP:
                 qRText.DefenseUp();
-                    break;
-                // 残機アップ
-                case (int)ReadResult.REMAINING_UP:
-                    qRText.RemainingUp();
-                    break;
-            }
+                break;
+            // 残機アップ
+            case (int)ReadResult.REMAINING_UP:
+                qRText.RemainingUp();
+                break;
         }
+        Debug.Log("sasaki" + num);
+
     }
 }

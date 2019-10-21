@@ -13,7 +13,7 @@ using UnityEngine.UI;
 public class SampleQRReader : MonoBehaviour
 {
     // 映像をテクスチャとして扱う
-    WebCamTexture _webCamTex;
+    WebCamTexture _webCamTex = default;
 
     // 読み込んだ結果格納
     private string _result = null;
@@ -51,6 +51,8 @@ public class SampleQRReader : MonoBehaviour
     // Activeの変更
     ActiveChange activeChange = default;
 
+    // 変換先
+    int num = -1;
     //=======================================================================================
     //! @brief 開始処理
     //! @param[in] なし
@@ -194,9 +196,12 @@ public class SampleQRReader : MonoBehaviour
                     _switch = false;
                     // テキストPanelの表示
                     activeChange.TextPanel.SetActive(true);
+
+                    int.TryParse(_result, out num);
                 }
             }
         }
+
         // ==================================================================================
 
 
@@ -217,6 +222,14 @@ public class SampleQRReader : MonoBehaviour
 
                 // タイマーをリセットする
                 timer = 0.0f;
+                
+                // もし正規のQRコードじゃなかった場合
+                if(num == 0)
+                {
+                    // もう一度QRモードにする
+                    _event.IsEventKIND = EventDirector.EventKIND.RULE_QR;
+                    qRSpot = true;
+                }
             }
         }
         // ==================================================================================
