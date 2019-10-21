@@ -15,27 +15,38 @@ public class HitStraight : MonoBehaviour
     //イベントクラス
     [SerializeField]
     private EventDirector m_event;
-    
+
     //プレイヤーのゲームオブジェクト
     private GameObject m_player = null;
 
     //速度X
     [SerializeField]
-    private float m_speedX = 0.1f;
+    private float m_speedX = 0.01f;
 
     //速度Z
     [SerializeField]
     private float m_speedZ = 0.01f;
 
+    //直進フラグ
+    private bool m_straightFlag;
+
+    //直進するまでの時間
+    private float m_time;
+
+    //直進するまでの最大時間
+    private const float MAX_TIME = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        m_time = 0;
+        m_straightFlag = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        MoveZ();
         //直進移動
         MoveStraight();
     }
@@ -45,7 +56,7 @@ public class HitStraight : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            if(m_event.IsEventKIND == EventDirector.EventKIND.NONE)
+            if (m_event.IsEventKIND == EventDirector.EventKIND.NONE)
             {
                 //プレイヤーのオブジェクトを取得
                 m_player = collider.gameObject;
@@ -55,31 +66,43 @@ public class HitStraight : MonoBehaviour
         }
     }
 
-    //直進移動
-    private void MoveStraight()
+
+    //Z軸の移動
+    private void MoveZ()
     {
-        if(m_event.IsEventKIND == EventDirector.EventKIND.RULE_MOVE_STRAIGHT)
+        if (m_event.IsEventKIND == EventDirector.EventKIND.RULE_MOVE_STRAIGHT)
         {
-            
-            //Z軸を調整する
-            if(m_player.transform.position.z > transform.position.z)
+            if (m_player.transform.position.z != transform.position.z)
             {
-                m_player.transform.position = new Vector3(m_player.transform.position.x + m_speedX, m_player.transform.position.y, m_player.transform.position.z - m_speedZ);
-
+                //Z軸の移動
+                Vector2 m_movePos = Vector2.MoveTowards(new Vector2(m_player.transform.position.x, m_player.transform.position.z), new Vector2(transform.position.x,transform.position.z), m_speedZ);
+                m_player.transform.position = new Vector3(m_player.transform.position.x, m_player.transform.position.y, m_movePos.y);
+                m_time += Time.deltaTime;
             }
-            else if (m_player.transform.position.z < transform.position.z)
+
+            if(m_time > MAX_TIME)
             {
+                //直進していいよ
+                m_straightFlag = true;
                 
-                m_player.transform.position = new Vector3(m_player.transform.position.x + m_speedX, m_player.transform.position.y, m_player.transform.position.z + m_speedZ);
-
             }
-            else
-            {
-                m_player.transform.position = new Vector3(m_player.transform.position.x + m_speedX, m_player.transform.position.y, m_player.transform.position.z);
-
-            }
-
+          
         }
     }
 
+
+    //直進移動
+    private void MoveStraight()
+    {
+        if (m_event.IsEventKIND == EventDirector.EventKIND.RULE_MOVE_STRAIGHT)
+        {
+            if(m_straightFlag)
+            {
+                
+                m_player.transform.position = new Vector3(m_player.transform.position.x + m_speedX, m_player.transform.position.y, m_player.transform.position.z);
+
+                
+            }
+        }
+    }
 }

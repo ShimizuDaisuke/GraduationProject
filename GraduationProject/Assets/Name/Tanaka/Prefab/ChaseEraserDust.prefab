@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2931151023772724307}
   - component: {fileID: 5658935456468274000}
   m_Layer: 8
-  m_Name: NoramlKS
+  m_Name: ChaseEraserDust
   m_TagString: EraserDust
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_eraserDustKIND: 1
   m_eraserMove: 0
-  m_point: 30
+  m_pointMin: 10
+  m_pointMax: 100
 --- !u!114 &5658935456468274000
 MonoBehaviour:
   m_ObjectHideFlags: 0

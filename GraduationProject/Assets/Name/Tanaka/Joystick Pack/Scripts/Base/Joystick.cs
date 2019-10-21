@@ -21,6 +21,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         set { deadZone = Mathf.Abs(value); }
     }
 
+
     public AxisOptions AxisOptions { get { return AxisOptions; } set { axisOptions = value; } }
     public bool SnapX { get { return snapX; } set { snapX = value; } }
     public bool SnapY { get { return snapY; } set { snapY = value; } }
@@ -32,7 +33,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     [SerializeField] private bool snapY = false;
 
     [SerializeField] protected RectTransform background = null;
-    [SerializeField] private RectTransform handle = null;
+    [SerializeField] protected RectTransform handle = null;
 
     //2Dカメラ ↔ 3Dカメラへ動くクラス
     [SerializeField] protected CameraDirector m_cameradirector = null;
@@ -42,7 +43,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     private Canvas canvas;
     private Camera cam;
 
-    private Vector2 input = Vector2.zero;
+    protected Vector2 input = Vector2.zero;
 
     protected virtual void Start()
     {

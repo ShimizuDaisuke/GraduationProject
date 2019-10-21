@@ -182,9 +182,6 @@ public class CameraStop : MonoBehaviour
                     // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する
                     Script_PlayerPosByCamera2D3D.CreatePlayerPosByCameraMove2D3D(Script_PlayerPosByCamera2D3D.PlayerOncePos);
 
-                    // プレイヤーの位置がずれないように保つ
-                    Script_PlayerPosByCamera2D3D.KeepPlayerPosByCameraMove2D3D();
-
                         // 点滅に関する時間を計る
                         FlashTime += Time.deltaTime;
 

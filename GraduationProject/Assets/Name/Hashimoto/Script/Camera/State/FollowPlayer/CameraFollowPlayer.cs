@@ -49,19 +49,19 @@ public class CameraFollowPlayer : MonoBehaviour
     }
 
     /// <summary>
-    /// 更新処理
+    /// カメラは、常に一定の距離でプレイヤーに追従する [メイン]
     /// </summary>
-    void LateUpdate()
+    public void FollowPlayer()
     {
         // 2Dカメラは、常に一定の距離でプレイヤーに追従する
         FollowPlayer(Camera2D, DirectionCamera2DPlayerPos);
-        
+
         // 3Dカメラは、常に一定の距離でプレイヤーに追従する
         FollowPlayer(Camera3D, DirectionCamera3DPlayerPos);
     }
 
     /// <summary>
-    /// カメラは、常に一定の距離でプレイヤーに追従する
+    /// カメラは、常に一定の距離でプレイヤーに追従する [詳しく]
     /// </summary>
     /// <param name="camera">カメラ</param>
     /// <param name="direction">カメラとプレイヤーの距離</param>

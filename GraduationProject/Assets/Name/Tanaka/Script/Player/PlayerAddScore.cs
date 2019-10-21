@@ -29,7 +29,7 @@ public class PlayerAddScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(m_score.Int_EraserScore);
+        
     }
 
     //衝突判定
@@ -47,8 +47,9 @@ public class PlayerAddScore : MonoBehaviour
                 // ノーマルの消しカスによってスコアを増やす
                 if (m_eraserDust.IsEraserDustKind == EraserDust.EraserDustKIND.NORMAL)
                 {
+                    
                     // スコアを増やす
-                    m_score.Int_EraserScore += m_eraserDust.Point;
+                    m_score.Int_EraserScore += m_eraserDust.PointRandom;
                     //衝突した消しカスを消す
                     Destroy(collider.gameObject);
                 }

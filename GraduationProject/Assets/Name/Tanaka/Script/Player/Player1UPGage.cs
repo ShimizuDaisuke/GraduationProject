@@ -37,8 +37,6 @@ public class Player1UPGage : MonoBehaviour
     {
         //1UP処理
         LifeUP();
-        Debug.Log(m_player.Life);
-        Debug.Log(m_accumulateGage);
     }
 
     //1UP処理
@@ -65,7 +63,7 @@ public class Player1UPGage : MonoBehaviour
             if (m_eraserDust.IsEraserDustKind == EraserDust.EraserDustKIND.ONEUPGAUGE)
             {
                 // ゲージを増やす
-                m_accumulateGage += m_eraserDust.Point;
+                m_accumulateGage += m_eraserDust.PointRandom;
                 //衝突した消しカスを消す
                 Destroy(collider.gameObject);
             }

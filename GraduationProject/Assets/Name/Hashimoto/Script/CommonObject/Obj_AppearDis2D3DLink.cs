@@ -11,7 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AppearDis2D3DObjLink : MonoBehaviour
+public class Obj_AppearDis2D3DLink : MonoBehaviour
 {
     // このオブジェクトのデータに関係を持たせるオブジェクトの種類
     public enum Kind
