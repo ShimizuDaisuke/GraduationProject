@@ -220,7 +220,6 @@ public class NotebookPlayerMove : MonoBehaviour
             }
             m_event.IsEventKIND = EventDirector.EventKIND.NONE;
             m_script_HitEraseEvent.HitFlag = false;
-            Debug.Log("fdasfdsa");
             m_useFlag = true;
         }
     }

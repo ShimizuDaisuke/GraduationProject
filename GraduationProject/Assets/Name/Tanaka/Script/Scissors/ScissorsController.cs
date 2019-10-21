@@ -73,11 +73,11 @@ public class ScissorsController : MonoBehaviour
         {
             m_upperBlade.transform.rotation = Quaternion.Euler(m_upperBlade.transform.eulerAngles.x, m_upperBlade.transform.eulerAngles.y, m_upperBlade.transform.eulerAngles.z - m_cutSpeed);
         }
-        Debug.Log(m_lowerBlade.transform.eulerAngles.z);
+        //Debug.Log(m_lowerBlade.transform.eulerAngles.z);
         //下の刃のZ角度を動かす
         if (m_lowerBlade.transform.eulerAngles.z <= 358.0f)
         {
-            Debug.Log(m_lowerBlade.transform.eulerAngles.z);
+            //Debug.Log(m_lowerBlade.transform.eulerAngles.z);
             m_lowerBlade.transform.rotation = Quaternion.Euler(m_lowerBlade.transform.eulerAngles.x, m_lowerBlade.transform.eulerAngles.y, m_lowerBlade.transform.eulerAngles.z + m_cutSpeed);
         }
 
