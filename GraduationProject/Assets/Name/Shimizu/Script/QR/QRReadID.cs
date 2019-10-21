@@ -14,7 +14,6 @@ public class QRReadID : MonoBehaviour
     // 読み込んだQRのID
     enum ReadResult
     {
-        NOQR          = 0 << 0,
         // 二進数       1   桁
         INCREASE_TIME = 1 << 0,    // 残りの時間が増える  0000 00001  1
         DEF_UP        = 1 << 1,    // カバーを付ける 　   0000 00010  2
@@ -61,12 +60,9 @@ public class QRReadID : MonoBehaviour
         // 文字列を数値に変換
         int.TryParse(result, out num);
 
-            // ID処理
+        // ID処理
         switch (num)
         {
-            case (int)ReadResult.NOQR:
-                qRText.NOQR();
-                break;
             // 時間を増やす
             case (int)ReadResult.INCREASE_TIME:
                 qRText.IncreaseTime();
@@ -79,8 +75,18 @@ public class QRReadID : MonoBehaviour
             case (int)ReadResult.REMAINING_UP:
                 qRText.RemainingUp();
                 break;
+            // この中の物に属さなかった場合正規のQRじゃない
+            default:
+                qRText.NOQR();
+                break;
         }
-        Debug.Log("sasaki" + num);
-
     }
+
+    //=======================================================================================
+    //! @brief numの取得関数
+    //! @param[in] なし
+    //! @param[out] なし
+    //! @return なし
+    //=======================================================================================
+    public int Num { get { return num; } private set { num = value; } }
 }

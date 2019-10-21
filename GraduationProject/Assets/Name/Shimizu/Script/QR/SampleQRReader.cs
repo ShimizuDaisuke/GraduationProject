@@ -51,6 +51,8 @@ public class SampleQRReader : MonoBehaviour
     // Activeの変更
     ActiveChange activeChange = default;
 
+    QRReadID qRReadID = default;
+
     // 変換先
     int num = -1;
     //=======================================================================================
@@ -64,16 +66,16 @@ public class SampleQRReader : MonoBehaviour
         // ActiveChangeにアクセス
         activeChange = GetComponent<ActiveChange>();
 
+        qRReadID = GetComponent<QRReadID>();
+
         // カメラを使用する際に許可を求める
         yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
 
         // カメラの許可を行っているか
         if (Application.HasUserAuthorization(UserAuthorization.WebCam) == false)
         {
-            Debug.LogFormat("no camera.");
             yield break;
         }
-        Debug.LogFormat("camera ok.");
 
         // 利用可能なカメラのデバイス
         WebCamDevice[] devices = WebCamTexture.devices;
@@ -224,10 +226,11 @@ public class SampleQRReader : MonoBehaviour
                 timer = 0.0f;
                 
                 // もし正規のQRコードじゃなかった場合
-                if(num == 0)
+                if(qRReadID.Num == 0)
                 {
                     // もう一度QRモードにする
                     _event.IsEventKIND = EventDirector.EventKIND.RULE_QR;
+                    // カメラの起動
                     qRSpot = true;
                 }
             }
