@@ -21,13 +21,16 @@ public class QRReadID : MonoBehaviour
     }
 
     // 読み込んだQRの結果の格納
-    private string result;
+    private string result = "";
 
     // 読み込んだQRの結果
-    private SampleQRReader qrResult;
+    private SampleQRReader qrResult = default;
 
     // テキスト変更の関数を呼ぶ変数
-    QRText qRText;
+    QRText qRText = default;
+
+    // 変換先
+    int num = -1;
 
     //=======================================================================================
     //! @brief 開始処理
@@ -53,27 +56,37 @@ public class QRReadID : MonoBehaviour
     {
         // 読み込んだ結果の値をもらう
         result = qrResult.Result;
-        int num = -1;
 
         // 文字列を数値に変換
-        if (int.TryParse(result, out num))
+        int.TryParse(result, out num);
+
+        // ID処理
+        switch (num)
         {
-            // ID処理
-            switch (num)
-            {
-                // 時間を増やす
-                case (int)ReadResult.INCREASE_TIME:
+            // 時間を増やす
+            case (int)ReadResult.INCREASE_TIME:
                 qRText.IncreaseTime();
-                    break;
-                // カバーをつける
-                case (int)ReadResult.DEF_UP:
+                break;
+            // カバーをつける
+            case (int)ReadResult.DEF_UP:
                 qRText.DefenseUp();
-                    break;
-                // 残機アップ
-                case (int)ReadResult.REMAINING_UP:
-                    qRText.RemainingUp();
-                    break;
-            }
+                break;
+            // 残機アップ
+            case (int)ReadResult.REMAINING_UP:
+                qRText.RemainingUp();
+                break;
+            // この中の物に属さなかった場合正規のQRじゃない
+            default:
+                qRText.NOQR();
+                break;
         }
     }
+
+    //=======================================================================================
+    //! @brief numの取得関数
+    //! @param[in] なし
+    //! @param[out] なし
+    //! @return なし
+    //=======================================================================================
+    public int Num { get { return num; } private set { num = value; } }
 }

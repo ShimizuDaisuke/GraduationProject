@@ -16,10 +16,10 @@ public class Player1UPGage : MonoBehaviour
     [SerializeField]
     private int MAX1UP_LIFEGAGE = 2;
     //今まで溜まった体力ゲージ
-    private int m_accumulateGage = 0;
+    private int m_accumulateGage;
     //ゲージが増える量
     [SerializeField]
-    private int m_addGage = 0;
+    private int m_addGauge = 0;
     //消しカスのクラス
     private EraserDust m_eraserDust = default;
     // プレイヤー
@@ -71,4 +71,8 @@ public class Player1UPGage : MonoBehaviour
             
         }
     }
+
+
+    // ポイントの取得・設定
+    public int AccumulateGage { get { return m_accumulateGage; } set { m_accumulateGage = value; } }
 }

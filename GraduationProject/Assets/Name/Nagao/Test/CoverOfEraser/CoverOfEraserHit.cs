@@ -49,8 +49,6 @@ public class CoverOfEraserHit : MonoBehaviour
         //刃物との当たり判定
         if ((col.gameObject.tag == "Sword") && (Script_PlayerFlashing.IsPlayerFlashing == false))
         {
-            Debug.Log("うんち");
-
             //スクリプト　：
             EnemyDamage Script_EnemyDamage = col.gameObject.GetComponent<EnemyDamage>();
             // 障害物のダメージ量
@@ -68,7 +66,6 @@ public class CoverOfEraserHit : MonoBehaviour
                 Script_PlayerHit.FixCover = false;
                 Destroy(this.gameObject);
             }
-            Debug.Log(Script_CoverOfEraser.EraserHP);
         }
     }
 

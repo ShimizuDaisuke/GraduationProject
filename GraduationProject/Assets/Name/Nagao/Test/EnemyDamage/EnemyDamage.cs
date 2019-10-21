@@ -17,11 +17,11 @@ public class EnemyDamage : MonoBehaviour
 
     //最大ダメージ
     [SerializeField]
-    private int maxDamage;
+    private int maxDamage = 0;
 
     //最小ダメージ
     [SerializeField]
-    private int minDamage;
+    private int minDamage = 0;
 
 
     //Update

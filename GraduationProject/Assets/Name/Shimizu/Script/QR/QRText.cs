@@ -16,12 +16,21 @@ public class QRText : MonoBehaviour
     [SerializeField]
     private Text qRText;
 
-    void Update()
+
+    //=======================================================================================
+    //! @brief ゲーム以外のQRコードを読み込んだ時のText  0
+    //! @param[in] なし
+    //! @param[out] なし
+    //! @return なし
+    //=======================================================================================
+    public void NOQR()
     {
+        // テキストの変更
+        qRText.text = "正規のQRコードではありません";
     }
 
     //=======================================================================================
-    //! @brief 時間が増えるときのText
+    //! @brief 時間が増えるときのText  1
     //! @param[in] なし
     //! @param[out] なし
     //! @return なし
@@ -33,7 +42,7 @@ public class QRText : MonoBehaviour
     }
 
     //=======================================================================================
-    //! @brief カバーを付けた時のText　DefenseUP
+    //! @brief カバーを付けた時のText　DefenseUP  2
     //! @param[in] なし
     //! @param[out] なし
     //! @return なし
@@ -45,7 +54,7 @@ public class QRText : MonoBehaviour
     }
 
     //=======================================================================================
-    //! @brief 残機が増えた時のText
+    //! @brief 残機が増えた時のText  4
     //! @param[in] なし
     //! @param[out] なし
     //! @return なし
@@ -55,5 +64,4 @@ public class QRText : MonoBehaviour
         // テキストの変更
         qRText.text = "残機が「1」増えました";
     }
-
 }
