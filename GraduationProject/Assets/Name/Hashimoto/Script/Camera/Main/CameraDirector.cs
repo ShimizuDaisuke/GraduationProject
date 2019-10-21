@@ -139,7 +139,7 @@ public class CameraDirector : MonoBehaviour
     void LateUpdate()
     {
         // <テスト>------------------------------------------------------------------
-        
+#if false        
         // 現在のイベント
         EventKind nowevent = Script_EventDirector.IsEventKIND;
 
@@ -156,7 +156,7 @@ public class CameraDirector : MonoBehaviour
             // プレイヤーに追従させる
             NowState = CameraState.FOLLOWPLAYER;
         } 
-
+#endif
         // ---------------------------------------------------------------------------
 
         // カメラの状態
@@ -201,7 +201,7 @@ public class CameraDirector : MonoBehaviour
                 
                 break;
             }
-
+#if false
             // イベント用でカメラを動かす場合
             case CameraState.EVENT:
             {
@@ -210,7 +210,7 @@ public class CameraDirector : MonoBehaviour
 
                 break;
             }
-
+#endif
         }
     }
 
@@ -240,11 +240,8 @@ public class CameraDirector : MonoBehaviour
             // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する
             PlayerObj.GetComponent<PlayerPosByCamera2D3D>().CreatePlayerPosByCameraMove2D3D(IsNowChange3DCamera);
 
-            Debug.Log("前:"+Camera3D.transform.position);
-
             // プレイヤーの位置が変わったため、カメラの位置もプレイヤーの位置に合わせて変える
             Script_CameraFollowPlayer.FllowPlayerNoSlowy();
-            Debug.Log("後:" + Camera3D.transform.position);
 
             // プレイヤーの「Rigidbody」の位置と回転を固定(フリーズ)させる
             PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;

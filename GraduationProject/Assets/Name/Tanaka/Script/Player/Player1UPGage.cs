@@ -37,8 +37,6 @@ public class Player1UPGage : MonoBehaviour
     {
         //1UP処理
         LifeUP();
-        Debug.Log(m_player.Life);
-        Debug.Log(m_accumulateGage);
     }
 
     //1UP処理

@@ -87,8 +87,5 @@ public class CameraFollowPlayer : MonoBehaviour
         
         // 3Dカメラはプレイヤーに追従する
         Camera3D.transform.position = Player.transform.position + DirectionCamera3DPlayerPos;
-
-        Debug.Log("今"+Camera3D.transform.position);
-
     }
 }
