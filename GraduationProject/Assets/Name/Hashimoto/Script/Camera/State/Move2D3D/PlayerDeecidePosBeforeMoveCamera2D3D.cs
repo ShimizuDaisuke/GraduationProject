@@ -64,7 +64,11 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
     public void DecidePlayerPosBeforeMoveCamera2D3D(bool isnowChange3D)
     {
         // =============================================================================================
+        
+        // プレイヤーの「Rigidbody」の位置と回転を固定(フリーズ)させる
+        PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
+        // =============================================================================================
 
         // プレイヤーから飛ばすレイを作成する
         Ray ray = new Ray(PlayerObj.transform.position, -PlayerObj.transform.up);
@@ -141,12 +145,7 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
 
         // =============================================================================================
 
-        // プレイヤーの「Rigidbody」の位置と回転を固定(フリーズ)させる
-        PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-
-        // =============================================================================================
-
-        // リセットする
+         // リセットする
         IsHitObjParentMoveOneAxit = false;
 
         HitObj = null;
