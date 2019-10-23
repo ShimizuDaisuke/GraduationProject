@@ -45,12 +45,14 @@ public class CameraStop : MonoBehaviour
     // 点滅に関する時間
     private float FlashTime = 0.0f;
 
-    // スクリプト：2Dカメラ⇔3Dカメラへ移動時にいるプレイヤーの位置
-    private PlayerPosByCamera2D3D Script_PlayerPosByCamera2D3D;
-
     // スクリプト：カメラの監督
     private CameraDirector Script_CameraDirector;
 
+    // スクリプト：2Dカメラ⇔3Dカメラへ移動時にいるプレイヤーの位置
+    private PlayerPosByCamera2D3D Script_PlayerPosByCamera2D3D;
+
+    // スクリプト：カメラがプレイヤーに追従する
+    private CameraFollowPlayer Script_CameraFollowPlayer;
 
     /// <summary>
     /// 開始処理
@@ -63,9 +65,11 @@ public class CameraStop : MonoBehaviour
         // スクリプト：2Dカメラ⇔3Dカメラへ移動時にいるプレイヤーの位置 の設定
         Script_PlayerPosByCamera2D3D = Player.GetComponent<PlayerPosByCamera2D3D>();
 
-        // スクリプト：カメラの監督
+        // スクリプト：カメラの監督 の設定
         Script_CameraDirector = GetComponent<CameraDirector>();
 
+        // スクリプト：カメラがプレイヤーに追従する の設定
+        Script_CameraFollowPlayer = GetComponent<CameraFollowPlayer>();
     }
 
     /// <summary>
@@ -112,8 +116,8 @@ public class CameraStop : MonoBehaviour
                     // 時間をリセットする
                     TimeAfterCameraStop = 0.0f;
 
-                    // カメラの動きを止めた後の「カメラの状態」をリセットする
-                    NextStateAfterCameraStop = CameraState.ERR;
+                        // カメラの動きを止めた後の「カメラの次の状態」をリセットする
+                        NextStateAfterCameraStop = CameraState.ERR;
 
                     // カメラがプレイヤーに追従するように設定する
                     Script_CameraDirector.State = CameraState.FOLLOWPLAYER;
@@ -145,7 +149,7 @@ public class CameraStop : MonoBehaviour
                     // 時間をリセットする
                     TimeAfterCameraStop = 0.0f;
 
-                    // カメラの動きを止めた後の「カメラの状態」をリセットする
+                    // カメラの動きを止めた後の「カメラの次の状態」をリセットする
                     NextStateAfterCameraStop = CameraState.ERR;
 
                     // カメラが2D⇔3Dへ動くように設定する
@@ -162,8 +166,11 @@ public class CameraStop : MonoBehaviour
                     // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する
                     Script_PlayerPosByCamera2D3D.CreatePlayerPosByCameraMove2D3D(Script_PlayerPosByCamera2D3D.PlayerOncePos);
 
-                    // プレイヤーの地面以外のオブジェクトの透明度を元に戻す
-                    Script_PlayerPosByCamera2D3D.MakeTransparencePlayerHitObjNoGround(NormalTransparence);
+                   // プレイヤーの位置が変わったため、カメラの位置もプレイヤーの位置に合わせて変える
+                   Script_CameraFollowPlayer.FllowPlayerNoSlowy();
+
+                   // プレイヤーの地面以外のオブジェクトの透明度を元に戻す
+                   Script_PlayerPosByCamera2D3D.MakeTransparencePlayerHitObjNoGround(NormalTransparence);
 
                     // プレイヤーの地面以外のオブジェクトの当たり判定をリセットする
                     Script_PlayerPosByCamera2D3D.IsHitPlayerNoGroundObj = false;

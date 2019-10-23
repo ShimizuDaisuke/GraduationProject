@@ -35,7 +35,7 @@ public class CameraMove2D3D : MonoBehaviour
     private float MoveTime = 0.0f;
 
     // スクリプト :「2Dカメラのみ」もしくは「3Dカメラのみ」に表示されるオブジェクト
-    private CameraAppearDisAppearObject Script_AppearDisAppearObjByCamera;
+    private ObjStateByCameraMove2D3D Script_ObjStateByCameraMove2D3D;
 
     // スクリプト : 2Dカメラ⇔3Dカメラへ移動時にいるプレイヤーの位置
     private PlayerPosByCamera2D3D Script_PlayerPosByCamera2D3D;
@@ -55,13 +55,13 @@ public class CameraMove2D3D : MonoBehaviour
         IsNowChange3DCamera = GetComponent<CameraDirector>().IsAppearCamera3D;
 
         // スクリプト : 「2Dカメラのみ」もしくは「3Dカメラのみ」に表示されるオブジェクトの設定
-        Script_AppearDisAppearObjByCamera = GetComponent<CameraAppearDisAppearObject>();
+        Script_ObjStateByCameraMove2D3D = GetComponent<ObjStateByCameraMove2D3D>();
 
         // スクリプト : 2Dカメラ⇔3Dカメラへ移動時にいるプレイヤーの位置の設定
         Script_PlayerPosByCamera2D3D = Player.GetComponent<PlayerPosByCamera2D3D>();
 
         // 2Dや3Dカメラのみ表示されるオブジェクトを表示もしくは非表示させる
-        Script_AppearDisAppearObjByCamera.ChangeObjByCamera(IsNowChange3DCamera);
+        Script_ObjStateByCameraMove2D3D.ChangeObjByCamera(IsNowChange3DCamera);
     }
 
     /// <summary>
@@ -114,11 +114,8 @@ public class CameraMove2D3D : MonoBehaviour
 
             // ----------------------------------------------------------------------------------------------
 
-            // 2Dや3Dカメラのみ表示されるオブジェクトを表示非表示させる
-            Script_AppearDisAppearObjByCamera.ChangeObjByCamera(iscamera3d);
-
-            // カメラが移動する前に、プレイヤーの位置を記憶する
-            Script_PlayerPosByCamera2D3D.PlayerOncePos = Player.transform.position;
+            // カメラが2D⇔3Dへ切り替えるまえに、オブジェクトの表示や位置を変える(後で削除)
+            Script_ObjStateByCameraMove2D3D.ChangeObjByCamera(iscamera3d);
         }
 
         // 初めて「3Dカメラから2Dカメラへ」「2Dカメラから3Dカメラへ」移動して経過した時間を計る
