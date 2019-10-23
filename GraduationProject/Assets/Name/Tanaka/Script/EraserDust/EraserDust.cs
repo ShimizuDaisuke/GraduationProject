@@ -47,7 +47,10 @@ public class EraserDust : MonoBehaviour
     void Start()
     {
         m_pointRandom = Random.Range(m_pointMin, m_pointMax);
+<<<<<<< HEAD
         //Debug.Log(m_pointRandom);
+=======
+>>>>>>> 2acfe769609980af9145eeebe0a5446326ae4520
     }
 
     // Update is called once per frame
