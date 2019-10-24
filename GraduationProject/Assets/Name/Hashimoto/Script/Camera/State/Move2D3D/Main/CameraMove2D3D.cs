@@ -113,9 +113,6 @@ public class CameraMove2D3D : MonoBehaviour
             maincamera.transform.rotation = Quaternion.Euler(startcamera.transform.localEulerAngles);           // 回転
 
             // ----------------------------------------------------------------------------------------------
-
-            // カメラが2D⇔3Dへ切り替えるまえに、オブジェクトの表示や位置を変える(後で削除)
-            Script_ObjStateByCameraMove2D3D.ChangeObjByCamera(iscamera3d);
         }
 
         // 初めて「3Dカメラから2Dカメラへ」「2Dカメラから3Dカメラへ」移動して経過した時間を計る
