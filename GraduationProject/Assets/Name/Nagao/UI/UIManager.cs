@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_timerController = TimeDirector.GetComponent<TimerController>(); ;
+        m_timerController = TimeDirector.GetComponent<TimerController>(); 
     }
 
     // Update is called once per frame
