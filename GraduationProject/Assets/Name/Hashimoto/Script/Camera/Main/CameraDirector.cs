@@ -76,6 +76,9 @@ public class CameraDirector : MonoBehaviour
     // スクリプト：イベント用のカメラの動き
     private CameraEvent Script_CameraEvent;
 
+    // スクリプト：カメラが2D⇔3Dへ切り替える前にプレイヤーの位置を決める処理
+    private PlayerDeecidePosBeforeMoveCamera2D3D Script_PlayerDeecidePosBeforeMoveCamera2D3D;
+
     /// <summary>
     /// 開始処理
     /// </summary>
@@ -114,7 +117,9 @@ public class CameraDirector : MonoBehaviour
         // スクリプト：イベントの監督 の設定
         Script_EventDirector = EventDirectorObj.GetComponent<EventDirector>();
 
-    } 
+        // スクリプト：カメラが2D⇔3Dへ切り替える前にプレイヤーの位置を決める処理
+        Script_PlayerDeecidePosBeforeMoveCamera2D3D = GetComponent<PlayerDeecidePosBeforeMoveCamera2D3D>();
+    }
 
     /// <summary>
     /// サブ更新処理
@@ -124,7 +129,7 @@ public class CameraDirector : MonoBehaviour
         // <テスト>----------------------------------------------------------------
 
         // スペースキーを押されたらカメラを切り替える
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)&&(Script_EventDirector.IsEventKIND == EventKind.NONE))
         {
             // カメラが2D⇔3Dへ切り替える準備を行う
             ChangeCamera2D3D();
@@ -237,14 +242,11 @@ public class CameraDirector : MonoBehaviour
             // カメラが移動する前に、プレイヤーの位置を記憶する
             PlayerObj.GetComponent<PlayerPosByCamera2D3D>().PlayerOncePos = PlayerObj.transform.position;
 
-            // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する
-            PlayerObj.GetComponent<PlayerPosByCamera2D3D>().CreatePlayerPosByCameraMove2D3D(IsNowChange3DCamera);
+            // 2Dカメラ ↔ 3Dカメラへ動く前にプレイヤーの位置を決める
+            Script_PlayerDeecidePosBeforeMoveCamera2D3D.DecidePlayerPosBeforeMoveCamera2D3D(IsNowChange3DCamera);
 
             // プレイヤーの位置が変わったため、カメラの位置もプレイヤーの位置に合わせて変える
             Script_CameraFollowPlayer.FllowPlayerNoSlowy();
-
-            // プレイヤーの「Rigidbody」の位置と回転を固定(フリーズ)させる
-            PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 
@@ -252,8 +254,8 @@ public class CameraDirector : MonoBehaviour
     /// 取得・設定関数
     /// </summary>
 
-        // カメラの今の状態 
-        public CameraState State { get { return NowState; } set{ NowState = value; } }
+    // カメラの今の状態 
+    public CameraState State { get { return NowState; } set{ NowState = value; } }
 
         // カメラの今と前の状態が異なっているか
         public bool IsDifferStateNowOnce { get { return IsDifferCameraStateNowOnce; } set { IsDifferCameraStateNowOnce = value; } } 

@@ -95,4 +95,7 @@ public class TimerController : MonoBehaviour
 
     // 残り時間
     public int Int_RemainingTime { get { return seconds; } private set { seconds = value; } }
+
+    // 時を進めるフラグ
+    public bool TimerFlag { get { return timerFlag; }  set { timerFlag = value; } }
 }
