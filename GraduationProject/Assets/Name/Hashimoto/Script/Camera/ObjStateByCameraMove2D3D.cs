@@ -1,7 +1,7 @@
 ﻿// -----------------------------------------------------------------------------------------
-//! @file       CameraAppearDisAppearObject.cs
+//! @file       ObjStateByCameraMove2D3D.cs
 //!
-//! @brief      「2Dカメラのみ」もしくは「3Dカメラのみ」に表示されるオブジェクト
+//! @brief      カメラが2D⇔3Dへ切り替えるまえに、オブジェクトの表示や位置を変える処理
 //!
 //! @author     橋本 奉武
 //!
@@ -11,7 +11,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraAppearDisAppearObject : MonoBehaviour
+
+public class ObjStateByCameraMove2D3D : MonoBehaviour
 {
     // 2Dカメラのみ表示されるオブジェクト
     [SerializeField]

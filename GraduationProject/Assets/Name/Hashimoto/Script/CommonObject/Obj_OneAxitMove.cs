@@ -26,7 +26,7 @@ public class Obj_OneAxitMove : MonoBehaviour
     }
 
     // とある軸(x,y,z軸)
-    enum Axit { X, Y, Z }
+    public enum Axit { X, Y, Z }
 
     // 3D⇒2Dにカメラを切り替えるときに、統一させる軸
     [SerializeField]
@@ -74,4 +74,12 @@ public class Obj_OneAxitMove : MonoBehaviour
             transform.position = baseposition;
         }
     }
+
+    /// <summary>
+    /// 取得・設定関数
+    /// </summary>
+
+        //  3D⇒2Dにカメラを切り替えるときに、統一させる軸
+        public Axit TidyOneAxit { get { return OneAxit; } private set { OneAxit = value; } }
+
 }
