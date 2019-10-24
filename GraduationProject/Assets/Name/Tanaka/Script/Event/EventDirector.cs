@@ -21,7 +21,8 @@ public class EventDirector : MonoBehaviour
         RULE_MOVE_STRAIGHT,     //直進移動
         RULE_DOMINO,            //ドミノ倒し
         NOTEBOOK_GRAFFITI_ERASE, //ノートの落書きを消す
-        RULE_QR                 //QRコード読み込み
+        RULE_QR,                 //QRコード読み込み
+        SCISSORS_CUT,           //ハサミ切る           
     };
 
     //イベント
