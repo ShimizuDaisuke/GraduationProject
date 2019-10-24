@@ -16,10 +16,6 @@ public class Domin : MonoBehaviour
     [SerializeField]
     private bool m_hitFlag;
 
-    //プレイヤーを固定する位置
-    [SerializeField]
-    private Vector3 m_stopPos = new Vector3(0.0f,0.0f,0.0f);
-
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +25,7 @@ public class Domin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((m_event.IsEventKIND == EventDirector.EventKIND.RULE_DOMINO) && (m_hitFlag == true))
-        {
-            //プレイヤーの固定
-            Player.gameObject.transform.position = m_stopPos;
-        }
+
     }
 
     void OnTriggerEnter(Collider collider)
