@@ -22,7 +22,8 @@ public class EventDirector : MonoBehaviour
         RULE_DOMINO,                //ドミノ倒し
         NOTEBOOK_GRAFFITI_ERASE,    //ノートの落書きを消す
         RULE_QR,                    //QRコード読み込み
-        RULE_CUTTERKNIFE            //カッターナイフをしまう
+        RULE_CUTTERKNIFE,            //カッターナイフをしまう
+        SCISSORS_CUT,               //ハサミ切る
     };
 
     //イベント
