@@ -144,7 +144,7 @@ public class CameraDirector : MonoBehaviour
     void LateUpdate()
     {
         // <テスト>------------------------------------------------------------------
-#if false        
+
         // 現在のイベント
         EventKind nowevent = Script_EventDirector.IsEventKIND;
 
@@ -161,7 +161,7 @@ public class CameraDirector : MonoBehaviour
             // プレイヤーに追従させる
             NowState = CameraState.FOLLOWPLAYER;
         } 
-#endif
+
         // ---------------------------------------------------------------------------
 
         // カメラの状態
@@ -206,7 +206,7 @@ public class CameraDirector : MonoBehaviour
                 
                 break;
             }
-#if false
+
             // イベント用でカメラを動かす場合
             case CameraState.EVENT:
             {
@@ -215,7 +215,6 @@ public class CameraDirector : MonoBehaviour
 
                 break;
             }
-#endif
         }
     }
 
