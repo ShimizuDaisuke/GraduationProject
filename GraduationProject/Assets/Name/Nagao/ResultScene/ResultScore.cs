@@ -64,7 +64,6 @@ public class ResultScore : MonoBehaviour
 
         if (int.Parse(scoreText.text) < totalScore)
         {
-
             //トータルのスコアを5fすすめる
             StartCoroutine(ScoreAnimation(totalScore, 5));
         }
