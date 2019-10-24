@@ -218,9 +218,9 @@ public class NotebookPlayerMove : MonoBehaviour
 
                 }
             }
-            m_event.IsEventKIND = EventDirector.EventKIND.NONE;
-            m_script_HitEraseEvent.HitFlag = false;
             m_useFlag = true;
+            m_event.IsEventKIND = EventDirector.EventKIND.NONE;
+           
         }
     }
 
