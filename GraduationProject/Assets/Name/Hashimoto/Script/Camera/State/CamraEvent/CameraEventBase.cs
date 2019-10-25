@@ -15,23 +15,35 @@ using UnityEngine;
 public class CameraEventBase : MonoBehaviour
 {
     // プレイヤー
-    private GameObject Player;
+    protected GameObject Player;
+
+    // 2D空間上に映すカメラ
+    protected GameObject Camera2D;
+
+    // 3D空間上に映すカメラ
+    protected GameObject Camera3D;
+
 
     /// <summary>
     /// 開始処理
     /// </summary>
-    void Start()
+    protected void Initilaize()
     {
         // プレイヤーを探す
         Player = GameObject.FindGameObjectWithTag("Player");
+
+        // 2D空間上に映すカメラを探す
+        Camera2D = GameObject.FindGameObjectWithTag("Camera2D");
+
+        // 3D空間上に映すカメラ
+        Camera3D = GameObject.FindGameObjectWithTag("Camera3D");
+
     }
 
     /// <summary>
     /// イベント用にカメラを動かす
     /// </summary>
-    /// <param name="camera3D">3D空間上に映すカメラ(ref:位置や回転などを変えられる)</param>
-    /// <param name="camera2D">2D空間上に映すカメラ(ref:位置や回転などを変えられる)</param>
-    virtual public void MoveCameraByEvent(ref GameObject camera3D, ref GameObject camera2D)
+    virtual public void MoveCameraByEvent()
     {
         // 何もなし
     }
