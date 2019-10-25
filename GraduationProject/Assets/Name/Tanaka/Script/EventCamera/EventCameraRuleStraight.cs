@@ -29,8 +29,8 @@ public class EventCameraRuleStraight : CameraEventBase
     /// </summary>
     public override void MoveCameraByEvent()
     {
-        Camera3D.transform.RotateAround(m_seesawObj.transform.position,Vector3.up, 5.0f);
-        Camera3D.transform.rotation = Quaternion.RotateTowards(Camera3D.transform.rotation, Quaternion.Euler(/*m_seesawObj.transform.localEulerAngles + */new Vector3(0.0f,180.0f,0.0f)), 2.0f);
-        Debug.Log("fdasgafuyfa");
+        //Camera3D.transform.RotateAround(m_seesawObj.transform.position,Vector3.up, 5.0f);
+        //Camera3D.transform.rotation = Quaternion.RotateTowards(Camera3D.transform.rotation, Quaternion.Euler(/*m_seesawObj.transform.localEulerAngles + */new Vector3(0.0f,180.0f,0.0f)), 2.0f);
+        //Debug.Log("fdasgafuyfa");
     }
 }
