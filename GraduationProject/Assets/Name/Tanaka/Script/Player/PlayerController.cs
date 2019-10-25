@@ -61,13 +61,18 @@ public class PlayerController : MonoBehaviour
             if (!camera2Dor3DFlag)
             {
                 //2Dの移動 Addforceで動かす
-                transform.Translate(dx * m_vel, 0.0f, 0.0f);
+                //transform.Translate(dx * m_vel, 0.0f, 0.0f);
+                Rigidbody rig = GetComponent<Rigidbody>();
+                rig.AddForce(dx * m_vel, 0.0f, 0.0f);
             }
             //3Dカメラの時
             else
             {
                 //3Dの移動 Addforceで動かす
-                transform.Translate(dy * m_vel, 0.0f, -dx * m_vel);
+                //transform.Translate(dy * m_vel, 0.0f, -dx * m_vel);
+
+                Rigidbody rig = GetComponent<Rigidbody>();
+                rig.AddForce(dy * m_vel, 0.0f, -dx * m_vel);
             }
         }
     }
