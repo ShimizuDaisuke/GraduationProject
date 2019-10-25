@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------------------------
-//! @file       AppearDis2D3DObjLink.cs
+//! @file       Obj_2D3DDataLink.cs
 //!
 //! @brief      2Dのみや3Dのみ表示されるオブジェクトのデータに関係を持たせる
 //!
@@ -11,7 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obj_AppearDis2D3DLink : MonoBehaviour
+public class Obj_2D3DDataLink : MonoBehaviour
 {
     // このオブジェクトのデータに関係を持たせるオブジェクトの種類
     public enum Kind

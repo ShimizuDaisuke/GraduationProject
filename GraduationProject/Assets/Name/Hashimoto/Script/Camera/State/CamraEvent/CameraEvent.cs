@@ -21,6 +21,41 @@ using EventKind = EventDirector.EventKIND;
 
 public class CameraEvent : MonoBehaviour
 {
+
+    // スクリプト：イベント用のカメラ
+    private CameraEventBase[] Script_CameraEventBase;
+
+    /// <summary>
+    /// 開始処理
+    /// </summary>
+    void Start()
+    {
+        // イベント用のカメラ を作成する
+        Script_CameraEventBase = new CameraEventBase[(int)EventKind.MAX];
+
+        // --------------------------------------------------------------------------------------------------
+        // ※ 下記の行数をずらさない!
+
+        // 「プレイヤーが定規によって投げれた」イベント
+        Script_CameraEventBase[(int)EventKind.RULE_MOVE_STRAIGHT] = GetComponent<EventCameraRuleStraight> ();
+
+        // 「プレイヤーが定規によって直進移動する」イベント
+
+
+        // 「プレイヤーが薄い本をドミノ倒しする」イベント
+
+
+        // 「ノートの落書きを消す」イベント
+
+
+        // 「プレイヤーがカッターナイフをしまう」イベント
+
+
+        // 「ハサミ切る」イベント
+
+
+    }
+
     /// <summary>
     /// イベント用のカメラの更新処理
     /// </summary>
@@ -29,11 +64,10 @@ public class CameraEvent : MonoBehaviour
     /// <param name="camera2D">2D空間上に映すカメラ(ref:位置や回転などを変えられる)</param>
     public void EventUpdate(EventKind eventkind, ref GameObject camera3D ,ref GameObject camera2D)
     {
-        // イベントの種類によって、カメラの動きを変える
-        switch(eventkind)
-        {
-            
-        }
-    }
+        // そのイベントのカメラの動きがない場合は、何もしない
+        if (Script_CameraEventBase[(int)eventkind] == null) return;
 
+        // イベントの種類によって、カメラの動きを変える
+        Script_CameraEventBase[(int)eventkind].MoveCameraByEvent();
+    }
 }

@@ -24,6 +24,7 @@ public class EventDirector : MonoBehaviour
         RULE_QR,                    //QRコード読み込み
         RULE_CUTTERKNIFE,            //カッターナイフをしまう
         SCISSORS_CUT,               //ハサミ切る
+        MAX,                        //最大イベント数
     };
 
     //イベント
@@ -39,7 +40,7 @@ public class EventDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(m_event);
     }
 
     //イベントの取得・設定

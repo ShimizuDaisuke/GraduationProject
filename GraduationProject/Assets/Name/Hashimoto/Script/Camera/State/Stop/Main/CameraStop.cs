@@ -54,6 +54,9 @@ public class CameraStop : MonoBehaviour
     // スクリプト：カメラがプレイヤーに追従する
     private CameraFollowPlayer Script_CameraFollowPlayer;
 
+    // スクリプト：カメラが2D⇔3Dへ切り替える前にプレイヤーの位置を決める処理
+    private PlayerDeecidePosBeforeMoveCamera2D3D Script_PlayerDeecidePosBeforeMoveCamera2D3D;
+
     /// <summary>
     /// 開始処理
     /// </summary>
@@ -70,6 +73,9 @@ public class CameraStop : MonoBehaviour
 
         // スクリプト：カメラがプレイヤーに追従する の設定
         Script_CameraFollowPlayer = GetComponent<CameraFollowPlayer>();
+
+        // スクリプト：カメラが2D⇔3Dへ切り替える前にプレイヤーの位置を決める処理 の設定
+        Script_PlayerDeecidePosBeforeMoveCamera2D3D = GetComponent<PlayerDeecidePosBeforeMoveCamera2D3D>();
     }
 
     /// <summary>
@@ -163,12 +169,6 @@ public class CameraStop : MonoBehaviour
                     // 2D ↔ 3Dカメラに切り替える
                     Script_CameraDirector.IsAppearCamera3D = !Script_CameraDirector.IsAppearCamera3D;
 
-                    // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する
-                    Script_PlayerPosByCamera2D3D.CreatePlayerPosByCameraMove2D3D(Script_PlayerPosByCamera2D3D.PlayerOncePos);
-
-                   // プレイヤーの位置が変わったため、カメラの位置もプレイヤーの位置に合わせて変える
-                   Script_CameraFollowPlayer.FllowPlayerNoSlowy();
-
                    // プレイヤーの地面以外のオブジェクトの透明度を元に戻す
                    Script_PlayerPosByCamera2D3D.MakeTransparencePlayerHitObjNoGround(NormalTransparence);
 
@@ -182,8 +182,14 @@ public class CameraStop : MonoBehaviour
                     // 点滅に関する時間をリセットする
                     FlashTime = 0.0f;
 
+                    // 最終的にプレイヤーの位置を決める
+                    Script_PlayerDeecidePosBeforeMoveCamera2D3D.DecidePlayerPosBeforeMoveCamera2D3D(Script_CameraDirector.IsAppearCamera3D);
+
+                   // プレイヤーの位置が変わったため、カメラの位置もプレイヤーの位置に合わせて変える
+                   Script_CameraFollowPlayer.FllowPlayerNoSlowy();
+
                 }
-                    else
+                else
                 // カメラを2D⇔3Dへ動かすまでの時間がまだ経過していない場合
                 {
                     // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する

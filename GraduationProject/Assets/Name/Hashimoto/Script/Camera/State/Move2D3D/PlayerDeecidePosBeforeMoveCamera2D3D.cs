@@ -97,14 +97,19 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
                 // その親がカメラの切り替え時に軸中心に動かすオブジェクトの場合
                 if(hit.transform.parent.name == "OneAxitMove")
                 {
-                    // プレイヤーのレイに当たったオブジェクトを記憶させる
-                    HitObj = hit.transform.gameObject;
-
-                    // プレイヤーがどの軸を中心にそろえるか 取得する
-                    PlayerCenterAxit = hit.transform.parent.GetComponent<Obj_OneAxitMove>().TidyOneAxit;
-
-                    // プレイヤーのレイに当たったオブジェクトの親はカメラの切り替え時に一つの軸に揃える
-                    IsHitObjParentMoveOneAxit = true;
+                    // プレイヤーのレイが指定されたオブジェクトに当たった場合に行う処理
+                    HitTheObj(hit.transform.gameObject, hit.transform.parent.gameObject);
+                }
+                else
+                // 祖父母が存在する場合
+                if(hit.transform.parent.transform.parent != null)
+                {
+                    // その祖父母がカメラの切り替え時に軸中心に動かすオブジェクトの場合
+                    if (hit.transform.parent.transform.parent.name == "OneAxitMove")
+                    {
+                        // プレイヤーのレイが指定されたオブジェクトに当たった場合に行う処理
+                        HitTheObj(hit.transform.gameObject, hit.transform.parent.transform.parent.gameObject);
+                    }
                 }
             }
 
@@ -118,8 +123,8 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
 
         // =============================================================================================
        
-        // プレイヤーが乗っている地面は一つの軸中心にそろえて動くものか
-        if(IsHitObjParentMoveOneAxit)
+        // プレイヤーが乗っている地面は一つの軸中心にそろえて動くものか かつ カメラが2D→3Dへ切り替え時のみ
+        if((IsHitObjParentMoveOneAxit)&&(isnowChange3D==true))
         {
             // プレイヤーのレイに当たったオブジェクトのモデルの高さ
             float hitobjheight = HitObj.GetComponent<Renderer>().bounds.size.y;
@@ -151,4 +156,32 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
         HitObj = null;
     }
 
+    /// <summary>
+    /// プレイヤーのレイが指定されたオブジェクトに当たった場合に行う処理
+    /// </summary>
+    /// <param name="obj">指定されたオブジェクト</param>
+    /// <param name="obj">指定されたオブジェクトの一番の親</param>
+    private void HitTheObj(GameObject obj,GameObject fistparentobj)
+    {
+        // プレイヤーのレイに当たったオブジェクトを記憶させる
+        HitObj = obj;
+
+        // プレイヤーがどの軸を中心にそろえるか 取得する
+        PlayerCenterAxit = fistparentobj.GetComponent<Obj_OneAxitMove>().TidyOneAxit;
+
+        // プレイヤーのレイに当たったオブジェクトの親はカメラの切り替え時に一つの軸に揃える
+        IsHitObjParentMoveOneAxit = true;
+
+        // 「プレイヤーの位置によって表示非表示させるオブジェクトによる処理」のスクリプトを呼ぶ
+        Obj_AppearDisPlayerPos script_Obj_AppearDisPlayerPos = fistparentobj.GetComponent<Obj_AppearDisPlayerPos>();
+
+        // そのスクリプトが存在する場合
+        if (script_Obj_AppearDisPlayerPos != null)
+        {
+            // 指定されたオブジェクトにプレイヤーが乗っていることにする
+            script_Obj_AppearDisPlayerPos.IsPlayerRideOnTheObj = true;
+        }
+
+
+    }
 }

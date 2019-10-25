@@ -72,6 +72,18 @@ public class ObjStateByCameraMove2D3D : MonoBehaviour
 
             // とある軸を中心に位置を揃える
             script_Obj_OneAxitMove.MoveOneAxit(false);
+
+            // 「プレイヤーの位置によって表示非表示させるオブジェクトによる処理」のスクリプトを呼ぶ
+            Obj_AppearDisPlayerPos script_Obj_AppearDisPlayerPos = objmoveoneaxit.GetComponent<Obj_AppearDisPlayerPos>();
+
+            // そのスクリプトが存在する場合
+            if (script_Obj_AppearDisPlayerPos != null)
+            {
+                // プレイヤーの位置によって、とあるオブジェクトを表示や非表示させる
+                script_Obj_AppearDisPlayerPos.DecideAppearDisAppearObjByPlayerPos(false);
+
+            }
+
         }
     }
 
@@ -100,6 +112,17 @@ public class ObjStateByCameraMove2D3D : MonoBehaviour
 
             // とある軸を中心に揃えた位置を元に戻す
             script_Obj_OneAxitMove.MoveOneAxit(true);
+
+            // 「プレイヤーの位置によって表示非表示させるオブジェクトによる処理」のスクリプトを呼ぶ
+            Obj_AppearDisPlayerPos script_Obj_AppearDisPlayerPos = objmoveoneaxit.GetComponent<Obj_AppearDisPlayerPos>();
+
+            // そのスクリプトが存在する場合
+            if(script_Obj_AppearDisPlayerPos != null)
+            {
+                // プレイヤーの位置によって、とあるオブジェクトを表示や非表示させる
+                script_Obj_AppearDisPlayerPos.DecideAppearDisAppearObjByPlayerPos(true);
+
+            }
         }
     }
 
