@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿//======================================================================================= 
+//! @file       CutterKnife.cs
+//! @brief      カッターナイフのイベント
+//! @author     長尾昌輝
+//! @date       2019/10/25
+//======================================================================================= 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,9 +59,8 @@ public class CutterKnife : MonoBehaviour
             {
                 //イベント終了
                 m_event.IsEventKIND = EventDirector.EventKIND.NONE;
-                //判定終了
-                m_hitFlag = false;
 
+                m_hitFlag = false;
                 //time = 0;
             }
         }
@@ -65,7 +70,7 @@ public class CutterKnife : MonoBehaviour
     void OnTriggerEnter(Collider collider)
     {
         //プレイヤーと当たったら
-        if ((collider.gameObject.tag == "Player") && (m_hitFlag == false))
+        if ((collider.gameObject.tag == "Player") && (m_hitFlag == false) && (m_eventTime > time))
         {
             m_hitFlag = true;
             //ドミノ倒しのイベントに設定
