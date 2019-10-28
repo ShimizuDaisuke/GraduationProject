@@ -123,8 +123,8 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
 
         // =============================================================================================
        
-        // プレイヤーが乗っている地面は一つの軸中心にそろえて動くものか
-        if(IsHitObjParentMoveOneAxit)
+        // プレイヤーが乗っている地面は一つの軸中心にそろえて動くものか かつ カメラが2D→3Dへ切り替え時のみ
+        if((IsHitObjParentMoveOneAxit)&&(isnowChange3D==true))
         {
             // プレイヤーのレイに当たったオブジェクトのモデルの高さ
             float hitobjheight = HitObj.GetComponent<Renderer>().bounds.size.y;

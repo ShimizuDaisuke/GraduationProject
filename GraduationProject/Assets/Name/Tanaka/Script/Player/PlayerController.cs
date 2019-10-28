@@ -60,13 +60,13 @@ public class PlayerController : MonoBehaviour
             //2Dカメラの時
             if (!camera2Dor3DFlag)
             {
-                //2Dの移動
+                //2Dの移動 Addforceで動かす
                 transform.Translate(dx * m_vel, 0.0f, 0.0f);
             }
             //3Dカメラの時
             else
             {
-                //3Dの移動
+                //3Dの移動 Addforceで動かす
                 transform.Translate(dy * m_vel, 0.0f, -dx * m_vel);
             }
         }
