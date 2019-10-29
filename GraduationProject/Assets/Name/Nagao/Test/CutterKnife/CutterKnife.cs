@@ -18,6 +18,14 @@ public class CutterKnife : MonoBehaviour
     [SerializeField]
     private GameObject Player = default;
 
+    //カッターナイフのカメラの処理
+    [SerializeField]
+    private EventCameraCutterKnife Script_EventCameraCutterKnife = default;
+
+    // カメラ
+    [SerializeField]
+    private GameObject CameraDirector = default;
+
     //当たった判定
     [SerializeField]
     private bool m_hitFlag;
@@ -36,13 +44,13 @@ public class CutterKnife : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Script_EventCameraCutterKnife = CameraDirector.GetComponent<EventCameraCutterKnife>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((m_event.IsEventKIND == EventDirector.EventKIND.RULE_CUTTERKNIFE) && (m_hitFlag == true))
+        if ((m_event.IsEventKIND == EventDirector.EventKIND.RULE_CUTTERKNIFE) && (m_hitFlag == true)&&(Script_EventCameraCutterKnife.MoveFlag == true))
         {
             var direction =  Vector3.forward;
 
@@ -60,7 +68,10 @@ public class CutterKnife : MonoBehaviour
                 //イベント終了
                 m_event.IsEventKIND = EventDirector.EventKIND.NONE;
 
+                //当たり判定の終了
                 m_hitFlag = false;
+
+                Script_EventCameraCutterKnife.MoveFlag = false;
                 //time = 0;
             }
         }
@@ -79,6 +90,6 @@ public class CutterKnife : MonoBehaviour
     }
 
 
-    public bool HitFlag { get { return m_hitFlag; } set { m_hitFlag = value; } }
+  
 
 }
