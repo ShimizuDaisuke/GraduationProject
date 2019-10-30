@@ -27,7 +27,14 @@ public class PlayerController : MonoBehaviour
     //速度
     [SerializeField]
     private float m_vel = default;
-    
+
+    // プレイヤーの動きを制限
+    bool IsMove = true;
+
+    // プレイヤーの動きを制限する時間
+    float time = 0.0f;
+
+    float a, b;
 
     // Start is called before the first frame update
     void Start()
@@ -51,29 +58,35 @@ public class PlayerController : MonoBehaviour
         //２Dと３Dのカメラの切り替え中かどうか,イベントが何も起きていないか
         if ((!cameraSwitch2D3D) && (m_event.IsEventKIND == EventDirector.EventKIND.NONE))
         {
-            //ジョイスティックで動かした方向
+
+            //ジョイスティックで動かした方向を取得
             float dx = m_joystick.Horizontal;
             float dy = m_joystick.Vertical;
 
+
             //2Dカメラか3Dカメラかのフラグ
             bool camera2Dor3DFlag = m_cameradirector.IsAppearCamera3D;
+           
             //2Dカメラの時
             if (!camera2Dor3DFlag)
             {
                 //2Dの移動 Addforceで動かす
-                //transform.Translate(dx * m_vel, 0.0f, 0.0f);
-                Rigidbody rig = GetComponent<Rigidbody>();
-                rig.AddForce(dx * m_vel, 0.0f, 0.0f);
+                transform.Translate(dx * m_vel, 0.0f, 0.0f);
+
+                //Rigidbody rig = GetComponent<Rigidbody>();
+                //rig.AddForce(dx * m_vel, 0.0f, 0.0f);
             }
             //3Dカメラの時
             else
             {
                 //3Dの移動 Addforceで動かす
-                //transform.Translate(dy * m_vel, 0.0f, -dx * m_vel);
+                transform.Translate(dy * m_vel, 0.0f, -dx * m_vel);
 
-                Rigidbody rig = GetComponent<Rigidbody>();
-                rig.AddForce(dy * m_vel, 0.0f, -dx * m_vel);
+                //Rigidbody rig = GetComponent<Rigidbody>();
+                //rig.AddForce(dy * m_vel, 0.0f, -dx * m_vel);
             }
+
+            
         }
     }
 

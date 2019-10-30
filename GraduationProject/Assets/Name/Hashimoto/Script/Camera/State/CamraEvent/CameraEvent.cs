@@ -40,7 +40,7 @@ public class CameraEvent : MonoBehaviour
         Script_CameraEventBase[(int)EventKind.RULE_MOVE_STRAIGHT] = GetComponent<EventCameraRuleStraight> ();
 
         // 「プレイヤーが定規によって直進移動する」イベント
-
+        Script_CameraEventBase[(int)EventKind.RULE_THOW] = GetComponent<EventCameraRuleThow>();
 
         // 「プレイヤーが薄い本をドミノ倒しする」イベント
 
