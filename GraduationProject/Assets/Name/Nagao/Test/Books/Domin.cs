@@ -8,12 +8,12 @@ public class Domin : MonoBehaviour
     [SerializeField]
     private EventDirector m_event = default;
 
-    // プレイヤー
+    //イベント中のカメラの移動
     [SerializeField]
-    private GameObject Player = default;
+    private EventCameraDomino m_eventDomino = default;
+
 
     //当たったフラグ
-    [SerializeField]
     private bool m_hitFlag;
 
     // Start is called before the first frame update
@@ -35,6 +35,9 @@ public class Domin : MonoBehaviour
             m_hitFlag = true;
             //ドミノ倒しのイベントに設定
             m_event.IsEventKIND = EventDirector.EventKIND.RULE_DOMINO;
+
+            //移動開始
+            m_eventDomino.MoveFlag = true;
         }
     }
 

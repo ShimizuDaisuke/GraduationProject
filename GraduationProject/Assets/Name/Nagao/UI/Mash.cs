@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿//======================================================================================= 
+//! @file       Mash.cs
+//! @brief      切り取りの範囲を変更する 
+//! @author     長尾昌輝
+//======================================================================================= 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
