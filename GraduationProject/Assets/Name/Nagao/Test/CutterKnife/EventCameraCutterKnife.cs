@@ -71,15 +71,10 @@ public class EventCameraCutterKnife : CameraEventBase
             //時間経過
             ChangeTime += Time.deltaTime;
         }
-     
 
-            //Player.transform.position + m_diration;
+     }
 
-            //Camera3D.transform.RotateAround(m_seesawObj.transform.position,Vector3.up, 5.0f);
-            //Camera3D.transform.rotation = Quaternion.RotateTowards(Camera3D.transform.rotation, Quaternion.Euler(/*m_seesawObj.transform.localEulerAngles + */new Vector3(0.0f,180.0f,0.0f)), 2.0f);
-            //Debug.Log("fdasgafuyfa");
-        }
-
+    //モデルの動作判定を取得・設定
     public bool MoveFlag { get { return m_moveflag; } set { m_moveflag = value; } }
 
 }
