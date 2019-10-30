@@ -43,13 +43,13 @@ public class CameraEvent : MonoBehaviour
 
 
         // 「プレイヤーが薄い本をドミノ倒しする」イベント
-
+        Script_CameraEventBase[(int)EventKind.RULE_DOMINO] = GetComponent<EventCameraDomino>();
 
         // 「ノートの落書きを消す」イベント
 
 
         // 「プレイヤーがカッターナイフをしまう」イベント
-
+        Script_CameraEventBase[(int)EventKind.RULE_CUTTERKNIFE] = GetComponent<EventCameraCutterKnife>();
 
         // 「ハサミ切る」イベント
 

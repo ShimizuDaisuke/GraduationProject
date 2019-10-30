@@ -8,10 +8,6 @@ public class Domin : MonoBehaviour
     [SerializeField]
     private EventDirector m_event = default;
 
-    // プレイヤー
-    [SerializeField]
-    private GameObject Player = default;
-
     //当たったフラグ
     [SerializeField]
     private bool m_hitFlag;
