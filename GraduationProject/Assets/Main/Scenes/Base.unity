@@ -5839,7 +5839,7 @@ GameObject:
   - component: {fileID: 166668553}
   - component: {fileID: 166668552}
   - component: {fileID: 166668555}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6663,6 +6663,7 @@ Transform:
   m_Children:
   - {fileID: 484721726}
   - {fileID: 992360127}
+  - {fileID: 1505655562}
   m_Father: {fileID: 860473331}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.56600004, y: -29.995, z: 180.98}
@@ -6679,6 +6680,7 @@ GameObject:
   - component: {fileID: 260421016}
   - component: {fileID: 260421015}
   - component: {fileID: 260421014}
+  - component: {fileID: 260421018}
   m_Layer: 0
   m_Name: book (3)
   m_TagString: Untagged
@@ -6775,6 +6777,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260421012}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &260421018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260421012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3594d017a3e2c4d4d9beddac9acf8707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 2088335518}
 --- !u!1 &271470806
 GameObject:
   m_ObjectHideFlags: 0
@@ -7487,6 +7502,7 @@ GameObject:
   - component: {fileID: 461810173}
   - component: {fileID: 461810176}
   - component: {fileID: 461810175}
+  - component: {fileID: 461810177}
   m_Layer: 0
   m_Name: CameraDirector
   m_TagString: Untagged
@@ -7672,6 +7688,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_cutterKnifeObj: {fileID: 141709042}
   MaxTime: 0
+--- !u!114 &461810177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461810164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2d2de582437fc47b5e52a1d41f3de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_layerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &484721719
 GameObject:
   m_ObjectHideFlags: 0
@@ -7689,7 +7720,7 @@ GameObject:
   - component: {fileID: 484721720}
   m_Layer: 9
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Scissor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8736,6 +8767,7 @@ GameObject:
   - component: {fileID: 580602314}
   - component: {fileID: 580602313}
   - component: {fileID: 580602312}
+  - component: {fileID: 580602316}
   m_Layer: 0
   m_Name: book (5)
   m_TagString: Untagged
@@ -8832,6 +8864,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580602310}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &580602316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580602310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3594d017a3e2c4d4d9beddac9acf8707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 2088335518}
 --- !u!1 &583719803 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 4f4caa93545e59f428545ba9c40e0c46,
@@ -9053,6 +9098,7 @@ GameObject:
   - component: {fileID: 654895988}
   - component: {fileID: 654895987}
   - component: {fileID: 654895986}
+  - component: {fileID: 654895990}
   m_Layer: 0
   m_Name: book (1)
   m_TagString: Untagged
@@ -9149,6 +9195,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654895984}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &654895990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654895984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3594d017a3e2c4d4d9beddac9acf8707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 2088335518}
 --- !u!1001 &657907889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9340,7 +9399,7 @@ GameObject:
   - component: {fileID: 677701392}
   - component: {fileID: 677701391}
   - component: {fileID: 677701390}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Paper_Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9373,8 +9432,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf0f554a8151f74bbadee3e9e203be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_event: {fileID: 2088335518}
   m_scissorsCon: {fileID: 256385079}
-  m_fadeOutSpeed: 0.01
+  m_fadeOutSpeed: 0.005
 --- !u!65 &677701391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10217,6 +10277,7 @@ GameObject:
   - component: {fileID: 849485872}
   - component: {fileID: 849485871}
   - component: {fileID: 849485870}
+  - component: {fileID: 849485874}
   m_Layer: 0
   m_Name: book (2)
   m_TagString: Untagged
@@ -10313,6 +10374,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849485868}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &849485874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849485868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3594d017a3e2c4d4d9beddac9acf8707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 2088335518}
 --- !u!1 &860473330
 GameObject:
   m_ObjectHideFlags: 0
@@ -10337,7 +10411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860473330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 95.4, y: 3.14, z: -2.03}
+  m_LocalPosition: {x: 25.57, y: 3.14, z: 2.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 256385080}
@@ -15978,7 +16052,7 @@ GameObject:
   - component: {fileID: 992360124}
   m_Layer: 9
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Scissor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16069,6 +16143,7 @@ GameObject:
   - component: {fileID: 1004377337}
   - component: {fileID: 1004377336}
   - component: {fileID: 1004377335}
+  - component: {fileID: 1004377339}
   m_Layer: 0
   m_Name: book (6)
   m_TagString: Untagged
@@ -16165,6 +16240,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004377333}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1004377339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004377333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3594d017a3e2c4d4d9beddac9acf8707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 2088335518}
 --- !u!1 &1025736796
 GameObject:
   m_ObjectHideFlags: 0
@@ -21069,6 +21157,7 @@ GameObject:
   - component: {fileID: 1045206644}
   - component: {fileID: 1045206643}
   - component: {fileID: 1045206646}
+  - component: {fileID: 1045206647}
   m_Layer: 0
   m_Name: book
   m_TagString: Untagged
@@ -21165,6 +21254,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1045206647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045206641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3594d017a3e2c4d4d9beddac9acf8707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 2088335518}
 --- !u!1 &1060030729
 GameObject:
   m_ObjectHideFlags: 0
@@ -21873,6 +21975,7 @@ GameObject:
   - component: {fileID: 1197352239}
   - component: {fileID: 1197352238}
   - component: {fileID: 1197352237}
+  - component: {fileID: 1197352241}
   m_Layer: 0
   m_Name: book (7)
   m_TagString: Untagged
@@ -21969,6 +22072,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1197352235}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1197352241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197352235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3594d017a3e2c4d4d9beddac9acf8707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 2088335518}
 --- !u!1001 &1208030484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28603,7 +28719,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1410924092}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Paper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28618,7 +28734,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410924091}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.76494, y: 3.74, z: 4.050263}
+  m_LocalPosition: {x: -5.76494, y: 2.55, z: 4.050263}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1899440470}
@@ -28819,6 +28935,7 @@ GameObject:
   - component: {fileID: 1455208494}
   - component: {fileID: 1455208493}
   - component: {fileID: 1455208492}
+  - component: {fileID: 1455208496}
   m_Layer: 0
   m_Name: book (4)
   m_TagString: Untagged
@@ -28915,6 +29032,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455208490}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1455208496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455208490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3594d017a3e2c4d4d9beddac9acf8707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event: {fileID: 2088335518}
 --- !u!1 &1455394103
 GameObject:
   m_ObjectHideFlags: 0
@@ -29175,6 +29305,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDamage: 50
   minDamage: 10
+--- !u!1 &1505655561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1505655562}
+  m_Layer: 0
+  m_Name: CameraMovePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1505655562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505655561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.32, y: -1.85, z: 5.93}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 256385080}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1507341072 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: a2bd086704a57b3489f696dbeaeead83,
@@ -30216,8 +30376,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693930834}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 53.92, y: 2.94, z: -1.96}
-  m_LocalScale: {x: 0.482, y: 4, z: 1}
+  m_LocalPosition: {x: 53.92, y: 2.94, z: -1.78}
+  m_LocalScale: {x: 0.482, y: 4, z: 1.9125}
   m_Children: []
   m_Father: {fileID: 1194354573}
   m_RootOrder: 1
@@ -30690,8 +30850,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757785669}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 42.16, y: 1.5, z: -1.68}
-  m_LocalScale: {x: 1, y: 1, z: 2.064267}
+  m_LocalPosition: {x: 42.57, y: 1.5, z: -1.68}
+  m_LocalScale: {x: 0.1375, y: 1, z: 2.064267}
   m_Children: []
   m_Father: {fileID: 1194354573}
   m_RootOrder: 0
@@ -31325,7 +31485,7 @@ GameObject:
   - component: {fileID: 1899440473}
   - component: {fileID: 1899440472}
   - component: {fileID: 1899440471}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Paper_Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
