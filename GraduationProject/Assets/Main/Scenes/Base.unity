@@ -5847,7 +5847,7 @@ GameObject:
   - component: {fileID: 166668553}
   - component: {fileID: 166668552}
   - component: {fileID: 166668555}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6845,6 +6845,7 @@ Transform:
   m_Children:
   - {fileID: 484721726}
   - {fileID: 992360127}
+  - {fileID: 1505655562}
   m_Father: {fileID: 860473331}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.56600004, y: -29.995, z: 180.98}
@@ -7596,6 +7597,7 @@ GameObject:
   - component: {fileID: 461810173}
   - component: {fileID: 461810176}
   - component: {fileID: 461810175}
+  - component: {fileID: 461810177}
   m_Layer: 0
   m_Name: CameraDirector
   m_TagString: Untagged
@@ -7781,6 +7783,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_cutterKnifeObj: {fileID: 141709042}
   MaxTime: 0
+--- !u!114 &461810177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461810164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2d2de582437fc47b5e52a1d41f3de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_layerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &484721719
 GameObject:
   m_ObjectHideFlags: 0
@@ -7798,7 +7815,7 @@ GameObject:
   - component: {fileID: 484721720}
   m_Layer: 9
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Scissor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9434,7 +9451,7 @@ GameObject:
   - component: {fileID: 677701392}
   - component: {fileID: 677701391}
   - component: {fileID: 677701390}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Paper_Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9467,8 +9484,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf0f554a8151f74bbadee3e9e203be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_event: {fileID: 2088335518}
   m_scissorsCon: {fileID: 256385079}
-  m_fadeOutSpeed: 0.01
+  m_fadeOutSpeed: 0.005
 --- !u!65 &677701391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10431,7 +10449,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860473330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 95.4, y: 3.14, z: -2.03}
+  m_LocalPosition: {x: 25.57, y: 3.14, z: 2.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 256385080}
@@ -16072,7 +16090,7 @@ GameObject:
   - component: {fileID: 992360124}
   m_Layer: 9
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Scissor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28634,7 +28652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1410924092}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Paper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28649,7 +28667,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410924091}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.76494, y: 3.74, z: 4.050263}
+  m_LocalPosition: {x: -5.76494, y: 2.55, z: 4.050263}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1899440470}
@@ -29191,6 +29209,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDamage: 50
   minDamage: 10
+--- !u!1 &1505655561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1505655562}
+  m_Layer: 0
+  m_Name: CameraMovePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1505655562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505655561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.32, y: -1.85, z: 5.93}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 256385080}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1507341072 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: a2bd086704a57b3489f696dbeaeead83,
@@ -31228,7 +31276,7 @@ GameObject:
   - component: {fileID: 1899440473}
   - component: {fileID: 1899440472}
   - component: {fileID: 1899440471}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Paper_Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}

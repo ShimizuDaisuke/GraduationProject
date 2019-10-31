@@ -52,7 +52,7 @@ public class CameraEvent : MonoBehaviour
         Script_CameraEventBase[(int)EventKind.RULE_CUTTERKNIFE] = GetComponent<EventCameraCutterKnife>();
 
         // 「ハサミ切る」イベント
-
+        Script_CameraEventBase[(int)EventKind.SCISSORS_CUT] = GetComponent<EventCameraScissorsCut>();
 
     }
 
