@@ -14,8 +14,23 @@ public class EventCameraDomino : CameraEventBase
     [SerializeField]
     private GameObject m_dominoObj;
 
+    ////カメラの移動速度
+    //[SerializeField]
+    //private Vector3 m_movePos = new Vector3(0.0f,0.0f,0.0f);
+
+    //カメラの角度
+    [SerializeField]
+    private Vector3 m_angle = new Vector3(0.0f, 0.0f, 0.0f);
+
+    //カメラを動かす判定
+    private bool m_moveflag = false;
+
+    //弾の速さ
+    [SerializeField]
+    private float speed = 0.0f;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // 初期化する
         Initilaize();
@@ -26,8 +41,27 @@ public class EventCameraDomino : CameraEventBase
     /// </summary>
     public override void MoveCameraByEvent()
     {
-        //Camera3D.transform.RotateAround(m_seesawObj.transform.position,Vector3.up, 5.0f);
-        //Camera3D.transform.rotation = Quaternion.RotateTowards(Camera3D.transform.rotation, Quaternion.Euler(/*m_seesawObj.transform.localEulerAngles + */new Vector3(0.0f,180.0f,0.0f)), 2.0f);
-        //Debug.Log("fdasgafuyfa");
+        //イベント中なら
+        if (m_moveflag == true)
+        {
+            // カメラの向きの角度の変更;
+            Camera3D.transform.rotation = Quaternion.Euler(m_angle);
+
+            // カメラの位置の変更
+            Camera3D.transform.position = new Vector3(Camera3D.transform.position.x, Camera3D.transform.position.y, -8.0f);
+
+            //3D時の移動方向
+            var direction = Quaternion.Euler(new Vector3(0.0f, 90.0f, 0.0f)) * Vector3.forward;
+
+            //3Dカメラの移動
+            Camera3D.transform.position += direction * speed * Time.deltaTime;
+
+            //2Dカメラの移動
+            Camera2D.transform.position += direction * speed * Time.deltaTime;
+        }
+
     }
+
+    //イベント判定を取得・設定
+    public bool MoveFlag { get { return m_moveflag; } set { m_moveflag = value; } }
 }

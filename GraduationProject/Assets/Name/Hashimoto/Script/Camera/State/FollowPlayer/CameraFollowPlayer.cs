@@ -26,7 +26,7 @@ public class CameraFollowPlayer : MonoBehaviour
 
     // 3Dカメラとプレイヤーの距離
     private Vector3 DirectionCamera3DPlayerPos;
-
+    
     // プレイヤー
     private GameObject Player;
 
