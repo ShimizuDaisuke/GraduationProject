@@ -12,6 +12,10 @@ using UnityEngine;
 //紙のクラス
 public class PaperController : MonoBehaviour
 {
+    //イベントクラス
+    [SerializeField]
+    private EventDirector m_event;
+
     //ハサミのクラス
     [SerializeField]
     private ScissorsController m_scissorsCon;
@@ -21,7 +25,7 @@ public class PaperController : MonoBehaviour
 
     //フェードアウトスピード
     [SerializeField]
-    private float m_fadeOutSpeed = 0.05f;
+    private float m_fadeOutSpeed = 0.005f;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +49,7 @@ public class PaperController : MonoBehaviour
         //Alphaが0以下になったら破棄
         if(m_color.a < 0)
         {
+            m_event.IsEventKIND = EventDirector.EventKIND.NONE;
             Destroy(gameObject);
         }
 
