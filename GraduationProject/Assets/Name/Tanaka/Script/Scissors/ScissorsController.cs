@@ -31,7 +31,6 @@ public class ScissorsController : MonoBehaviour
     [SerializeField]
     private float m_playerSpeedX = 0.01f;
 
-
     // 上の刃と下の刃の差
     private Vector3 m_directionBlade;
 
@@ -118,9 +117,6 @@ public class ScissorsController : MonoBehaviour
         {
             //座標、回転Freeeeeeeeeze!!
             m_upperBlade.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-
-            m_event.IsEventKIND = EventDirector.EventKIND.NONE;
-
 
             m_rotationFinishFlag = true;
         }

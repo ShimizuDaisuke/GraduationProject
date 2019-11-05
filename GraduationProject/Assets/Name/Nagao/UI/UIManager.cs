@@ -24,11 +24,15 @@ public class UIManager : MonoBehaviour
 
     //通常UIのオブジェクト
     [SerializeField]
-    private GameObject UI = default;
+    private GameObject NormalUI = default;
 
     //EventUIのオブジェクト
     [SerializeField]
     private GameObject EventUI = default;
+
+    //QR用UIのオブジェクト
+    [SerializeField]
+    private GameObject QRUI = default;
 
 
     // Start is called before the first frame update
@@ -40,18 +44,42 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //イベントが始まっていないか
+        //イベント中か
         if ((m_event.IsEventKIND != EventDirector.EventKIND.NONE))
         {
-            UI.SetActive(false);
-            EventUI.SetActive(true);
+            //ゲーム内の時を止める
             m_timerController.TimerFlag = false;
+            //通常UIの非表示
+            NormalUI.SetActive(false);
+
+            //ＱＲコードを読み込む以外のイベントか
+            if ((m_event.IsEventKIND != EventDirector.EventKIND.RULE_QR))
+            {
+                //イベント用UIの表示
+                EventUI.SetActive(true);
+                //QR用UIの非表示
+                QRUI.SetActive(false);
+            }
+            else
+            {
+                //イベント用UIの表示
+                EventUI.SetActive(false);
+                //QR用UIの非表示
+                QRUI.SetActive(true);
+            }
+            
         }
         else
         {
-            //イベント中
-            UI.SetActive(true);
+            //イベント中ではない時
+
+            //通常UIの表示
+            NormalUI.SetActive(true);
+            //イベント用UIの非表示
             EventUI.SetActive(false);
+            //QR用UIの非表示
+            QRUI.SetActive(false);
+            //ゲーム内の時を動かす
             m_timerController.TimerFlag = true;
         }
     }

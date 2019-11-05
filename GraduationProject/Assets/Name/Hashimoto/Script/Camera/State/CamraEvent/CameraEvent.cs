@@ -40,7 +40,7 @@ public class CameraEvent : MonoBehaviour
         Script_CameraEventBase[(int)EventKind.RULE_MOVE_STRAIGHT] = GetComponent<EventCameraRuleStraight> ();
 
         // 「プレイヤーが定規によって直進移動する」イベント
-
+        Script_CameraEventBase[(int)EventKind.RULE_THOW] = GetComponent<EventCameraRuleThow>();
 
         // 「プレイヤーが薄い本をドミノ倒しする」イベント
         Script_CameraEventBase[(int)EventKind.RULE_DOMINO] = GetComponent<EventCameraDomino>();
@@ -52,7 +52,7 @@ public class CameraEvent : MonoBehaviour
         Script_CameraEventBase[(int)EventKind.RULE_CUTTERKNIFE] = GetComponent<EventCameraCutterKnife>();
 
         // 「ハサミ切る」イベント
-
+        Script_CameraEventBase[(int)EventKind.SCISSORS_CUT] = GetComponent<EventCameraScissorsCut>();
 
     }
 
