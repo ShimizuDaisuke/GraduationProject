@@ -13,8 +13,8 @@ using UnityEngine;
 public class Player1UPGage : MonoBehaviour
 {
     //スペシャル消しカスのエフェクトのクラス
-    [SerializeField]
-    private CreateEDEffect m_createSpacelEDEffect = default;
+    //[SerializeField]
+    //private CreateEDEffect m_createSpacelEDEffect = default;
     //最大体力ゲージ
     [SerializeField]
     private int MAX1UP_LIFEGAGE = 2;
@@ -66,7 +66,7 @@ public class Player1UPGage : MonoBehaviour
             if (m_eraserDust.IsEraserDustKind == EraserDust.EraserDustKIND.ONEUPGAUGE)
             {
                 //エフェクトの生成
-                m_createSpacelEDEffect.Create(collider.transform.position);
+                //m_createSpacelEDEffect.Create(collider.transform.position);
                 // ゲージを増やす
                 m_accumulateGage += m_eraserDust.PointRandom;
                 //衝突した消しカスを消す
