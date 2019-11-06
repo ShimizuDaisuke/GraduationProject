@@ -46,7 +46,7 @@ public class CameraEvent : MonoBehaviour
         Script_CameraEventBase[(int)EventKind.RULE_DOMINO] = GetComponent<EventCameraDomino>();
 
         // 「ノートの落書きを消す」イベント
-
+        Script_CameraEventBase[(int)EventKind.NOTEBOOK_GRAFFITI_ERASE] = GetComponent<EventCameraEraseGraffti>();
 
         // 「プレイヤーがカッターナイフをしまう」イベント
         Script_CameraEventBase[(int)EventKind.RULE_CUTTERKNIFE] = GetComponent<EventCameraCutterKnife>();

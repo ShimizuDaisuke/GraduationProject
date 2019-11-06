@@ -34,7 +34,8 @@ public class PlayerController : MonoBehaviour
     // プレイヤーの動きを制限する時間
     float time = 0.0f;
 
-    float a, b;
+    //ジョイスティックで動かした方向
+    private float m_dx, m_dy;
 
     // Start is called before the first frame update
     void Start()
@@ -60,8 +61,8 @@ public class PlayerController : MonoBehaviour
         {
 
             //ジョイスティックで動かした方向を取得
-            float dx = m_joystick.Horizontal;
-            float dy = m_joystick.Vertical;
+            m_dx = m_joystick.Horizontal;
+            m_dy = m_joystick.Vertical;
 
 
             //2Dカメラか3Dカメラかのフラグ
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour
             if (!camera2Dor3DFlag)
             {
                 //2Dの移動 Addforceで動かす
-                transform.Translate(dx * m_vel, 0.0f, 0.0f);
+                transform.Translate(m_dx * m_vel, 0.0f, 0.0f);
 
                 //Rigidbody rig = GetComponent<Rigidbody>();
                 //rig.AddForce(dx * m_vel, 0.0f, 0.0f);
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 //3Dの移動 Addforceで動かす
-                transform.Translate(dy * m_vel, 0.0f, -dx * m_vel);
+                transform.Translate(m_dy * m_vel, 0.0f, -m_dx * m_vel);
 
                 //Rigidbody rig = GetComponent<Rigidbody>();
                 //rig.AddForce(dy * m_vel, 0.0f, -dx * m_vel);
@@ -89,5 +90,9 @@ public class PlayerController : MonoBehaviour
             
         }
     }
+
+    public float DX { get { return m_dx; } set { m_dx = value; } }
+    public float DY { get { return m_dy; } set { m_dy = value; } }
+
 
 }
