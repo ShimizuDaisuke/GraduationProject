@@ -28,6 +28,10 @@ public class NotebookPlayerMove : MonoBehaviour
     [SerializeField]
     private HitEraseEvent m_script_HitEraseEvent;
 
+    //落書きを消すときのカメラのクラス
+    [SerializeField]
+    private EventCameraEraseGraffti m_cameraEraseGraffti;
+
     //速度
     [SerializeField]
     private float m_speed = 0.25f;
@@ -43,6 +47,12 @@ public class NotebookPlayerMove : MonoBehaviour
 
     //使用フラグ
     private bool m_useFlag;
+
+    //動き出すまでのカウント
+    private float m_startCount = 0;
+
+    //動き出すまでの時間
+    private const float START_MAX_COUNT = 0.5f;
 
     //--------------------------------------------------------------
 
@@ -153,6 +163,7 @@ public class NotebookPlayerMove : MonoBehaviour
         m_nowPoint = 0;
         m_randomRange = 1;
         m_useFlag = false;
+        m_startCount = 0;
     }
 
     // Update is called once per frame
@@ -176,25 +187,35 @@ public class NotebookPlayerMove : MonoBehaviour
         //プレイヤーが落書きを消すイベントになっているとき
         if (m_script_HitEraseEvent.HitFlag==true)
         {
-            //今のポイントが最大のポイントかどうか
-            if (m_nowPoint < MOVE_POINT_NUM)
+            //スタートするまでのカウント
+            if(m_cameraEraseGraffti.MoveFlag)
             {
-                //ポイントに達していなかったら移動、達していたら次のポイントに切り替える
-                if (m_player.transform.position.x != m_point[m_nowPoint].x || m_player.transform.position.z != m_point[m_nowPoint].y)
+                m_startCount += Time.deltaTime; 
+            }
+
+            //カウントが越えたら
+            if(m_startCount >= START_MAX_COUNT)
+            {
+                //今のポイントが最大のポイントかどうか
+                if (m_nowPoint < MOVE_POINT_NUM)
                 {
-                    m_movePos = Vector2.MoveTowards(new Vector2(m_player.transform.position.x, m_player.transform.position.z), m_point[m_nowPoint], m_speed);
-                    m_player.transform.position = new Vector3(m_movePos.x, m_player.transform.position.y, m_movePos.y);
+                    //ポイントに達していなかったら移動、達していたら次のポイントに切り替える
+                    if (m_player.transform.position.x != m_point[m_nowPoint].x || m_player.transform.position.z != m_point[m_nowPoint].y)
+                    {
+                        m_movePos = Vector2.MoveTowards(new Vector2(m_player.transform.position.x, m_player.transform.position.z), m_point[m_nowPoint], m_speed);
+                        m_player.transform.position = new Vector3(m_movePos.x, m_player.transform.position.y, m_movePos.y);
+                    }
+                    else
+                    {
+                        m_nowPoint++;
+                        //消しカスの生成
+                        m_createED.Create(new Vector3(m_player.transform.position.x + Random.Range(-m_randomRange, m_randomRange), m_player.transform.position.y, m_player.transform.position.z + Random.Range(-m_randomRange, m_randomRange)));
+                    }
                 }
                 else
                 {
-                    m_nowPoint++;
-                    //消しカスの生成
-                    m_createED.Create(new Vector3(m_player.transform.position.x + Random.Range(-m_randomRange, m_randomRange), m_player.transform.position.y, m_player.transform.position.z + Random.Range(-m_randomRange, m_randomRange)));
+                    m_chaseCount += Time.deltaTime;
                 }
-            }
-            else
-            {
-                m_chaseCount += Time.deltaTime;
             }
         }
     }
@@ -218,6 +239,7 @@ public class NotebookPlayerMove : MonoBehaviour
 
                 }
             }
+            m_startCount = 0;
             m_useFlag = true;
             m_event.IsEventKIND = EventDirector.EventKIND.NONE;
            

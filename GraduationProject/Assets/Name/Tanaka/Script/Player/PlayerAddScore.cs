@@ -12,6 +12,10 @@ using UnityEngine;
 //スコアの増やすクラス
 public class PlayerAddScore : MonoBehaviour
 {
+    //通常消しカスのエフェクトのクラス
+    [SerializeField]
+    private CreateEDEffect m_createNomalEDEffect = default;
+    
     //スコア
     [SerializeField]
     private Score m_score = default;
@@ -47,7 +51,8 @@ public class PlayerAddScore : MonoBehaviour
                 // ノーマルの消しカスによってスコアを増やす
                 if (m_eraserDust.IsEraserDustKind == EraserDust.EraserDustKIND.NORMAL)
                 {
-                    
+                    //エフェクトの生成
+                    m_createNomalEDEffect.Create(collider.transform.position);
                     // スコアを増やす
                     m_score.Int_EraserScore += m_eraserDust.PointRandom;
                     //衝突した消しカスを消す
