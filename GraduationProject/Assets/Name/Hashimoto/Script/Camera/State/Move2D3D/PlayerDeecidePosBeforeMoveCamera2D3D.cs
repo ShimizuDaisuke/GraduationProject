@@ -71,7 +71,7 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
         // =============================================================================================
 
         // プレイヤーから飛ばすレイを作成する
-        Ray ray = new Ray(PlayerObj.transform.position, -PlayerObj.transform.up);
+        Ray ray = new Ray(PlayerObj.transform.position, Vector3.down);
 
         // プレイヤーから飛ばしたレイに当たったオブジェクトの入れ物
         RaycastHit hit;
