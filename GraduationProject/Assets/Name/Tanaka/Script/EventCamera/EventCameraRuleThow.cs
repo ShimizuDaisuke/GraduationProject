@@ -91,7 +91,7 @@ public class EventCameraRuleThow : CameraEventBase
 
             //カメラのZ軸を0で固定
             Camera3D.transform.rotation = Quaternion.Euler(new Vector3(Camera3D.transform.localEulerAngles.x, Camera3D.transform.localEulerAngles.y, 0.0f));
-
+            
         }
 
     }

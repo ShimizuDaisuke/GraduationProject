@@ -15,9 +15,9 @@ public class EventCameraScissorsCut : CameraEventBase
     //ハサミの動きのクラス
     private ScissorsController m_scissorsCon = default;
 
-    //ハサミのレイヤーマスク1
+    //ハサミのレイヤーマスク
     [SerializeField]
-    private LayerMask m_layerMask;
+    private LayerMask m_layerMaskCut;
 
     void Awake()
     {
@@ -49,7 +49,7 @@ public class EventCameraScissorsCut : CameraEventBase
         //レイの飛ばす距離
         float distance = 1.0f;
 
-        if(Physics.Raycast(ray, out hit,distance,m_layerMask))
+        if(Physics.Raycast(ray, out hit,distance, m_layerMaskCut))
         {
             //刃の親を取得
             GameObject scissors = hit.collider.transform.parent.gameObject;
@@ -66,7 +66,7 @@ public class EventCameraScissorsCut : CameraEventBase
             else
             {
                 //カメラを指定位置まで移動
-                GameObject cameraMovePos = scissors.gameObject.transform.FindChild("CameraMovePos").gameObject;
+                GameObject cameraMovePos = scissors.transform.Find("CameraMovePos").gameObject;
                 Camera3D.transform.position = Vector3.MoveTowards(Camera3D.transform.position, cameraMovePos.transform.position, 0.1f);
             }
         }
