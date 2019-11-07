@@ -35,15 +35,15 @@ public class ChaseEffect : MonoBehaviour
     void Update()
     {
         //プレイヤーの移動速度が0じゃなかったらエフェクトを出す
-        if(m_playerCon.DX != 0.0f || m_playerCon.DY != 0.0f)
-        {
-            m_particle.Play();
-        }
-        else
-        {
-            m_particle.Stop();
-        }
-
+        //if(m_playerCon.DX != 0.0f || m_playerCon.DY != 0.0f)
+        //{
+        //    m_particle.Play();
+        //}
+        //else
+        //{
+        //    m_particle.Stop();
+        //}
+        //
         //イベント中だったらエフェクトを止める
         if(m_event.IsEventKIND != EventDirector.EventKIND.NONE)
         {

@@ -6,8 +6,6 @@
 //! @author     橋本 奉武
 //!
 //! @date       2019.9.28
-//!
-//! @note       ※後でカメラ2D⇔3D移動する場合:時間をかけずにカメラを目的地へ動かす 解決策:カメラを動かす時間 + その場からプレイヤーを動かさない時間
 // -----------------------------------------------------------------------------------------
 using System.Collections;
 using System.Collections.Generic;
@@ -33,6 +31,12 @@ public class CameraFollowPlayer : MonoBehaviour
     // カメラがプレイヤーに追従するのにかかる時間(/s) <カメラのブレを防止するため>
     private float FollowingTime = 5.0f;
 
+    // 2Dカメラの向き
+    private Vector3 RotationCamera2D;
+
+    // 3Dカメラの向き
+    private Vector3 RotationCamera3D;
+
     /// <summary>
     /// 開始処理
     /// </summary>
@@ -41,8 +45,12 @@ public class CameraFollowPlayer : MonoBehaviour
         // プレイヤーを探す
         Player = GameObject.FindGameObjectWithTag("Player");
 
-        // ---------------------------------------------------------------------
+        // 2Dカメラの向きを取得する
+        RotationCamera2D = Camera2D.transform.localEulerAngles;
 
+        // 3Dカメラの向きを取得する
+        RotationCamera3D = Camera3D.transform.localEulerAngles;
+        
         // プレイヤーの高さを小数点切り捨てる(対策：酔い止め)
         int playerheight = Mathf.FloorToInt(Player.transform.position.y);
 
@@ -62,10 +70,10 @@ public class CameraFollowPlayer : MonoBehaviour
     public void FollowPlayer()
     {
         // 2Dカメラは、常に一定の距離でプレイヤーに追従する
-        FollowPlayer(Camera2D, DirectionCamera2DPlayerPos);
+        FollowPlayer(Camera2D, DirectionCamera2DPlayerPos, RotationCamera2D);
 
         // 3Dカメラは、常に一定の距離でプレイヤーに追従する
-        FollowPlayer(Camera3D, DirectionCamera3DPlayerPos);
+        FollowPlayer(Camera3D, DirectionCamera3DPlayerPos, RotationCamera3D);
     }
 
     /// <summary>
@@ -73,7 +81,8 @@ public class CameraFollowPlayer : MonoBehaviour
     /// </summary>
     /// <param name="camera">カメラ</param>
     /// <param name="direction">カメラとプレイヤーの距離</param>
-    private void FollowPlayer(GameObject camera,Vector3 direction)
+    /// <param name="rotation">カメラの向き</param>
+    private void FollowPlayer(GameObject camera,Vector3 direction,Vector3 rotation)
     {
         // 現在のカメラの位置
         Vector3 NowPos = camera.transform.position;
@@ -87,7 +96,10 @@ public class CameraFollowPlayer : MonoBehaviour
                                        Player.transform.position.z+direction.z);
 
         // 時間をかけて、カメラはプレイヤーに追従する <カメラのブレ防止>
-        camera.transform.position = Vector3.Lerp(NowPos, NextPos, FollowingTime * Time.deltaTime); 
+        camera.transform.position = Vector3.Lerp(NowPos, NextPos, FollowingTime * Time.deltaTime);
+
+        // カメラの向きを常にそろえる
+        camera.transform.rotation = Quaternion.Euler(rotation);
     }
 
     /// <summary>
