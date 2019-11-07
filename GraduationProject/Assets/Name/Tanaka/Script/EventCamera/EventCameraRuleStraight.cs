@@ -38,6 +38,8 @@ public class EventCameraRuleStraight : CameraEventBase
     //二点間の距離を入れる
     private float distance_two;
 
+    //プレイヤーとの距離Z
+    private float m_cameraSubPosZ = 4.5f;
  
     void Awake()
     {
@@ -84,7 +86,7 @@ public class EventCameraRuleStraight : CameraEventBase
             float present_Location = (Time.time * m_moveSpeed) / distance_two;
 
             //カメラの移動
-            Camera3D.transform.position = Vector3.Lerp(Camera3D.transform.position, m_targetPosObj.transform.position, present_Location);
+            Camera3D.transform.position = Vector3.Lerp(Camera3D.transform.position, new Vector3(Player.transform.position.x - m_cameraSubPosZ,Player.transform.position.y,m_targetPosObj.transform.position.z), present_Location);
         }
 
     }
