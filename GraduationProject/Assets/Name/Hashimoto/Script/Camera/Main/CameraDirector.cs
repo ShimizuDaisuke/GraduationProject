@@ -244,6 +244,9 @@ public class CameraDirector : MonoBehaviour
             // 2Dカメラ ↔ 3Dカメラへ動く前にプレイヤーの位置を決める
             Script_PlayerDeecidePosBeforeMoveCamera2D3D.DecidePlayerPosBeforeMoveCamera2D3D(IsNowChange3DCamera);
 
+            // プレイヤーの向きをリセットする
+            PlayerObj.transform.rotation = Quaternion.Euler(Vector3.zero);
+
             // プレイヤーの位置が変わったため、カメラの位置もプレイヤーの位置に合わせて変える
             Script_CameraFollowPlayer.FllowPlayerNoSlowy();
         }

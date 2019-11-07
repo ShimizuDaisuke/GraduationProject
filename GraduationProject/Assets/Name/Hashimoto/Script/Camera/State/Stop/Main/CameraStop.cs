@@ -122,8 +122,8 @@ public class CameraStop : MonoBehaviour
                     // 時間をリセットする
                     TimeAfterCameraStop = 0.0f;
 
-                        // カメラの動きを止めた後の「カメラの次の状態」をリセットする
-                        NextStateAfterCameraStop = CameraState.ERR;
+                    // カメラの動きを止めた後の「カメラの次の状態」をリセットする
+                    NextStateAfterCameraStop = CameraState.ERR;
 
                     // カメラがプレイヤーに追従するように設定する
                     Script_CameraDirector.State = CameraState.FOLLOWPLAYER;
@@ -138,8 +138,6 @@ public class CameraStop : MonoBehaviour
 
                    // プレイヤーの「Rigidbody」の位置と回転の固定(フリーズ)を解除する
                    Player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                   // プレイヤーの「Rigidbody」の回転のみ固定(フリーズ)する
-                   Player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
                 }
 
