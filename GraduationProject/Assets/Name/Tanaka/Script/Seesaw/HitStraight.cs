@@ -39,6 +39,9 @@ public class HitStraight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // プレイヤーを探す
+        m_player = GameObject.FindGameObjectWithTag("Player");
+
         m_time = 0;
         m_straightFlag = false;
     }
@@ -58,8 +61,7 @@ public class HitStraight : MonoBehaviour
         {
             if (m_event.IsEventKIND == EventDirector.EventKIND.NONE)
             {
-                //プレイヤーのオブジェクトを取得
-                m_player = collider.gameObject;
+                
                 //直進移動のイベントに設定
                 m_event.IsEventKIND = EventDirector.EventKIND.RULE_MOVE_STRAIGHT;
             }

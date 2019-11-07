@@ -26,7 +26,7 @@ public class EventDirector : MonoBehaviour
         SCISSORS_CUT,               //ハサミ切る
         MAX,                        //最大イベント数
     };
-
+   
     //イベント
     [SerializeField]
     private EventKIND m_event = EventKIND.NONE;
