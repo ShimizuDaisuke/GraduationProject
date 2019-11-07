@@ -41,11 +41,19 @@ public class CameraFollowPlayer : MonoBehaviour
         // プレイヤーを探す
         Player = GameObject.FindGameObjectWithTag("Player");
 
+        // ---------------------------------------------------------------------
+
+        // プレイヤーの高さを小数点切り捨てる(対策：酔い止め)
+        int playerheight = Mathf.FloorToInt(Player.transform.position.y);
+
+        // プレイヤーの位置
+        Vector3 playerpos = new Vector3(Player.transform.position.x, (float)playerheight, Player.transform.position.z);
+
         // 2Dカメラとプレイヤーの距離を計る
-        DirectionCamera2DPlayerPos = Camera2D.transform.position - Player.transform.position;
+        DirectionCamera2DPlayerPos = Camera2D.transform.position - playerpos;
 
         // 3Dカメラとプレイヤーの距離を計る
-        DirectionCamera3DPlayerPos = Camera3D.transform.position - Player.transform.position;
+        DirectionCamera3DPlayerPos = Camera3D.transform.position - playerpos;
     }
 
     /// <summary>
@@ -70,8 +78,13 @@ public class CameraFollowPlayer : MonoBehaviour
         // 現在のカメラの位置
         Vector3 NowPos = camera.transform.position;
 
+        // プレイヤーの高さを小数点切り捨てる(対策：酔い止め)
+        int playerheight = Mathf.FloorToInt(Player.transform.position.y);
+
         // カメラが次へ進む目的地の位置 
-        Vector3 NextPos = Player.transform.position + direction;
+        Vector3 NextPos =  new Vector3(Player.transform.position.x + direction.x,
+                                       direction.y + playerheight,
+                                       Player.transform.position.z+direction.z);
 
         // 時間をかけて、カメラはプレイヤーに追従する <カメラのブレ防止>
         camera.transform.position = Vector3.Lerp(NowPos, NextPos, FollowingTime * Time.deltaTime); 
@@ -82,10 +95,28 @@ public class CameraFollowPlayer : MonoBehaviour
     /// </summary>
     public void FllowPlayerNoSlowy()
     {
-        // 2Dカメラはプレイヤーに追従する
-        Camera2D.transform.position = Player.transform.position + DirectionCamera2DPlayerPos;
-        
-        // 3Dカメラはプレイヤーに追従する
-        Camera3D.transform.position = Player.transform.position + DirectionCamera3DPlayerPos;
+        // プレイヤーの高さを小数点切り捨てる(対策：酔い止め)
+        int playerheight = Mathf.FloorToInt(Player.transform.position.y);
+
+        // ----------------------------------------------------------------------------------------------------
+
+        // 2Dカメラが次へ進む目的地の位置 
+        Vector3 Camera2DNextPos = new Vector3(Player.transform.position.x + DirectionCamera2DPlayerPos.x,
+                                              (float)playerheight         + DirectionCamera2DPlayerPos.y,
+                                              Player.transform.position.z + DirectionCamera2DPlayerPos.z);
+
+        // 2Dカメラはプレイヤーに時間かけずに追従する
+        Camera2D.transform.position = Camera2DNextPos;
+
+        // ----------------------------------------------------------------------------------------------------
+
+        // 3Dカメラが次へ進む目的地の位置 
+        Vector3 Camera3DNextPos = new Vector3(Player.transform.position.x + DirectionCamera3DPlayerPos.x,
+                                               (float)playerheight        + DirectionCamera3DPlayerPos.y,
+                                              Player.transform.position.z + DirectionCamera3DPlayerPos.z);
+
+
+        // 3Dカメラはプレイヤーに時間かけずに追従する
+        Camera3D.transform.position = Camera3DNextPos;
     }
 }
