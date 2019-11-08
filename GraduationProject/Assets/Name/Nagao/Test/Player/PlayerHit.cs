@@ -71,7 +71,7 @@ public class PlayerHit : MonoBehaviour
             col.gameObject.transform.position = this.gameObject.transform.position;
 
             //プレイヤーとカバーを同じ角度にする
-            //col.gameObject.transform.rotation = this.gameObject.transform.rotation;
+            col.gameObject.transform.rotation = this.gameObject.transform.rotation;
 
             // 消しゴムにカバーを付けた
             IsFixCover = true;
