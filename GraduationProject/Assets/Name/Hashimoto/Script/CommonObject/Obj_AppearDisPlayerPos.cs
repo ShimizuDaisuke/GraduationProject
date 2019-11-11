@@ -15,12 +15,19 @@ using UnityEngine;
 
 public class Obj_AppearDisPlayerPos : MonoBehaviour
 {
+
+
     // プレイヤーが特定のオブジェクトの上に乗ったか
     private bool IsPlayerRide = false;
 
     // カメラが3D→2Dへ切り替えたときに、プレイヤーがいる位置によって表示や非表示させるオブジェクト
     [SerializeField]
     private GameObject AppearDisObjByPlayerPos = default;
+
+    // カメラが3D→2Dへ切り替えたときに、プレイヤーがいる位置によって表示や非表示させるオブジェクト
+    [SerializeField]
+    private GameObject AppearDisObjByNoPlayerPos = default;
+
 
     /// <summary>
     /// カメラが3D→2Dへ切り替えたときに、プレイヤーがいる位置によって、とあるオブジェクトを表示か非表示させるか決める
@@ -39,6 +46,9 @@ public class Obj_AppearDisPlayerPos : MonoBehaviour
         {
             // プレイヤーがオブジェクトAの上に乗った場合、オブジェクトBを表示させる(Aに乗っていない場合は、Bを非表示させる)
             AppearDisObjByPlayerPos.SetActive(IsPlayerRide);
+
+            // プレイヤーがオブジェクトAの上に乗った場合、オブジェクトBを非表示させる(Aに乗っていない場合は、Bを表示させる)
+            AppearDisObjByNoPlayerPos.SetActive(!IsPlayerRide);
 
             // リセットする
             IsPlayerRide = false;
