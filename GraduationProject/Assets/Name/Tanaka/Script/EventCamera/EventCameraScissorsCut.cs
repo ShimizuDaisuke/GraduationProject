@@ -41,11 +41,10 @@ public class EventCameraScissorsCut : CameraEventBase
     {
 
         //レイの作成
-        Ray ray = new Ray(Player.transform.position, Player.transform.right);
+        Ray ray = new Ray(Player.transform.position, Vector3.right);
 
         // Rayが衝突したコライダーの情報
         RaycastHit hit;
-
         //レイの飛ばす距離
         float distance = 1.0f;
 

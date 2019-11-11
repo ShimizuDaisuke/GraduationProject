@@ -42,7 +42,7 @@ public class SoundManager : MonoBehaviour
     //オーディオソース
     private static AudioSource audioSource;
 
-    // Start is called before the first frame update
+  
     void Awake()
     {
         //Componentを取得
