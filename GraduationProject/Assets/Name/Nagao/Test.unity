@@ -3109,7 +3109,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.031943854, y: 0.017809378, z: 0.005}
+  m_Size: {x: 0.031943854, y: 0.017809378, z: 0.01}
   m_Center: {x: 0.017585037, y: -0.0014224148, z: -0.001}
 --- !u!1 &628511389
 GameObject:
@@ -3314,7 +3314,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.031943854, y: 0.017809378, z: 0.005}
+  m_Size: {x: 0.031943854, y: 0.017809378, z: 0.01}
   m_Center: {x: 0.017585037, y: -0.0014224148, z: -0.001}
 --- !u!114 &740100398
 MonoBehaviour:
@@ -5464,7 +5464,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 161256223154a6a40bb8c2c227f8d687,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 30.000015
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 161256223154a6a40bb8c2c227f8d687,
         type: 3}
@@ -5474,7 +5474,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 161256223154a6a40bb8c2c227f8d687,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 30.000015
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 161256223154a6a40bb8c2c227f8d687, type: 3}
@@ -5825,7 +5825,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1097862, y: 0.03270726, z: 0.01}
+  m_Size: {x: 0.1097862, y: 0.03270726, z: 0.005}
   m_Center: {x: 0.03838309, y: -0.0016595377, z: -0.000041103613}
 --- !u!1001 &1563664508
 PrefabInstance:
@@ -6661,8 +6661,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParticleObj:
   - {fileID: 970566043783021532, guid: cd4c76bc7878f5b4e84b5350416741cf, type: 3}
-  time: 0
-  startLifetime: 0
 --- !u!4 &1635438483
 Transform:
   m_ObjectHideFlags: 0
@@ -8270,7 +8268,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1097862, y: 0.03270726, z: 0.01}
+  m_Size: {x: 0.1097862, y: 0.03270726, z: 0.005}
   m_Center: {x: 0.03838309, y: -0.0016595377, z: -0.000041103613}
 --- !u!1001 &2075948275
 PrefabInstance:
