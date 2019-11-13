@@ -13,9 +13,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+// 型名省略
+using Particle = ParticleManager.Particle;
+
 
 public class TitleSceneController : MonoBehaviour
 {
+    //画面を触ったか判定フラグ
+    private bool m_switchingFlag = false;
+
+    //タイマー
+    private float m_timer = 0.0f;
+
+    //最大値
+    [SerializeField]
+    private float m_maxTimer = 0.0f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,13 +39,42 @@ public class TitleSceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //画面をクリックしたら
+        if(m_switchingFlag == true)
+        {
+            //時間を進める
+            m_timer += Time.deltaTime;
+
+            //タイマーが最大値を超えたら
+            if(m_timer > m_maxTimer)
+            {
+                Scene();
+            }
+        }
+
+
+        Debug.Log(m_timer);
+    }
+
+    //======================================================================================= 
+    //! @brief      画面を触ったらエフェクトが発生する関数
+    //======================================================================================= 
+    public void OnRetry()
+    {
+        //マウスの座標を2Dに変換
+        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        //ゲームシーン以外でタブレット上でタップしたら、出現するエフェクト
+        ParticleManager.PlayParticle(Particle.TouchEF, pos);
+
+        m_switchingFlag = true;
+
     }
 
     //======================================================================================= 
     //! @brief      シーンを切り替える関数
     //======================================================================================= 
-    public void OnRetry()
+    public void Scene()
     {
         //Baseに切り替える切り替える
         SceneManager.LoadScene("Base");
