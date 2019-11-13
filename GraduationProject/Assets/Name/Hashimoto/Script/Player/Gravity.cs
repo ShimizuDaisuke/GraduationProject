@@ -9,9 +9,13 @@
 //!
 //! @note   重力の値を変えられる
 //=======================================================================================
+// 警告を無効にする
+#pragma warning disable CS0109
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 // 型名を省略
 using EventKind = EventDirector.EventKIND;
