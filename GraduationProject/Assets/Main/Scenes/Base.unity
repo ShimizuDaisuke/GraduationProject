@@ -5829,7 +5829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AppearDisObjByPlayerPos: {fileID: 396570168}
-  AppearDisObjByNoPlayerPos: {fileID: 0}
+  AppearDisObjByNoPlayerPos: {fileID: 1359776897}
 --- !u!1 &166668544
 GameObject:
   m_ObjectHideFlags: 0
@@ -6050,7 +6050,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EventDirectorObj: {fileID: 2088335517}
-  gravity: 9.8
+  GravityObj: 100
+  MaxGravity: 3
 --- !u!1001 &177880152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28616,7 +28617,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1359776898}
   - component: {fileID: 1359776899}
-  - component: {fileID: 1359776900}
   m_Layer: 0
   m_Name: OneAxitMove
   m_TagString: Untagged
@@ -28654,20 +28654,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OneAxit: 2
   Position_MoveOneAxit: -11
---- !u!114 &1359776900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359776897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbd5e62bacb96b346aff1c0981cce9b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AppearDisObjByPlayerPos: {fileID: 1618288259}
-  AppearDisObjByNoPlayerPos: {fileID: 0}
 --- !u!1001 &1369938983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32028,7 +32014,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EventDirectorObj: {fileID: 2088335517}
-  gravity: 100
+  GravityObj: 100
+  MaxGravity: 3
 --- !u!1 &1895522327 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 007ea41fa3952d142ae8e8d535246a0e,
