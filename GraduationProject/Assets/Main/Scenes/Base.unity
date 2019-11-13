@@ -5844,6 +5844,7 @@ GameObject:
   - component: {fileID: 166668547}
   - component: {fileID: 166668546}
   - component: {fileID: 166668554}
+  - component: {fileID: 166668556}
   - component: {fileID: 166668545}
   - component: {fileID: 166668551}
   - component: {fileID: 166668553}
@@ -6036,6 +6037,20 @@ MonoBehaviour:
   PlayerDirector: {fileID: 1297709527}
   maxSize: {x: 1, y: 1, z: 1}
   minSize: {x: 0.2, y: 0.2, z: 0.2}
+--- !u!114 &166668556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166668544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c84cb1974418404db0ed0856e8d6f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventDirectorObj: {fileID: 2088335517}
+  gravity: 9.8
 --- !u!1001 &177880152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32000,6 +32015,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08, y: 0.08, z: 0.08}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1885578006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885577994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c84cb1974418404db0ed0856e8d6f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventDirectorObj: {fileID: 2088335517}
+  gravity: 100
 --- !u!1 &1895522327 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 007ea41fa3952d142ae8e8d535246a0e,
