@@ -24,7 +24,11 @@ public class Gravity : MonoBehaviour
     
     // 重力
     [SerializeField]
-    private float gravity = 100.0f;
+    private float GravityObj = 100.0f;
+
+    // 重力の最大速度
+    [SerializeField]
+    private float MaxGravity = 3.0f;
 
     // rigidbody 
     private new Rigidbody rigidbody;
@@ -57,10 +61,20 @@ public class Gravity : MonoBehaviour
             rigidbody.useGravity = false;
 
             // 重力
-            Vector3 gravity_vec3 = new Vector3(0.0f, -gravity, 0.0f);
+            Vector3 gravity_vec3 = new Vector3(0.0f, -GravityObj, 0.0f);
 
             // 手動で常に重力が働くようにする
             rigidbody.AddForce(gravity_vec3, ForceMode.Acceleration);
+
+            Debug.Log(rigidbody.velocity.y);
+
+            // 重力の速度が範囲内より越えた場合
+            if(rigidbody.velocity.y < -MaxGravity)
+            {
+                // 重力の速度を制限する
+                rigidbody.velocity = new Vector3(rigidbody.velocity.x, -MaxGravity, rigidbody.velocity.z);
+            }
+
 
         }
         else
