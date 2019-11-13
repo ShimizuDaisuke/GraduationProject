@@ -7,6 +7,9 @@ using Particle = ParticleManager.Particle;
 
 public class Te : MonoBehaviour
 {
+    //Vector3 m_pos = new Vector3(0.0f, 0.0f, 0.0f);
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +20,16 @@ public class Te : MonoBehaviour
     void Update()
     {
         // パーティクルを再生する
-        //ParticleManager.PlayParticle(Particle.種類、位置)
+        if (Input.GetKey(KeyCode.Z))
+        {
+          
+            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            //ゲームシーン以外でタブレット上でタップしたら、出現するエフェクト
+            ParticleManager.PlayParticle(Particle.TouchEF, pos);
+
+            Debug.Log(pos);
+        }
+
     }
 }
