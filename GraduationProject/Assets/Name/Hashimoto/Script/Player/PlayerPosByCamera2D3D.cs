@@ -49,8 +49,16 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     /// 2Dカメラ⇔3Dカメラへ移動する際にいるプレイヤーの位置を決める
     /// </summary>
     /// <param name="IsCamera3D">最終的に3Dカメラになるのか</param>
-    public void CreatePlayerPosByCameraMove2D3D(bool IsCamera3D)
+    /// <param name="isinitialpos">最終的にプレイヤーが元の位置に戻るか</param>
+    public void CreatePlayerPosByCameraMove2D3D(bool IsCamera3D, bool isinitialpos)
     {
+        //  最終的にプレイヤーを元の位置に戻す場合
+        if(isinitialpos)
+        {
+            // プレイヤーが以前にいた位置に戻す
+            transform.position = OncePos;
+        }
+        else
         // 2Dカメラから3Dカメラに移動する場合
         if (IsCamera3D == true)
         {
@@ -90,7 +98,7 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
             // <テスト>
 
             // 「Ground (2)」に当たった場合
-            if((collision.gameObject.name== "Ground (3)")||(collision.gameObject.name == "ruler"))
+            if((collision.gameObject.name== "Ground (3)")||(collision.gameObject.tag == "Camera2DNoArea"))
             {
                 // 「プレイヤーが地面以外のオブジェクトに当たった」とする
                 IsHitNoGroundObj = true;
@@ -109,29 +117,54 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     /// 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが当たった地面以外のオブジェクトの透明度を変える
     /// ※「プレイヤーが当たった地面以外のオブジェクト」material:RenderingMode Opaque以外にする
     /// </summary>
-    /// <param name="transparence">透明度</param>
-    public void MakeTransparencePlayerHitObjNoGround(float transparence)
+    /// <param name="nowtransparence">現在のオブジェクトの透明度</param>
+    /// <param name="changedtransparence">オブジェクトに反映させる透明度</param>
+    public void MakeTransparencePlayerHitObjNoGround(ref float nowtransparence, float changedtransparence)
     {
         // マテリアルが存在していない場合、何もしない
         if (ObjHitNoGround.GetComponent<Renderer>() == null) return;
 
-
         // プレイヤーに当たった地面以外のオブジェクトの色を取得する
         Color color = ObjHitNoGround.GetComponent<Renderer>().material.color;
 
+        // プレイヤーが地面に当たる前に現在のオブジェクトの透明度を記憶させる
+        nowtransparence = color.a;
+
         // プレイヤーに当たった地面以外のオブジェクトの透明度を変える
-        color.a = transparence;
+        color.a = changedtransparence;
 
         // プレイヤーに当たった地面以外のオブジェクトの透明度を反映させる
         ObjHitNoGround.GetComponent<Renderer>().material.color = color;
     }
 
     /// <summary>
+    /// 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが当たった地面以外のオブジェクトの透明度を変える
+    /// ※「プレイヤーが当たった地面以外のオブジェクト」material:RenderingMode Opaque以外にする
+    /// </summary>
+    /// <param name="changedtransparence">オブジェクトに反映させる透明度</param>
+    public void MakeTransparencePlayerHitObjNoGround(float changedtransparence)
+    {
+
+        // マテリアルが存在していない場合、何もしない
+        if (ObjHitNoGround.GetComponent<Renderer>() == null) return;
+
+        // プレイヤーに当たった地面以外のオブジェクトの色を取得する
+        Color color = ObjHitNoGround.GetComponent<Renderer>().material.color;
+
+        // プレイヤーに当たった地面以外のオブジェクトの透明度を変える
+        color.a = changedtransparence;
+
+        // プレイヤーに当たった地面以外のオブジェクトの透明度を反映させる
+        ObjHitNoGround.GetComponent<Renderer>().material.color = color;
+    }
+
+
+    /// <summary>
     /// 取得・設定関数
     /// </summary>
 
-        // 2Dカメラ⇔3Dカメラへ移動する前にプレイヤーがいた位置
-        public Vector3 PlayerOncePos { get { return OncePos; } set { OncePos = value; } }
+    // 2Dカメラ⇔3Dカメラへ移動する前にプレイヤーがいた位置
+    public Vector3 PlayerOncePos { get { return OncePos; } set { OncePos = value; } }
 
         // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが当たった地面以外のオブジェクト
         public GameObject PlayerHitObjNoGround { get { return ObjHitNoGround; } set { ObjHitNoGround = value; } }

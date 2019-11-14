@@ -18,7 +18,6 @@ using UnityEngine;
 // イベントの種類
 using EventKind = EventDirector.EventKIND;
 
-
 public class CameraDirector : MonoBehaviour
 {
     // カメラの状態
@@ -148,19 +147,23 @@ public class CameraDirector : MonoBehaviour
         // 現在のイベント
         EventKind nowevent = Script_EventDirector.IsEventKIND;
 
-        // イベントが発生した場合 
-        if (nowevent != EventKind.NONE)
+        // カメラが2D↔3Dへ切り替え中ではない場合
+        if (!IsMove2DCamera3DCamera)
         {
-            // カメラの状態をイベント用にする
-            NowState = CameraState.EVENT;
+            // イベントが発生した場合 
+            if (nowevent != EventKind.NONE)
+            {
+                // カメラの状態をイベント用にする
+                NowState = CameraState.EVENT;
+            }
+            else
+            //  以前までカメラの状態がイベント用だった場合
+            if (NowState == CameraState.EVENT)
+            {
+                // プレイヤーに追従させる
+                NowState = CameraState.FOLLOWPLAYER;
+            }
         }
-        else
-        //  以前までカメラの状態がイベント用だった場合
-        if(NowState == CameraState.EVENT)
-        {
-            // プレイヤーに追従させる
-            NowState = CameraState.FOLLOWPLAYER;
-        } 
 
         // ---------------------------------------------------------------------------
 
