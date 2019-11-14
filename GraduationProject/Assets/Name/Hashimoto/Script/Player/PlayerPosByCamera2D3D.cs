@@ -90,7 +90,7 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
             // <テスト>
 
             // 「Ground (2)」に当たった場合
-            if((collision.gameObject.name== "Ground (3)")||(collision.gameObject.tag == "Camera2DNoAre"))
+            if((collision.gameObject.name== "Ground (3)")||(collision.gameObject.name == "ruler"))
             {
                 // 「プレイヤーが地面以外のオブジェクトに当たった」とする
                 IsHitNoGroundObj = true;
