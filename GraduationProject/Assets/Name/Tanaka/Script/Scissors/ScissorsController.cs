@@ -47,6 +47,17 @@ public class ScissorsController : MonoBehaviour
     //毎フレーム角度を保存する
     private Vector3 m_updeateAngle;
 
+    //ターゲット座標
+    [SerializeField]
+    private GameObject m_targetPos;
+
+    //ターゲット座標に進む速度
+    [SerializeField]
+    private float m_targetMoveSpeed = 0.005f;
+
+    //カウント
+    private int m_count = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +86,8 @@ public class ScissorsController : MonoBehaviour
         
         m_upperBladeOnceDegree = m_upperBlade.transform.localEulerAngles;
         m_lowerBladeOnceDegree = m_lowerBlade.transform.localEulerAngles;
+
+        m_count = 0;
     }
 
     // Update is called once per frame
@@ -82,8 +95,21 @@ public class ScissorsController : MonoBehaviour
     {
         if(m_event.IsEventKIND == EventDirector.EventKIND.SCISSORS_CUT)
         {
-            //プレイヤーがまっすぐ移動
-            m_player.transform.position = new Vector3(m_player.transform.position.x + m_playerSpeedX, m_player.transform.position.y, m_player.transform.position.z);
+            if(m_count <= 120)
+            {
+                m_player.transform.position = Vector3.MoveTowards(m_player.transform.position, m_targetPos.transform.position, m_targetMoveSpeed);
+
+            }
+            else
+            {
+                if(!m_rotationFinishFlag)
+                {
+                    //プレイヤーがまっすぐ移動
+                    m_player.transform.position = new Vector3(m_player.transform.position.x + m_playerSpeedX, m_player.transform.position.y, m_player.transform.position.z);
+
+                }
+
+            }
 
 
             //切る動き
@@ -95,6 +121,8 @@ public class ScissorsController : MonoBehaviour
 
             //角度を更新
             m_updeateAngle = m_upperBlade.transform.localEulerAngles;
+
+            m_count++;
         }
         
     }

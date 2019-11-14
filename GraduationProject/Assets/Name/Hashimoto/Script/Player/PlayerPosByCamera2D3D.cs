@@ -90,7 +90,7 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
             // <テスト>
 
             // 「Ground (2)」に当たった場合
-            if(collision.gameObject.name== "Ground (3)")
+            if((collision.gameObject.name== "Ground (3)")||(collision.gameObject.tag == "Camera2DNoAre"))
             {
                 // 「プレイヤーが地面以外のオブジェクトに当たった」とする
                 IsHitNoGroundObj = true;
@@ -112,6 +112,10 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     /// <param name="transparence">透明度</param>
     public void MakeTransparencePlayerHitObjNoGround(float transparence)
     {
+        // マテリアルが存在していない場合、何もしない
+        if (ObjHitNoGround.GetComponent<Renderer>() == null) return;
+
+
         // プレイヤーに当たった地面以外のオブジェクトの色を取得する
         Color color = ObjHitNoGround.GetComponent<Renderer>().material.color;
 
