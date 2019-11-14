@@ -24,7 +24,7 @@ public class Obj_AppearDisPlayerPos : MonoBehaviour
     [SerializeField]
     private GameObject AppearDisObjByPlayerPos = default;
 
-    // カメラが3D→2Dへ切り替えたときに、プレイヤーがいる位置によって表示や非表示させるオブジェクト
+    // カメラが3D→2Dへ切り替えたときに、プレイヤーがいる位置によって非表示や表示させるオブジェクト
     [SerializeField]
     private GameObject AppearDisObjByNoPlayerPos = default;
 
@@ -44,11 +44,19 @@ public class Obj_AppearDisPlayerPos : MonoBehaviour
         else
         // 最終的に2Dカメラを写す(3D→2D)場合
         {
-            // プレイヤーがオブジェクトAの上に乗った場合、オブジェクトBを表示させる(Aに乗っていない場合は、Bを非表示させる)
-            AppearDisObjByPlayerPos.SetActive(IsPlayerRide);
+            // プレイヤーがいる位置によって表示や非表示させるオブジェクトがある場合
+            if (AppearDisObjByPlayerPos != null)
+            {
+                // プレイヤーがオブジェクトAの上に乗った場合、オブジェクトBを表示させる(Aに乗っていない場合は、Bを非表示させる)
+                AppearDisObjByPlayerPos.SetActive(IsPlayerRide);
+            }
 
-            // プレイヤーがオブジェクトAの上に乗った場合、オブジェクトBを非表示させる(Aに乗っていない場合は、Bを表示させる)
-            AppearDisObjByNoPlayerPos.SetActive(!IsPlayerRide);
+            // プレイヤーがいる位置によって非表示や表示させるオブジェクトがある場合
+            if (AppearDisObjByNoPlayerPos!=null)
+            {
+                // プレイヤーがオブジェクトAの上に乗った場合、オブジェクトBを非表示させる(Aに乗っていない場合は、Bを表示させる)
+                AppearDisObjByNoPlayerPos.SetActive(!IsPlayerRide);
+            }
 
             // リセットする
             IsPlayerRide = false;
