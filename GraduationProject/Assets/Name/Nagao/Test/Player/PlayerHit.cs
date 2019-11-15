@@ -9,6 +9,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 型名省略
+using Particle = ParticleManager.Particle;
+
 public class PlayerHit : MonoBehaviour
 {
     // プレイヤーの監督
@@ -96,6 +99,11 @@ public class PlayerHit : MonoBehaviour
             transform.localScale = minSize + SizeDifference * sizerate;
             // プレイヤーが刃物に触れた
             Script_PlayerFlashing.IsPlayerFlashing = true;
+
+            //ダメージエフェクト出現
+            Vector3 m_pos = this.gameObject.transform.position;
+
+            ParticleManager.PlayParticle(Particle.DamegeEF, m_pos);
         }
     }
 
