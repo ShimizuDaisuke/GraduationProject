@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4159911486823387237}
   - component: {fileID: 8520095291357471320}
   - component: {fileID: 4969895589596212255}
+  - component: {fileID: 522225025729384970}
   m_Layer: 0
   m_Name: PlayerDirector
   m_TagString: Untagged
@@ -78,3 +79,19 @@ MonoBehaviour:
   invincibleMaxTime: 1
   IsFlashing: 0
   player: {fileID: 0}
+--- !u!114 &522225025729384970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4969895589596212254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c84cb1974418404db0ed0856e8d6f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventDirectorObj: {fileID: 0}
+  TargetObj: {fileID: 0}
+  GravityObj: 50
+  MaxGravity: 2

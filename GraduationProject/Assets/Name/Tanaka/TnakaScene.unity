@@ -3412,6 +3412,31 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 953256356}
+    - target: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: m_cameradirector
+      value: 
+      objectReference: {fileID: 568685734}
+    - target: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: m_event
+      value: 
+      objectReference: {fileID: 1555980161}
+    - target: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: m_joystick
+      value: 
+      objectReference: {fileID: 735024965}
+    - target: {fileID: 522225025729384970, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: EventDirectorObj
+      value: 
+      objectReference: {fileID: 1555980160}
+    - target: {fileID: 522225025729384970, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: TargetObj
+      value: 
+      objectReference: {fileID: 953256356}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65c09f901891e7441bfe95108102816e, type: 3}
 --- !u!1001 &508106685
@@ -15771,7 +15796,6 @@ GameObject:
   - component: {fileID: 953256364}
   - component: {fileID: 953256363}
   - component: {fileID: 953256362}
-  - component: {fileID: 953256361}
   - component: {fileID: 953256360}
   - component: {fileID: 953256359}
   - component: {fileID: 953256358}
@@ -15840,23 +15864,6 @@ MonoBehaviour:
   ZPos_CameraFrom3DTo2D: -2
   ZPos_CameraFrom2DTo3D: 0
   CameraDirector: {fileID: 568685733}
---- !u!114 &953256361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953256356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b664d9037d3ec784781f39182810c883, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_cameradirector: {fileID: 568685734}
-  m_event: {fileID: 1555980161}
-  m_joystick: {fileID: 735024965}
-  m_vel: 100
-  m_maxvel: 4
 --- !u!114 &953256362
 MonoBehaviour:
   m_ObjectHideFlags: 0
