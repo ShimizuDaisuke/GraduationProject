@@ -9,6 +9,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 型名省略
+using Particle = ParticleManager.Particle;
+
 //スコアの増やすクラス
 public class PlayerAddScore : MonoBehaviour
 {
@@ -51,8 +54,8 @@ public class PlayerAddScore : MonoBehaviour
                 // ノーマルの消しカスによってスコアを増やす
                 if (m_eraserDust.IsEraserDustKind == EraserDust.EraserDustKIND.NORMAL)
                 {
-                    //エフェクトの生成
-                    //m_createNomalEDEffect.Create(collider.transform.position);
+                    //エフェクトの生成       
+                    ParticleManager.PlayParticle(Particle.NomalEraserDustEF, collider.transform.position);
                     // スコアを増やす
                     m_score.Int_EraserScore += m_eraserDust.PointRandom;
                     //衝突した消しカスを消す
