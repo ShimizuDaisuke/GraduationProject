@@ -48,12 +48,11 @@ public class TitleSceneController : MonoBehaviour
             //タイマーが最大値を超えたら
             if(m_timer > m_maxTimer)
             {
+                //シーン切り替え
                 Scene();
             }
         }
 
-
-        Debug.Log(m_timer);
     }
 
     //======================================================================================= 

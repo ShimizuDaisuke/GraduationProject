@@ -118,15 +118,18 @@ public class NotebookPlayerMove : MonoBehaviour
     //右下の四角形のランダム座標
     private Vector2 m_rightDownBox;
 
-    
+    private float m_twelve = 12.0f;
+
+    private float m_eight = 8.0f;
+
 
     // Start is called before the first frame update
     void Start()
     {
         //幅を取得
-        m_width = gameObject.GetComponent<Renderer>().bounds.size.z;
+        m_width = m_twelve; //gameObject.GetComponent<Renderer>().bounds.size.z;
         //高さを取得
-        m_height = gameObject.GetComponent<Renderer>().bounds.size.x;
+        m_height = m_eight; //gameObject.GetComponent<Renderer>().bounds.size.x;
 
         //座標の設定
         //上の列

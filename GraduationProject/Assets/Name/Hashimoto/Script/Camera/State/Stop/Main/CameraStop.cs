@@ -98,7 +98,7 @@ public class CameraStop : MonoBehaviour
                 NextStateAfterCameraStop = CameraState.MOVE2D3D;
 
                 // プレイヤーの地面以外のオブジェクトを透明にする
-                Script_PlayerPosByCamera2D3D.MakeTransparencePlayerHitObjNoGround(PlayerHitObjTransparence);
+                Script_PlayerPosByCamera2D3D.MakeTransparencePlayerHitObjNoGround(ref NormalTransparence, PlayerHitObjTransparence);
             }
             else
             {
@@ -139,7 +139,10 @@ public class CameraStop : MonoBehaviour
                    // プレイヤーの「Rigidbody」の位置と回転の固定(フリーズ)を解除する
                    Player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
-                }
+                   // カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域を非表示させる
+                   GetComponent<ObjStateByCameraMove2D3D>().ChangeActiveObjByCamera2DNoArea(false);
+
+                 }
 
                     break;
             }
@@ -181,7 +184,7 @@ public class CameraStop : MonoBehaviour
                     FlashTime = 0.0f;
 
                     // 最終的にプレイヤーの位置を決める
-                    Script_PlayerDeecidePosBeforeMoveCamera2D3D.DecidePlayerPosBeforeMoveCamera2D3D(Script_CameraDirector.IsAppearCamera3D);
+                    Script_PlayerDeecidePosBeforeMoveCamera2D3D.DecidePlayerPosBeforeMoveCamera2D3D(Script_CameraDirector.IsAppearCamera3D,true);
 
                    // プレイヤーの位置が変わったため、カメラの位置もプレイヤーの位置に合わせて変える
                    Script_CameraFollowPlayer.FllowPlayerNoSlowy();
