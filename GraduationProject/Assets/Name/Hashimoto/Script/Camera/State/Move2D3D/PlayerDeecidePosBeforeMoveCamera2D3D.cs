@@ -61,7 +61,8 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
     /// 2Dカメラ ↔ 3Dカメラへ動く前にプレイヤーの位置を決める
     /// </summary>
     /// <param name="isnowChange3D">3Dカメラへ切り替えるか(false：2Dカメラで表示する / true：3Dカメラで表示する)</param>
-    public void DecidePlayerPosBeforeMoveCamera2D3D(bool isnowChange3D)
+    /// <param name="isinitialpos">最終的にプレイヤーが元の位置に戻るか</param>
+    public void DecidePlayerPosBeforeMoveCamera2D3D(bool isnowChange3D, bool isinitialpos = false)
     {
         // =============================================================================================
         
@@ -144,7 +145,7 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
         else
         {
             // 2D ↔ 3Dカメラに切り替える際にプレイヤーがいる位置を作成する
-            PlayerObj.GetComponent<PlayerPosByCamera2D3D>().CreatePlayerPosByCameraMove2D3D(isnowChange3D);
+            PlayerObj.GetComponent<PlayerPosByCamera2D3D>().CreatePlayerPosByCameraMove2D3D(isnowChange3D, isinitialpos);
         }
 
 

@@ -9,6 +9,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 型名省略
+using Particle = ParticleManager.Particle;
+
 //プレイヤーの１UPゲージのクラス
 public class Player1UPGage : MonoBehaviour
 {
@@ -65,8 +68,8 @@ public class Player1UPGage : MonoBehaviour
             // 1UPゲージ用の消しカスによってスコアを増やす
             if (m_eraserDust.IsEraserDustKind == EraserDust.EraserDustKIND.ONEUPGAUGE)
             {
-                //エフェクトの生成
-                //m_createSpacelEDEffect.Create(collider.transform.position);
+                //エフェクトの生成       
+                ParticleManager.PlayParticle(Particle.SpacelEraserDustEF, collider.transform.position);
                 // ゲージを増やす
                 m_accumulateGage += m_eraserDust.PointRandom;
                 //衝突した消しカスを消す

@@ -32,6 +32,8 @@ public class DominoEnd : MonoBehaviour
 
             //弾の削除
             Destroy(collider.gameObject);
+
+            Destroy(this.gameObject);
         }
     }
 }

@@ -26,6 +26,11 @@ public class ObjStateByCameraMove2D3D : MonoBehaviour
     [SerializeField]
     private GameObject[] ObjByOneAxitMove = default;
 
+    // カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域
+    [SerializeField]
+    private GameObject[] ObjByCamera2DNoArea = default;
+
+
     /// <summary>
     /// 2Dや3Dカメラのみ表示されるオブジェクトを表示非表示させる
     /// </summary>
@@ -85,6 +90,13 @@ public class ObjStateByCameraMove2D3D : MonoBehaviour
             }
 
         }
+
+        // カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域を配置する
+        foreach(GameObject objcamera2dnoarea  in ObjByCamera2DNoArea)
+        {
+            objcamera2dnoarea.SetActive(true);
+        }
+
     }
 
     /// <summary>
@@ -124,8 +136,27 @@ public class ObjStateByCameraMove2D3D : MonoBehaviour
 
             }
         }
+
+        // カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域を配置しない
+        foreach (GameObject objcamera2dnoarea in ObjByCamera2DNoArea)
+        {
+            objcamera2dnoarea.SetActive(false);
+        }
+
+
     }
 
-
+    /// <summary>
+    /// カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域を表示、もしくは非表示させる
+    /// </summary>
+    /// <param name="isactive">オブジェクトを表示させるか(true:表示, false:非表示)</param>
+    public void ChangeActiveObjByCamera2DNoArea(bool isactive)
+    {
+        // カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域を表示、もしくは非表示させる
+        foreach (GameObject objcamera2dnoarea in ObjByCamera2DNoArea)
+        {
+            objcamera2dnoarea.SetActive(isactive);
+        }
+    }
 
 }

@@ -54,13 +54,15 @@ public class EventCameraEraseGraffti : CameraEventBase
     {
         m_moveFlag = false;
         //レイの作成
-        Ray ray = new Ray(Player.transform.position, Player.transform.right + (Player.transform.up * - 1));
+        Ray ray = new Ray(Player.transform.position, Vector3.right + (Vector3.up * - 1));
 
         // Rayが衝突したコライダーの情報
         RaycastHit hit;
 
+        
         //レイの飛ばす距離
-        float distance = 1.0f;
+        float distance = 10.0f;
+        Debug.DrawRay(ray.origin, ray.direction * distance,Color.red);
 
         if (Physics.Raycast(ray, out hit, distance, m_layerMaskGraffti))
         {
