@@ -3046,6 +3046,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: cutterKnife_Slider
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c712ad980f1ff8e4885bb4ea2add5ff9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c712ad980f1ff8e4885bb4ea2add5ff9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5555,7 +5560,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: cc9109158317ca542b1d4bee56ceafd9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00013330765
+      value: 0.00013333943
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cc9109158317ca542b1d4bee56ceafd9,
         type: 3}
@@ -8239,6 +8244,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerDirector: {fileID: 1354289530}
+  m_max: 2
+  m_min: -5
 --- !u!114 &2014113197
 MonoBehaviour:
   m_ObjectHideFlags: 0
