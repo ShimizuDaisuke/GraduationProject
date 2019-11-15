@@ -38,6 +38,7 @@ public class Domin : MonoBehaviour
 
             //移動開始
             m_eventDomino.MoveFlag = true;
+            Destroy(this.gameObject);
         }
     }
 
