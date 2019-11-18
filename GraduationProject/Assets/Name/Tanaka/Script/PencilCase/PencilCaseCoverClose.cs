@@ -8,7 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 //筆箱のカバーを閉じるクラス
 public class PencilCaseCoverClose : MonoBehaviour
@@ -16,6 +16,17 @@ public class PencilCaseCoverClose : MonoBehaviour
     //当たったらゴール座標に移動のクラス
     [SerializeField]
     private GoolPosMovePlayer m_goolPosMovePlayer = default;
+
+    //回転量
+    [SerializeField]
+    private float m_rotationAmount = 1.0f;
+
+    //カバーが閉まる角度
+    private const float COVER_MAXANGLE = 205.0f;
+
+    //リザルトメインのスクリプト
+    [SerializeField]
+    private ClearManagement m_clearManager;
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +37,22 @@ public class PencilCaseCoverClose : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //消しゴムがゴールに入った
         if(m_goolPosMovePlayer.GoolINFlag)
         {
-            transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + 1,1.0f); 
-            //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0.0f, 90.0f, 200.0f), 0.5f);
+            //カバーが閉まるまで回転
+            if(transform.localEulerAngles.z <= COVER_MAXANGLE)
+            {
+                transform.Rotate(new Vector3(0, 0, m_rotationAmount) * Time.deltaTime);
+            }
+            else
+            {
+                m_clearManager.GetComponent<ClearManagement>().IsPlayerClear = true;
+                //リザルトシーンへ
+                SceneManager.LoadScene("Result");
+            }
+           
         }
-
 
     }
 }

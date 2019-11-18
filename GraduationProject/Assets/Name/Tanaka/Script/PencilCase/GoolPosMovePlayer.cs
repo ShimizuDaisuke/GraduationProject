@@ -48,7 +48,6 @@ public class GoolPosMovePlayer : MonoBehaviour
         {
             //ゴールに入った
             m_goolInFlag = true;
-            Debug.Log(m_goolInFlag);
         }
     }
 
