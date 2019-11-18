@@ -8814,6 +8814,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 499026070}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &597103783 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
+    type: 3}
+  m_PrefabInstance: {fileID: 499026070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597103779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b664d9037d3ec784781f39182810c883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &604245177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20155,6 +20167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_event: {fileID: 1555980161}
   m_goolPosObj: {fileID: 1035406050}
+  m_playerController: {fileID: 597103783}
 --- !u!65 &1584516947
 BoxCollider:
   m_ObjectHideFlags: 0
