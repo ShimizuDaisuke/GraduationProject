@@ -7,7 +7,7 @@
 //!
 //! @date   10月10日
 //!
-//! @note   重力の値を変えられる、TargetObj→そのオブジェクトが非表示されても重力が働く
+//! @note   重力の値を変えられる
 //=======================================================================================
 // 警告を無効にする
 #pragma warning disable CS0109
@@ -25,18 +25,17 @@ public class Gravity : MonoBehaviour
     // イベントの監督
     [SerializeField]
     private GameObject EventDirectorObj = default;
-
-    // 重力を変える対象となるオブジェクト
+    
+    // 重力
     [SerializeField]
-    private GameObject TargetObj = default;
+    private float GravityObj = 100.0f;
 
-    // 重力[目安:50]
+    // 重力の最大速度
     [SerializeField]
-    private float GravityObj = 50.0f;
+    private float MaxGravity = 3.0f;
 
-    // 重力の最大速度[目安:2]
-    [SerializeField]
-    private float MaxGravity = 2.0f;
+    // プレイヤー
+    private GameObject PlayerObj;
 
     // rigidbody 
     private new Rigidbody rigidbody;
@@ -46,16 +45,11 @@ public class Gravity : MonoBehaviour
 
     void Start()
     {
-        if (TargetObj != null)
-        {
-            // 重力を変える対象となるオブジェクトのオブジェクトのrigidbodyを取得する
-            rigidbody = TargetObj.GetComponent<Rigidbody>();
-        }
-        else
-        {
-            // このオブジェクトのrigidbodyを取得する
-            rigidbody = GetComponent<Rigidbody>();
-        }
+        // プレイヤーを探す
+        PlayerObj = GameObject.FindGameObjectWithTag("Player");
+
+        // プレイヤーのオブジェクトのrigidbodyを取得する
+        rigidbody = PlayerObj.GetComponent<Rigidbody>();
 
         // スクリプト：イベント監督用のスクリプト 取得
         Script_EventDirector = EventDirectorObj.GetComponent<EventDirector>();
@@ -81,6 +75,8 @@ public class Gravity : MonoBehaviour
 
             // 手動で常に重力が働くようにする
             rigidbody.AddForce(gravity_vec3, ForceMode.Acceleration);
+
+            Debug.Log(rigidbody.velocity.y);
 
             // 重力の速度が範囲内より越えた場合
             if(rigidbody.velocity.y < -MaxGravity)
