@@ -5834,15 +5834,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SoundSE:
-  - {fileID: 8300000, guid: 9d4f45a4f42edc44aa21602a091bb1ed, type: 3}
-  - {fileID: 8300000, guid: d49b35e4d75cbc3449bd5a66647df9ec, type: 3}
-  - {fileID: 8300000, guid: 2fe5887225bc44b40a4f79c031317c48, type: 3}
-  - {fileID: 8300000, guid: 81f33e0eca463804895be9420f887356, type: 3}
-  - {fileID: 8300000, guid: 9b5e0cfc92f32b04daaeb1a5cc3e8d07, type: 3}
-  - {fileID: 8300000, guid: 7f719863f474bde45925df0111eb7d86, type: 3}
-  - {fileID: 8300000, guid: 52ac9962a81f45849ba506ac68916c16, type: 3}
-  - {fileID: 8300000, guid: deaed8454e286264eba612ebba2e1380, type: 3}
-  - {fileID: 8300000, guid: 6d3c3f6f93e0b1443a7dc002b80460d6, type: 3}
+  - {fileID: 8300000, guid: 78a03e5457e1f92408890350e6304658, type: 3}
+  - {fileID: 8300000, guid: ff435ea4f9e7831469ebb27f9180bfd8, type: 3}
+  - {fileID: 8300000, guid: 2596daf9bfe75b74b84bfc7cd5bfdb4e, type: 3}
+  - {fileID: 8300000, guid: 83a46d774d2a1d1478013ca97b4e25f6, type: 3}
+  - {fileID: 8300000, guid: 5143597f7f7562d4384bf4994c6538d9, type: 3}
+  - {fileID: 8300000, guid: 95393da4c9965cc4192889831a82f66a, type: 3}
+  - {fileID: 8300000, guid: c87a06968495d8d48a34ecf0a8d59c4b, type: 3}
+  - {fileID: 8300000, guid: 16733830697a3a74792ee7f54a62984d, type: 3}
+  - {fileID: 8300000, guid: 7db8e3763a00f894a9aeea8f8a5b6368, type: 3}
+  - {fileID: 8300000, guid: c0d10053e000d1d48837d7a750873560, type: 3}
+  - {fileID: 8300000, guid: bd55e97dd766e7b408e4841033771a71, type: 3}
 --- !u!4 &1604855361
 Transform:
   m_ObjectHideFlags: 0
@@ -8308,21 +8310,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4969895589596212255, guid: 65c09f901891e7441bfe95108102816e,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1888164278}
-    - target: {fileID: 4969895589596212255, guid: 65c09f901891e7441bfe95108102816e,
-        type: 3}
-      propertyPath: invincibleMaxTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4969895589596212255, guid: 65c09f901891e7441bfe95108102816e,
-        type: 3}
-      propertyPath: IsFlashing
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
         type: 3}
       propertyPath: m_cameradirector
@@ -8338,6 +8325,21 @@ PrefabInstance:
       propertyPath: m_joystick
       value: 
       objectReference: {fileID: 251046848}
+    - target: {fileID: 4969895589596212255, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1888164278}
+    - target: {fileID: 4969895589596212255, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: invincibleMaxTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4969895589596212255, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: IsFlashing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 522225025729384970, guid: 65c09f901891e7441bfe95108102816e,
         type: 3}
       propertyPath: EventDirectorObj
