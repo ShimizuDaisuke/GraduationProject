@@ -9,7 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//当たったらゴール座標に移動の処理
+//当たったらゴール座標に移動のクラス
 public class GoolPosMovePlayer : MonoBehaviour
 {
     //イベントクラス
@@ -84,6 +84,9 @@ public class GoolPosMovePlayer : MonoBehaviour
             }
         }
     }
+
+    //ゴールに入ったか取得・設定
+    public bool GoolINFlag { get { return m_goolInFlag; } set { m_goolInFlag = value; } }
 
 
 }

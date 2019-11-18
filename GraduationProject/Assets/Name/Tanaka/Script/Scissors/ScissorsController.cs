@@ -98,7 +98,7 @@ public class ScissorsController : MonoBehaviour
             if(m_count <= 120)
             {
                 m_player.transform.position = Vector3.MoveTowards(m_player.transform.position, m_targetPos.transform.position, m_targetMoveSpeed);
-
+                m_upperBlade.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             }
             else
             {

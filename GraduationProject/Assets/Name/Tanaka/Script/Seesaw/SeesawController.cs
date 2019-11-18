@@ -30,9 +30,20 @@ public class SeesawController : MonoBehaviour
     //投げたフラグ
     private bool m_throwFlag;
 
+    //フリーズさせておく座標
+    [SerializeField]
+    private GameObject m_freezPos;
+
+    //プレイヤーのゲームオブジェクト
+    private GameObject m_player = null;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        // プレイヤーを探す
+        m_player = GameObject.FindGameObjectWithTag("Player");
+
         //最初のZの角度を保存
         m_startRot = transform.rotation;
 
@@ -42,6 +53,21 @@ public class SeesawController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        //フリーズ座標を超えていなかったらフリーズ、越えたらフリーズ解除
+        if(m_event.IsEventKIND == EventDirector.EventKIND.RULE_MOVE_STRAIGHT)
+        {
+            if (m_player.transform.position.x < m_freezPos.transform.position.x)
+            {
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+            }
+            else
+            {
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+            }
+        }
+        
+
         //Zの角度を最初に戻す
         RotZ();
     }
