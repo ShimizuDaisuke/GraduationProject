@@ -25,6 +25,12 @@ public class ResultScore : MonoBehaviour
     // スクリプト：タイムマネージャー
     private TimeManager Script_Time;
 
+    //Resultからのシーン遷移
+    [SerializeField]
+    private GameObject resultSceneController = default;
+    // スクリプト：タイムマネージャー
+    private ResultSceneController Script_ResultSceneController;
+
     // スコアを表示する
     [SerializeField]
     private Text scoreText = null;
@@ -38,12 +44,16 @@ public class ResultScore : MonoBehaviour
     //制限時間　
     private float timeLimit = 0;
 
+    private int m_animTime = 10;
+
     // Start is called before the first frame update
     void Start()
     {
         Script_Score = ScoreDirector.GetComponent<ScoreManager>();
 
         Script_Time = TimeDirector.GetComponent<TimeManager>();
+
+        Script_ResultSceneController = resultSceneController.GetComponent<ResultSceneController>();
 
         totalScore = 0;
     }
@@ -57,17 +67,29 @@ public class ResultScore : MonoBehaviour
         timeLimit = Script_Time.IsPlayerTime;
 
         //トータルスコアの計算
-        totalScore = Script_Score.IsPlayerScore + ((int)timeLimit * 100);
+        totalScore = 1000000;// Script_Score.IsPlayerScore + ((int)timeLimit * 100);
 
-        // スコアを表示する
-        //scoreText.text = totalScore.ToString();
-
-        if (int.Parse(scoreText.text) < totalScore)
+        if ((int.Parse(scoreText.text) < totalScore))
         {
             //トータルのスコアを5fすすめる
-            StartCoroutine(ScoreAnimation(totalScore, 5));
+            StartCoroutine(ScoreAnimation(totalScore, m_animTime));
+        }
+        else
+        {
+            // スコアを表示する
+            scoreText.text = totalScore.ToString();
         }
 
+        //画面がタッチされたら
+        if(Script_ResultSceneController.SwitchingFlag == true)
+        {
+            // スコアを表示する
+            scoreText.text = totalScore.ToString();
+        }
+
+
+
+        Debug.Log(Script_ResultSceneController.SwitchingFlag);
     }
 
     // スコアをアニメーションさせる
@@ -85,7 +107,15 @@ public class ResultScore : MonoBehaviour
         //timeが０になるまでループさせる
         while (elapsedTime < time)
         {
-            float rate = elapsedTime / time;
+            // 画面上にクリックしたら
+            if (Script_ResultSceneController.SwitchingFlag == true)
+            {
+                // 時間をかけずにスコアを表示されないようにする
+                elapsedTime = time;
+            }
+
+
+                float rate = elapsedTime / time;
             // テキストの更新
             scoreText.text = (befor + (after - befor) * rate).ToString("f0");
 
