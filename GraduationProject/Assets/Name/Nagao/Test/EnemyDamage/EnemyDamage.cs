@@ -12,6 +12,12 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
+    // プレイヤーの監督
+    [SerializeField]
+    private GameObject PlayerDirector = default;
+    // スクリプト：Playerを点滅させる処理
+    private PlayerFlashing Script_PlayerFlashing;
+
     //ダメージ
     private int damage;
 
@@ -27,8 +33,17 @@ public class EnemyDamage : MonoBehaviour
     //Update
     void Start()
     {
-        //ダメージ数を決める
-        damage = Random.Range(minDamage, maxDamage + 1);
+        Script_PlayerFlashing = PlayerDirector.GetComponent<PlayerFlashing>();
+
+    }
+
+    void Update()
+    {
+        if(Script_PlayerFlashing.IsPlayerFlashing == true)
+        {
+            //ダメージ数を決める
+            damage = Random.Range(minDamage, maxDamage + 1);
+        }
 
     }
 
