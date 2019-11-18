@@ -9,7 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//当たったらゴール座標に移動の処理
+//当たったらゴール座標に移動のクラス
 public class GoolPosMovePlayer : MonoBehaviour
 {
     //イベントクラス
@@ -22,6 +22,10 @@ public class GoolPosMovePlayer : MonoBehaviour
 
     //プレイヤーのゲームオブジェクト
     private GameObject m_player = null;
+
+    //プレイヤーコントローラー
+    [SerializeField]
+    private PlayerController m_playerController = default;
 
     //ゴールに入ったか
     private bool m_goolInFlag = false;
@@ -48,7 +52,6 @@ public class GoolPosMovePlayer : MonoBehaviour
         {
             //ゴールに入った
             m_goolInFlag = true;
-            Debug.Log(m_goolInFlag);
         }
     }
 
@@ -80,10 +83,13 @@ public class GoolPosMovePlayer : MonoBehaviour
                 targetPos.Normalize();
 
                 //移動する
-                m_player.GetComponent<PlayerController>().MoveByDirection(new Vector3(targetPos.x, targetPos.y, targetPos.z));
+                m_playerController.MoveByDirection(new Vector3(targetPos.x, targetPos.y, targetPos.z));
             }
         }
     }
+
+    //ゴールに入ったか取得・設定
+    public bool GoolINFlag { get { return m_goolInFlag; } set { m_goolInFlag = value; } }
 
 
 }

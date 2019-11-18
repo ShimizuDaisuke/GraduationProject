@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     //プレイヤーを守っているカバーを取得・設定
     public GameObject Cover { get { return m_cover; } set { m_cover = value; } }
     //プレイヤーのHPを取得・設定
-    public int HP { get { return m_HP; } set { m_HP = value; } }
+    public int HP { get { return m_HP; } set { m_HP = value; if (m_HP < 0) m_HP = 0; } }
     //プレイヤーの残機を取得・設定
     public int Life { get { return m_life; } set { m_life = value; } }
     

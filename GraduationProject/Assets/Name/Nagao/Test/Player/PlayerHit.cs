@@ -20,11 +20,11 @@ public class PlayerHit : MonoBehaviour
     // スクリプト：Playerを点滅させる処理
     private PlayerFlashing Script_PlayerFlashing;
 
-    //プレイヤーのサイズの最大値
+    //プレイヤーのサイズの最大値<目安:13>
     [SerializeField]
     private Vector3 maxSize = new Vector3(1.0f, 1.0f, 1.0f);
 
-    //プレイヤーのサイズの最小値
+    //プレイヤーのサイズの最小値<目安:3.5>
     [SerializeField]
     private Vector3 minSize = new Vector3(0.1f, 0.1f, 0.1f);
 
@@ -84,7 +84,7 @@ public class PlayerHit : MonoBehaviour
     void OnTriggerStay(Collider col)
     {
         //刃物との当たり判定
-        if ((col.gameObject.tag == "Sword") && (Script_PlayerFlashing.IsPlayerFlashing == false)&& (IsFixCover == false))
+        if ((col.gameObject.tag == "Sword") && (Script_PlayerFlashing.IsPlayerFlashing == false)&& (IsFixCover == false)&&(Script_Player.HP > 0))
         {
             //スクリプト　：
             EnemyDamage Script_EnemyDamage = col.gameObject.GetComponent<EnemyDamage>();

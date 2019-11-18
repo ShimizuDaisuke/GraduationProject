@@ -43,7 +43,10 @@ public class UIManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
+        // 筆箱に入るイベントならリターン
+        if(m_event.IsEventKIND == EventDirector.EventKIND.PENCILCASE_MOVE_GOOL) return;
+
         //イベント中か
         if ((m_event.IsEventKIND != EventDirector.EventKIND.NONE))
         {
