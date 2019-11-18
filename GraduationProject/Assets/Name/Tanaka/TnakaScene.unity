@@ -1237,6 +1237,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_goolPosMovePlayer: {fileID: 1584516946}
+  m_rotationAmount: 50
+  m_clearManager: {fileID: 7362229144919601275, guid: 5f1906e4e62ce6e4098267659a321896,
+    type: 3}
 --- !u!1 &265890242
 GameObject:
   m_ObjectHideFlags: 0
@@ -3454,7 +3457,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 7e2e3f8ab169f4044b77be1bf09ed827,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7e2e3f8ab169f4044b77be1bf09ed827,
         type: 3}
@@ -3520,6 +3523,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0418
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7e2e3f8ab169f4044b77be1bf09ed827,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1458
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e2e3f8ab169f4044b77be1bf09ed827, type: 3}
@@ -8488,6 +8496,7 @@ GameObject:
   - component: {fileID: 568685737}
   - component: {fileID: 568685736}
   - component: {fileID: 568685735}
+  - component: {fileID: 568685748}
   m_Layer: 0
   m_Name: CameraDirector
   m_TagString: Untagged
@@ -8707,6 +8716,19 @@ Transform:
   m_Father: {fileID: 751011963}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &568685748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568685733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff36c7bb3ab4bf44ba9b2366f7423db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_targetObj: {fileID: 1663379219}
 --- !u!1 &585807767
 GameObject:
   m_ObjectHideFlags: 0
@@ -8792,6 +8814,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 499026070}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &597103783 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
+    type: 3}
+  m_PrefabInstance: {fileID: 499026070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597103779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b664d9037d3ec784781f39182810c883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &604245177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20133,6 +20167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_event: {fileID: 1555980161}
   m_goolPosObj: {fileID: 1035406050}
+  m_playerController: {fileID: 597103783}
 --- !u!65 &1584516947
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20476,7 +20511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1628483837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20762,6 +20797,36 @@ Transform:
   m_Father: {fileID: 2068841728}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1663379219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1663379220}
+  m_Layer: 0
+  m_Name: GoolCameraPosRotation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1663379220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663379219}
+  m_LocalRotation: {x: 0.08933512, y: -0.9239707, z: 0.3181027, w: 0.19263497}
+  m_LocalPosition: {x: 2.0881734, y: 4.7739573, z: 4.0986767}
+  m_LocalScale: {x: 0.60951114, y: 0.87164086, z: 0.88828385}
+  m_Children: []
+  m_Father: {fileID: 166946570}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 38.481003, y: -67.534004, z: -3.114}
 --- !u!1 &1671522480
 GameObject:
   m_ObjectHideFlags: 0

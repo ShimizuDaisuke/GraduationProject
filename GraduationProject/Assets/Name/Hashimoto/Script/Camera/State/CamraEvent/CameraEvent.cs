@@ -54,6 +54,9 @@ public class CameraEvent : MonoBehaviour
         // 「ハサミ切る」イベント
         Script_CameraEventBase[(int)EventKind.SCISSORS_CUT] = GetComponent<EventCameraScissorsCut>();
 
+        // 「筆箱に入る」イベント
+        Script_CameraEventBase[(int)EventKind.PENCILCASE_MOVE_GOOL] = GetComponent<EventCameraPencilcaseMoveGool>();
+
     }
 
     /// <summary>
