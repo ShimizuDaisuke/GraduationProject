@@ -7,7 +7,7 @@
 //!
 //! @date   10月10日
 //!
-//! @note   ない
+//! @note   「PlayerDirector」オブジェクトにアタッチする
 //=======================================================================================
 using System.Collections;
 using System.Collections.Generic;
@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float m_maxvel = default;
 
+    // プレイヤー
+    private GameObject PlayerObj;
+
     // プレイヤーのRigidbody
     private Rigidbody rigidbody;
 
@@ -45,21 +48,24 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // プレイヤーを探す
+        PlayerObj = GameObject.FindGameObjectWithTag("Player");
+
         // プレイヤーのRigidbodyを探す
-        rigidbody = transform.GetComponent<Rigidbody>();
+        rigidbody = PlayerObj.transform.GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //移動処理
-        Move();
-    }
+    // PlayerDirector.cs の Update に移動
+    //void Update()
+    //{
+    //    //移動処理
+    //    Move();
+    //}
 
     /// <summary>
     /// プレイヤーによる移動処理
     /// </summary>
-    private void Move()
+    public void Move()
     {
         // 2Dと3Dのカメラの切り替え中フラグ
         bool cameraSwitch2D3D = m_cameradirector.IsMove2D3DCameraPos;
