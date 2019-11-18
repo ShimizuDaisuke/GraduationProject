@@ -34,6 +34,9 @@ public class Gravity : MonoBehaviour
     [SerializeField]
     private float MaxGravity = 3.0f;
 
+    // プレイヤー
+    private GameObject PlayerObj;
+
     // rigidbody 
     private new Rigidbody rigidbody;
 
@@ -42,8 +45,11 @@ public class Gravity : MonoBehaviour
 
     void Start()
     {
-        // このオブジェクトのrigidbodyを取得する
-        rigidbody = GetComponent<Rigidbody>();
+        // プレイヤーを探す
+        PlayerObj = GameObject.FindGameObjectWithTag("Player");
+
+        // プレイヤーのオブジェクトのrigidbodyを取得する
+        rigidbody = PlayerObj.GetComponent<Rigidbody>();
 
         // スクリプト：イベント監督用のスクリプト 取得
         Script_EventDirector = EventDirectorObj.GetComponent<EventDirector>();

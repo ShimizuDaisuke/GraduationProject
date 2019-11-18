@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float m_maxvel = default;
 
+    // プレイヤー
+    private GameObject PlayerObj;
+
     // プレイヤーのRigidbody
     private Rigidbody rigidbody;
 
@@ -45,8 +48,11 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // プレイヤーを探す
+        PlayerObj = GameObject.FindGameObjectWithTag("Player");
+
         // プレイヤーのRigidbodyを探す
-        rigidbody = transform.GetComponent<Rigidbody>();
+        rigidbody = PlayerObj.transform.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
