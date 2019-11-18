@@ -15406,6 +15406,7 @@ MonoBehaviour:
   m_throwingObj: {fileID: 829555561}
   m_event: {fileID: 2088335518}
   m_retunBoardPower: 0.5
+  m_freezPos: {fileID: 0}
 --- !u!114 &829555561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42659,7 +42660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerDirector: {fileID: 1297709527}
   maxSize: {x: 13, y: 13, z: 13}
-  minSize: {x: 0.2, y: 0.2, z: 0.2}
+  minSize: {x: 3.5, y: 3.5, z: 3.5}
 --- !u!114 &1885578000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42720,21 +42721,6 @@ MonoBehaviour:
   ClearObject: {fileID: 7362229144919601274, guid: 5f1906e4e62ce6e4098267659a321896,
     type: 3}
   m_fallPos: -3
---- !u!114 &1885578006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885577994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c84cb1974418404db0ed0856e8d6f72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EventDirectorObj: {fileID: 2088335517}
-  GravityObj: 50
-  MaxGravity: 2
 --- !u!4 &1885578007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 2b868ca11afc563409162bbd18e544b8,
@@ -42768,6 +42754,7 @@ MonoBehaviour:
   m_throwingObj: {fileID: 1895522330}
   m_event: {fileID: 2088335518}
   m_retunBoardPower: 0.5
+  m_freezPos: {fileID: 0}
 --- !u!114 &1895522330
 MonoBehaviour:
   m_ObjectHideFlags: 0
