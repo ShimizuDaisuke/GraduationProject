@@ -11932,6 +11932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a518bd278a0fe84abda9c552ea7e1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerDirector: {fileID: 1297709527}
   maxDamage: 50
   minDamage: 10
 --- !u!65 &337392815
@@ -14802,6 +14803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a518bd278a0fe84abda9c552ea7e1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerDirector: {fileID: 1297709527}
   maxDamage: 10
   minDamage: 5
 --- !u!65 &714056583
@@ -40012,6 +40014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a518bd278a0fe84abda9c552ea7e1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerDirector: {fileID: 1297709527}
   maxDamage: 50
   minDamage: 10
 --- !u!1 &1505655561
@@ -40188,6 +40191,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerDirector
       objectReference: {fileID: 0}
+    - target: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: m_cameradirector
+      value: 
+      objectReference: {fileID: 461810169}
+    - target: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: m_event
+      value: 
+      objectReference: {fileID: 2088335518}
+    - target: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: m_joystick
+      value: 
+      objectReference: {fileID: 1307592204}
     - target: {fileID: 4969895589596212248, guid: 65c09f901891e7441bfe95108102816e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -40248,21 +40266,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1885577994}
-    - target: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
-        type: 3}
-      propertyPath: m_cameradirector
-      value: 
-      objectReference: {fileID: 461810169}
-    - target: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
-        type: 3}
-      propertyPath: m_event
-      value: 
-      objectReference: {fileID: 2088335518}
-    - target: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
-        type: 3}
-      propertyPath: m_joystick
-      value: 
-      objectReference: {fileID: 1307592204}
     - target: {fileID: 522225025729384970, guid: 65c09f901891e7441bfe95108102816e,
         type: 3}
       propertyPath: EventDirectorObj
