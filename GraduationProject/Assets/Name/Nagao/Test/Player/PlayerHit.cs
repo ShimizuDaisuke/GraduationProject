@@ -76,6 +76,9 @@ public class PlayerHit : MonoBehaviour
             //プレイヤーとカバーを同じ角度にする
             col.gameObject.transform.rotation = this.gameObject.transform.rotation;
 
+            ////SEの再生
+            //SoundManager.PlaySE(SoundManager.Sound.SE_PlayerCoverDamage);
+
             // 消しゴムにカバーを付けた
             IsFixCover = true;
         }
@@ -100,10 +103,13 @@ public class PlayerHit : MonoBehaviour
             // プレイヤーが刃物に触れた
             Script_PlayerFlashing.IsPlayerFlashing = true;
 
-            //ダメージエフェクト出現
+            //現在の位置を代入
             Vector3 m_pos = this.gameObject.transform.position;
-
+            //ダメージエフェクト出現
             ParticleManager.PlayParticle(Particle.DamegeEF, m_pos);
+
+            //SEの再生
+            SoundManager.PlaySE(SoundManager.Sound.SE_PlayerNoCoverDamage);
         }
     }
 

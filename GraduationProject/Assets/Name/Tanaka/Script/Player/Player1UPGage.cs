@@ -72,6 +72,8 @@ public class Player1UPGage : MonoBehaviour
                 ParticleManager.PlayParticle(Particle.SpacelEraserDustEF, collider.transform.position);
                 // ゲージを増やす
                 m_accumulateGage += m_eraserDust.PointRandom;
+                //SEの再生
+                SoundManager.PlaySE(SoundManager.Sound.SE_OneUPGauge);
                 //衝突した消しカスを消す
                 Destroy(collider.gameObject);
             }
