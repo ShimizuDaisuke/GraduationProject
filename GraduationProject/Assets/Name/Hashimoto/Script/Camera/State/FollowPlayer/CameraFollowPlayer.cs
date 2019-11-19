@@ -37,6 +37,9 @@ public class CameraFollowPlayer : MonoBehaviour
     // 3Dカメラの向き
     private Vector3 RotationCamera3D;
 
+    // カメラが上下に揺れてないように制限をつける高さ
+    private float CameraHeight_NoShake = 2.0f;
+
     /// <summary>
     /// 開始処理
     /// </summary>
@@ -126,7 +129,6 @@ public class CameraFollowPlayer : MonoBehaviour
         Vector3 Camera3DNextPos = new Vector3(Player.transform.position.x + DirectionCamera3DPlayerPos.x,
                                                (float)playerheight        + DirectionCamera3DPlayerPos.y,
                                               Player.transform.position.z + DirectionCamera3DPlayerPos.z);
-
 
         // 3Dカメラはプレイヤーに時間かけずに追従する
         Camera3D.transform.position = Camera3DNextPos;

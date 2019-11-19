@@ -76,8 +76,6 @@ public class Gravity : MonoBehaviour
             // 手動で常に重力が働くようにする
             rigidbody.AddForce(gravity_vec3, ForceMode.Acceleration);
 
-            Debug.Log(rigidbody.velocity.y);
-
             // 重力の速度が範囲内より越えた場合
             if(rigidbody.velocity.y < -MaxGravity)
             {
