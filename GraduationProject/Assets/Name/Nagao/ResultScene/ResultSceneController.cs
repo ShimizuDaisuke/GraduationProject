@@ -21,6 +21,9 @@ public class ResultSceneController : MonoBehaviour
     //画面を触ったか判定フラグ
     private bool m_switchingFlag = false;
 
+    //画面を二回触ったか判定フラグ
+    private bool m_switchingTwoFlag = false;
+
     //タイマー
     private float m_timer = 0.0f;
 
@@ -38,7 +41,7 @@ public class ResultSceneController : MonoBehaviour
     void Update()
     {  
         //画面をクリックしたら
-        if (m_switchingFlag == true)
+        if (m_switchingTwoFlag == true)
         {
             //時間を進める
             m_timer += Time.deltaTime;
@@ -48,7 +51,6 @@ public class ResultSceneController : MonoBehaviour
             {
                 //シーン切り替え
                 Scene();
-
             }
         }
 
@@ -65,6 +67,11 @@ public class ResultSceneController : MonoBehaviour
         //ゲームシーン以外でタブレット上でタップしたら、出現するエフェクト
         ParticleManager.PlayParticle(Particle.TouchEF, pos);
 
+        if(m_switchingFlag == true)
+        {
+            m_switchingTwoFlag = true;
+        }
+        //触れた判定に
         m_switchingFlag = true;
 
     }
@@ -78,4 +85,7 @@ public class ResultSceneController : MonoBehaviour
         //Titleに切り替える切り替える
         SceneManager.LoadScene("Title");
     }
+
+    // 取得設定関数
+    public bool SwitchingFlag { get { return m_switchingFlag; } set { m_switchingFlag = value; } }
 }

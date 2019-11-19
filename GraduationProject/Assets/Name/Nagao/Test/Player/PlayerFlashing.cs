@@ -32,9 +32,24 @@ public class PlayerFlashing : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    // PlayerDirector.cs の Update に移動 by橋本
+    //void Update()
+    //{
+    //    if (IsFlashing == true)
+    //    {
+    //        //プレイヤーを点滅させる
+    //        Flashing();
+    //        //無敵状態に
+    //        unrivaled();
+    //    }
+    //}
+
+    //======================================================================================= 
+    //! @brief          プレイヤーを点滅させ、無的時間を計る
+    //======================================================================================= 
+    public void FlashingAndUnrivaled()
     {
+        // プレイヤーがダメージを受けて点滅させる場合
         if (IsFlashing == true)
         {
             //プレイヤーを点滅させる

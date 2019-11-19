@@ -187,8 +187,8 @@ Canvas:
   m_GameObject: {fileID: 245924660}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 793822359}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -318,6 +318,7 @@ MonoBehaviour:
     type: 3}
   TimeDirector: {fileID: 6183408894028768473, guid: ea5725414b265c34380f012c48c45e92,
     type: 3}
+  resultSceneController: {fileID: 1847557619}
   scoreText: {fileID: 506629386}
 --- !u!1 &589637078
 GameObject:
@@ -1122,7 +1123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe3106e08d94a0143a79bd461096e17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxTimer: 1
+  m_maxTimer: 10
 --- !u!4 &1847557621
 Transform:
   m_ObjectHideFlags: 0

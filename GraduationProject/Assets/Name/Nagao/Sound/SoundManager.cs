@@ -19,15 +19,17 @@ public class SoundManager : MonoBehaviour
 
     enum Sound
     {
-        OneUPGaugeSE,           //1UPゲージが増えた効果音
-        AdditionScoreSE,        //スコアが加算する効果音
-        ChangeButtonSE,         //2D⇔3D切り替え時のボタンの効果音
-        DominoHitSE,            //本がドミノ倒しのように倒れて、他のオブジェクトに当たった効果音
-        EraseGraffitiSE,        //プレイヤーが落書きのノートを消す効果音
-        NotChangeButtonSE,      //2D⇔3D切り替え以外のボタンの効果音
-        PlayerCoverDamageSE,    //カバーが付いているプレイヤーがダメージを受けた効果音
-        PlayerDamageSE,         //プレイヤーがダメージを受けた時の効果音
-        SeesawJumpSE            //プレイヤーがシーソーによって、ジャンプする効果音
+        SE_ChangeTitleGameSceneButton,      //タイトルシーンからゲームシーンへ変わる効果音
+        SE_ChangeRezultGameSceneButton,     //リザルトシーンからタイトルシーンへ変わる効果音
+        SE_PlayerNoCoverDamage,             //カバーが付いていないプレイヤーがダメージを受けた時の効果音
+        SE_PlayerCoverDamage,               //カバーが付いているプレイヤーがダメージを受けた効果音
+        SE_AdditionScore,                   //スコアが加算する効果音
+        SE_OneUPGauge,                      //1UPゲージが増えた効果音
+        SE_Change2D3DButton,                //2D⇔3D切り替え時のボタンの効果音
+        SE_SeesawJump,                      //プレイヤーがシーソーによって、ジャンプする効果音
+        SE_DominoHit,                       //本がドミノ倒しのように倒れて、他のオブジェクトに当たった効果音
+        SE_EraseGraffiti,                   //プレイヤーが落書きのノートを消す効果音
+        SE_ScissorsCutPaper	                //紙をハサミで切る効果音
     }
 
     //======================================================================================= 

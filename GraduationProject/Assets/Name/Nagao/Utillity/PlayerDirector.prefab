@@ -9,7 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4969895589596212248}
+  - component: {fileID: 215455030335316925}
+  - component: {fileID: 8520095291357471320}
   - component: {fileID: 4969895589596212255}
+  - component: {fileID: 522225025729384970}
   m_Layer: 0
   m_Name: PlayerDirector
   m_TagString: Untagged
@@ -31,6 +34,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &215455030335316925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4969895589596212254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6201c2fdc998d3b4daffc2912f999707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8520095291357471320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4969895589596212254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b664d9037d3ec784781f39182810c883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_cameradirector: {fileID: 0}
+  m_event: {fileID: 0}
+  m_joystick: {fileID: 0}
+  m_vel: 100
+  m_maxvel: 4
 --- !u!114 &4969895589596212255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,3 +79,18 @@ MonoBehaviour:
   invincibleMaxTime: 1
   IsFlashing: 0
   player: {fileID: 0}
+--- !u!114 &522225025729384970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4969895589596212254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c84cb1974418404db0ed0856e8d6f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventDirectorObj: {fileID: 0}
+  GravityObj: 50
+  MaxGravity: 2
