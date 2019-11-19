@@ -37,8 +37,8 @@ public class CameraFollowPlayer : MonoBehaviour
     // 3Dカメラの向き
     private Vector3 RotationCamera3D;
 
-    // カメラが上下に揺れてないように制限をつける高さ
-    private float CameraHeight_NoShake = 2.0f;
+    // プレイヤーが動いても、カメラが上下に揺れてないように制限をつける高さ
+    private int CameraHeight_NoShake = 3;
 
     /// <summary>
     /// 開始処理
@@ -56,6 +56,9 @@ public class CameraFollowPlayer : MonoBehaviour
         
         // プレイヤーの高さを小数点切り捨てる(対策：酔い止め)
         int playerheight = Mathf.FloorToInt(Player.transform.position.y);
+
+        // プレイヤーが動いてもカメラが上下に揺れないように制限する
+        playerheight = playerheight - (playerheight % CameraHeight_NoShake);
 
         // プレイヤーの位置
         Vector3 playerpos = new Vector3(Player.transform.position.x, (float)playerheight, Player.transform.position.z);
@@ -93,6 +96,9 @@ public class CameraFollowPlayer : MonoBehaviour
         // プレイヤーの高さを小数点切り捨てる(対策：酔い止め)
         int playerheight = Mathf.FloorToInt(Player.transform.position.y);
 
+        // プレイヤーが動いてもカメラが上下に揺れないように制限する
+        playerheight = playerheight - (playerheight % CameraHeight_NoShake);
+
         // カメラが次へ進む目的地の位置 
         Vector3 NextPos =  new Vector3(Player.transform.position.x + direction.x,
                                        direction.y + playerheight,
@@ -112,6 +118,9 @@ public class CameraFollowPlayer : MonoBehaviour
     {
         // プレイヤーの高さを小数点切り捨てる(対策：酔い止め)
         int playerheight = Mathf.FloorToInt(Player.transform.position.y);
+
+        // プレイヤーが動いてもカメラが上下に揺れないように制限する
+        playerheight = playerheight - (playerheight % CameraHeight_NoShake);
 
         // ----------------------------------------------------------------------------------------------------
 
