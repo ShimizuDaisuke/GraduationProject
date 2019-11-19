@@ -30,6 +30,11 @@ public class GoolPosMovePlayer : MonoBehaviour
     //ゴールに入ったか
     private bool m_goolInFlag = false;
 
+    //移動止めるフラグオブジェ
+    [SerializeField]
+    private MoveStopCol m_moveStopCol;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,15 +80,18 @@ public class GoolPosMovePlayer : MonoBehaviour
     {
         if(m_event.IsEventKIND == EventDirector.EventKIND.PENCILCASE_MOVE_GOOL)
         {
-            if(!m_goolInFlag)
+            if(!m_moveStopCol.MoveStopFlag)
             {
-                //距離を求める
-                Vector3 targetPos = m_goolPosObj.transform.position - m_player.transform.position;
-                //方向を求める
-                targetPos.Normalize();
+                if (!m_goolInFlag)
+                {
+                    //距離を求める
+                    Vector3 targetPos = m_goolPosObj.transform.position - m_player.transform.position;
+                    //方向を求める
+                    targetPos.Normalize();
 
-                //移動する
-                m_playerController.MoveByDirection(new Vector3(targetPos.x, targetPos.y, targetPos.z));
+                    //移動する
+                    m_playerController.MoveByDirection(new Vector3(targetPos.x, targetPos.y, targetPos.z));
+                }
             }
         }
     }
