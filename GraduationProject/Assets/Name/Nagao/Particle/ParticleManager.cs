@@ -16,8 +16,6 @@ public class ParticleManager : MonoBehaviour
     //Particleのリスト
     public List<GameObject> ParticleObj;
 
-    // 現在再生中のParticleのリスト
-    private static List<GameObject> ParticleObj_NowPlay;
 
     public enum Particle
     {
@@ -35,7 +33,6 @@ public class ParticleManager : MonoBehaviour
     {
         // それぞれのリストを作成する
         s_ParticleObj = new List<GameObject>();
-        ParticleObj_NowPlay = new List<GameObject>();
 
         // 動的変数から静的変数へ割り当てる
         foreach (GameObject obj in ParticleObj)

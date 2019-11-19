@@ -17,7 +17,7 @@ public class SoundManager : MonoBehaviour
     //SEのリスト
     public List<AudioClip> SoundSE;
 
-    enum Sound
+    public enum Sound
     {
         SE_ChangeTitleGameSceneButton,      //タイトルシーンからゲームシーンへ変わる効果音
         SE_ChangeRezultGameSceneButton,     //リザルトシーンからタイトルシーンへ変わる効果音
@@ -36,7 +36,7 @@ public class SoundManager : MonoBehaviour
     //! @brief      SEを再生する関数
     //! @param[in]   enum SoundManager Sound     
     //======================================================================================= 
-    static void PlaySE(Sound kind)
+    public static void PlaySE(Sound kind)
     {
         audioSource.PlayOneShot(s_SoundSE[(int)kind]);
     }

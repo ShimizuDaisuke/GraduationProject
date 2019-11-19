@@ -13,6 +13,13 @@ using UnityEngine.UI;
 public class ResultScore : MonoBehaviour
 {
 
+    //リザルトメインのスクリプト
+    private ClearManagement clearManager;
+
+    //破棄しないように設定したオブジェクト
+    [SerializeField]
+    private GameObject ClearObject = default;
+
     //シーンのスコア
     [SerializeField]
     private GameObject ScoreDirector = default;
@@ -44,13 +51,19 @@ public class ResultScore : MonoBehaviour
     //制限時間　
     private float timeLimit = 0;
 
-    private int m_animTime = 10;
+    //アニメーション時間
+    private int m_animTime = 5;
 
     // Start is called before the first frame update
     void Start()
     {
+        ///リザルトメインのスクリプトの割り当て
+        clearManager = ClearObject.GetComponent<ClearManagement>();
+
+        //スコアのスクリプトの割り当て
         Script_Score = ScoreDirector.GetComponent<ScoreManager>();
 
+        //時間のスクリプトの割り当て
         Script_Time = TimeDirector.GetComponent<TimeManager>();
 
         Script_ResultSceneController = resultSceneController.GetComponent<ResultSceneController>();
@@ -67,7 +80,18 @@ public class ResultScore : MonoBehaviour
         timeLimit = Script_Time.IsPlayerTime;
 
         //トータルスコアの計算
-        totalScore = 1000000;// Script_Score.IsPlayerScore + ((int)timeLimit * 100);
+        if (clearManager.IsPlayerClear == true)
+        {
+            //ゲームクリアした時
+            totalScore = Script_Score.IsPlayerScore + ((int)timeLimit * 100);
+        }
+        else
+        {
+            //ゲームオーバーした時
+            totalScore = 0;
+        }
+
+       
 
         if ((int.Parse(scoreText.text) < totalScore))
         {
@@ -87,9 +111,6 @@ public class ResultScore : MonoBehaviour
             scoreText.text = totalScore.ToString();
         }
 
-
-
-        Debug.Log(Script_ResultSceneController.SwitchingFlag);
     }
 
     // スコアをアニメーションさせる
