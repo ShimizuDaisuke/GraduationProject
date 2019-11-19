@@ -19,6 +19,13 @@ using Particle = ParticleManager.Particle;
 
 public class TitleSceneController : MonoBehaviour
 {
+    //フェードのスクリプト
+    private Fade Fade;
+
+    //破棄しないように設定したオブジェクト
+    [SerializeField]
+    private GameObject FadeObject = default;
+
     //画面を触ったか判定フラグ
     private bool m_switchingFlag = false;
 
@@ -29,11 +36,14 @@ public class TitleSceneController : MonoBehaviour
     [SerializeField]
     private float m_maxTimer = 0.0f;
 
+    //SEの再生フラグ
+    private bool m_seFlag = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Fade = FadeObject.GetComponent<Fade>();
     }
 
     // Update is called once per frame
@@ -46,10 +56,26 @@ public class TitleSceneController : MonoBehaviour
             m_timer += Time.deltaTime;
 
             //タイマーが最大値を超えたら
-            if(m_timer > m_maxTimer)
+            if (m_timer > m_maxTimer)
             {
-                //シーン切り替え
-                Scene();
+                //SEを再生してないなら
+                if (m_seFlag == false)
+                {
+                    //SEの再生
+                    SoundManager.PlaySE(SoundManager.Sound.SE_ChangeTitleGameSceneButton);
+                    //フェードアウト開始
+                    Fade.FadeOut = true;
+                }
+
+                //再生終了
+                m_seFlag = true;
+
+                //フェードアウトが終了したか
+                if (Fade.FadeOut == false)
+                {
+                    //シーン切り替え
+                    Scene();
+                }
             }
         }
 
