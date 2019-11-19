@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 970566043782733820}
   - component: {fileID: 970566043796888252}
   - component: {fileID: 970566043796792092}
-  - component: {fileID: 3659152641518122123}
+  - component: {fileID: 534835303109170432}
   m_Layer: 0
-  m_Name: CFX3_Hit_SmokePuff
+  m_Name: ChaseEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4641,7 +4641,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &3659152641518122123
+--- !u!114 &534835303109170432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4650,7 +4650,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 970566043783021532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bc01dffb17379445ba9cc5606b016b5, type: 3}
+  m_Script: {fileID: 11500000, guid: d47f548ec4619c84fac512e6fce3471a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerCon: {fileID: 0}
