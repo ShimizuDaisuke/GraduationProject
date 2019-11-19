@@ -58,6 +58,8 @@ public class PlayerAddScore : MonoBehaviour
                     ParticleManager.PlayParticle(Particle.NomalEraserDustEF, collider.transform.position);
                     // スコアを増やす
                     m_score.Int_EraserScore += m_eraserDust.PointRandom;
+                    //SEの再生
+                    SoundManager.PlaySE(SoundManager.Sound.SE_AdditionScore);
                     //衝突した消しカスを消す
                     Destroy(collider.gameObject);
                 }
@@ -76,6 +78,8 @@ public class PlayerAddScore : MonoBehaviour
             {
                 // スコアを増やす
                 m_score.Int_EraserScore += m_notebook.Score;
+                //SEの再生
+                SoundManager.PlaySE(SoundManager.Sound.SE_AdditionScore);
                 // 衝突した落書きを消す
                 m_notebook.Graffiti = false;
             }

@@ -72,7 +72,9 @@ public class CoverOfEraserHit : MonoBehaviour
             // プレイヤーが刃物に触れた
             Script_PlayerFlashing.IsPlayerFlashing = true;
 
-            
+            //SEの再生
+            SoundManager.PlaySE(SoundManager.Sound.SE_PlayerCoverDamage);
+
             //プレイヤーの現在の位置を代入
             m_pos = this.gameObject.transform.position;
 
