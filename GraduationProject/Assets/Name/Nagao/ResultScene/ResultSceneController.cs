@@ -18,6 +18,13 @@ using Particle = ParticleManager.Particle;
 
 public class ResultSceneController : MonoBehaviour
 {
+    //フェードのスクリプト
+    private Fade Fade;
+
+    //破棄しないように設定したオブジェクト
+    [SerializeField]
+    private GameObject FadeObject = default;
+
     //画面を触ったか判定フラグ
     private bool m_switchingFlag = false;
 
@@ -31,17 +38,20 @@ public class ResultSceneController : MonoBehaviour
     [SerializeField]
     private float m_maxTimer = 0.0f;
 
+    //SEの再生フラグ
+    private bool m_seFlag = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Fade = FadeObject.GetComponent<Fade>();
     }
 
     // Update is called once per frame
     void Update()
     {  
         //画面をクリックしたら
-        if (m_switchingTwoFlag == true)
+        if (m_switchingFlag == true)
         {
             //時間を進める
             m_timer += Time.deltaTime;
@@ -49,14 +59,26 @@ public class ResultSceneController : MonoBehaviour
             //タイマーが最大値を超えたら
             if (m_timer > m_maxTimer)
             {
-                //SEの再生
-                SoundManager.PlaySE(SoundManager.Sound.SE_ChangeRezultGameSceneButton);
+                //SEを再生してないなら
+                if(m_seFlag == false)
+                {
+                    //SEの再生
+                    SoundManager.PlaySE(SoundManager.Sound.SE_ChangeRezultGameSceneButton);
+                    //フェードアウト開始
+                    Fade.FadeOut = true;
+                }
 
-                //シーン切り替え
-                Scene();
+                //再生終了
+                m_seFlag = true;
+
+                //フェードアウトが終了したか
+                if(Fade.FadeOut == false)
+                {
+                    //シーン切り替え
+                    Scene();
+                }
             }
         }
-
     }
 
     //======================================================================================= 
@@ -70,10 +92,6 @@ public class ResultSceneController : MonoBehaviour
         //ゲームシーン以外でタブレット上でタップしたら、出現するエフェクト
         ParticleManager.PlayParticle(Particle.TouchEF, pos);
 
-        if(m_switchingFlag == true)
-        {
-            m_switchingTwoFlag = true;
-        }
         //触れた判定に
         m_switchingFlag = true;
 
