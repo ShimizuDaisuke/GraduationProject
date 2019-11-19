@@ -49,6 +49,9 @@ public class ResultSceneController : MonoBehaviour
             //タイマーが最大値を超えたら
             if (m_timer > m_maxTimer)
             {
+                //SEの再生
+                SoundManager.PlaySE(SoundManager.Sound.SE_ChangeRezultGameSceneButton);
+
                 //シーン切り替え
                 Scene();
             }
@@ -81,7 +84,6 @@ public class ResultSceneController : MonoBehaviour
     //======================================================================================= 
     public void Scene()
     {
-
         //Titleに切り替える切り替える
         SceneManager.LoadScene("Title");
     }
