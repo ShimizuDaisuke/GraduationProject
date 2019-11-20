@@ -29,7 +29,7 @@ public class ResultSceneController : MonoBehaviour
     private bool m_switchingFlag = false;
 
     //画面を二回触ったか判定フラグ
-    private bool m_switchingTwoFlag = false;
+    //private bool m_switchingTwoFlag = false;
 
     //タイマー
     private float m_timer = 0.0f;
