@@ -68,6 +68,8 @@ public class CameraSwitchButton : MonoBehaviour
     public void OnClick()
     {
         m_cameraDirector.ChangeCamera2D3D();
+        //SEの再生
+        SoundManager.PlaySE(SoundManager.Sound.SE_Change2D3DButton);
 
     }
 

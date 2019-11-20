@@ -102,6 +102,6 @@ public class TitleSceneController : MonoBehaviour
     public void Scene()
     {
         //Baseに切り替える切り替える
-        SceneManager.LoadScene("Base");
+        SceneManager.LoadScene("Stage1");
     }
 }
