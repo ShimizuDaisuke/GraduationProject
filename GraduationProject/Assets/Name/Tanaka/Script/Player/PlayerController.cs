@@ -45,6 +45,9 @@ public class PlayerController : MonoBehaviour
     // 前のプレイヤーの速度；
     private Vector3 oncemovevelocity;
 
+    //ジョイスティックで動かした方向X
+    private Vector2 m_d;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,8 +77,8 @@ public class PlayerController : MonoBehaviour
         if ((!cameraSwitch2D3D) && (m_event.IsEventKIND == EventDirector.EventKIND.NONE))
         {
             //ジョイスティックで動かした方向
-            float dx = m_joystick.Horizontal;       // 横軸
-            float dy = m_joystick.Vertical;         // 縦軸
+            m_d.x = m_joystick.Horizontal;       // 横軸
+            m_d.y = m_joystick.Vertical;         // 縦軸
 
        
             //2Dカメラか3Dカメラかのフラグ
@@ -85,7 +88,7 @@ public class PlayerController : MonoBehaviour
             if (!camera2Dor3DFlag)
             {
                 // 2D空間上のプレイヤーの移動速度を取得する
-                Vector3 movevellocity = new Vector3(dx, 0.0f, 0.0f);
+                Vector3 movevellocity = new Vector3(m_d.x, 0.0f, 0.0f);
 
                 // 実際にプレイヤーを動かす
                 MoveByDirection(movevellocity);
@@ -94,7 +97,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 // 3D空間上のプレイヤーの移動速度を取得する
-                Vector3 movevellocity = new Vector3(dy, 0.0f, -dx);
+                Vector3 movevellocity = new Vector3(m_d.y, 0.0f, -m_d.x);
 
                 // 実際にプレイヤーを動かす
                 MoveByDirection(movevellocity);
@@ -155,4 +158,7 @@ public class PlayerController : MonoBehaviour
         oncemovevelocity = direction;
     }
 
+
+    //ジョイスティックで動かした方向取得・設定
+    public Vector2 D { get { return m_d; } set { m_d = value; } }
 }

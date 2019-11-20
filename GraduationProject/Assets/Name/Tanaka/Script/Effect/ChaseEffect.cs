@@ -9,35 +9,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//追従するエフェクトクラス
+
 public class ChaseEffect : MonoBehaviour
 {
-    void OnEnable()
-
-    {
-
-        StartCoroutine(ParticleWorking());
-
-    }
-
-    IEnumerator ParticleWorking()
-
-    {
-
-        var particle = GetComponent<ParticleSystem>();
-
-
-
-        yield return new WaitWhile(() => particle.IsAlive(true));
-
-
-
-        Destroy(gameObject);
-
-    }
-
-#if false
-
     //プレイヤーの操作のクラス
     [SerializeField]
     private PlayerController m_playerCon = default;
@@ -49,6 +23,13 @@ public class ChaseEffect : MonoBehaviour
     //パーティクルシステム
     private ParticleSystem m_particle;
 
+    //プレイヤーのオブジェクト
+    [SerializeField]
+    private GameObject m_player;
+
+    // プレイヤーとこのパーティクルの距離
+    private Vector3 dir;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,39 +38,40 @@ public class ChaseEffect : MonoBehaviour
 
         // パーティクルを再生する
         m_particle.Play();
+
+        //プレイヤー　－　こいつ　の距離計算
+        dir = m_player.transform.position - transform.position;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
         // パーティクルがない場合、何もしない
-        if (m_particle != null) return;
+        if (m_particle == null) return;
 
-
-
-        // パーティクルが再生終わったら、破棄する
-        if (m_particle.time > m_particle.startLifetime)
+        //プレイヤーの移動速度が0じゃなかったらエフェクトを出す
+        if (m_playerCon.D.x != 0.0f || m_playerCon.D.y != 0.0f)
         {
-            Destroy(this.gameObject);
+            m_particle.Play();
+        }
+        else
+        {
+            m_particle.Stop();
         }
 
-        ////プレイヤーの移動速度が0じゃなかったらエフェクトを出す
-        //if(m_playerCon.DX != 0.0f || m_playerCon.DY != 0.0f)
-        //{
-        //    m_particle.Play();
-        //}
-        //else
-        //{
-        //    m_particle.Stop();
-        //}
-        //
-        ////イベント中だったらエフェクトを止める
-        //if(m_event.IsEventKIND != EventDirector.EventKIND.NONE)
-        //{
-        //    m_particle.Stop();
-        //
-        //}
+        //イベント中だったらエフェクトを止める
+        if (m_event.IsEventKIND != EventDirector.EventKIND.NONE)
+        {
+            m_particle.Stop();
+
+        }
+
+        //プレイヤーの後ろにつく
+        transform.position = m_player.transform.position - dir;
+
+
 
     }
-#endif
 }
