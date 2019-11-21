@@ -29,6 +29,10 @@ public class ThrowingObject : MonoBehaviour
     //たどり着いたかどうかのフラグ
     private bool m_arriveFlag = false;
 
+    //SEフラグ
+    private bool m_seFlag = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +63,13 @@ public class ThrowingObject : MonoBehaviour
         //投げる
         Rigidbody rigid = m_throwObject.GetComponent<Rigidbody>();
         rigid.AddForce(vel * rigid.mass, ForceMode.Impulse);
+        if(!m_seFlag)
+        {
+            //SEの再生
+            SoundManager.PlaySE(SoundManager.Sound.SE_SeesawJump);
+            ParticleManager.PlayParticle(ParticleManager.Particle.JumpEF,m_throwObject.transform.position);
+        }
+        
 
     }
 
@@ -105,6 +116,7 @@ public class ThrowingObject : MonoBehaviour
             //ターゲットにたどり着いたか
             if (m_throwObject.transform.position == m_targetObject.transform.position)
             {
+                m_seFlag = false;
                 //なにも起きていない状態に戻す
                 m_event.IsEventKIND = EventDirector.EventKIND.NONE;
             }

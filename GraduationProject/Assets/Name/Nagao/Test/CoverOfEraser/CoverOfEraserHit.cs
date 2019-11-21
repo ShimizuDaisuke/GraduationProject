@@ -92,6 +92,8 @@ public class CoverOfEraserHit : MonoBehaviour
             // もし消しゴムのカバーによる体力が0以下の場合
             if (Script_CoverOfEraser.EraserHP <= 0)
             {
+                //SEの再生
+                SoundManager.PlaySE(SoundManager.Sound.SE_CoverComesOff);
                 Script_PlayerHit.FixCover = false;
                 Destroy(this.gameObject);
             }

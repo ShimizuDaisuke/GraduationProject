@@ -53,6 +53,9 @@ public class SampleQRReader : MonoBehaviour
 
     QRReadID qRReadID = default;
 
+    // プレイヤーのRigidbody
+    Rigidbody rgb;
+
     // 変換先
     int num = -1;
     //=======================================================================================
@@ -67,6 +70,9 @@ public class SampleQRReader : MonoBehaviour
         activeChange = GetComponent<ActiveChange>();
 
         qRReadID = GetComponent<QRReadID>();
+
+        // プレイヤーのRigidbody
+        rgb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
 
         // カメラを使用する際に許可を求める
         yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
@@ -223,9 +229,12 @@ public class SampleQRReader : MonoBehaviour
 
                 // タイマーをリセットする
                 timer = 0.0f;
-                
+
+                // プレイヤーのRigidBodyをフリーズ解除
+                rgb.constraints = RigidbodyConstraints.None;
+
                 // もし正規のQRコードじゃなかった場合
-                if(qRReadID.Num == 0)
+                if (qRReadID.Num == 0)
                 {
                     // もう一度QRモードにする
                     _event.IsEventKIND = EventDirector.EventKIND.RULE_QR;

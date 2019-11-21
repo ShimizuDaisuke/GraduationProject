@@ -77,6 +77,7 @@ public class QRReadID : MonoBehaviour
                 break;
             // この中の物に属さなかった場合正規のQRじゃない
             default:
+                num = 0;
                 qRText.NOQR();
                 break;
         }
