@@ -24,6 +24,9 @@ public class QRSpotObject : MonoBehaviour
     // QRSpotの変数
     SampleQRReader spot;
 
+    // プレイヤーのRigidbody
+    Rigidbody rgb;
+
     //=======================================================================================
     //! @brief 開始処理
     //! @param[in] なし
@@ -36,6 +39,8 @@ public class QRSpotObject : MonoBehaviour
         qRDirector = GameObject.FindWithTag("QRDirector");
         // SampleQRReaderにアクセス
         spot = qRDirector.gameObject.GetComponent<SampleQRReader>();
+        // プレイヤーのRigidbody
+        rgb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
     }
 
     //=======================================================================================
@@ -51,6 +56,9 @@ public class QRSpotObject : MonoBehaviour
             // Playerに当たったら
             if (col.gameObject.tag == "Player")
             {
+                // プレイヤーのRigidBodyをフリーズさせる
+                rgb.constraints = RigidbodyConstraints.FreezeAll;
+
                 // カメラをオンにするフラグをtrueにする
                 spot.QRSpot = true;
 
