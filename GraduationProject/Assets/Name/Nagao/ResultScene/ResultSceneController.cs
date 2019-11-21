@@ -92,9 +92,15 @@ public class ResultSceneController : MonoBehaviour
         //ゲームシーン以外でタブレット上でタップしたら、出現するエフェクト
         ParticleManager.PlayParticle(Particle.TouchEF, pos);
 
-        //触れた判定に
-        m_switchingFlag = true;
+        //フェードインが終了したか
+        if(Fade.FadeIn == false)
+        {
+            //触れた判定に
+            m_switchingFlag = true;
+        }
 
+        //SEの再生
+        SoundManager.PlaySE(SoundManager.Sound.SE_TitleResultTap);
     }
 
     //======================================================================================= 
