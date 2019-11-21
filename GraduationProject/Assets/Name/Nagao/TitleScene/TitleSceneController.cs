@@ -92,8 +92,15 @@ public class TitleSceneController : MonoBehaviour
         //ゲームシーン以外でタブレット上でタップしたら、出現するエフェクト
         ParticleManager.PlayParticle(Particle.TouchEF, pos);
 
-        m_switchingFlag = true;
+        //フェードインが終了したか
+        if (Fade.FadeIn == false)
+        {
+            //触れた判定に
+            m_switchingFlag = true;
+        }
 
+        //SEの再生
+        SoundManager.PlaySE(SoundManager.Sound.SE_TitleResultTap);
     }
 
     //======================================================================================= 
@@ -101,7 +108,7 @@ public class TitleSceneController : MonoBehaviour
     //======================================================================================= 
     public void Scene()
     {
-        //Baseに切り替える切り替える
+        //Stage1に切り替える切り替える
         SceneManager.LoadScene("Stage1");
     }
 }

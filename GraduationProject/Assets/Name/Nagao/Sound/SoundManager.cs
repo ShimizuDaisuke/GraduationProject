@@ -29,7 +29,10 @@ public class SoundManager : MonoBehaviour
         SE_SeesawJump,                      //プレイヤーがシーソーによって、ジャンプする効果音
         SE_DominoHit,                       //本がドミノ倒しのように倒れて、他のオブジェクトに当たった効果音
         SE_EraseGraffiti,                   //プレイヤーが落書きのノートを消す効果音
-        SE_ScissorsCutPaper	                //紙をハサミで切る効果音
+        SE_ScissorsCutPaper,	            //紙をハサミで切る効果音
+        SE_CoverComesOn,                    //消しゴムのカバーを付けた音
+        SE_CoverComesOff,                   //消しゴムのカバーを外した音
+        SE_TitleResultTap                   //画面をタッチした時の音
     }
 
     //======================================================================================= 
