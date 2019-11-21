@@ -76,8 +76,8 @@ public class PlayerHit : MonoBehaviour
             //プレイヤーとカバーを同じ角度にする
             col.gameObject.transform.rotation = this.gameObject.transform.rotation;
 
-            ////SEの再生
-            //SoundManager.PlaySE(SoundManager.Sound.SE_PlayerCoverDamage);
+            //SEの再生
+            SoundManager.PlaySE(SoundManager.Sound.SE_CoverComesOn);
 
             // 消しゴムにカバーを付けた
             IsFixCover = true;

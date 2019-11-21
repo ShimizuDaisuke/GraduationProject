@@ -95,6 +95,8 @@ public class ResultSceneController : MonoBehaviour
         //触れた判定に
         m_switchingFlag = true;
 
+        //SEの再生
+        SoundManager.PlaySE(SoundManager.Sound.SE_TitleResultTap);
     }
 
     //======================================================================================= 

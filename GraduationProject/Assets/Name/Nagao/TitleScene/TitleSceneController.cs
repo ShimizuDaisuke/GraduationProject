@@ -94,6 +94,8 @@ public class TitleSceneController : MonoBehaviour
 
         m_switchingFlag = true;
 
+        //SEの再生
+        SoundManager.PlaySE(SoundManager.Sound.SE_TitleResultTap);
     }
 
     //======================================================================================= 
