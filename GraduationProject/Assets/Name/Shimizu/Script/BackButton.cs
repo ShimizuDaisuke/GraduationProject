@@ -25,6 +25,9 @@ public class BackButton : MonoBehaviour
     // QRSpotの判定変数
     SampleQRReader spot;
 
+    // プレイヤーのRigidbody
+    Rigidbody rgb;
+
     float timer = 0.0f;
 
     bool pushFlag = false;
@@ -41,6 +44,9 @@ public class BackButton : MonoBehaviour
 
         // SampleQRReaderにアクセス
         spot = qRDirector.gameObject.GetComponent<SampleQRReader>();
+
+        // プレイヤーのRigidbody
+        rgb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
     }
 
     //=======================================================================================
@@ -72,6 +78,9 @@ public class BackButton : MonoBehaviour
 
             // カメラの終了
             spot.QRSpot = false;
+
+            // プレイヤーのRigidBodyをフリーズ解除
+            rgb.constraints = RigidbodyConstraints.None;
         }
     }
 
