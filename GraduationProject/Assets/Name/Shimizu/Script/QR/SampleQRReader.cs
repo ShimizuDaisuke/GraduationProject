@@ -58,6 +58,7 @@ public class SampleQRReader : MonoBehaviour
 
     // 変換先
     int num = -1;
+
     //=======================================================================================
     //! @brief 開始処理
     //! @param[in] なし
@@ -174,15 +175,17 @@ public class SampleQRReader : MonoBehaviour
         // 向きを取得してRawImageを回転
         if (Input.deviceOrientation == DeviceOrientation.LandscapeLeft)
         {
-            // 元に戻す
-            rawImage.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+            // タブレットの向きに合わせて、画面の向きを変える
+            rawImage.rectTransform.rotation = Quaternion.Euler(0, ROTATION, ROTATION);
         }
-        if (Input.deviceOrientation == DeviceOrientation.LandscapeRight) 
+        if (Input.deviceOrientation == DeviceOrientation.LandscapeRight)
         {
-            // 180度回転
-            rawImage.rectTransform.rotation = Quaternion.Euler(0, 0, ROTATION);
+            // タブレットの向きに合わせて、画面の向きを変える
+            rawImage.rectTransform.rotation = Quaternion.Euler(0, ROTATION, 0);
         }
-        
+
+
+
         // QRの読み込み,テキストの表示処理===================================================
         // 映像のテクスチャがあるか
         if (_webCamTex != null)
