@@ -51,9 +51,6 @@ public class ResultScore : MonoBehaviour
     //制限時間　
     private float timeLimit = 0;
 
-    //アニメーション時間
-    private int m_animTime = 5;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -67,8 +64,6 @@ public class ResultScore : MonoBehaviour
         Script_Time = TimeDirector.GetComponent<TimeManager>();
 
         Script_ResultSceneController = resultSceneController.GetComponent<ResultSceneController>();
-
-        totalScore = 0;
     }
 
     // Update is called once per frame
@@ -83,7 +78,7 @@ public class ResultScore : MonoBehaviour
         if (clearManager.IsPlayerClear == true)
         {
             //ゲームクリアした時
-            totalScore = Script_Score.IsPlayerScore + ((int)timeLimit * 100);
+            totalScore = score + ((int)timeLimit * 100);
         }
         else
         {
@@ -91,60 +86,10 @@ public class ResultScore : MonoBehaviour
             totalScore = 0;
         }
 
-       
-
-        if ((int.Parse(scoreText.text) < totalScore))
-        {
-            //トータルのスコアを5fすすめる
-            StartCoroutine(ScoreAnimation(totalScore, m_animTime));
-        }
-        else
-        {
-            // スコアを表示する
-            scoreText.text = totalScore.ToString();
-        }
-
-        //画面がタッチされたら
-        if(Script_ResultSceneController.SwitchingFlag == true)
-        {
-            // スコアを表示する
-            scoreText.text = totalScore.ToString();
-        }
+        // スコアを表示する
+        scoreText.text = totalScore.ToString();
+     
 
     }
 
-    // スコアをアニメーションさせる
-    IEnumerator ScoreAnimation(int addScore, float time)
-    {
-        //前回のスコア
-        int befor = score;
-        //今回のスコア
-        float after = score + addScore;
-        //得点加算
-        score += addScore;
-        //0fを経過時間にする
-        float elapsedTime = 0.0f;
-
-        //timeが０になるまでループさせる
-        while (elapsedTime < time)
-        {
-            // 画面上にクリックしたら
-            if (Script_ResultSceneController.SwitchingFlag == true)
-            {
-                // 時間をかけずにスコアを表示されないようにする
-                elapsedTime = time;
-            }
-
-
-                float rate = elapsedTime / time;
-            // テキストの更新
-            scoreText.text = (befor + (after - befor) * rate).ToString("f0");
-
-            elapsedTime += Time.deltaTime;
-            // 0.01秒待つ
-            yield return new WaitForSeconds(0.01f);
-        }
-        // 最終的な着地のスコア
-        scoreText.text = after.ToString();
-    }
 }
