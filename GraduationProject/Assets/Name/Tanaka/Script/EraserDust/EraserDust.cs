@@ -33,20 +33,14 @@ public class EraserDust : MonoBehaviour
     private EraserMove m_eraserMove = EraserMove.STOP;
 
 
-    // ポイント
-    // 種類:ノーマル→スコア数   / 種類:1UP→1upゲージの量 
+    //ポイント
     [SerializeField]
-    private int m_pointMin;
-    [SerializeField]
-    private int m_pointMax;
-
-    //ランダムポイント
-    private int m_pointRandom;
+    private int m_point;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_pointRandom = Random.Range(m_pointMin, m_pointMax);
+        
     }
 
     // Update is called once per frame
@@ -61,12 +55,6 @@ public class EraserDust : MonoBehaviour
     //消しカスの種類の取得・設定
     public EraserMove IsEraserMove { get { return m_eraserMove; } set { m_eraserMove = value; } }
 
-
     // ポイントの取得・設定
-    public int PointMin { get { return m_pointMin; } set { m_pointMin = value; } }
-    // ポイントの取得・設定
-    public int PointMax { get { return m_pointMax; } set { m_pointMax = value; } }
-
-    // ポイントの取得・設定
-    public int PointRandom { get { return m_pointRandom; } set { m_pointRandom = value; } }
+    public int PointRandom { get { return m_point; } set { m_point = value; } }
 }
