@@ -20,17 +20,6 @@ public class PlayerHit : MonoBehaviour
     // スクリプト：Playerを点滅させる処理
     private PlayerFlashing Script_PlayerFlashing;
 
-    //プレイヤーのサイズの最大値<目安:13>
-    [SerializeField]
-    private Vector3 maxSize = new Vector3(1.0f, 1.0f, 1.0f);
-
-    //プレイヤーのサイズの最小値<目安:3.5>
-    [SerializeField]
-    private Vector3 minSize = new Vector3(0.1f, 0.1f, 0.1f);
-
-    // プレイヤーの最大と最小の差
-    private Vector3 SizeDifference = new Vector3(0.0f, 0.0f, 0.0f);
-
     // スクリプト : プレイヤー
     private Player Script_Player;
 
@@ -44,8 +33,6 @@ public class PlayerHit : MonoBehaviour
 
         Script_Player = GetComponent<Player>();
 
-        // プレイヤーの最大と最小の差を求める
-        SizeDifference = maxSize - minSize;
     }
 
     // Update is called once per frame
@@ -61,8 +48,6 @@ public class PlayerHit : MonoBehaviour
         //消しゴムカバーと当たった時
         if(col.gameObject.tag == "EraserDustCover")
         {
-            // プレイヤーのサイズをMAXに変更する
-            transform.localScale = maxSize;
 
             //プレイヤーのHPをMAXにする
             Script_Player.HP = Script_Player.MaxHP;
@@ -95,11 +80,6 @@ public class PlayerHit : MonoBehaviour
             int damage = Script_EnemyDamage.IsDamage;
             // ダメージを受ける
             Script_Player.HP += -damage;
-
-            // プレイヤーのサイズによる割合
-            float sizerate = (float)Script_Player.HP / (float)Script_Player.MaxHP;
-            // プレイヤーのサイズを変更する
-            transform.localScale = minSize + SizeDifference * sizerate;
             // プレイヤーが刃物に触れた
             Script_PlayerFlashing.IsPlayerFlashing = true;
 

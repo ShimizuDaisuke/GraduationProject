@@ -880,8 +880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_eraserDustKIND: 1
   m_eraserMove: 0
-  m_pointMin: 50
-  m_pointMax: 100
+  m_point: 10
 --- !u!65 &175325202
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4496,9 +4495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a518bd278a0fe84abda9c552ea7e1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerDirector: {fileID: 1354289530}
-  maxDamage: 10
-  minDamage: 1
+  damage: 10
 --- !u!1 &1237288705
 GameObject:
   m_ObjectHideFlags: 0
@@ -4653,9 +4650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a518bd278a0fe84abda9c552ea7e1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerDirector: {fileID: 1354289530}
-  maxDamage: 10
-  minDamage: 1
+  damage: 10
 --- !u!1 &1279153170 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: a2bd086704a57b3489f696dbeaeead83,
@@ -5193,8 +5188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_eraserDustKIND: 2
   m_eraserMove: 0
-  m_pointMin: 10
-  m_pointMax: 50
+  m_point: 10
 --- !u!65 &1467525342
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7365,8 +7359,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EventDirectorObj: {fileID: 1341013562}
-  GravityObj: 30
-  MaxGravity: 2
+  GravityObj_HitObj: 40
+  GravityObj_NoHitObj: 100
+  MaxGravity_HitObj: 2
+  MaxGravity_NoHitObj: 10
 --- !u!114 &1888164281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7411,8 +7407,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerDirector: {fileID: 1354289530}
-  maxSize: {x: 13, y: 13, z: 13}
-  minSize: {x: 0.2, y: 0.2, z: 0.2}
 --- !u!114 &1888164284
 MonoBehaviour:
   m_ObjectHideFlags: 0
