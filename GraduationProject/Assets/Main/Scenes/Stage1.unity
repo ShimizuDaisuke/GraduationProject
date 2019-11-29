@@ -12705,6 +12705,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 268417198}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &570544525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570544513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3376ca6309290745997f5fa4bb671a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerType: 0
+  m_playerCon: {fileID: 1933180792}
 --- !u!1 &594844907
 GameObject:
   m_ObjectHideFlags: 0
@@ -27580,6 +27594,26 @@ PrefabInstance:
       propertyPath: m_vel
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: m_eraserVel
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: m_ironVel
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: m_marbleVel
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520095291357471320, guid: 65c09f901891e7441bfe95108102816e,
+        type: 3}
+      propertyPath: m_playerType
+      value: 
+      objectReference: {fileID: 570544525}
     - target: {fileID: 4969895589596212255, guid: 65c09f901891e7441bfe95108102816e,
         type: 3}
       propertyPath: player
