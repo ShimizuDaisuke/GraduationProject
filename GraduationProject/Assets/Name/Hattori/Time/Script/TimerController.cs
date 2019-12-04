@@ -25,7 +25,7 @@ public class TimerController : MonoBehaviour
     public Text timerText;
 
     //フレーム数
-    public float totalTime;
+    private float totalTime = 0;
 
     //時間
     int seconds;
@@ -56,7 +56,7 @@ public class TimerController : MonoBehaviour
             Script_Time.IsPlayerTime = totalTime;
 
             //フレームごとにフレームの秒数を引いてる
-            totalTime -= Time.deltaTime;
+            totalTime += Time.deltaTime;
 
             //キャストしたものを代入して小数点以下抹殺
             seconds = (int)totalTime;
@@ -64,25 +64,18 @@ public class TimerController : MonoBehaviour
             //文字列にしてからテキストに表示
             timerText.text = seconds.ToString();
 
-            //テスト動作Zキーを押している間制限時間が減る
-            if (Input.GetKey(KeyCode.Z))
-            {
-                totalTime--;
-            }
+            ////もしタイマーが0以下になりそうになったら
+            //if (seconds < 0)
+            //{
+            //    //タイマーを停止
+            //    timerFlag = false;
 
-            //もしタイマーが0以下になりそうになったら
-            if (seconds < 0)
-            {
-                //タイマーを停止
-                timerFlag = false;
+            //    //タイマーを0にする
+            //    seconds = 0;
+            //    totalTime = 0.0f;
 
-                //タイマーを0にする
-                seconds = 0;
-                totalTime = 0.0f;
-
-                SceneManager.LoadScene("Result");
-            
-            }
+            //    SceneManager.LoadScene("Result");
+            //}
 
         }
         

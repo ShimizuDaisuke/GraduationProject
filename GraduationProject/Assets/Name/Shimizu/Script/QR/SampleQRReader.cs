@@ -53,8 +53,12 @@ public class SampleQRReader : MonoBehaviour
 
     QRReadID qRReadID = default;
 
+    // プレイヤーのRigidbody
+    Rigidbody rgb;
+
     // 変換先
     int num = -1;
+
     //=======================================================================================
     //! @brief 開始処理
     //! @param[in] なし
@@ -67,6 +71,9 @@ public class SampleQRReader : MonoBehaviour
         activeChange = GetComponent<ActiveChange>();
 
         qRReadID = GetComponent<QRReadID>();
+
+        // プレイヤーのRigidbody
+        rgb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
 
         // カメラを使用する際に許可を求める
         yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
@@ -168,15 +175,17 @@ public class SampleQRReader : MonoBehaviour
         // 向きを取得してRawImageを回転
         if (Input.deviceOrientation == DeviceOrientation.LandscapeLeft)
         {
-            // 元に戻す
-            rawImage.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+            // タブレットの向きに合わせて、画面の向きを変える
+            rawImage.rectTransform.rotation = Quaternion.Euler(0, ROTATION, ROTATION);
         }
-        if (Input.deviceOrientation == DeviceOrientation.LandscapeRight) 
+        if (Input.deviceOrientation == DeviceOrientation.LandscapeRight)
         {
-            // 180度回転
-            rawImage.rectTransform.rotation = Quaternion.Euler(0, 0, ROTATION);
+            // タブレットの向きに合わせて、画面の向きを変える
+            rawImage.rectTransform.rotation = Quaternion.Euler(0, ROTATION, 0);
         }
-        
+
+
+
         // QRの読み込み,テキストの表示処理===================================================
         // 映像のテクスチャがあるか
         if (_webCamTex != null)
@@ -223,9 +232,12 @@ public class SampleQRReader : MonoBehaviour
 
                 // タイマーをリセットする
                 timer = 0.0f;
-                
+
+                // プレイヤーのRigidBodyをフリーズ解除
+                rgb.constraints = RigidbodyConstraints.None;
+
                 // もし正規のQRコードじゃなかった場合
-                if(qRReadID.Num == 0)
+                if (qRReadID.Num == 0)
                 {
                     // もう一度QRモードにする
                     _event.IsEventKIND = EventDirector.EventKIND.RULE_QR;

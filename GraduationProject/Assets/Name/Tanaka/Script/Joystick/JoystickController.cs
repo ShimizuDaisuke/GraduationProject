@@ -23,10 +23,13 @@ public class JoystickController : MonoBehaviour
     [SerializeField]
     private EventDirector m_event = default;
 
+    //FloatingJoystickクラス
+    private FloatingJoystick floatingJoystick;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        floatingJoystick = m_joystick.GetComponent<FloatingJoystick>();
     }
 
     // Update is called once per frame
@@ -48,7 +51,7 @@ public class JoystickController : MonoBehaviour
         // ジョイスティックをリセットする
         if(m_joystick.activeInHierarchy == false)
         {
-            FloatingJoystick floatingJoystick = m_joystick.GetComponent<FloatingJoystick>();
+            
             floatingJoystick.Reset();
 
         }

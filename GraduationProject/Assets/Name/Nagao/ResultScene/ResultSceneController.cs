@@ -29,7 +29,7 @@ public class ResultSceneController : MonoBehaviour
     private bool m_switchingFlag = false;
 
     //画面を二回触ったか判定フラグ
-    private bool m_switchingTwoFlag = false;
+    //private bool m_switchingTwoFlag = false;
 
     //タイマー
     private float m_timer = 0.0f;
@@ -92,9 +92,15 @@ public class ResultSceneController : MonoBehaviour
         //ゲームシーン以外でタブレット上でタップしたら、出現するエフェクト
         ParticleManager.PlayParticle(Particle.TouchEF, pos);
 
-        //触れた判定に
-        m_switchingFlag = true;
+        //フェードインが終了したか
+        if(Fade.FadeIn == false)
+        {
+            //触れた判定に
+            m_switchingFlag = true;
+        }
 
+        //SEの再生
+        SoundManager.PlaySE(SoundManager.Sound.SE_TitleResultTap);
     }
 
     //======================================================================================= 

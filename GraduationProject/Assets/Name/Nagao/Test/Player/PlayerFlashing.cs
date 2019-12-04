@@ -64,20 +64,20 @@ public class PlayerFlashing : MonoBehaviour
     //======================================================================================= 
     void Flashing()
     {
-        // 点滅時間を計る
-        invincibleTime += Time.deltaTime;
-        // 点滅するか
-        if (invincibleTime >= intervalTime)
-        {
-            // 時間をリセットする
-            invincibleTime += -intervalTime;
-        }
+        //// 点滅時間を計る
+        //invincibleTime += Time.deltaTime;
+        //// 点滅するか
+        //if (invincibleTime >= intervalTime)
+        //{
+        //    // 時間をリセットする
+        //    invincibleTime += -intervalTime;
+        //}
 
-        // 現在のプレイヤーの表示状態
-        bool state = player.activeInHierarchy;
+        //// 現在のプレイヤーの表示状態
+        //bool state = player.activeInHierarchy;
 
-        // 表示非表示を反転する
-        player.SetActive(!state);
+        //// 表示非表示を反転する
+        //player.SetActive(!state);
 
     }
 
@@ -105,7 +105,7 @@ public class PlayerFlashing : MonoBehaviour
             invincibleTime = 0.0f;
 
             // 表示非表示を反転する
-            player.SetActive(true);
+            //player.SetActive(true);
         }
     }
 

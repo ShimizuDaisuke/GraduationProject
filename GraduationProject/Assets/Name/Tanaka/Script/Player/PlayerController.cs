@@ -28,13 +28,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Joystick m_joystick = default;
 
-    //速度 <目安:100>
+    //消しゴムの速度
     [SerializeField]
+    private float m_eraserVel = default;
+    //鉄の速度
+    [SerializeField]
+    private float m_ironVel = default;
+    //ビー玉の速度
+    [SerializeField]
+    private float m_marbleVel = default;
+
+    //速度 <目安:150>
     private float m_vel = default;
 
     // 最大速度<目安:4.0>
     [SerializeField]
     private float m_maxvel = default;
+
+    //プレイヤーの属性
+    [SerializeField]
+    private PlayerType m_playerType = default;
 
     // プレイヤー
     private GameObject PlayerObj;
@@ -56,6 +69,9 @@ public class PlayerController : MonoBehaviour
 
         // プレイヤーのRigidbodyを探す
         rigidbody = PlayerObj.transform.GetComponent<Rigidbody>();
+
+        //初期属性の速度
+        ChangeVel();
     }
 
     // PlayerDirector.cs の Update に移動
@@ -158,6 +174,25 @@ public class PlayerController : MonoBehaviour
         oncemovevelocity = direction;
     }
 
+    //属性によって速度を変える
+    public void ChangeVel()
+    {
+        //消しゴムの時
+        if (m_playerType.IsPlayerType == PlayerType.Type.ERASER)
+        {
+            m_vel = m_eraserVel;
+        }
+        //消しゴムの時
+        if (m_playerType.IsPlayerType == PlayerType.Type.IRON)
+        {
+            m_vel = m_ironVel;
+        }
+        //消しゴムの時
+        if (m_playerType.IsPlayerType == PlayerType.Type.MARBLE)
+        {
+            m_vel = m_marbleVel;
+        }
+    }
 
     //ジョイスティックで動かした方向取得・設定
     public Vector2 D { get { return m_d; } set { m_d = value; } }

@@ -14,9 +14,6 @@ public class BookMove : MonoBehaviour
     //イベント管理クラス
     [SerializeField]
     private EventDirector m_event = default;
-
-    //当たった判定
-    private bool m_hitFlag = false;
     
     // Start is called before the first frame update
     void Start()
@@ -41,8 +38,6 @@ public class BookMove : MonoBehaviour
         {
            // 回転、位置ともに固定
             rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-
-            m_hitFlag = false;
         }
     }
 
@@ -50,12 +45,10 @@ public class BookMove : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //イベントがドミノ倒しの時
-        if ((m_event.IsEventKIND == EventDirector.EventKIND.RULE_DOMINO)&&(m_hitFlag == false))
+        if (m_event.IsEventKIND == EventDirector.EventKIND.RULE_DOMINO)
         {
             //SEの再生
             SoundManager.PlaySE(SoundManager.Sound.SE_DominoHit);
-
-            m_hitFlag = true;
         }
     }
 
