@@ -32,7 +32,6 @@ public class PlayerHit : MonoBehaviour
         Script_PlayerFlashing = PlayerDirector.GetComponent<PlayerFlashing>();
 
         Script_Player = GetComponent<Player>();
-
     }
 
     // Update is called once per frame
