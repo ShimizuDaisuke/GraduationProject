@@ -11,8 +11,8 @@ using UnityEngine;
 public class PlayerFlashing : MonoBehaviour
 {
     // 点滅の時間間隔
-    [SerializeField]
-    private float intervalTime = default;
+    //[SerializeField]
+    //private float intervalTime = default;
     // 点滅による時間
     private float invincibleTime = 0.0f;
 
@@ -23,8 +23,8 @@ public class PlayerFlashing : MonoBehaviour
     [SerializeField]
     private bool IsFlashing　=false;
 
-    [SerializeField]
-    private GameObject player = default;
+    //[SerializeField]
+    //private GameObject player = default;
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +53,7 @@ public class PlayerFlashing : MonoBehaviour
         if (IsFlashing == true)
         {
             //プレイヤーを点滅させる
-            Flashing();
+            //Flashing();
             //無敵状態に
             unrivaled();
         }
@@ -62,24 +62,24 @@ public class PlayerFlashing : MonoBehaviour
     //======================================================================================= 
     //! @brief          プレイヤーを点滅する関数
     //======================================================================================= 
-    void Flashing()
-    {
-        //// 点滅時間を計る
-        //invincibleTime += Time.deltaTime;
-        //// 点滅するか
-        //if (invincibleTime >= intervalTime)
-        //{
-        //    // 時間をリセットする
-        //    invincibleTime += -intervalTime;
-        //}
+    //void Flashing()
+    //{
+    //    //// 点滅時間を計る
+    //    //invincibleTime += Time.deltaTime;
+    //    //// 点滅するか
+    //    //if (invincibleTime >= intervalTime)
+    //    //{
+    //    //    // 時間をリセットする
+    //    //    invincibleTime += -intervalTime;
+    //    //}
 
-        //// 現在のプレイヤーの表示状態
-        //bool state = player.activeInHierarchy;
+    //    //// 現在のプレイヤーの表示状態
+    //    //bool state = player.activeInHierarchy;
 
-        //// 表示非表示を反転する
-        //player.SetActive(!state);
+    //    //// 表示非表示を反転する
+    //    //player.SetActive(!state);
 
-    }
+    //}
 
 
     //======================================================================================= 
