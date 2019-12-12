@@ -28,7 +28,12 @@ public class Gravity : MonoBehaviour
     // イベントの監督
     [SerializeField]
     private GameObject EventDirectorObj = default;
-    
+
+    // 重力を付けるオブジェクト
+    [SerializeField]
+    private GameObject TargetObj = default;
+
+
     // 重力(目安:40.0f)  プレイヤーが地面上にいる
     [SerializeField]
     private float GravityObj_HitObj = 40.0f;
@@ -45,9 +50,6 @@ public class Gravity : MonoBehaviour
     [SerializeField]
     private float MaxGravity_NoHitObj = 10.0f;
 
-    // プレイヤー
-    private GameObject PlayerObj;
-
     // rigidbody 
     private new Rigidbody rigidbody;
 
@@ -59,11 +61,15 @@ public class Gravity : MonoBehaviour
 
     void Start()
     {
-        // プレイヤーを探す
-        PlayerObj = GameObject.FindGameObjectWithTag("Player");
-
+        // 重力を付けるオブジェクトがない場合
+        if(TargetObj== null)
+        {
+            // このスクリプトにアタッチされたオブジェクトに重力を付ける
+            TargetObj = this.gameObject;
+        }
+ 
         // プレイヤーのオブジェクトのrigidbodyを取得する
-        rigidbody = PlayerObj.GetComponent<Rigidbody>();
+        rigidbody = TargetObj.GetComponent<Rigidbody>();
 
         // スクリプト：イベント監督用のスクリプト 取得
         Script_EventDirector = EventDirectorObj.GetComponent<EventDirector>();
@@ -91,7 +97,7 @@ public class Gravity : MonoBehaviour
         // --------------------------------------------------------------------------------------------
 
         // プレイヤーからレイを飛ばす
-        Ray ray = new Ray(PlayerObj.transform.position, Vector3.down);
+        Ray ray = new Ray(TargetObj.transform.position, Vector3.down);
 
         // プレイヤーからレイを飛ばして当たったオブジェクトの入れ物
         RaycastHit hit;
