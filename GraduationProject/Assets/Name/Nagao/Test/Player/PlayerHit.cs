@@ -26,6 +26,9 @@ public class PlayerHit : MonoBehaviour
     // 消しゴムのカバーを付けたか
     private bool IsFixCover = false;
 
+    //絵の具と当たったのか
+    private bool IsHitPaints = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +48,7 @@ public class PlayerHit : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         //消しゴムカバーと当たった時
-        if(col.gameObject.tag == "EraserDustCover")
+        if (col.gameObject.tag == "EraserDustCover")
         {
 
             //プレイヤーのHPをMAXにする
@@ -65,6 +68,12 @@ public class PlayerHit : MonoBehaviour
 
             // 消しゴムにカバーを付けた
             IsFixCover = true;
+        }
+
+        //絵の具と当たった時
+        if ((col.gameObject.tag == "Paints")&&(IsHitPaints == false))
+        {
+            IsHitPaints = true;
         }
     }
     
@@ -93,4 +102,6 @@ public class PlayerHit : MonoBehaviour
     }
 
     public bool FixCover { get { return IsFixCover; } set { IsFixCover = value; } }
+
+    public bool HitPaints { get { return IsHitPaints; } set { IsHitPaints = value; } }
 }
