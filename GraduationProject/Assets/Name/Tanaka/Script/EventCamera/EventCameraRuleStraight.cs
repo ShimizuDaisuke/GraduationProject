@@ -17,7 +17,7 @@ public class EventCameraRuleStraight : CameraEventBase
 
     //カメラの移動先座標
     [SerializeField]
-    private GameObject m_targetPosObj;
+    private GameObject m_targetPosObj = null;
 
     //目標の角度
     [SerializeField]
@@ -36,7 +36,7 @@ public class EventCameraRuleStraight : CameraEventBase
     private float m_camera2DMoveSpeed = 0.1f;
 
     //二点間の距離を入れる
-    private float distance_two;
+    private float distance_two = 0.0f;
 
     //プレイヤーとの距離Z
     private float m_cameraSubPosZ = 4.5f;

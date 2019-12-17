@@ -22,16 +22,16 @@ public class Player : MonoBehaviour
     //プレイヤーを守っている消しゴムのカバー
     private GameObject m_cover = null;
     //現在の体力
-    private int m_HP;
+    private int m_HP = 0;
     //残機
-    private int m_life;
+    private int m_life = 0;
 
     //リザルトメインのスクリプト
-    private ClearManagement clearManager;
+    private ClearManagement clearManager = default;
 
     //破棄しないように設定したオブジェクト
     [SerializeField]
-    private GameObject ClearObject;
+    private GameObject ClearObject = null;
 
     // Start is called before the first frame update
     void Start()

@@ -14,7 +14,7 @@ public class EventCameraPencilcaseMoveGool : CameraEventBase
 {
     //ターゲットオブジェクト
     [SerializeField]
-    private GameObject m_targetObj;
+    private GameObject m_targetObj = null;
 
     void Awake()
     {
