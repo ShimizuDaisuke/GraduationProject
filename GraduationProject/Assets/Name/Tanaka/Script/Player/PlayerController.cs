@@ -50,16 +50,16 @@ public class PlayerController : MonoBehaviour
     private PlayerType m_playerType = default;
 
     // プレイヤー
-    private GameObject PlayerObj;
+    private GameObject PlayerObj = null;
 
     // プレイヤーのRigidbody
-    private Rigidbody rigidbody;
+    private Rigidbody m_rigidbody = default;
 
     // 前のプレイヤーの速度；
-    private Vector3 oncemovevelocity;
+    private Vector3 oncemovevelocity = Vector3.zero;
 
     //ジョイスティックで動かした方向X
-    private Vector2 m_d;
+    private Vector2 m_d = Vector2.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         PlayerObj = GameObject.FindGameObjectWithTag("Player");
 
         // プレイヤーのRigidbodyを探す
-        rigidbody = PlayerObj.transform.GetComponent<Rigidbody>();
+        m_rigidbody = PlayerObj.transform.GetComponent<Rigidbody>();
 
         //初期属性の速度
         ChangeVel();
@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
         if (direction == Vector3.zero) return;
 
         // 現在プレイヤーが進んでいる速度
-        Vector3 playervelocity = rigidbody.velocity;
+        Vector3 playervelocity = m_rigidbody.velocity;
 
         // 前と今のプレイヤーの速度が正負反対の場合
         // X軸
@@ -150,24 +150,24 @@ public class PlayerController : MonoBehaviour
         }
 
         //　反転された速度を反映させる
-        rigidbody.velocity = playervelocity;
+        m_rigidbody.velocity = playervelocity;
 
         // プレイヤーが最大速度より超えていない場合
-        if (rigidbody.velocity.magnitude < m_maxvel)
+        if (m_rigidbody.velocity.magnitude < m_maxvel)
         {
             // 3D空間上によるプレイヤーの移動 
-            rigidbody.AddForce(m_vel * direction, ForceMode.Force);
+            m_rigidbody.AddForce(m_vel * direction, ForceMode.Force);
         }
 
         // プレイヤーの速度を反転させたり加速させた後、プレイヤーの速度が最大速度より超えた場合
-        if (rigidbody.velocity.magnitude > m_maxvel)
+        if (m_rigidbody.velocity.magnitude > m_maxvel)
         {
             // プレイヤーの向きを正規化する
             Vector3 tempmovevellocity = direction;
             tempmovevellocity.Normalize();
 
             // プレイヤーの最大速度内に収める
-            rigidbody.velocity = m_maxvel * tempmovevellocity;
+            m_rigidbody.velocity = m_maxvel * tempmovevellocity;
         }
 
         // 前のプレイヤーの速度を取得する

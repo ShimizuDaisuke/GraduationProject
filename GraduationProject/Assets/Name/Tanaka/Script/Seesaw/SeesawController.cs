@@ -25,14 +25,14 @@ public class SeesawController : MonoBehaviour
     private float m_retunBoardPower = 1.0f;
 
     //板の最初のZの角度
-    private Quaternion m_startRot;
+    private Quaternion m_startRot = Quaternion.identity;
 
     //投げたフラグ
-    private bool m_throwFlag;
+    private bool m_throwFlag = false;
 
     //フリーズさせておく座標
     [SerializeField]
-    private GameObject m_freezPos;
+    private GameObject m_freezPos = null;
 
     //プレイヤーのゲームオブジェクト
     private GameObject m_player = null;

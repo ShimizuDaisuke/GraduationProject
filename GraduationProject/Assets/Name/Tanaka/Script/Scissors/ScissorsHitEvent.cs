@@ -14,10 +14,7 @@ public class ScissorsHitEvent : MonoBehaviour
 {
     //イベントクラス
     [SerializeField]
-    private EventDirector m_event;
-
-    //プレイヤーのゲームオブジェクト
-    private GameObject m_player = null;
+    private EventDirector m_event = default;
 
     // ヒットフラグ
     private bool m_hitFlag = false;

@@ -26,7 +26,7 @@ public class PencilCaseCoverClose : MonoBehaviour
 
     //リザルトメインのスクリプト
     [SerializeField]
-    private ClearManagement m_clearManager;
+    private ClearManagement m_clearManager = default;
 
     // Start is called before the first frame update
     void Start()

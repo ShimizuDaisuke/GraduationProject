@@ -18,17 +18,17 @@ public class ChaseEffect : MonoBehaviour
 
     //イベントクラス
     [SerializeField]
-    private EventDirector m_event;
+    private EventDirector m_event = default;
 
     //パーティクルシステム
-    private ParticleSystem m_particle;
+    private ParticleSystem m_particle = null;
 
     //プレイヤーのオブジェクト
     [SerializeField]
-    private GameObject m_player;
+    private GameObject m_player = null;
 
     // プレイヤーとこのパーティクルの距離
-    private Vector3 dir;
+    private Vector3 dir = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()

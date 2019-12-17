@@ -14,11 +14,11 @@ public class GoolPosMovePlayer : MonoBehaviour
 {
     //イベントクラス
     [SerializeField]
-    private EventDirector m_event;
+    private EventDirector m_event = default;
 
     //ゴール座標のオブジェクト
     [SerializeField]
-    private GameObject m_goolPosObj;
+    private GameObject m_goolPosObj = null;
 
     //プレイヤーのゲームオブジェクト
     private GameObject m_player = null;
@@ -32,7 +32,7 @@ public class GoolPosMovePlayer : MonoBehaviour
 
     //移動止めるフラグオブジェ
     [SerializeField]
-    private MoveStopCol m_moveStopCol;
+    private MoveStopCol m_moveStopCol = default;
 
 
     // Start is called before the first frame update
