@@ -32,12 +32,12 @@ public class BalanceController : MonoBehaviour
     private GameObject m_childIronSide = null;
 
     //鉄側の板の孫
-    private GameObject m_grandchildIronSide = null:
+    private GameObject m_grandchildIronSide = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_childIronSide = m_board_IronSide.transform.GetChild().gameObject
+        //m_childIronSide = m_board_IronSide.transform.GetChild().gameObject
     }
 
     // Update is called once per frame
