@@ -6,8 +6,8 @@ using UnityEngine.UI; //パネルのイメージを操作するのに必要
 public class Fade : MonoBehaviour
 {
 
-    float fadeSpeed = 0.02f;        //透明度が変わるスピードを管理
-    float red, green, blue, alfa;   //パネルの色、不透明度を管理
+    private float fadeSpeed = 0.02f;        //透明度が変わるスピードを管理
+    private float red, green, blue, alfa;   //パネルの色、不透明度を管理
 
     private bool m_FadeOut = false;  //フェードアウト処理の開始、完了を管理するフラグ
     private bool m_FadeIn = true;   //フェードイン処理の開始、完了を管理するフラグ
