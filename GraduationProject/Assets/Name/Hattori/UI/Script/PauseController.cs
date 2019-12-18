@@ -58,6 +58,8 @@ public class PauseController : MonoBehaviour
 
     public void StopGame()
     {
+        Debug.Log("111");
+
         //時を止める
         Time.timeScale = 0.0f;
 
