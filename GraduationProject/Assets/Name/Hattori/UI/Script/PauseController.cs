@@ -24,7 +24,7 @@ public class PauseController : MonoBehaviour
     [SerializeField]
     private GameObject restartButton;
 
-    //タイトルに戻るボタン
+    //セレクトに戻るボタン
     [SerializeField]
     private GameObject quitButton;
 
@@ -43,6 +43,14 @@ public class PauseController : MonoBehaviour
     [SerializeField]
     private GameObject timeDirector;
 
+#if true
+    //ポーズカウンター
+    int pauseCounter = 0;
+#else
+    // ポーズするか
+    bool IsPose = false;
+#endif
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +63,7 @@ public class PauseController : MonoBehaviour
         //やり直しボタンは最初は見えない
         restartButton.SetActive(false);
 
-        //タイトルに戻るボタンは最初は見えない
+        //セレクトに戻るボタンは最初は見えない
         quitButton.SetActive(false);
 
         //ポーズ画面の背景は最初は見えない
@@ -71,16 +79,53 @@ public class PauseController : MonoBehaviour
 
     }
 
+    public void ClickPoseButton()
+    {
+#if true
+
+        //ポーズカウンターを一つ進める
+        pauseCounter++;
+
+        //ポーズカウンターが偶数ならポーズ画面解除
+        if(pauseCounter % 2 == 0)
+        {
+            ContinueGame();
+        }
+        else
+        {
+            //奇数ならポーズ画面出す
+            StopGame();
+        }
+        
+#else
+
+        // <別解>
+        // ポーズする状態を反転する  ポーズしない⇔ポーズする
+        IsPose = !IsPose;
+
+        //ポーズをしない場合は、ポーズ画面を解除
+        if (IsPose == false)
+        {
+            ContinueGame();
+           
+        }
+        else
+        {
+            //ポーズする場合は、ポーズ画面出す
+            StopGame();
+        }
+
+#endif
+
+    }
+
     //======================================================================================= 
     //! @brief      ゲームを止めてポーズ画面を出す関数
     //======================================================================================= 
-    public void StopGame()
+    private void StopGame()
     {
         //時を止める
         Time.timeScale = 0.0f;
-
-        //ポーズボタンを見えなくする
-        pauseButton.SetActive(false);
 
         //続けるボタンを見えるようにする
         continueButton.SetActive(true);
@@ -88,7 +133,7 @@ public class PauseController : MonoBehaviour
         //やり直しボタンを見えるようにする
         restartButton.SetActive(true);
 
-        //タイトルに戻るボタンを見えるようにする
+        //セレクトに戻るボタンを見えるようにする
         quitButton.SetActive(true);
 
         //ポーズ画面の背景を見えるようにする
@@ -106,16 +151,13 @@ public class PauseController : MonoBehaviour
         //プレイヤーと時が動き出す
         StopOrMoveScript(true);
 
-        //ポーズボタンを見えるようにする
-        pauseButton.SetActive(true);
-
         //続けるボタンを見えなくする
         continueButton.SetActive(false);
 
         //やり直しボタンを見えなくする
         restartButton.SetActive(false);
 
-        //タイトルに戻るボタンを見えなくする
+        //セレクトに戻るボタンを見えなくする
         quitButton.SetActive(false);
 
         //ポーズ画面の背景を見えなくする
@@ -132,6 +174,12 @@ public class PauseController : MonoBehaviour
     {
         //現在のシーンを読み込む
         SceneManager.LoadScene(sceneName);
+
+        //プレイヤーと時が動き出す
+        StopOrMoveScript(true);
+
+        //時が動き出す
+        Time.timeScale = 1.0f;
     }
 
     //======================================================================================= 
@@ -139,8 +187,8 @@ public class PauseController : MonoBehaviour
     //======================================================================================= 
     public void QuitGame()
     {
-        //タイトルに戻る
-        SceneManager.LoadScene("Title");
+        //セレクトに戻る
+        SceneManager.LoadScene("Select");
     }
 
     //======================================================================================= 
