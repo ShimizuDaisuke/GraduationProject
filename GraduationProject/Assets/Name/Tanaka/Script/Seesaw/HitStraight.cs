@@ -14,7 +14,7 @@ public class HitStraight : MonoBehaviour
 {
     //イベントクラス
     [SerializeField]
-    private EventDirector m_event;
+    private EventDirector m_event = default;
 
     //プレイヤーのゲームオブジェクト
     private GameObject m_player = null;
@@ -28,10 +28,10 @@ public class HitStraight : MonoBehaviour
     private float m_speedZ = 0.01f;
 
     //直進フラグ
-    private bool m_straightFlag;
+    private bool m_straightFlag = false;
 
     //直進するまでの時間
-    private float m_time;
+    private float m_time = 0.0f;
 
     //直進するまでの最大時間
     private const float MAX_TIME = 1.0f;

@@ -15,7 +15,7 @@ public class CreateEDEffect : MonoBehaviour
 
     //通常の消しカスのエフェクトのプレハブ
     [SerializeField]
-    private GameObject objPrefab;
+    private GameObject objPrefab = null;
 
     public void Create(Vector3 pos)
     {

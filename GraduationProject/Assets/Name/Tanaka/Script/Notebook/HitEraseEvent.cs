@@ -14,7 +14,7 @@ public class HitEraseEvent : MonoBehaviour
 {
     //イベントクラス
     [SerializeField]
-    private EventDirector m_event;
+    private EventDirector m_event = default;
 
     // ヒットフラグ
     private bool m_hitFlag = false;

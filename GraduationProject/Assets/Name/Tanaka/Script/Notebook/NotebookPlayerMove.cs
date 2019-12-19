@@ -14,39 +14,39 @@ public class NotebookPlayerMove : MonoBehaviour
 {
     //イベントクラス
     [SerializeField]
-    private EventDirector m_event;
+    private EventDirector m_event = default;
 
     //プレイヤーのオブジェクト
     [SerializeField]
-    private GameObject m_player;
+    private GameObject m_player = null;
 
     //消しカスを生成するクラス
     [SerializeField]
-    private CreateEraserDust m_createED;
+    private CreateEraserDust m_createED = default;
 
     // HitEraseEvent内
     [SerializeField]
-    private HitEraseEvent m_script_HitEraseEvent;
+    private HitEraseEvent m_script_HitEraseEvent = default;
 
     //落書きを消すときのカメラのクラス
     [SerializeField]
-    private EventCameraEraseGraffti m_cameraEraseGraffti;
+    private EventCameraEraseGraffti m_cameraEraseGraffti = default;
 
     //速度
     [SerializeField]
     private float m_speed = 0.25f;
 
     //消しカスの出現のランダム幅
-    private int m_randomRange;
+    private int m_randomRange = 0;
 
     //追いかけるまでのカウント
-    private float m_chaseCount;
+    private float m_chaseCount = 0;
 
     //追いかけるまでの時間
     private const float CHACE_MAX_COUNT = 1.0f;
 
     //使用フラグ
-    private bool m_useFlag;
+    private bool m_useFlag = false;
 
     //動き出すまでのカウント
     private float m_startCount = 0;

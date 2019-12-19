@@ -18,7 +18,7 @@ public class BlockColController : MonoBehaviour
 
     //ブロックする当たり判定オブジェクト
     [SerializeField]
-    private GameObject m_blockObj;
+    private GameObject m_blockObj = null;
 
     // Start is called before the first frame update
     void Start()

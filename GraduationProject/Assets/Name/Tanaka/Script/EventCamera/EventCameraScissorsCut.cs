@@ -12,12 +12,9 @@ using UnityEngine;
 //ハサミの切る時のカメラの処理
 public class EventCameraScissorsCut : CameraEventBase
 {
-    //ハサミの動きのクラス
-    private ScissorsController m_scissorsCon = default;
-
     //ハサミのレイヤーマスク
     [SerializeField]
-    private LayerMask m_layerMaskCut;
+    private LayerMask m_layerMaskCut = default;
 
     void Awake()
     {

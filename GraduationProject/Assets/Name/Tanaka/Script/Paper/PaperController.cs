@@ -14,14 +14,14 @@ public class PaperController : MonoBehaviour
 {
     //イベントクラス
     [SerializeField]
-    private EventDirector m_event;
+    private EventDirector m_event = default;
 
     //ハサミのクラス
     [SerializeField]
-    private ScissorsController m_scissorsCon;
+    private ScissorsController m_scissorsCon = default;
 
     //色クラス
-    private Color m_color;
+    private Color m_color = default;
 
     //フェードアウトスピード
     [SerializeField]

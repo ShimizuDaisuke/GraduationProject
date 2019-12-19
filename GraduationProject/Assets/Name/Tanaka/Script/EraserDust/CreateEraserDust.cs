@@ -14,7 +14,7 @@ public class CreateEraserDust : MonoBehaviour
 {
     //消しカスオブジェクトのプレハブ
     [SerializeField]
-    private GameObject objPrefab;
+    private GameObject objPrefab = null;
 
     // Start is called before the first frame update
     void Start()

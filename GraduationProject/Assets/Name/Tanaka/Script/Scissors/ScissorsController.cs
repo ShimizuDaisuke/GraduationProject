@@ -14,7 +14,7 @@ public class ScissorsController : MonoBehaviour
 {
     //イベントクラス
     [SerializeField]
-    private EventDirector m_event;
+    private EventDirector m_event = default;
 
     //プレイヤーのゲームオブジェクト
     [SerializeField]
@@ -32,24 +32,24 @@ public class ScissorsController : MonoBehaviour
     private float m_playerSpeedX = 0.01f;
 
     // 上の刃と下の刃の差
-    private Vector3 m_directionBlade;
+    private Vector3 m_directionBlade = Vector3.zero;
 
     // 初期の刃の角度
-    private Vector3 m_upperBladeOnceDegree;
-    private Vector3 m_lowerBladeOnceDegree;
+    private Vector3 m_upperBladeOnceDegree = Vector3.zero;
+    private Vector3 m_lowerBladeOnceDegree = Vector3.zero;
 
     //回転終了フラグ
     private bool m_rotationFinishFlag = false;
 
     //上の刃をどれだけ動かした値
-    private Vector3 m_upperBladeMove;
+    private Vector3 m_upperBladeMove = Vector3.zero;
 
     //毎フレーム角度を保存する
-    private Vector3 m_updeateAngle;
+    private Vector3 m_updeateAngle = Vector3.zero;
 
     //ターゲット座標
     [SerializeField]
-    private GameObject m_targetPos;
+    private GameObject m_targetPos = null;
 
     //ターゲット座標に進む速度
     [SerializeField]
@@ -61,26 +61,6 @@ public class ScissorsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // 角度の範囲を制限する(0<=Θ<=180)
-        //上の刃
-        //if (m_upperBlade.transform.localEulerAngles.y > 180) // 〇〇〇 190 -> 10  370→　10
-        //{
-        //    m_upperBlade.transform.localEulerAngles -= new Vector3(0.0f, 180.0f, 0.0f);
-        //}
-        //if (m_upperBlade.transform.localEulerAngles.y < 0)    // 〇〇〇 -10 -> 170  -190→　170
-        //{
-        //    m_upperBlade.transform.localEulerAngles += new Vector3(0.0f, 180.0f, 0.0f);
-        //}
-        ////下の刃
-        //if (m_lowerBlade.transform.localEulerAngles.y > 180) // 〇〇〇 190 -> 10  370→　10
-        //{
-        //    m_lowerBlade.transform.localEulerAngles -= new Vector3(0.0f, 180.0f, 0.0f);
-        //}
-        //if (m_lowerBlade.transform.localEulerAngles.y < 0)    // 〇〇〇 -10 -> 170  -190→　170
-        //{
-        //    m_lowerBlade.transform.localEulerAngles += new Vector3(0.0f, 180.0f, 0.0f);
-        //}
-
         // 上の刃と下の刃の差を求める
         m_directionBlade = (m_lowerBlade.transform.localEulerAngles - m_upperBlade.transform.localEulerAngles) / 2.0f;
         
