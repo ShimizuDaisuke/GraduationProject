@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
@@ -31,6 +32,9 @@ public class PauseController : MonoBehaviour
     [SerializeField]
     private GameObject pauseBackground;
 
+    //現在のシーン名
+    string sceneName;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,14 +52,19 @@ public class PauseController : MonoBehaviour
 
         //ポーズ画面の背景は最初は見えない
         pauseBackground.SetActive(false);
+
+        //現在のシーン名を取得
+        sceneName = SceneManager.GetActiveScene().name;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
+    //======================================================================================= 
+    //! @brief      ゲームを止めてポーズ画面を出す関数
+    //======================================================================================= 
     public void StopGame()
     {
         Debug.Log("111");
@@ -79,6 +88,9 @@ public class PauseController : MonoBehaviour
         pauseBackground.SetActive(true);
     }
 
+    //======================================================================================= 
+    //! @brief      ポーズ画面を解除してゲームを再開する関数
+    //======================================================================================= 
     public void ContinueGame()
     {
         //ポーズボタンを見えるようにする
@@ -98,5 +110,23 @@ public class PauseController : MonoBehaviour
 
         //時が動き出す
         Time.timeScale = 1.0f;
+    }
+
+    //======================================================================================= 
+    //! @brief      現在のステージを最初からやり直す関数
+    //======================================================================================= 
+    public void ReStage()
+    {
+        //現在のシーンを読み込む
+        SceneManager.LoadScene(sceneName);
+    }
+
+    //======================================================================================= 
+    //! @brief      タイトルに戻る関数
+    //======================================================================================= 
+    public void QuitGame()
+    {
+        //タイトルに戻る
+        SceneManager.LoadScene("Title");
     }
 }
