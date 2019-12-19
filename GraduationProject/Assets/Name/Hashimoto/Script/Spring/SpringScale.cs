@@ -5,7 +5,7 @@
 //!
 //! @author 橋本奉武
 //!
-//! @date   10月10日
+//! @date   12月2日
 //!
 //! @note  <参考> ばね振り子の力学的エネルギー
 //!               http://www.wakariyasui.sakura.ne.jp/p/mech/rikiene/banehuriko.html
@@ -144,6 +144,9 @@ public class SpringScale : MonoBehaviour
 
 #endif
 
+    // < 定義 >  拡大・縮小してから掛かった最大時間
+    private const float MAXTIME = 1.0f;
+
     // 1フレームに経過する時間
     [Range(0.0f, 0.1f),SerializeField]
     private float ScaleSpeedTime = 0.1f;
@@ -161,15 +164,17 @@ public class SpringScale : MonoBehaviour
     // 現在拡大・縮小してから経過した時間(範囲:0≦X≦1)
     private float NowScaleTime = 0.0f;
 
+    // 最大まで拡大もしくは最小まで縮小したか
+    private bool IsMaxBigSmall = false;
+
+
     // <<< テスト >>> 拡大するか (1:拡大、0:何もしない、-1:縮小)
     private int IsBig = 0;
-
-    
     [SerializeField]
     private Vector3 raydirec = Vector3.down;
     [SerializeField]
-    private float raylength = 0.1f;
-
+    private float raylength = 0.9f;
+ 
     /// <summary>
     /// 開始処理
     /// </summary>
@@ -187,6 +192,8 @@ public class SpringScale : MonoBehaviour
     /// </summary>
     void Update()
     {
+        return;
+
         // <<< テスト >>> ZキーとXキー同時に押されたら、無効にする
         if ( !( (Input.GetKey(KeyCode.Z)) && (Input.GetKey(KeyCode.X)) ) )
         {
@@ -285,5 +292,112 @@ public class SpringScale : MonoBehaviour
 
 
     }
+
+    // ================================================================================================
+    // < メイン >
+
+    /// <summary>
+    /// ばねのサイズを変える
+    /// </summary>
+    /// <param name="isbig">拡大するか(false：縮小　  true：拡大)</param>
+    /// <returns>true：正常終了  false：例外処理</returns>
+    public bool ChangeSpringScale(bool isbig)
+    {
+        // 既に最大まで拡大もしくは縮小していた場合、何もしない
+        if (IsMaxBigSmall == true) return false;
+
+        // 拡大縮小し始めて掛った時間を計る
+        MeasureBigSmallTime();
+
+        // 実際にばねのサイズを変える
+        ChangeSpringScaleMain(isbig);
+
+        // 拡大縮小し始めて掛った時間が最大時間になった場合
+        if(NowScaleTime == MAXTIME)
+        {
+            // リセットする
+            Reset(isbig);
+
+            // 最大まで拡大もしくは最小まで縮小した
+            IsMaxBigSmall = true;
+        }
+
+        // 正常にばねのサイズを変えた
+        return true;
+    }
+
+    // ------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// 拡大縮小し始めて掛った時間を計る
+    /// </summary>
+    /// <returns>その時間</returns>
+    private float MeasureBigSmallTime()
+    {
+        // 拡大縮小し始めて掛った時間を計る
+        NowScaleTime += ScaleSpeedTime;
+
+        // 拡大縮小し始めて掛った時間を制限する
+        if (NowScaleTime > MAXTIME) NowScaleTime = MAXTIME;
+
+        // 時間を渡す
+        return NowScaleTime;
+    }
+
+    /// <summary>
+    /// 実際に、ばねのサイズを変える
+    /// </summary>
+    /// <param name="NowScaleTime">拡大縮小し始めて掛った時間</param>
+    /// <param name="isbig">拡大するか(false：縮小　  true：拡大)</param>
+    /// <returns>flase：異常   true：正常</returns>
+    private bool ChangeSpringScaleMain(bool isbig)
+    {
+        // 拡大縮小し始めて掛った時間が範囲外の場合、何もしない
+        if ((NowScaleTime < 0.0f) || (NowScaleTime > 1.0f)) return false;
+
+        // 拡大・縮小する状態に合わせて拡大率の割合を変える (y = x^2)
+        float bigrate = (isbig == false) ? (1.0f - NowScaleTime) * (1.0f - NowScaleTime) : NowScaleTime * NowScaleTime;
+
+        // 実際に拡大・縮小させる
+        transform.localScale = new Vector3(MiuSizeByHeight.x + DifferenceMaxMiuSize.x * bigrate,
+                                           MiuSizeByHeight.y + DifferenceMaxMiuSize.y * bigrate,
+                                           MiuSizeByHeight.z + DifferenceMaxMiuSize.z * bigrate);
+
+        // 正常に、ばねのサイズを変えた
+        return true;
+    }
+
+    /// <summary>
+    /// ばねのサイズに関わる変数をリセットする
+    /// </summary>
+    /// <param name="isbig">拡大するか(false：縮小　  true：拡大)</param>
+    private void Reset(bool isbig)
+    {
+        // 拡大・縮小する時間をリセットする
+        NowScaleTime = 0.0f;
+
+        // プレイヤーのサイズを最小または最大にする
+        // 拡大する場合
+        if(isbig==true)
+        {
+            // プレイヤーを最大サイズにする
+            transform.localScale = new Vector3(InitializeSize.x, InitializeSize.y, InitializeSize.z);
+
+        }
+        // 縮小する場合
+        else
+        {
+            // プレイヤーを最小サイズにする
+            transform.localScale = new Vector3(MiuSizeByHeight.x, MiuSizeByHeight.y, MiuSizeByHeight.z);
+        }
+
+    }
+
+    /// <summary>
+    /// 取得・設定関数
+    /// </summary>
+    
+        // ばねのサイズを最大まで拡大もしくは最小まで縮小したか
+        public bool IsSpring_MaxBigSmall { get { return IsMaxBigSmall; }  set { IsMaxBigSmall = value; } }
 
 }
