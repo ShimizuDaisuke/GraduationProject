@@ -35,6 +35,14 @@ public class PauseController : MonoBehaviour
     //現在のシーン名
     string sceneName;
 
+    //プレイヤーを止めるため
+    [SerializeField]
+    private GameObject playerDirector;
+
+    //時を止めるため
+    [SerializeField]
+    private GameObject timeDirector;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +68,7 @@ public class PauseController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 
     //======================================================================================= 
@@ -67,8 +76,6 @@ public class PauseController : MonoBehaviour
     //======================================================================================= 
     public void StopGame()
     {
-        Debug.Log("111");
-
         //時を止める
         Time.timeScale = 0.0f;
 
@@ -86,6 +93,9 @@ public class PauseController : MonoBehaviour
 
         //ポーズ画面の背景を見えるようにする
         pauseBackground.SetActive(true);
+
+        // プレイヤーと時を止める
+        StopOrMoveScript(false);
     }
 
     //======================================================================================= 
@@ -93,6 +103,9 @@ public class PauseController : MonoBehaviour
     //======================================================================================= 
     public void ContinueGame()
     {
+        //プレイヤーと時が動き出す
+        StopOrMoveScript(true);
+
         //ポーズボタンを見えるようにする
         pauseButton.SetActive(true);
 
@@ -128,5 +141,28 @@ public class PauseController : MonoBehaviour
     {
         //タイトルに戻る
         SceneManager.LoadScene("Title");
+    }
+
+    //======================================================================================= 
+    //! @brief      プレイヤーと時を止める関数
+    //======================================================================================= 
+    private void StopOrMoveScript(bool stopormove)
+    {
+        // プレイヤー内にあるスクリプト.表示状態 =  
+        if (playerDirector != null)
+        {
+            //プレイヤーコントローラーを止める
+            playerDirector.GetComponent<PlayerController>().enabled = stopormove;
+            
+            //プレイヤーの重力を止める
+            playerDirector.GetComponent<Gravity>().enabled = stopormove;
+        }
+        
+        //タイムディレクター内にあるスクリプト.表示状態 =
+        if(timeDirector != null)
+        {
+            //タイムディレクターのタイムコントローラーを止める
+            timeDirector.GetComponent<TimerController>().enabled = stopormove;
+        }
     }
 }
