@@ -32,6 +32,14 @@ public class PauseController : MonoBehaviour
     [SerializeField]
     private GameObject pauseBackground;
 
+    //2D<->3Dボタン
+    [SerializeField]
+    private GameObject dimensionButton;
+
+    //ジョイスティック
+    [SerializeField]
+    private GameObject joystickIcon;
+
     //現在のシーン名
     string sceneName;
 
@@ -42,6 +50,10 @@ public class PauseController : MonoBehaviour
     //時を止めるため
     [SerializeField]
     private GameObject timeDirector;
+
+    //ジョイスティックの動き
+    [SerializeField]
+    private GameObject joystickDirector;
 
 #if true
     //ポーズカウンター
@@ -68,6 +80,12 @@ public class PauseController : MonoBehaviour
 
         //ポーズ画面の背景は最初は見えない
         pauseBackground.SetActive(false);
+
+        //2D<->3Dボタンは最初から見える
+        dimensionButton.SetActive(true);
+
+        //ジョイスティックは最初から見える
+        joystickIcon.SetActive(true);
 
         //現在のシーン名を取得
         sceneName = SceneManager.GetActiveScene().name;
@@ -139,6 +157,12 @@ public class PauseController : MonoBehaviour
         //ポーズ画面の背景を見えるようにする
         pauseBackground.SetActive(true);
 
+        //2D<->3Dボタンを見えないようにする
+        dimensionButton.SetActive(false);
+
+        //ジョイスティックを使えないようにする
+        joystickIcon.SetActive(false);
+
         // プレイヤーと時を止める
         StopOrMoveScript(false);
     }
@@ -162,6 +186,12 @@ public class PauseController : MonoBehaviour
 
         //ポーズ画面の背景を見えなくする
         pauseBackground.SetActive(false);
+
+        //2D<->3Dボタンを見えるようにする
+        dimensionButton.SetActive(true);
+
+        //ジョイスティックを使えるようにする
+        joystickIcon.SetActive(true);
 
         //時が動き出す
         Time.timeScale = 1.0f;
@@ -187,6 +217,12 @@ public class PauseController : MonoBehaviour
     //======================================================================================= 
     public void QuitGame()
     {
+        //プレイヤーと時が動き出す
+        StopOrMoveScript(true);
+
+        //時が動き出す
+        Time.timeScale = 1.0f;
+        
         //セレクトに戻る
         SceneManager.LoadScene("Select");
     }
@@ -211,6 +247,13 @@ public class PauseController : MonoBehaviour
         {
             //タイムディレクターのタイムコントローラーを止める
             timeDirector.GetComponent<TimerController>().enabled = stopormove;
+        }
+
+        //ジョイスティックディレクター内にあるスクリプト.表示状態　=
+        if(joystickDirector != null)
+        {
+            //ジョイスティックコントローラーのジョイスティックコントローラーを止める
+            joystickDirector.GetComponent<JoystickController>().enabled = stopormove;
         }
     }
 }
