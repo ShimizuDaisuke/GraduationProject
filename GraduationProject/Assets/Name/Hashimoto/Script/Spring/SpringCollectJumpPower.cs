@@ -43,6 +43,11 @@ public class SpringCollectJumpPower : MonoBehaviour
     // プレイヤーの前の位置
     private Vector3 OncePosition;
 
+    // < テスト > グルグル回る回る
+    [SerializeField]
+    private GameObject rotationobj;
+    int a = 0;
+ 
     /// <summary>
     /// 開始処理
     /// </summary>
@@ -63,11 +68,16 @@ public class SpringCollectJumpPower : MonoBehaviour
     /// </summary>
     void Update()
     {
+        a++;
+        // グルグル回る回る
+        rotationobj.transform.rotation = Quaternion.Euler(0, a, -23.0f);
+        return;
+
         // スクリプト「ばねのサイズ」が存在していない場合、何もしない
         if (Script_SpringScale == null) return;
 
         // ばねの状態
-        switch(Enum_NowStateKind)
+        switch (Enum_NowStateKind)
         {
             // ばねが「縮む」もしくは「伸びる」場合
             case StateKind.SAMLL:
@@ -156,5 +166,6 @@ public class SpringCollectJumpPower : MonoBehaviour
 
         // 常にばねの前の位置を更新する
         OncePosition = transform.position;
+
     }
 }

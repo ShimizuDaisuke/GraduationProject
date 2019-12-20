@@ -693,7 +693,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAX1UP_LIFEGAGE: 100
-  m_addGauge: 10
 --- !u!114 &132669866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6621,6 +6620,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIDirector
       objectReference: {fileID: 0}
+    - target: {fileID: 7324354274164813531, guid: 920bddb9bb0b3e04db0e9c0996aedfb7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7324354274164813532, guid: 920bddb9bb0b3e04db0e9c0996aedfb7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6706,6 +6710,11 @@ PrefabInstance:
       propertyPath: QRUI
       value: 
       objectReference: {fileID: 456890417}
+    - target: {fileID: 7324354274164813533, guid: 920bddb9bb0b3e04db0e9c0996aedfb7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 920bddb9bb0b3e04db0e9c0996aedfb7, type: 3}
 --- !u!1 &304904599
@@ -10037,6 +10046,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &826066641 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7986249860330243914, guid: 34b9bce49af24d649a9ffcb1189ddd5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1069313912}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &830695198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: e0ee478d1c043f841ac6ce75171a9362,
@@ -23966,6 +23981,26 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -9187308824359138753, guid: 34b9bce49af24d649a9ffcb1189ddd5d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -9187308824359138753, guid: 34b9bce49af24d649a9ffcb1189ddd5d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -9187308824359138753, guid: 34b9bce49af24d649a9ffcb1189ddd5d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -9187308824359138753, guid: 34b9bce49af24d649a9ffcb1189ddd5d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2210963481323279187, guid: 34b9bce49af24d649a9ffcb1189ddd5d,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -24017,26 +24052,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6948445073764056742, guid: 34b9bce49af24d649a9ffcb1189ddd5d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -9187308824359138753, guid: 34b9bce49af24d649a9ffcb1189ddd5d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -9187308824359138753, guid: 34b9bce49af24d649a9ffcb1189ddd5d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -9187308824359138753, guid: 34b9bce49af24d649a9ffcb1189ddd5d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -9187308824359138753, guid: 34b9bce49af24d649a9ffcb1189ddd5d,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -31692,7 +31707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3020e0835a5a1945ba96586e575ede6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScaleSpeedTime: 0.1
+  rotationobj: {fileID: 826066641}
 --- !u!1 &1846667912 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8170153791668043269, guid: 0d230cc8be529a542a08cb878ab14b18,
@@ -32216,9 +32231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea675f2930f34c44f93c01b694659ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_layerMaskGraffti:
-    serializedVersion: 2
-    m_Bits: 2048
+  m_cameraMovePos: {fileID: 0}
   m_targetAngle: 80
   m_angleSpeed: 0.5
   m_cameraMoveSpeed: 0.5
