@@ -35,7 +35,7 @@ public class IceMelt : MonoBehaviour
         //火に当たり続けている間
         if(col.gameObject.tag == "Fire")
         {
-            //無敵時間のカウントアップ
+            //時間のカウントアップ
             m_meltTime += (Time.deltaTime * 0.3f);
 
 
