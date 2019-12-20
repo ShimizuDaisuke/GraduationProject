@@ -46,8 +46,12 @@ public class SpringCollectJumpPower : MonoBehaviour
     // < テスト > グルグル回る回る
     [SerializeField]
     private GameObject rotationobj;
-    int a = 0;
- 
+
+    //ジョイスティッククラス
+    [SerializeField]
+    private Joystick m_joystick = default;
+   
+
     /// <summary>
     /// 開始処理
     /// </summary>
@@ -68,10 +72,23 @@ public class SpringCollectJumpPower : MonoBehaviour
     /// </summary>
     void Update()
     {
-        a++;
-        // グルグル回る回る
-        rotationobj.transform.rotation = Quaternion.Euler(0, a, -23.0f);
+       
+        // ジョイスティックの値
+        Vector2 d = new Vector2(m_joystick.Horizontal, m_joystick.Vertical);
+
+        // ジョイスティックが向いている方向                            意図的角度↓
+        float joystick_degree = (-Mathf.Atan2(d.y, d.x)) * Mathf.Rad2Deg - 90.0f;
+
+        // 「ジョイスティックの真ん中にあるオブジェクトが中点から動いた距離」の割合          最大距離↓
+        float joystick_lengthrate = Vector2.Distance(Vector2.zero, new Vector2(d.x, d.y))  /   1.0f    ;
+
+        // ジョイスティックの真ん中にあるオブジェクトが中点から動いた距離の割合
+
+        // グルグル回る回る                                                      意図的角度↓
+        rotationobj.transform.rotation = Quaternion.Euler(0, joystick_degree, -(90.0f -  90.0f * joystick_lengthrate));
+
         return;
+
 
         // スクリプト「ばねのサイズ」が存在していない場合、何もしない
         if (Script_SpringScale == null) return;
@@ -88,6 +105,10 @@ public class SpringCollectJumpPower : MonoBehaviour
 
                 // 拡大・縮小する
                 Script_SpringScale.ChangeSpringScale(state);
+
+                // グルグル回る回る
+                //rotationobj.transform.rotation = Quaternion.Euler(a, 0, -a);
+
 
                 // 最大まで拡大もしくは縮小した場合
                 if (Script_SpringScale.IsSpring_MaxBigSmall == true)
@@ -129,8 +150,16 @@ public class SpringCollectJumpPower : MonoBehaviour
                 // 初めてばねがジャンプし始める場合
                 if(Enum_OnceStateKind != Enum_NowStateKind)
                 {
+                   // プレイヤーが向いてる方向
+                   Vector3 PlayerBoneDegree = rotationobj.transform.localEulerAngles;
+
+                    // プレイヤーが向いてる方向を正規化する
+                    PlayerBoneDegree.Normalize();
+
                     // 上空へ力を加える                                  テスト↓
-                    GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, 1000.0f, 0.0f));
+                    GetComponent<Rigidbody>().AddForce(PlayerBoneDegree * 1000.0f);
+
+                    //Debug.Log(PlayerBoneDegree * 1000.0f);
                 }
 
                 // 現在のばねの高さが前のばねの高さより低い場合
