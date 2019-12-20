@@ -31,7 +31,7 @@ public class ElectricityController : MonoBehaviour
     void Update()
     {
         
-        transform.position = new Vector3(transform.position.x + (m_speed * m_direction.x), transform.position.y, transform.position.z + (m_speed * m_direction.z));
+        transform.position = new Vector3(transform.position.x + (m_speed * m_direction.x), transform.position.y + (m_speed * m_direction.y), transform.position.z + (m_speed * m_direction.z));
 
         //つながってなかったら削除
         if (!m_circuiCon.ConnectFlag)

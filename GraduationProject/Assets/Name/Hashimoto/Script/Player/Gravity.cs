@@ -25,6 +25,9 @@ public class Gravity : MonoBehaviour
     // 定数：√2の数
     private const float SQUAREROOT_2 = 1.414213f;
 
+    [SerializeField]
+    private PlayerType m_playerType = default;
+
     // イベントの監督
     [SerializeField]
     private GameObject EventDirectorObj = default;
@@ -97,7 +100,15 @@ public class Gravity : MonoBehaviour
         RaycastHit hit;
 
         // rigidbodyによる重力を無効にする
-        rigidbody.useGravity = false;
+        if(m_playerType.IsPlayerType == PlayerType.Type.IRON)
+        {
+            rigidbody.useGravity = true;
+        }
+        else
+        {
+            rigidbody.useGravity = false;
+        }
+        
 
 
         // プレイヤーから飛ばしたレイが何かのオブジェクトに当たった場合

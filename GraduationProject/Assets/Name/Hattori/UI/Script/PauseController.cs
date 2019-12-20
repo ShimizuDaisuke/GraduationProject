@@ -187,6 +187,8 @@ public class PauseController : MonoBehaviour
     //======================================================================================= 
     public void QuitGame()
     {
+        StopOrMoveScript(true);
+
         //セレクトに戻る
         SceneManager.LoadScene("Select");
     }

@@ -21,7 +21,7 @@ public class CreateElectricity : MonoBehaviour
     private GameObject m_electricityPrehab = default;
 
     //遅らせ
-    const float CREATE_DELAY_TIME = 0.1f;
+    const float CREATE_DELAY_TIME = 0.2f;
 
     //生成までのカウント
     private float m_createDelayCount = 0.0f;

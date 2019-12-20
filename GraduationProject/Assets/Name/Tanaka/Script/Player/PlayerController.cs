@@ -86,6 +86,19 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Move()
     {
+        ChangeVel();
+        if (m_playerType.IsPlayerType == PlayerType.Type.IRON)
+        {
+            m_rigidbody.mass = 2;
+            m_rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+        else
+        {
+            m_rigidbody.mass = 1;
+            m_rigidbody.constraints = RigidbodyConstraints.None;
+        }
+
+
         // 2Dと3Dのカメラの切り替え中フラグ
         bool cameraSwitch2D3D = m_cameradirector.IsMove2D3DCameraPos;
 
@@ -185,7 +198,8 @@ public class PlayerController : MonoBehaviour
         //消しゴムの時
         if (m_playerType.IsPlayerType == PlayerType.Type.IRON)
         {
-            m_vel = m_ironVel;
+            m_vel = m_eraserVel;
+            
         }
         //消しゴムの時
         if (m_playerType.IsPlayerType == PlayerType.Type.MARBLE)

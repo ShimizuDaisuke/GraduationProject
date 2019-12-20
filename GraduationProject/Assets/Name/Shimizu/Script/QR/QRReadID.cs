@@ -15,9 +15,12 @@ public class QRReadID : MonoBehaviour
     enum ReadResult
     {
         // 二進数       1   桁
-        INCREASE_TIME = 1 << 0,    // 残りの時間が増える  0000 00001  1
-        DEF_UP        = 1 << 1,    // カバーを付ける 　   0000 00010  2
-        REMAINING_UP  = 1 << 2,    // 残機を増やす        0000 00100  4
+        INCREASE_TIME = 1 << 0,    // 残りの時間が増える            0000 0001  1
+        DEF_UP        = 1 << 1,    // カバーを付ける 　             0000 0010  2
+        REMAINING_UP  = 1 << 2,    // 残機を増やす                  0000 0100  4
+        PLAYER_ERASER = 1 << 3,    // プレイヤーの変更(消しゴム)    0000 1000  8
+        PLAYER_IRON   = 1 << 4,    // プレイヤーの変更(鉄)       　 0001 0000  16
+
     }
 
     // 読み込んだQRの結果の格納
@@ -31,6 +34,9 @@ public class QRReadID : MonoBehaviour
 
     // 変換先
     int num = -1;
+
+    [SerializeField]
+    private PlayerType m_playerType = default;
 
     //=======================================================================================
     //! @brief 開始処理
@@ -74,6 +80,16 @@ public class QRReadID : MonoBehaviour
             // 残機アップ
             case (int)ReadResult.REMAINING_UP:
                 qRText.RemainingUp();
+                break;
+            // プレイヤーの変更 (消しゴム)
+            case (int)ReadResult.PLAYER_ERASER:
+                m_playerType.IsPlayerType = PlayerType.Type.ERASER;
+                qRText.PlayerEraser();
+                break;
+            // プレイヤーの変更 (鉄)
+            case (int)ReadResult.PLAYER_IRON:
+                m_playerType.IsPlayerType = PlayerType.Type.IRON;
+                qRText.PlayerIron();
                 break;
             // この中の物に属さなかった場合正規のQRじゃない
             default:

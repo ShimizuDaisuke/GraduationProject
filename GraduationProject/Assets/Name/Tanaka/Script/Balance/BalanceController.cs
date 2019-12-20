@@ -12,6 +12,9 @@ using UnityEngine;
 //天秤の処理
 public class BalanceController : MonoBehaviour
 {
+    [SerializeField]
+    private CameraDirector m_cameraDirector = default;
+
     //モータークラス
     [SerializeField]
     private MotorController m_motorCon = default;
@@ -68,12 +71,14 @@ public class BalanceController : MonoBehaviour
     private Vector3 m_marbleScale = Vector3.zero;
 
     //鉄の板が戻る最小のサイズ
-    const float IRON_SMALLSCALESIZE = -0.3f;
+    const float IRON_SMALLSCALESIZE = 0.8f;
 
     //変わるサイズ
     private float m_changeSize = 0.0f;
 
     //現在のサイズ
+
+    private Vector3 m_ironStartPos = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -83,12 +88,31 @@ public class BalanceController : MonoBehaviour
 
         m_childMarbleSide = m_board_MarbleSide.transform.GetChild(0).gameObject;
         m_grandchildMarbleSide = m_childMarbleSide.transform.GetChild(0).gameObject;
+
+        m_ironStartPos = m_IronObj.transform.position;
+        Debug.Log(m_ironStartPos);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(m_cameraDirector.IsAppearCamera3D)
+        {
+            m_IronObj.transform.position = new Vector3(m_IronObj.transform.position.x, m_IronObj.transform.position.y, 14.0f);
+        }
+        else
+        {
+            if(!m_ironHitFlag)
+            {
+                m_IronObj.transform.position = new Vector3(m_IronObj.transform.position.x, m_IronObj.transform.position.y, 14.0f);
+            }
+            else
+            {
+                m_IronObj.transform.position = new Vector3(m_IronObj.transform.position.x,m_IronObj.transform.position.y,0.0f);
+            }
+        }
+
+
         //回路がつながってる時
         if (m_motorCon.MotorConConnectFlag)
         {
@@ -120,7 +144,8 @@ public class BalanceController : MonoBehaviour
                 }
 
                 //鉄を板の下の座標につける
-                m_IronObj.transform.position = new Vector3(m_grandchildIronSide.transform.position.x, m_grandchildIronSide.transform.position.y - 1.0f, m_grandchildIronSide.transform.position.z);
+                m_IronObj.transform.position = new Vector3(m_grandchildIronSide.transform.position.x, m_grandchildIronSide.transform.position.y - 0.4f, m_grandchildIronSide.transform.position.z);
+                //m_IronObj.GetComponent<Obj_OneAxitMove>().enabled = true;
             }
         }
         else
