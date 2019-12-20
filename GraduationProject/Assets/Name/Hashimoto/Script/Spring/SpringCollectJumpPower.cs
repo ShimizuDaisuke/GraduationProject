@@ -50,7 +50,9 @@ public class SpringCollectJumpPower : MonoBehaviour
     //ジョイスティッククラス
     [SerializeField]
     private Joystick m_joystick = default;
-   
+
+    // テスト
+    public GameObject testobj;
 
     /// <summary>
     /// 開始処理
@@ -85,9 +87,20 @@ public class SpringCollectJumpPower : MonoBehaviour
         // ジョイスティックの真ん中にあるオブジェクトが中点から動いた距離の割合
 
         // グルグル回る回る                                                      意図的角度↓
-        rotationobj.transform.rotation = Quaternion.Euler(0, joystick_degree, -(90.0f -  90.0f * joystick_lengthrate));
+        rotationobj.transform.rotation = Quaternion.Euler(0, joystick_degree, -(60.0f -  60.0f * joystick_lengthrate + 30.0f));
 
-        return;
+        // < テスト > ---------------------------------------------------------------------------------------------------------
+        float l = 2.0f; float angle1 = (-joystick_degree-180.0f) * Mathf.Deg2Rad; float angle2 = (60.0f - 60.0f * joystick_lengthrate + 30.0f) * Mathf.Deg2Rad;
+        // 何かの値
+        Vector3 degreepos = new Vector3(l * Mathf.Cos(angle2) * Mathf.Cos(angle1),
+                                        l * Mathf.Sin(angle2), 
+                                        l * Mathf.Cos(angle2) * Mathf.Sin(angle1));
+
+
+        // オブジェクトを動かす
+        if (testobj != null)  testobj.transform.position = transform.position + degreepos;
+
+        //return;
 
 
         // スクリプト「ばねのサイズ」が存在していない場合、何もしない
@@ -152,18 +165,17 @@ public class SpringCollectJumpPower : MonoBehaviour
                 {
                    // プレイヤーが向いてる方向
                    Vector3 PlayerBoneDegree = rotationobj.transform.localEulerAngles;
-
+                        
                     // プレイヤーが向いてる方向を正規化する
                     PlayerBoneDegree.Normalize();
 
-                    // 上空へ力を加える                                  テスト↓
-                    GetComponent<Rigidbody>().AddForce(PlayerBoneDegree * 1000.0f);
+                    // 上空へ力を加える                    テスト↓
+                    GetComponent<Rigidbody>().AddForce(degreepos * 300.0f);
 
-                    //Debug.Log(PlayerBoneDegree * 1000.0f);
                 }
 
-                // 現在のばねの高さが前のばねの高さより低い場合
-                if(transform.position.y <= OncePosition.y)
+                    // 現在のばねの高さが前のばねの高さより低い場合
+                    if (transform.position.y <= OncePosition.y)
                 {
                     //　ばねから飛ばすレイを作成する 
                     Ray ray = new Ray(transform.position, -transform.up);
