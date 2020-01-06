@@ -6479,6 +6479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c84cb1974418404db0ed0856e8d6f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerType: {fileID: 0}
   EventDirectorObj: {fileID: 81157434}
   TargetObj: {fileID: 0}
   GravityObj_HitObj: 40
@@ -15900,7 +15901,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 34b9bce49af24d649a9ffcb1189ddd5d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: 34b9bce49af24d649a9ffcb1189ddd5d,
         type: 3}
@@ -29962,6 +29963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 541070303436d1c40a2b3b8b27522691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerType: {fileID: 0}
 --- !u!114 &1675548495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31753,6 +31755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c84cb1974418404db0ed0856e8d6f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerType: {fileID: 0}
   EventDirectorObj: {fileID: 81157434}
   TargetObj: {fileID: 0}
   GravityObj_HitObj: 40
