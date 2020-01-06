@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
         //消しゴムの時
         if (m_playerType.IsPlayerType == PlayerType.Type.IRON)
         {
-            m_vel = m_eraserVel;
+            m_vel = m_eraserVel + 200.0f;
             
         }
         //消しゴムの時
