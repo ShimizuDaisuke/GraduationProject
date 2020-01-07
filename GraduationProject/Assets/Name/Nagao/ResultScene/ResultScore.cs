@@ -72,7 +72,7 @@ public class ResultScore : MonoBehaviour
         //スコアに代入
         score = Script_Score.IsPlayerScore;
 
-        timeLimit = Script_Time.IsPlayerTime;
+        timeLimit = Script_Time.ClearTime;
 
         //トータルスコアの計算
         if (clearManager.IsPlayerClear == true)
