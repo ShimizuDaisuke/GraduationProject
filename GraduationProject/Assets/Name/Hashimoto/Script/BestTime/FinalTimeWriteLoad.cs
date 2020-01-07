@@ -16,6 +16,7 @@ using UnityEngine;
 using System;
 using System.IO;
 
+
 public class FinalTimeWriteLoad : MonoBehaviour
 {
     // ファイル名(ファイルパスは含らない)
@@ -23,8 +24,7 @@ public class FinalTimeWriteLoad : MonoBehaviour
 
     // 上記のファイルがある相対パス(「@」を付けると、エスケープを行わずに「\」を文字列に含まれる)
     private string FilePath = @"Resources/CSV";
-
-  
+ 
     /// <summary>
     /// 開始処理
     /// </summary>
@@ -76,13 +76,51 @@ public class FinalTimeWriteLoad : MonoBehaviour
 
     }
 
+    // --------------------------------------------------------------------------------------------------
+
     /// <summary>
-    /// 更新処理
+    /// 順位決めする
     /// </summary>
-    void Update()
+    /// <param name="juni">順位</param>
+    /// <param name="junitotal">順位の総合</param>
+    /// <param name="besttimescore">最速タイムスコア</param>
+    /// <param name="nowtimescore">現在のタイムスコア</param>
+    public void DecideJuni(ref int juni, ref int junitotal,ref int besttimescore, int nowtimescore = 0)
     {
-        
+        // 現在のタイムスコアがない場合、何もしない
+        if (nowtimescore == 0) return;
+
+        // 現在のタイムスコアを保存する
+        Write(nowtimescore, FileName);
+
+        // これまでに保存してきたタイムスコアを書き出す
+        int[] saveddata = Load(FileName);
+
+        // 現在のタイムスコアの順位を探す
+        juni = FindJuni(saveddata, nowtimescore);
+
+        // 順位の総合を取得する
+        junitotal = saveddata.Length;
+
+        // これまでに保存してきたデータの中で、一番速いタイムスコアを取得する
+        besttimescore = saveddata[0];
+
     }
+
+    /// <summary>
+    /// これまでに保存してきたタイムスコアを消す
+    /// </summary>
+    public void DeleteSavedData()
+    {
+        // これまでに保存してきたタイムスコアを削除する
+        DeleteFile(FileName);
+
+        // 新たにタイムスコアを保存できるように、基盤を作成する
+        CheckAndCreateNewFile(FileName, FilePath);
+    }
+
+
+    // --------------------------------------------------------------------------------------------------
 
     /// <summary>
     /// データをファイルへ追記する
@@ -178,12 +216,12 @@ public class FinalTimeWriteLoad : MonoBehaviour
     // =================================================================================================================
 
     /// <summary>
-    /// 順位決めする
+    /// 指定したスコアが順位が何位なのか探す
     /// </summary>
     /// <param name="data">これまでのタイムスコア</param>
     /// <param name="nowdata">現在のタイムスコア</param>
     /// <returns>順位</returns>
-    int FindJuni(int[] timescore,int nowdata)
+    private int FindJuni(int[] timescore,int nowdata)
     {
         // これまでのタイムスコアの量
         int total = timescore.Length;
