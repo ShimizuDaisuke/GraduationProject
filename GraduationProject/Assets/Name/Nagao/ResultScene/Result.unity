@@ -924,7 +924,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1475972586
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1113,7 +1113,7 @@ GameObject:
   - component: {fileID: 1651606617}
   - component: {fileID: 1651606616}
   m_Layer: 5
-  m_Name: Score
+  m_Name: Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1169,7 +1169,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: SCORE
+  m_Text: T I M E
 --- !u!222 &1651606617
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1698,7 +1698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeObject: {fileID: 1475972585}
-  m_maxTimer: 3
+  m_maxTimer: 1
 --- !u!4 &1847557621
 Transform:
   m_ObjectHideFlags: 0

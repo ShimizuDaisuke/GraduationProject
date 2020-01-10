@@ -12,7 +12,7 @@ public class MoveBlock : MonoBehaviour
 
     //揺れ幅
     [SerializeField]
-    private float width = 2.0f;
+    private float width = 5.0f;
 
     float a;
 
@@ -27,6 +27,6 @@ public class MoveBlock : MonoBehaviour
 
         a += Time.deltaTime;
 
-        rigid.MovePosition(new Vector3(defaultPos.x, defaultPos.y + (Mathf.Sin(a) * width), defaultPos.z));
+        rigid.MovePosition(new Vector3(defaultPos.x, defaultPos.y + (Mathf.Sin(a * 2.3f) * width), defaultPos.z));
     }
 }

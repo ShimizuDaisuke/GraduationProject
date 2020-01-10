@@ -53,7 +53,7 @@ public class TimerController : MonoBehaviour
         if (timerFlag)
         {
             // スコアに
-            Script_Time.IsPlayerTime = totalTime;
+            Script_Time.ClearTime = seconds;
 
             //フレームごとにフレームの秒数を引いてる
             totalTime += Time.deltaTime;
