@@ -112,17 +112,20 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
                         HitTheObj(hit.transform.gameObject, hit.transform.parent.transform.parent.gameObject);
                     }
                 }
+                else
+                // そのオブジェクトが「OneAxitMove」だった場合
+                if ((hit.transform.tag == "OneAxitMove"))
+                {
+                    // プレイヤーのレイが指定されたオブジェクトに当たった場合に行う処理
+                    HitTheObj(hit.transform.gameObject, hit.transform.parent.gameObject);
+                }
             }
             else
-            // オブジェクトに当たったタグ名が「OneAxitMove」だった場合
+            // そのオブジェクトに当たったタグ名が「OneAxitMove」だった場合
             if ((hit.transform.tag == "OneAxitMove"))
             {
                 // プレイヤーのレイが指定されたオブジェクトに当たった場合に行う処理
                 HitTheObj(hit.transform.gameObject, hit.transform.gameObject);
-            }
-            else
-            {
-
             }
         }
 
