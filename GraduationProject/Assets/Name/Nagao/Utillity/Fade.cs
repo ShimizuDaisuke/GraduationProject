@@ -6,6 +6,7 @@ using UnityEngine.UI; //パネルのイメージを操作するのに必要
 public class Fade : MonoBehaviour
 {
 
+    [SerializeField]
     private float fadeSpeed = 0.02f;        //透明度が変わるスピードを管理
     private float red, green, blue, alfa;   //パネルの色、不透明度を管理
 

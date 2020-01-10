@@ -66,7 +66,7 @@ public class FinalTimeWriteLoad : MonoBehaviour
         int row = 1;
         foreach(int part in data)
         {
-            Debug.Log(row +"段目 "+FindJuni(data, part) + "位:" + part + "秒");
+            //Debug.Log(row +"段目 "+FindJuni(data, part) + "位:" + part + "秒");
             row++;
         }
 
