@@ -54,15 +54,16 @@ public class ResultScore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ///リザルトメインのスクリプトの割り当て
+        // リザルトメインのスクリプトの割り当て
         clearManager = ClearObject.GetComponent<ClearManagement>();
 
-        //スコアのスクリプトの割り当て
+        // スコアのスクリプトの割り当て
         Script_Score = ScoreDirector.GetComponent<ScoreManager>();
 
-        //時間のスクリプトの割り当て
+        // 時間のスクリプトの割り当て
         Script_Time = TimeDirector.GetComponent<TimeManager>();
 
+        // 
         Script_ResultSceneController = resultSceneController.GetComponent<ResultSceneController>();
     }
 
