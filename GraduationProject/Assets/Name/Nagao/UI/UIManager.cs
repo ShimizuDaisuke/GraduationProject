@@ -34,9 +34,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject QRUI = default;
 
-    [SerializeField]
-    private GameObject NotebookUI = default;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -73,16 +70,6 @@ public class UIManager : MonoBehaviour
                 QRUI.SetActive(true);
             }
 
-            //消すイベントの時UI表示
-            if(m_event.IsEventKIND == EventDirector.EventKIND.NOTEBOOK_GRAFFITI_ERASE)
-            {
-                //イベント用UIの表示
-                EventUI.SetActive(true);
-                //ノートブックUIの表示
-                NotebookUI.SetActive(true);
-            }
-
-
         }
         else
         {
@@ -94,8 +81,6 @@ public class UIManager : MonoBehaviour
             EventUI.SetActive(false);
             //QR用UIの非表示
             QRUI.SetActive(false);
-            //ノートブックUIの非表示
-            NotebookUI.SetActive(false);
             //ゲーム内の時を動かす
             m_timerController.TimerFlag = true;
         }

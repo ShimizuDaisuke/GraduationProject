@@ -86,6 +86,9 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Move()
     {
+        //2Dカメラか3Dカメラかのフラグ
+        bool camera2Dor3DFlag = m_cameradirector.IsAppearCamera3D;
+
         ChangeVel();
         if (m_playerType.IsPlayerType == PlayerType.Type.IRON)
         {
@@ -94,10 +97,20 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            m_rigidbody.mass = 1;
-            m_rigidbody.constraints = RigidbodyConstraints.None;
+            if(!camera2Dor3DFlag)
+            {
+                m_rigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
+                m_rigidbody.mass = 1;
+            }
+            else
+            {
+                m_rigidbody.mass = 1;
+                m_rigidbody.constraints = RigidbodyConstraints.None;
+            }
+            
         }
-
+        //m_rigidbody.constraints = RigidbodyConstraints.FreezePositionX;
+        
 
         // 2Dと3Dのカメラの切り替え中フラグ
         bool cameraSwitch2D3D = m_cameradirector.IsMove2D3DCameraPos;
@@ -110,8 +123,7 @@ public class PlayerController : MonoBehaviour
             m_d.y = m_joystick.Vertical;         // 縦軸
 
        
-            //2Dカメラか3Dカメラかのフラグ
-            bool camera2Dor3DFlag = m_cameradirector.IsAppearCamera3D;
+            
             
             // カメラが2D空間上を映す場合
             if (!camera2Dor3DFlag)
@@ -122,7 +134,7 @@ public class PlayerController : MonoBehaviour
                 // 実際にプレイヤーを動かす
                 MoveByDirection(movevellocity);
             }
-            // カメラが2D空間上を映す場合
+            // カメラが3D空間上を映す場合
             else
             {
                 // 3D空間上のプレイヤーの移動速度を取得する
