@@ -19,6 +19,10 @@ public class StageSelectButton : MonoBehaviour
 
     public void OnClick()
     {
+        //SEの再生
+        SoundManager.PlaySE(SoundManager.Sound.SE_TitleResultTap);
+
+        //シーン切り替え
         SceneManager.LoadScene(SelectScene);
     }
 }
