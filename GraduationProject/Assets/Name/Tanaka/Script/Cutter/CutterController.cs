@@ -41,6 +41,12 @@ public class CutterController : MonoBehaviour
     //カッターの刃が出たかフラグ
     private bool m_bladeFlag = false;
 
+    //Scaleフラグ
+    private bool m_scaleFlag = false;
+
+    //Rotationフラグ
+    private bool m_rotationFlag = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,31 +59,59 @@ public class CutterController : MonoBehaviour
 
         if(m_cutterHitFlag.HitFlag)
         {
-            m_cutterObj.GetComponent<Rigidbody>().useGravity = false;
+            
             if(!m_startFlag)
             {
-                float step = 1.0f * Time.deltaTime;
+                m_cutterObj.GetComponent<Rigidbody>().useGravity = false;
+                m_cutterObj.GetComponent<BoxCollider>().isTrigger = true;
+                float step = 0.1f;
 
                 m_cutterObj.transform.position = Vector3.MoveTowards(m_cutterObj.transform.position, m_startPos.transform.position, step);
 
             }
             else
             {
-                if (m_cutterBladeObj.transform.localScale.z <= 5)
+                if (!m_endFlag)
                 {
-                    m_cutterBladeObj.transform.localScale = new Vector3(m_cutterBladeObj.transform.localScale.x, m_cutterBladeObj.transform.localScale.y, m_cutterBladeObj.transform.localScale.z + 0.1f);
+                    if (!m_scaleFlag)
+                    {
+                        if (m_cutterBladeObj.transform.localScale.z <= 5)
+                        {
+                            m_cutterBladeObj.transform.localScale = new Vector3(m_cutterBladeObj.transform.localScale.x, m_cutterBladeObj.transform.localScale.y, m_cutterBladeObj.transform.localScale.z + 0.1f);
+
+                        }
+                        else
+                        {
+                            m_scaleFlag = true;
+                        }
+                    }
+                    if (!m_rotationFlag)
+                    {
+
+                        if (m_cutterObj.transform.eulerAngles.z <= 134.0f)
+                        {
+                            float step = 2.0f;
+                            m_cutterObj.transform.rotation = Quaternion.RotateTowards(m_cutterObj.transform.rotation, Quaternion.Euler(0, 0, 135.0f), step);
+
+                        }
+                        else
+                        {
+                            m_rotationFlag = true;
+                        }
+                    }
+
+
+                    if (m_scaleFlag && m_rotationFlag)
+                    {
+
+                        float step = 0.15f;
+
+                        m_cutterObj.transform.position = Vector3.MoveTowards(m_cutterObj.transform.position, m_endPos.transform.position, step);
+
+                    }
+
 
                 }
-                else
-                {
-                    float step = 5.0f * Time.deltaTime;
-
-                    m_cutterObj.transform.position = Vector3.MoveTowards(m_cutterObj.transform.position, m_endPos.transform.position, step);
-
-                }
-
-
-
             }
 
            
@@ -90,11 +124,12 @@ public class CutterController : MonoBehaviour
             if (m_cutterObj.transform.position == m_endPos.transform.position)
             {
                 m_endFlag = true;
+                m_cutterObj.GetComponent<Rigidbody>().useGravity = true;
             }
         }
-
-
-        
-
     }
+
+    //フラグの取得・設定
+    public bool EndFlag { get { return m_endFlag; } set { m_endFlag = value; } }
+
 }
