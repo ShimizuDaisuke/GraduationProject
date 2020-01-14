@@ -6,7 +6,8 @@ public class ClearManagement : MonoBehaviour
 {
     // クリアしたか
     private bool IsClear;
-
+    // 現在遊んでいるステージ名
+    private string stageeName = "NONE";
 
     // Start is called before the first frame update
     void Start()
@@ -25,4 +26,6 @@ public class ClearManagement : MonoBehaviour
     // 取得設定関数
     public bool IsPlayerClear { get { return IsClear;} set { IsClear = value; } }
 
+    // 現在プレイヤーが遊んでいるステージ名
+    public string PlayingStageName { get { return stageeName; } set { stageeName = value; } }
 }
