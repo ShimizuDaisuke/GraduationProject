@@ -69,8 +69,8 @@ public class ResultTimeAndJuni : MonoBehaviour
         int time = Script_ScoreManager.ClearTime;
         
         // その時間を実際に反映させる
-        Text_TimeScore.text = time.ToString();
-        Script_ClearManagement.IsPlayerClear = true;
+        Text_TimeScore.text = time.ToString()+" 秒";
+
         // ステージクリアした場合
         if (Script_ClearManagement.IsPlayerClear)
         {
