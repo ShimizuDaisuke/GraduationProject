@@ -130,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3777603}
   - component: {fileID: 3777604}
+  - component: {fileID: 3777605}
   m_Layer: 0
   m_Name: CutterKnife (1)
   m_TagString: Cutter
@@ -145,7 +146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3777602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.94, y: 10.34, z: -16.89}
+  m_LocalPosition: {x: 8.69, y: 10.34, z: -16.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1728952782}
@@ -169,8 +170,21 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &3777605
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3777602}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4948969, y: 0.6863251, z: 2.1025}
+  m_Center: {x: -0.06676626, y: 0.09218216, z: 0.011733532}
 --- !u!1 &5550261
 GameObject:
   m_ObjectHideFlags: 0
@@ -22639,7 +22653,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861255358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.433231, y: 7.1562366, z: -15.93}
+  m_LocalPosition: {x: 10.32, y: 8.88, z: -18.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -58897,7 +58911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014917907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.31, y: 7.1562366, z: -18.92}
+  m_LocalPosition: {x: 9.31, y: 7.92, z: -18.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60922,31 +60936,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &2091645363 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 642e74a7d5a14684a9098c3d1d49d3c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 461580999}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2091645364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 642e74a7d5a14684a9098c3d1d49d3c7,
     type: 3}
   m_PrefabInstance: {fileID: 461580999}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &2091645365
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2091645363}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.111843355, y: 0.025322324, z: 0.011098832}
-  m_Center: {x: -0.000835824, y: -0.000782297, z: 0.00051631284}
 --- !u!1 &2091753609 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 57c36f3798adcfd478b9e12d50d753b2,
@@ -61226,6 +61221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_cutterHitFlag: {fileID: 1291534684}
   m_cutterObj: {fileID: 3777602}
+  m_cutterBladeObj: {fileID: 0}
   m_startPos: {fileID: 2014917908}
   m_endPos: {fileID: 861255359}
 --- !u!4 &2099827176

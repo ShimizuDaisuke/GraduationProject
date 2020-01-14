@@ -20,6 +20,10 @@ public class CutterController : MonoBehaviour
     [SerializeField]
     private GameObject m_cutterObj = null;
 
+    //カッターの刃オブジェクト
+    [SerializeField]
+    private GameObject m_cutterBladeObj = null;
+
     //始点
     [SerializeField]
     private Transform m_startPos = null;
@@ -30,6 +34,9 @@ public class CutterController : MonoBehaviour
 
     //スタート地点についたかのフラグ
     private bool m_startFlag = false;
+
+    //スタート地点についたかのフラグ
+    private bool m_endFlag = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +50,7 @@ public class CutterController : MonoBehaviour
 
         if(m_cutterHitFlag.HitFlag)
         {
+            m_cutterObj.GetComponent<Rigidbody>().useGravity = false;
             if(!m_startFlag)
             {
                 float step = 1.0f * Time.deltaTime;
@@ -52,15 +60,24 @@ public class CutterController : MonoBehaviour
             }
             else
             {
-                Debug.Log("dfas");
+
+                m_cutterBladeObj.transform.position = new Vector3(m_cutterBladeObj.transform.position.x, m_cutterBladeObj.transform.position.y, m_cutterBladeObj.transform.position.z + 1);
+
+                float step = 5.0f * Time.deltaTime;
+
+                m_cutterObj.transform.position = Vector3.MoveTowards(m_cutterObj.transform.position, m_endPos.transform.position, step);
+
             }
 
-
+            
 
             if (m_cutterObj.transform.position == m_startPos.transform.position)
             {
                 m_startFlag = true;
-                Debug.Log("aaaaaa");
+            }
+            if (m_cutterObj.transform.position == m_endPos.transform.position)
+            {
+                m_endFlag = true;
             }
         }
 
