@@ -105,7 +105,7 @@ public class PauseController : MonoBehaviour
         pauseCounter++;
 
         //ポーズカウンターが偶数ならポーズ画面解除
-        if(pauseCounter % 2 == 0)
+        if (pauseCounter % 2 == 0)
         {
             ContinueGame();
         }
@@ -114,7 +114,7 @@ public class PauseController : MonoBehaviour
             //奇数ならポーズ画面出す
             StopGame();
         }
-        
+
 #else
 
         // <別解>
@@ -140,7 +140,7 @@ public class PauseController : MonoBehaviour
     //======================================================================================= 
     //! @brief      ゲームを止めてポーズ画面を出す関数
     //======================================================================================= 
-    private void StopGame()
+    public void StopGame()
     {
         //時を止める
         Time.timeScale = 0.0f;
@@ -222,7 +222,7 @@ public class PauseController : MonoBehaviour
 
         //時が動き出す
         Time.timeScale = 1.0f;
-        
+
         //セレクトに戻る
         SceneManager.LoadScene("Select");
     }
@@ -237,20 +237,20 @@ public class PauseController : MonoBehaviour
         {
             //プレイヤーコントローラーを止める
             playerDirector.GetComponent<PlayerController>().enabled = stopormove;
-            
+
             //プレイヤーの重力を止める
             playerDirector.GetComponent<Gravity>().enabled = stopormove;
         }
-        
+
         //タイムディレクター内にあるスクリプト.表示状態 =
-        if(timeDirector != null)
+        if (timeDirector != null)
         {
             //タイムディレクターのタイムコントローラーを止める
             timeDirector.GetComponent<TimerController>().enabled = stopormove;
         }
 
         //ジョイスティックディレクター内にあるスクリプト.表示状態　=
-        if(joystickDirector != null)
+        if (joystickDirector != null)
         {
             //ジョイスティックコントローラーのジョイスティックコントローラーを止める
             joystickDirector.GetComponent<JoystickController>().enabled = stopormove;

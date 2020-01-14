@@ -37,6 +37,11 @@ public class SeesawController : MonoBehaviour
     //プレイヤーのゲームオブジェクト
     private GameObject m_player = null;
 
+    //直進移動クラス
+    [SerializeField]
+    private GameObject m_hitStraightObj = null;
+
+    HitStraight m_hitStraight = default;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +51,8 @@ public class SeesawController : MonoBehaviour
 
         //最初のZの角度を保存
         m_startRot = transform.rotation;
+
+        m_hitStraight = m_hitStraightObj.GetComponent<HitStraight>();
 
         m_throwFlag = false;
     }
@@ -66,7 +73,12 @@ public class SeesawController : MonoBehaviour
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
             }
         }
-        
+
+        if (m_event.IsEventKIND == EventDirector.EventKIND.RULE_MOVE_STRAIGHT)
+        {
+            //m_hitStraight.MoveZ();
+            m_hitStraight.MoveStraight();
+        }
 
         //Zの角度を最初に戻す
         RotZ();

@@ -19,6 +19,18 @@ public class CameraFollowPlayer : MonoBehaviour
     // 3Dカメラ
     [SerializeField] private GameObject Camera3D = default;
 
+    // カメラ２Dの高さを変える当たり判定クラス
+    [SerializeField]
+    private Camera2DHitHightFlag m_camera2DHitHightFlag = default;
+
+    //カメラディレクター
+    [SerializeField]
+    private CameraDirector m_cameraDirector = default;
+
+    //カメラの高さ
+    [SerializeField]
+    private float m_cameraHight = 0.0f;
+
     // 2Dカメラとプレイヤーの距離
     private Vector3 DirectionCamera2DPlayerPos;
 
@@ -104,6 +116,8 @@ public class CameraFollowPlayer : MonoBehaviour
                                        direction.y + playerheight,
                                        Player.transform.position.z+direction.z);
 
+
+
         // 時間をかけて、カメラはプレイヤーに追従する <カメラのブレ防止>
         camera.transform.position = Vector3.Lerp(NowPos, NextPos, FollowingTime * Time.deltaTime);
 
@@ -141,5 +155,41 @@ public class CameraFollowPlayer : MonoBehaviour
 
         // 3Dカメラはプレイヤーに時間かけずに追従する
         Camera3D.transform.position = Camera3DNextPos;
+    }
+
+    /// <summary>
+    /// カメラの位置を変える
+    /// </summary>
+    /// <param name="camerapos">カメラの位置</param>
+    /// <param name="is3dcamera">位置を変えたいカメラは3Dなのか(false→2Dカメラ, true→3Dカメラ)</param>
+    public void ChangeCameraPos(Vector3 camerapos,bool is3dcamera)
+    {
+        // プレイヤーの高さを小数点切り捨てる(対策：酔い止め)
+        int playerheight = Mathf.FloorToInt(Player.transform.position.y);
+
+        // プレイヤーが動いてもカメラが上下に揺れないように制限する
+        playerheight = playerheight - (playerheight % CameraHeight_NoShake);
+
+        // プレイヤーの位置
+        Vector3 playerpos = new Vector3(Player.transform.position.x, (float)playerheight, Player.transform.position.z);
+
+        // 3Dのカメラの場合
+        if (is3dcamera)
+        {
+            // 3Dカメラの位置を変える
+            Camera3D.transform.position = camerapos;
+
+            // 3Dカメラとプレイヤーの距離を更新する
+            DirectionCamera3DPlayerPos = Camera3D.transform.position - playerpos;
+        }
+        else
+        // 2Dのカメラの場合
+        {
+            // 2Dカメラの位置を変える
+            Camera2D.transform.position = camerapos;
+
+            // 2Dカメラとプレイヤーの距離を更新する
+            DirectionCamera2DPlayerPos = Camera2D.transform.position - playerpos;
+        }
     }
 }
