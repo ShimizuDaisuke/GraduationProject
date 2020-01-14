@@ -40,7 +40,8 @@ public class ResultTimeAndJuni : MonoBehaviour
     [SerializeField]
     private GameObject[] NoActiveByGameOver;
 
-    // 
+    // スクリプト：テキストにデータを追加したり読み込んだりする  
+    private FinalTimeWriteLoad Script_FinalTimeWriteLoad;
 
     /// <summary>
     /// 開始処理
