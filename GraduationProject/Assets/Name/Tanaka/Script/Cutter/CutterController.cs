@@ -32,11 +32,14 @@ public class CutterController : MonoBehaviour
     [SerializeField]
     private Transform m_endPos = null;
 
-    //スタート地点についたかのフラグ
+    //始点についたかのフラグ
     private bool m_startFlag = false;
 
-    //スタート地点についたかのフラグ
+    //終点についたかのフラグ
     private bool m_endFlag = false;
+
+    //カッターの刃が出たかフラグ
+    private bool m_bladeFlag = false;
 
     // Start is called before the first frame update
     void Start()
@@ -60,15 +63,24 @@ public class CutterController : MonoBehaviour
             }
             else
             {
+                if (m_cutterBladeObj.transform.localScale.z <= 5)
+                {
+                    m_cutterBladeObj.transform.localScale = new Vector3(m_cutterBladeObj.transform.localScale.x, m_cutterBladeObj.transform.localScale.y, m_cutterBladeObj.transform.localScale.z + 0.1f);
 
-                m_cutterBladeObj.transform.position = new Vector3(m_cutterBladeObj.transform.position.x, m_cutterBladeObj.transform.position.y, m_cutterBladeObj.transform.position.z + 1);
+                }
+                else
+                {
+                    float step = 5.0f * Time.deltaTime;
 
-                float step = 5.0f * Time.deltaTime;
+                    m_cutterObj.transform.position = Vector3.MoveTowards(m_cutterObj.transform.position, m_endPos.transform.position, step);
 
-                m_cutterObj.transform.position = Vector3.MoveTowards(m_cutterObj.transform.position, m_endPos.transform.position, step);
+                }
+
+
 
             }
 
+           
             
 
             if (m_cutterObj.transform.position == m_startPos.transform.position)
