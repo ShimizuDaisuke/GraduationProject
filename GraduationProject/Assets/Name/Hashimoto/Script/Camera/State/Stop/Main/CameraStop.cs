@@ -92,7 +92,7 @@ public class CameraStop : MonoBehaviour
             isdifferstatenowonce = false;
 
             // プレイヤーが地面以外のオブジェクトに当たった場合
-            if (Script_PlayerPosByCamera2D3D.IsHitPlayerNoGroundObj == true)
+            if (Script_PlayerPosByCamera2D3D.HitNoArea2DCamera() == true)
             {
                 // カメラの動きを止めた後に、カメラの状態を2D⇔3Dに動くように設定する
                 NextStateAfterCameraStop = CameraState.MOVE2D3D;

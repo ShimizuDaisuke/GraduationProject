@@ -25,6 +25,12 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     [SerializeField]
     private GameObject CameraDirector = default;
 
+    // プレイヤーから飛ばすレイの長さ
+    private float RayDistance = 2.0f;
+
+    // プレイヤー
+    private GameObject PlayerObj;
+
     // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーに当たった地面以外のオブジェクト
     private GameObject ObjHitNoGround;
 
@@ -42,7 +48,8 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     /// </summary>
     void Start()
     {
-        
+        // プレイヤーを探す
+        PlayerObj = GameObject.FindGameObjectWithTag("Player");
     }
 
     /// <summary>
@@ -86,19 +93,66 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     // ===============================================================================================
 
     /// <summary>
-    /// 当たり判定
+    /// 自作関数による当たり判定
     /// </summary>
-    /// <param name="collision">プレイヤーに当たったオブジェクト</param>
+    public bool HitNoArea2DCamera()
+    {
+        // 2Dカメラ⇔3Dカメラに移動している かつ 最終的に2Dカメラにする場合
+        if ((CameraDirector.GetComponent<CameraDirector>().IsMove2D3DCameraPos)&&
+            !(CameraDirector.GetComponent<CameraDirector>().IsAppearCamera3D))
+        {
+
+            // レイをプレイヤーを中心にZ向きに前後2つ作成する
+            Ray[] ray_playerup = { new Ray(PlayerObj.transform.position, Vector3.forward),  // Z軸に沿って前向き
+                                   new Ray(PlayerObj.transform.position, Vector3.back) };   // Z軸に沿って後向き
+
+            // プレイヤーから飛ばしたレイに当たったオブジェクトの入れ物
+            RaycastHit hit;
+
+            // Z軸に沿って前後にあるレイ
+            foreach (Ray ray in ray_playerup)
+            {
+                Debug.DrawLine(ray.origin, ray.origin + ray.direction * RayDistance, Color.red, 300);
+
+
+                // プレイヤーからレイを飛ばして何からのオブジェクトに衝突した場合
+                if (Physics.Raycast(ray, out hit, RayDistance))
+                {
+                    // 当たったオブジェクトが  カメラ2Dの時にプレイヤーが入ってはいけない領域の場合
+                    if (hit.transform.gameObject.tag == "Camera2DNoArea")
+                    {
+                        // 「プレイヤーが地面以外のオブジェクトに当たった」とする
+                        IsHitNoGroundObj = true;
+
+                        // プレイヤーに当たったオブジェクトを記憶する
+                        ObjHitNoGround = hit.transform.gameObject;
+
+
+                        // プレイヤーが入ってはいけない領域に当たった
+                        return true;
+                    }
+
+                }
+
+ 
+            }
+        }
+
+        // プレイヤーが入ってはいけない領域に当たっていない
+        return false;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="collision"></param>
     void OnCollisionEnter(Collision collision)
     {
         // 2Dカメラ⇔3Dカメラに移動している場合
         if(CameraDirector.GetComponent<CameraDirector>().IsMove2D3DCameraPos)
         {
-            // --------------------------------------------------------------------------
-            // <テスト>
-
-            // 「Ground (2)」に当たった場合
-            if((collision.gameObject.name== "Ground (3)")||(collision.gameObject.tag == "Camera2DNoArea"))
+            // 当たったオブジェクトが  カメラ2Dの時にプレイヤーが入ってはいけない領域の場合
+            if ((collision.gameObject.tag == "Camera2DNoArea"))
             {
                 // 「プレイヤーが地面以外のオブジェクトに当たった」とする
                 IsHitNoGroundObj = true;
@@ -106,8 +160,6 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
                 // プレイヤーに当たったオブジェクトを記憶する
                 ObjHitNoGround = collision.gameObject;
             }
-
-            // --------------------------------------------------------------------------
         }
     }
 
@@ -166,11 +218,11 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     // 2Dカメラ⇔3Dカメラへ移動する前にプレイヤーがいた位置
     public Vector3 PlayerOncePos { get { return OncePos; } set { OncePos = value; } }
 
-        // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが当たった地面以外のオブジェクト
-        public GameObject PlayerHitObjNoGround { get { return ObjHitNoGround; } set { ObjHitNoGround = value; } }
+    // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが当たった地面以外のオブジェクト
+    public GameObject PlayerHitObjNoGround { get { return ObjHitNoGround; } set { ObjHitNoGround = value; } }
 
-        // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが地面以外のオブジェクトに当たったか
-        public bool IsHitPlayerNoGroundObj { get { return IsHitNoGroundObj; } set { IsHitNoGroundObj = value; } }
+    // 2Dカメラ⇔3Dカメラへ移動したときに、プレイヤーが地面以外のオブジェクトに当たったか
+    public bool IsHitPlayerNoGroundObj { get { return IsHitNoGroundObj; } set { IsHitNoGroundObj = value; } }
 
         
 }
