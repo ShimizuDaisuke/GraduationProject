@@ -55,7 +55,7 @@ public class CameraDirector : MonoBehaviour
     private bool IsDifferCameraStateNowOnce = false;
 
     // 3Dカメラを表示するか(false：2Dカメラで表示している / true：3Dカメラで表示している)
-    private bool IsNowChange3DCamera = false;
+    private bool IsNowChange3DCamera = true;
 
     // 2Dカメラと3Dカメラの間へ移動しているか(カメラの状態 :「2D⇔3Dの動き」→「数ミリ秒止める」が含まれる)
     private bool IsMove2DCamera3DCamera = false;

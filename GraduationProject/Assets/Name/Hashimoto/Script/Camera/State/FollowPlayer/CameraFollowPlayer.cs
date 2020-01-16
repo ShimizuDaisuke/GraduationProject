@@ -50,7 +50,7 @@ public class CameraFollowPlayer : MonoBehaviour
     private Vector3 RotationCamera3D;
 
     // プレイヤーが動いても、カメラが上下に揺れてないように制限をつける高さ
-    private int CameraHeight_NoShake = 3;
+    private int CameraHeight_NoShake = 5;
 
     /// <summary>
     /// 開始処理

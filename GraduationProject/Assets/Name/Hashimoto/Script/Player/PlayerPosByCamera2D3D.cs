@@ -23,7 +23,7 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
 
     // カメラの監督
     [SerializeField]
-    private GameObject CameraDirector = default;
+    private GameObject CameraDirectorObj = default;
 
     // プレイヤーから飛ばすレイの長さ
     private float RayDistance = 2.0f;
@@ -92,14 +92,15 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
 
     // ===============================================================================================
 
+#if false
     /// <summary>
     /// 自作関数による当たり判定
     /// </summary>
     public bool HitNoArea2DCamera()
     {
         // 2Dカメラ⇔3Dカメラに移動している かつ 最終的に2Dカメラにする場合
-        if ((CameraDirector.GetComponent<CameraDirector>().IsMove2D3DCameraPos)&&
-            !(CameraDirector.GetComponent<CameraDirector>().IsAppearCamera3D))
+        if ((CameraDirectorObj.GetComponent<CameraDirectorObj>().IsMove2D3DCameraPos)&&
+            !(CameraDirectorObj.GetComponent<CameraDirectorObj>().IsAppearCamera3D))
         {
 
             // レイをプレイヤーを中心にZ向きに前後2つ作成する
@@ -142,16 +143,18 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
         return false;
     }
 
+#endif
+
     /// <summary>
-    /// 
+    /// 当たり判定
     /// </summary>
     /// <param name="collision"></param>
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionStay(Collision collision)
     {
-        // 2Dカメラ⇔3Dカメラに移動している場合
-        if(CameraDirector.GetComponent<CameraDirector>().IsMove2D3DCameraPos)
+        // 2Dカメラ⇔3Dカメラに移動している場合  かつ カメラが3D→2Dへ切り替えるとき
+        if ((CameraDirectorObj.GetComponent<CameraDirector>().IsMove2D3DCameraPos) && (CameraDirectorObj.GetComponent<CameraDirector>().IsAppearCamera3D == false))
         {
-            // 当たったオブジェクトが  カメラ2Dの時にプレイヤーが入ってはいけない領域の場合
+            // 当たったオブジェクトが カメラ2Dの時にプレイヤーが入ってはいけない領域の場合
             if ((collision.gameObject.tag == "Camera2DNoArea"))
             {
                 // 「プレイヤーが地面以外のオブジェクトに当たった」とする
