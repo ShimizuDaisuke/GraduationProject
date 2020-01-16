@@ -96,30 +96,18 @@ public class PlayerController : MonoBehaviour
         //}
         //else
 
+
         if (!camera2Dor3DFlag)
         {
-            m_rigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
+            // m_rigidbody.constraints = RigidbodyConstraints.FreezePositionZ; 消す！！ by 橋本
             m_rigidbody.mass = 1;
         }
         else
         {
-<<<<<<< HEAD
             m_rigidbody.mass = 1;
-            m_rigidbody.constraints = RigidbodyConstraints.None;
-=======
-            if(!camera2Dor3DFlag)
-            {
-                // m_rigidbody.constraints = RigidbodyConstraints.FreezePositionZ; 消す！！ by 橋本
-                m_rigidbody.mass = 1;
-            }
-            else
-            {
-                m_rigidbody.mass = 1;
-               // m_rigidbody.constraints = RigidbodyConstraints.None;  消す！！ by 橋本
-            }
-            
->>>>>>> master
+            // m_rigidbody.constraints = RigidbodyConstraints.None;  消す！！ by 橋本
         }
+            
             
         
         //m_rigidbody.constraints = RigidbodyConstraints.FreezePositionX;
