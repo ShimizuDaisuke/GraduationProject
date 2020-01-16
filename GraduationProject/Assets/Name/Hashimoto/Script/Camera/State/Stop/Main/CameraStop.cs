@@ -32,7 +32,7 @@ public class CameraStop : MonoBehaviour
     private float FlashTimeGap = 0.4f;
 
     // プレイヤーから飛ばすレイの長さ
-    private float RayDistance = 2.0f;
+    private float RayDistance = 0.75f;
 
     // --------------------------------------------------------------------------------------
 

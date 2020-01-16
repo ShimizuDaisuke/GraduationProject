@@ -21,7 +21,7 @@ public class Test : MonoBehaviour
     private GameObject PlayerObj;
 
     // レイの長さ
-    private float  Length= 2.0f;
+    private float  Length= 0.75f;
 
     // Start is called before the first frame update
     void Start()

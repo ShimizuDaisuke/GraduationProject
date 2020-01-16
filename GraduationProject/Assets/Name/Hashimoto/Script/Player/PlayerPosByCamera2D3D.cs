@@ -25,9 +25,6 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     [SerializeField]
     private GameObject CameraDirectorObj = default;
 
-    // プレイヤーから飛ばすレイの長さ
-    private float RayDistance = 2.0f;
-
     // プレイヤー
     private GameObject PlayerObj;
 

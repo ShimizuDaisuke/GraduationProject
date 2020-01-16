@@ -55,7 +55,7 @@ public class CameraDirector : MonoBehaviour
     private bool IsDifferCameraStateNowOnce = false;
 
     // 3Dカメラを表示するか(false：2Dカメラで表示している / true：3Dカメラで表示している)
-    private bool IsNowChange3DCamera = true;
+    private bool IsNowChange3DCamera = false;
 
     // 2Dカメラと3Dカメラの間へ移動しているか(カメラの状態 :「2D⇔3Dの動き」→「数ミリ秒止める」が含まれる)
     private bool IsMove2DCamera3DCamera = false;
@@ -126,13 +126,15 @@ public class CameraDirector : MonoBehaviour
     void Update()
     {
         // <テスト>----------------------------------------------------------------
-
+#if true
         // スペースキーを押されたらカメラを切り替える
         if (Input.GetKeyDown(KeyCode.Space)&&(Script_EventDirector.IsEventKIND == EventKind.NONE))
         {
             // カメラが2D⇔3Dへ切り替える準備を行う
             ChangeCamera2D3D();
         }
+
+#endif
 
         // -------------------------------------------------------------------------
     }

@@ -27,7 +27,7 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
     private Vector3 PlayerObjSize;
 
     // プレイヤーのレイの長さでサイズによる割合
-    private float RayLength_SizeRote = 2.0f;
+    private float RayLength_SizeRote = 0.75f;
 
     // プレイヤーのレイに当たったオブジェクト
     private GameObject HitObj;
