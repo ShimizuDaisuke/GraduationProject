@@ -70,7 +70,7 @@ public class SeesawController : MonoBehaviour
             }
             else
             {
-                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
             }
         }
 
@@ -105,9 +105,9 @@ public class SeesawController : MonoBehaviour
         {
 
             //最初の角度より小さいとき徐々に戻していく
-            if (transform.rotation.z <= m_startRot.z)
+            if (transform.rotation.x <= m_startRot.x)
             {
-                transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z + m_retunBoardPower));
+                transform.Rotate(new Vector3(transform.rotation.x + m_retunBoardPower, transform.rotation.y, transform.rotation.z));
             }
             else
             {
@@ -118,11 +118,11 @@ public class SeesawController : MonoBehaviour
         else
         {
             //プレイヤーが直進移動以外の時は
-            if (m_event.IsEventKIND != EventDirector.EventKIND.RULE_MOVE_STRAIGHT)
+            if (m_event.IsEventKIND != EventDirector.EventKIND.RULE_THOW && m_event.IsEventKIND != EventDirector.EventKIND.RULE_MOVE_STRAIGHT)
             {
                 //最初の角度に固定
                 transform.rotation = m_startRot;
-            }    
+            }
         }
 
     }
