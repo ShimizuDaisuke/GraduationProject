@@ -126,13 +126,15 @@ public class CameraDirector : MonoBehaviour
     void Update()
     {
         // <テスト>----------------------------------------------------------------
-
+#if true
         // スペースキーを押されたらカメラを切り替える
         if (Input.GetKeyDown(KeyCode.Space)&&(Script_EventDirector.IsEventKIND == EventKind.NONE))
         {
             // カメラが2D⇔3Dへ切り替える準備を行う
             ChangeCamera2D3D();
         }
+
+#endif
 
         // -------------------------------------------------------------------------
     }

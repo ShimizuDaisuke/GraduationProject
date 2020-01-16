@@ -6,6 +6,8 @@
 //! @author     橋本 奉武
 //!
 //! @date       2019.10.23
+//!
+//! @note       L103で処理が遅くならないか、確認 /  L133　見直す 
 // -----------------------------------------------------------------------------------------
 using System.Collections;
 using System.Collections.Generic;
@@ -25,7 +27,7 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
     private Vector3 PlayerObjSize;
 
     // プレイヤーのレイの長さでサイズによる割合
-    private float RayLength_SizeRote = 4.0f;
+    private float RayLength_SizeRote = 0.75f;
 
     // プレイヤーのレイに当たったオブジェクト
     private GameObject HitObj;
@@ -50,7 +52,6 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
         // プレイヤーの描画用スクリプを取得する
         PlayerObjSize = PlayerObj.GetComponent<Renderer>().bounds.size;
 
-        // カメラが2D⇔3Dへ切り替えるまえに、オブジェクトの表示や位置を変える処理 設定
         // カメラが2D⇔3Dへ切り替えるまえに、オブジェクトの表示や位置を変える処理 設定
         Script_ObjStateByCameraMove2D3D = GetComponent<ObjStateByCameraMove2D3D>();
 
@@ -83,46 +84,34 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
         // プレイヤーから飛ばすレイの長さ
         float distance = PlayerObj_Height * RayLength_SizeRote;
 
-        // レイを可視化する
-        Debug.DrawLine(ray.origin, ray.direction * distance, Color.red);
-
         // プレイヤーからレイを飛ばして何からのオブジェクトに衝突した場合
         if(Physics.Raycast(ray,out hit, distance))
         {
             //---------------------------------------------------------------------
-            // テスト
-            
-            // 親が存在する場合    
-            if(hit.transform.parent!=null)
+
+            // 現在のオブジェクトの親
+            Transform TheObject_Parent = hit.transform.parent;
+
+            // 現在のオブジェクトの親が存在している場合
+            if (TheObject_Parent != null)
             {
-                // その親がカメラの切り替え時に軸中心に動かすオブジェクトの場合
-                if(hit.transform.parent.name == "OneAxitMove")
+                // 先祖が無くなるまで探し続ける    
+                while (TheObject_Parent != null)
                 {
-                    // プレイヤーのレイが指定されたオブジェクトに当たった場合に行う処理
-                    HitTheObj(hit.transform.gameObject, hit.transform.parent.gameObject);
-                }
-                else
-                // 祖父母が存在する場合
-                if(hit.transform.parent.transform.parent != null)
-                {
-                    // その祖父母がカメラの切り替え時に軸中心に動かすオブジェクトの場合
-                    if (hit.transform.parent.transform.parent.name == "OneAxitMove")
+                    // 現在の先祖がカメラの切り替え時に軸中心に動かすオブジェクトの場合
+                    if (TheObject_Parent.gameObject.GetComponent<Obj_OneAxitMove>() != null)
                     {
                         // プレイヤーのレイが指定されたオブジェクトに当たった場合に行う処理
-                        HitTheObj(hit.transform.gameObject, hit.transform.parent.transform.parent.gameObject);
+                        HitTheObj(hit.transform.gameObject, hit.transform.parent.gameObject);
                     }
-                }
-                
-                //else そのオブジェクトが「OneAxitMove」だった場合
-                if ((hit.transform.tag == "OneAxitMove"))
-                {
-                    // プレイヤーのレイが指定されたオブジェクトに当たった場合に行う処理
-                    HitTheObj(hit.transform.gameObject, hit.transform.parent.gameObject);
+
+                    // 次の祖先を見つける
+                    TheObject_Parent = TheObject_Parent.parent;
                 }
             }
             else
-            // そのオブジェクトに当たったタグ名が「OneAxitMove」だった場合
-            if ((hit.transform.tag == "OneAxitMove"))
+            // このオブジェクトがカメラの切り替え時に軸中心に動かすオブジェクトの場合
+            if ((hit.transform.GetComponent<Obj_OneAxitMove>() != null))
             {
                 // プレイヤーのレイが指定されたオブジェクトに当たった場合に行う処理
                 HitTheObj(hit.transform.gameObject, hit.transform.gameObject);
@@ -139,8 +128,11 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
         // プレイヤーが乗っている地面は一つの軸中心にそろえて動くものか かつ カメラが2D→3Dへ切り替え時のみ
         if((IsHitObjParentMoveOneAxit)&&(isnowChange3D==true))
         {
+            // プレイヤーのレイに当たったオブジェクトのよるスクリプト
+            Renderer renderer = HitObj.GetComponent<Renderer>();
+
             // プレイヤーのレイに当たったオブジェクトのモデルの高さ
-            float hitobjheight = HitObj.GetComponent<Renderer>().bounds.size.y;
+            float hitobjheight = (renderer != null) ? HitObj.GetComponent<Renderer>().bounds.size.y : 1.0f;
 
 
             // プレイヤーをオブジェクトの上に乗せる高さ
