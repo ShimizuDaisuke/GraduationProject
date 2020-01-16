@@ -20,7 +20,10 @@ public class QRReadID : MonoBehaviour
         REMAINING_UP  = 1 << 2,    // 残機を増やす                  0000 0100  4
         PLAYER_ERASER = 1 << 3,    // プレイヤーの変更(消しゴム)    0000 1000  8
         PLAYER_IRON   = 1 << 4,    // プレイヤーの変更(鉄)       　 0001 0000  16
-
+        SEESAW_CHANG_RULER = 1 << 5,    //シーソーを定規に変更
+        CRAYON_NO_BRAEK = 1 << 6,  // クレヨンが壊れなくなる
+        HURIKO_STOP = 1 << 7,      // 振り子停止
+        PLAYER_SPEED_UP = 1 << 8,  // プレイヤーの速度UP
     }
 
     // 読み込んだQRの結果の格納
@@ -38,6 +41,26 @@ public class QRReadID : MonoBehaviour
     [SerializeField]
     private PlayerType m_playerType = default;
 
+    //シーソーを定規に変更
+    [SerializeField]
+    private GameObject m_seesawChangeRuler = null;
+
+    private QRChangeObjct m_qrChangeRuler = default;
+
+    //シーソーを定規に変更
+    [SerializeField]
+    private GameObject m_crayonsChangeNoBrake = null;
+
+    private QRChangeObjct m_qrChangecrayons = default;
+
+    //振り子停止
+    [SerializeField]
+    private HurikoStopFlag m_hurikoStopFlag = default;
+
+    //プレイヤーのController
+    [SerializeField]
+    private PlayerController m_playerCon = default;
+
     //=======================================================================================
     //! @brief 開始処理
     //! @param[in] なし
@@ -50,6 +73,9 @@ public class QRReadID : MonoBehaviour
         qrResult = GetComponent<SampleQRReader>();
         // QRTextにアクセス
         qRText = GetComponent<QRText>();
+
+        m_qrChangeRuler = m_seesawChangeRuler.GetComponent<QRChangeObjct>();
+        m_qrChangecrayons = m_crayonsChangeNoBrake.GetComponent<QRChangeObjct>();
     }
 
     //=======================================================================================
@@ -90,6 +116,22 @@ public class QRReadID : MonoBehaviour
             case (int)ReadResult.PLAYER_IRON:
                 m_playerType.IsPlayerType = PlayerType.Type.IRON;
                 qRText.PlayerIron();
+                break;
+            // シーソーを定規に変更
+            case (int)ReadResult.SEESAW_CHANG_RULER:
+                m_qrChangeRuler.ChangeRuler();
+                break;
+            // クレヨンが壊れなくなる
+            case (int)ReadResult.CRAYON_NO_BRAEK:
+                m_qrChangecrayons.ChangeRuler();
+                break;
+            // 振り子停止
+            case (int)ReadResult.HURIKO_STOP:
+                m_hurikoStopFlag.StopFlag = true;
+                break;
+            // プレイヤーの速度UP
+            case (int)ReadResult.PLAYER_SPEED_UP:
+                m_playerCon.ChangeVel();
                 break;
             // この中の物に属さなかった場合正規のQRじゃない
             default:
