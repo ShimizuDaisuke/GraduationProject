@@ -21,7 +21,7 @@ public class Test : MonoBehaviour
     private GameObject PlayerObj;
 
     // レイの長さ
-    private float  Length= 4.0f;
+    private float  Length= 0.75f;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +55,7 @@ public class Test : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, Length))
                 {
                     // 当たったもの
-                    Debug.Log("当たったもの: " + hit.transform.gameObject.name);
+                    //Debug.Log("当たったもの: " + hit.transform.gameObject.name);
 
                     // 当たったオブジェクトが  カメラ2Dの時にプレイヤーが入ってはいけない領域の場合
                     if ((hit.transform.gameObject.tag == "Camera2DNoArea"))
@@ -76,7 +76,7 @@ public class Test : MonoBehaviour
 
         }
 
-        if(flag == 1) Debug.Log("当たっていない");
+        //if(flag == 1) Debug.Log("当たっていない");
 
     }
 }

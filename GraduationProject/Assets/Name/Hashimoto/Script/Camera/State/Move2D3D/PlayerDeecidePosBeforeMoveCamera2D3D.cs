@@ -27,7 +27,7 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
     private Vector3 PlayerObjSize;
 
     // プレイヤーのレイの長さでサイズによる割合
-    private float RayLength_SizeRote = 4.0f;
+    private float RayLength_SizeRote = 0.75f;
 
     // プレイヤーのレイに当たったオブジェクト
     private GameObject HitObj;
@@ -128,8 +128,11 @@ public class PlayerDeecidePosBeforeMoveCamera2D3D : MonoBehaviour
         // プレイヤーが乗っている地面は一つの軸中心にそろえて動くものか かつ カメラが2D→3Dへ切り替え時のみ
         if((IsHitObjParentMoveOneAxit)&&(isnowChange3D==true))
         {
+            // プレイヤーのレイに当たったオブジェクトのよるスクリプト
+            Renderer renderer = HitObj.GetComponent<Renderer>();
+
             // プレイヤーのレイに当たったオブジェクトのモデルの高さ
-            float hitobjheight = 1.0f;//HitObj.GetComponent<Renderer>().bounds.size.y;
+            float hitobjheight = (renderer != null) ? HitObj.GetComponent<Renderer>().bounds.size.y : 1.0f;
 
 
             // プレイヤーをオブジェクトの上に乗せる高さ

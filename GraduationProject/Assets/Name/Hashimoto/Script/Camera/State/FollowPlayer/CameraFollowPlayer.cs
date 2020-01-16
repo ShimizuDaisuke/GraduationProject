@@ -50,7 +50,7 @@ public class CameraFollowPlayer : MonoBehaviour
     private Vector3 RotationCamera3D;
 
     // プレイヤーが動いても、カメラが上下に揺れてないように制限をつける高さ
-    private int CameraHeight_NoShake = 3;
+    private int CameraHeight_NoShake = 5;
 
     /// <summary>
     /// 開始処理
@@ -176,20 +176,14 @@ public class CameraFollowPlayer : MonoBehaviour
         // 3Dのカメラの場合
         if (is3dcamera)
         {
-            // 3Dカメラの位置を変える
-            Camera3D.transform.position = camerapos;
-
             // 3Dカメラとプレイヤーの距離を更新する
-            DirectionCamera3DPlayerPos = Camera3D.transform.position - playerpos;
+            DirectionCamera3DPlayerPos = camerapos - playerpos;
         }
         else
         // 2Dのカメラの場合
         {
-            // 2Dカメラの位置を変える
-            Camera2D.transform.position = camerapos;
-
             // 2Dカメラとプレイヤーの距離を更新する
-            DirectionCamera2DPlayerPos = Camera2D.transform.position - playerpos;
+            DirectionCamera2DPlayerPos = camerapos - playerpos;
         }
     }
 }

@@ -31,10 +31,13 @@ public class CameraStop : MonoBehaviour
     // 点滅時間の間隔
     private float FlashTimeGap = 0.4f;
 
+    // プレイヤーから飛ばすレイの長さ
+    private float RayDistance = 0.75f;
+
     // --------------------------------------------------------------------------------------
 
     // プレイヤー
-    private GameObject Player;
+    private GameObject PlayerObj;
     
     // カメラの動きを止めた後の「カメラの状態」
     private CameraState NextStateAfterCameraStop = CameraState.ERR;
@@ -63,10 +66,10 @@ public class CameraStop : MonoBehaviour
     private void Start()
     {
         // プレイヤーを探す
-        Player = GameObject.FindGameObjectWithTag("Player");
+        PlayerObj = GameObject.FindGameObjectWithTag("Player");
 
         // スクリプト：2Dカメラ⇔3Dカメラへ移動時にいるプレイヤーの位置 の設定
-        Script_PlayerPosByCamera2D3D = Player.GetComponent<PlayerPosByCamera2D3D>();
+        Script_PlayerPosByCamera2D3D = PlayerObj.GetComponent<PlayerPosByCamera2D3D>();
 
         // スクリプト：カメラの監督 の設定
         Script_CameraDirector = GetComponent<CameraDirector>();
@@ -92,13 +95,27 @@ public class CameraStop : MonoBehaviour
             isdifferstatenowonce = false;
 
             // プレイヤーが地面以外のオブジェクトに当たった場合
-            if (Script_PlayerPosByCamera2D3D.HitNoArea2DCamera() == true)
+            if (Script_PlayerPosByCamera2D3D.IsHitPlayerNoGroundObj == true)
             {
-                // カメラの動きを止めた後に、カメラの状態を2D⇔3Dに動くように設定する
-                NextStateAfterCameraStop = CameraState.MOVE2D3D;
+                // --------------------------------------------------------------------------------------
 
-                // プレイヤーの地面以外のオブジェクトを透明にする
-                Script_PlayerPosByCamera2D3D.MakeTransparencePlayerHitObjNoGround(ref NormalTransparence, PlayerHitObjTransparence);
+                // プレイヤーの真下に1つの軸を中心に動かすオブジェクトの場合
+                if(HitPlayer_ObjOneAxitsMove())
+                {
+                    // リセットする
+                    Script_PlayerPosByCamera2D3D.IsHitPlayerNoGroundObj = false;
+
+                    // カメラの動きを止めた後に、カメラの状態をプレイヤーに追従するように設定する
+                    NextStateAfterCameraStop = CameraState.FOLLOWPLAYER;
+                }
+                else
+                {
+                    // カメラの動きを止めた後に、カメラの状態を2D⇔3Dに動くように設定する
+                    NextStateAfterCameraStop = CameraState.MOVE2D3D;
+
+                    // プレイヤーの地面以外のオブジェクトを透明にする
+                    Script_PlayerPosByCamera2D3D.MakeTransparencePlayerHitObjNoGround(ref NormalTransparence, PlayerHitObjTransparence);
+                }
             }
             else
             {
@@ -136,8 +153,11 @@ public class CameraStop : MonoBehaviour
                     // カメラが2D⇔3Dへ動かすのを終了させる
                     Script_CameraDirector.IsMove2D3DCameraPos = false;
 
-                   // プレイヤーの「Rigidbody」の位置と回転の固定(フリーズ)を解除する
-                   Player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                   // プレイヤーが地面以外のオブジェクトに当たった情報をリセットする(当たり判定による情報がtrueへ更新し続けたため)
+                   Script_PlayerPosByCamera2D3D.IsHitPlayerNoGroundObj = false;
+
+                    // プレイヤーの「Rigidbody」の位置と回転の固定(フリーズ)を解除する
+                    PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
                    // カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域を非表示させる
                    GetComponent<ObjStateByCameraMove2D3D>().ChangeActiveObjByCamera2DNoArea(false);
@@ -220,5 +240,30 @@ public class CameraStop : MonoBehaviour
             }
         }
 
+    }
+
+    /// <summary>
+    /// プレイヤーの真下に1つの軸を中心に動かすオブジェクトなのか確認する
+    /// </summary>
+    /// <returns>そのオブジェクトは1つの軸を中心に動かすものか</returns>
+    private bool HitPlayer_ObjOneAxitsMove()
+    {
+        // プレイヤーから飛ばすレイを作成する
+        Ray ray =  new Ray(PlayerObj.transform.position, Vector3.down);
+
+        // プレイヤーから飛ばしたレイに当たったオブジェクトの入れ物
+        RaycastHit hit;
+
+        // プレイヤーからレイを飛ばして何からのオブジェクトに衝突した場合
+        if (Physics.Raycast(ray, out hit, RayDistance))
+        {
+            // プレイヤーが衝突したオブジェクトは軸中心に動かすオブジェクトの場合
+            if (hit.transform.gameObject.GetComponent<Obj_OneAxitMove>() != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
