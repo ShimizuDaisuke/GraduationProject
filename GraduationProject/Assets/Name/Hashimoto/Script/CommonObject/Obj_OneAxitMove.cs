@@ -120,7 +120,7 @@ public class Obj_OneAxitMove : MonoBehaviour
             transform.position = Vector3.zero;
 
         }
-       
+        else
         //  親のオブジェクトのみ動かす場合
         {
             // 親のみ動かす
