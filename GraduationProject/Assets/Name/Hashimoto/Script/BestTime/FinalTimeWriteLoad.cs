@@ -20,7 +20,7 @@ using System.IO;
 public class FinalTimeWriteLoad : MonoBehaviour
 {
     // ファイル名(ファイルパスは含らない)
-    private string FileName = "timescore.csv";
+    private string FileName = "timescore";
 
     // 上記のファイルがある相対パス(「@」を付けると、エスケープを行わずに「\」を文字列に含まれる)
     private string FilePath = @"Resources/CSV";
@@ -35,45 +35,6 @@ public class FinalTimeWriteLoad : MonoBehaviour
 
         // ファイル名にファイルパスを含ませる
         FileName = FilePath + @"/" + FileName;
-
-
-        // テスト ----------------------------------------------------------------
-        
-        // 削除
-        DeleteFile(FileName);
-        // 作成
-        CheckAndCreateNewFile(FileName,FilePath);
-
-        // 書き込み
-        int a1 = UnityEngine.Random.Range(3, 6);
-        for(int i = 0;i<a1;i++)
-        {
-            int a2= UnityEngine.Random.Range(1, 5);
-            int a3 = UnityEngine.Random.Range(1, 500);
-            for(int j=0;j < a2; j++)
-            {
-                Write(a3, FileName);
-            }
-
-        }        
-        // 読み込み
-        int[] data = Load(FileName);
-
-
-        // 表示
-
-        // 行数
-        int row = 1;
-        foreach(int part in data)
-        {
-            //Debug.Log(row +"段目 "+FindJuni(data, part) + "位:" + part + "秒");
-            row++;
-        }
-
-       
-        //------------------------------------------------------------------------
-
-
     }
 
     // --------------------------------------------------------------------------------------------------
@@ -85,16 +46,20 @@ public class FinalTimeWriteLoad : MonoBehaviour
     /// <param name="junitotal">順位の総合</param>
     /// <param name="besttimescore">最速タイムスコア</param>
     /// <param name="nowtimescore">現在のタイムスコア</param>
-    public void DecideJuni(ref int juni, ref int junitotal,ref int besttimescore, int nowtimescore = 0)
+    /// <param name="coursename">コース名</param>
+    public void DecideJuni(ref int juni, ref int junitotal,ref int besttimescore, int nowtimescore,string coursename)
     {
         // 現在のタイムスコアがない場合、何もしない
         if (nowtimescore == 0) return;
 
+        // そのコースによるファイルパス
+        string TheCourseFile = FileName +"_course-" +coursename+".csv";
+
         // 現在のタイムスコアを保存する
-        Write(nowtimescore, FileName);
+        Write(nowtimescore, TheCourseFile,FilePath);
 
         // これまでに保存してきたタイムスコアを書き出す
-        int[] saveddata = Load(FileName);
+        int[] saveddata = Load(TheCourseFile);
 
         // 現在のタイムスコアの順位を探す
         juni = FindJuni(saveddata, nowtimescore);
