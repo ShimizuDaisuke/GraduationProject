@@ -11,24 +11,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class ObjStateByCameraMove2D3D : MonoBehaviour
 {
     // 2Dカメラのみ表示されるオブジェクト
     [SerializeField]
-    private GameObject[] ObjBy2DCamera = default;
+    private List<GameObject> ObjBy2DCamera = default;
 
     // 3Dカメラのみ表示されるオブジェクト
     [SerializeField]
-    private GameObject[] ObjBy3DCamera = default;
+    private List<GameObject> ObjBy3DCamera = default;
 
     // カメラが3D→2Dへ切り替えたときに、一つの軸を中心に揃えるオブジェクト
     [SerializeField]
-    private GameObject[] ObjByOneAxitMove = default;
+    private List<GameObject> ObjByOneAxitMove = default;
 
     // カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域
     [SerializeField]
-    private GameObject[] ObjByCamera2DNoArea = default;
+    private List<GameObject> ObjByCamera2DNoArea = default;
 
 
     /// <summary>
@@ -182,14 +181,9 @@ public class ObjStateByCameraMove2D3D : MonoBehaviour
     /// <param name="obj">追加したいオブジェクト</param>
     public void AddObjBy2DCamera(GameObject obj)
     {
-        // 現在の領域
-        int size = ObjBy2DCamera.Length;
+        // 新たにオブジェクトを追加する
+        ObjBy2DCamera.Add(obj);
 
-        // 新たにオブジェクトを追加できるように領域を確保
-        ObjBy2DCamera = new GameObject[size + 1];
-
-        // 追加する
-        ObjBy2DCamera[size] = obj;
     }
 
     /// <summary>
@@ -198,14 +192,8 @@ public class ObjStateByCameraMove2D3D : MonoBehaviour
     /// <param name="obj">追加したいオブジェクト</param>
     public void AddObjBy3DCamera(GameObject obj)
     {
-        // 現在の領域
-        int size = ObjBy3DCamera.Length;
-
-        // 新たにオブジェクトを追加できるように領域を確保
-        ObjBy3DCamera = new GameObject[size + 1];
-
-        // 追加する
-        ObjBy3DCamera[size] = obj;
+        // 新たにオブジェクトを追加する
+        ObjBy3DCamera.Add(obj);
     }
 
     /// <summary>
@@ -214,14 +202,8 @@ public class ObjStateByCameraMove2D3D : MonoBehaviour
     /// <param name="obj">追加したいオブジェクト</param>
     public void AddObjByOneAxitMove(GameObject obj)
     {
-        // 現在の領域
-        int size = ObjByOneAxitMove.Length;
-
-        // 新たにオブジェクトを追加できるように領域を確保
-        ObjByOneAxitMove = new GameObject[size + 1];
-
-        // 追加する
-        ObjByOneAxitMove[size] = obj;
+        // 新たにオブジェクトを追加する
+        ObjByOneAxitMove.Add(obj);
     }
 
     /// <summary>
@@ -230,13 +212,7 @@ public class ObjStateByCameraMove2D3D : MonoBehaviour
     /// <param name="obj">追加したいオブジェクト</param>
     public void AddObjByCamera2DNoArea(GameObject obj)
     {
-        // 現在の領域
-        int size = ObjByCamera2DNoArea.Length;
-
-        // 新たにオブジェクトを追加できるように領域を確保
-        ObjByCamera2DNoArea = new GameObject[size + 1];
-
-        // 追加する
-        ObjByCamera2DNoArea[size] = obj;
+        // 新たにオブジェクトを追加する
+        ObjByCamera2DNoArea.Add(obj);
     }
 }

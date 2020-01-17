@@ -109,7 +109,7 @@ public class ResultSceneController : MonoBehaviour
     public void Scene()
     {
         //セレクトシーンに切り替える
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene("Select");
     }
 
 
