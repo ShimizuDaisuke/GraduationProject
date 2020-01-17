@@ -156,11 +156,28 @@ public class CameraStop : MonoBehaviour
                    // プレイヤーが地面以外のオブジェクトに当たった情報をリセットする(当たり判定による情報がtrueへ更新し続けたため)
                    Script_PlayerPosByCamera2D3D.IsHitPlayerNoGroundObj = false;
 
-                    // プレイヤーの「Rigidbody」の位置と回転の固定(フリーズ)を解除する
-                    PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    // 最終的に3Dカメラを写す場合
+                    if(Script_CameraDirector.IsAppearCamera3D)
+                    {
+                        // プレイヤーの「Rigidbody」の位置と回転の固定(フリーズ)を解除する
+                        PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    }
+                    else
+                    // 最終的に2Dカメラを写す場合
+                    {
+                        // プレイヤーの「Rigidbody」の位置と回転の固定(フリーズ)を解除する
+                        PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
-                   // カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域を非表示させる
-                   GetComponent<ObjStateByCameraMove2D3D>().ChangeActiveObjByCamera2DNoArea(false);
+                            // プレイヤーの「Rigidbody」の一部の位置を固定する
+                            PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
+
+                            // プレイヤーの「Rigidbody」の一部の回転を固定する
+                            PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
+                    }
+
+
+                        // カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域を非表示させる
+                        GetComponent<ObjStateByCameraMove2D3D>().ChangeActiveObjByCamera2DNoArea(false);
 
                  }
 

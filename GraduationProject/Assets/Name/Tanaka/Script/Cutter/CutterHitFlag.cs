@@ -12,8 +12,20 @@ using UnityEngine;
 //カッターが当たった時の処理
 public class CutterHitFlag : MonoBehaviour
 {
+    [SerializeField]
+    private CutterController m_cutterCon = default;
+
     private bool m_hitFlag = false;
-   
+
+
+    void Update()
+    {
+        if(m_cutterCon.EndFlag)
+        {
+            transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+        }
+    }
+
 
     void OnCollisionEnter(Collision collider)
     {

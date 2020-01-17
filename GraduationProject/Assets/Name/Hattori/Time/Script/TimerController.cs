@@ -18,6 +18,11 @@ public class TimerController : MonoBehaviour
     //シーンのタイム
     [SerializeField]
     private GameObject TimeDirector = default;
+
+    //スタートラインフラグ
+    [SerializeField]
+    private StartLineFlag m_startLineFlag = default;
+
     // スクリプト：タイムマネージャー
     private TimeManager Script_Time;
 
@@ -50,34 +55,38 @@ public class TimerController : MonoBehaviour
     void Update()
     {
         //負の数(-1とか)にならないようにするif文
-        if (timerFlag)
+        if(m_startLineFlag.StartFlag)
         {
-            // スコアに
-            Script_Time.ClearTime = seconds;
+            if (timerFlag)
+            {
+                // スコアに
+                Script_Time.ClearTime = seconds;
 
-            //フレームごとにフレームの秒数を引いてる
-            totalTime += Time.deltaTime;
+                //フレームごとにフレームの秒数を引いてる
+                totalTime += Time.deltaTime;
 
-            //キャストしたものを代入して小数点以下抹殺
-            seconds = (int)totalTime;
+                //キャストしたものを代入して小数点以下抹殺
+                seconds = (int)totalTime;
 
-            //文字列にしてからテキストに表示
-            timerText.text = seconds.ToString();
+                //文字列にしてからテキストに表示
+                timerText.text = seconds.ToString();
 
-            ////もしタイマーが0以下になりそうになったら
-            //if (seconds < 0)
-            //{
-            //    //タイマーを停止
-            //    timerFlag = false;
+                ////もしタイマーが0以下になりそうになったら
+                //if (seconds < 0)
+                //{
+                //    //タイマーを停止
+                //    timerFlag = false;
 
-            //    //タイマーを0にする
-            //    seconds = 0;
-            //    totalTime = 0.0f;
+                //    //タイマーを0にする
+                //    seconds = 0;
+                //    totalTime = 0.0f;
 
-            //    SceneManager.LoadScene("Result");
-            //}
+                //    SceneManager.LoadScene("Result");
+                //}
 
+            }
         }
+       
         
         //文字列にしてからテキストに表示
         timerText.text = seconds.ToString(remainingTime);

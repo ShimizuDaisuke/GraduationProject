@@ -3,11 +3,14 @@
 //! @brief  カメラ２Dの高さを変える当たり判定の処理
 //! @author 田中歩夢、橋本奉武
 //! @date   01月08日
-//! @note   ない
+//! @note   その当たり判定の幅は広くすること！ by 橋本
 //=======================================================================================
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+// 型名省略
+using Kind_IsKeepCameraHeight = CameraFollowPlayer.Kind_IsKeepHeight;
 
 // カメラ２Dの高さを変える当たり判定の処理
 public class Camera2DHitHightFlag : MonoBehaviour
@@ -50,6 +53,9 @@ public class Camera2DHitHightFlag : MonoBehaviour
     // プレイヤーと3dカメラの距離
     private Vector3 dir3d = Vector3.zero;
 
+    // とある時間
+    private float time = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,7 +80,11 @@ public class Camera2DHitHightFlag : MonoBehaviour
 
                 // 指定された位置にカメラを動かす
                 m_cameraFP.ChangeCameraPos(new Vector3(m_player.transform.position.x, m_cameraHitYPos, m_camera2DposZ), false);
-               // m_cameraFP.ChangeCameraPos(new Vector3(m_camera3d.transform.position.x, m_camera3dHitYPos, m_player.transform.position.z), true);
+
+                // 2Dカメラのみ高さを維持する
+                m_cameraFP.DecideKeepCameraHeight(Kind_IsKeepCameraHeight.ONLY2D, time);
+
+                // m_cameraFP.ChangeCameraPos(new Vector3(m_camera3d.transform.position.x, m_camera3dHitYPos, m_player.transform.position.z), true);
 
             }
             // エリア内にプレイヤーが入っていない場合
@@ -89,6 +99,11 @@ public class Camera2DHitHightFlag : MonoBehaviour
                 //  元の位置に戻す
                 m_cameraFP.ChangeCameraPos(camerabasepos, false);
                 m_cameraFP.ChangeCameraPos(camera3dBasePos, true);
+
+                // 2Dカメラの高さを維持しない
+                m_cameraFP.DecideKeepCameraHeight(Kind_IsKeepCameraHeight.NONE);
+
+
             }
         }
 
