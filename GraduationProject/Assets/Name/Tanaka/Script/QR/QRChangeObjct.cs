@@ -20,10 +20,12 @@ public class QRChangeObjct : MonoBehaviour
     [SerializeField]
     private GameObject m_changeObj = null;
 
+    
+
     public void ChangeRuler()
     {
-        m_nomalObj.transform.position = m_changeObj.transform.position;
-        m_changeObj.transform.position = Vector3.zero;
+        Destroy(m_nomalObj);
+        Instantiate(m_changeObj, Vector3.zero, Quaternion.identity);
     }
 
     void OnCollisionEnter(Collision collider)
