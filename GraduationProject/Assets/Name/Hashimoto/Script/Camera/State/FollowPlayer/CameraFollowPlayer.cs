@@ -13,6 +13,17 @@ using UnityEngine;
 
 public class CameraFollowPlayer : MonoBehaviour
 {
+    // 「カメラがプレイヤーに追従するとき、カメラの高さを維持するか」による種類
+    public enum Kind_IsKeepHeight
+    {
+        ERR = -1,       // 例外
+        NONE,           // どのカメラの高さを維持しない
+        ONLY2D,         // 2Dカメラのみ高さを維持する
+        ONLY3D,         // 3Dカメラのみ高さを維持する
+        STOP3D2D,       // 2Dも3Dもカメラのみ高さを維持する
+        MAX             // この列挙型の最大数
+    };
+
     // 2Dカメラ
     [SerializeField] private GameObject Camera2D = default;
 
@@ -52,6 +63,13 @@ public class CameraFollowPlayer : MonoBehaviour
     // プレイヤーが動いても、カメラが上下に揺れてないように制限をつける高さ
     private int CameraHeight_NoShake = 5;
 
+
+    // カメラがプレイヤーに追従するとき、カメラの高さを維持するか
+    private Kind_IsKeepHeight IsKeepHeight;
+
+    // カメラがプレイヤーに時間を変えて追従するためにラップする処理に掛かる時間
+    private float LerpTime = 0.0f;
+
     /// <summary>
     /// 開始処理
     /// </summary>
@@ -88,10 +106,10 @@ public class CameraFollowPlayer : MonoBehaviour
     public void FollowPlayer()
     {
         // 2Dカメラは、常に一定の距離でプレイヤーに追従する
-        FollowPlayer(Camera2D, DirectionCamera2DPlayerPos, RotationCamera2D);
+        FollowPlayer(Camera2D, DirectionCamera2DPlayerPos, RotationCamera2D,false);
 
         // 3Dカメラは、常に一定の距離でプレイヤーに追従する
-        FollowPlayer(Camera3D, DirectionCamera3DPlayerPos, RotationCamera3D);
+        FollowPlayer(Camera3D, DirectionCamera3DPlayerPos, RotationCamera3D,true);
     }
 
     /// <summary>
@@ -100,7 +118,8 @@ public class CameraFollowPlayer : MonoBehaviour
     /// <param name="camera">カメラ</param>
     /// <param name="direction">カメラとプレイヤーの距離</param>
     /// <param name="rotation">カメラの向き</param>
-    private void FollowPlayer(GameObject camera,Vector3 direction,Vector3 rotation)
+    /// <param name="is3dcamera">3Dカメラなのか(false:2Dカメラ、true:3Dカメラ)</param>
+    private void FollowPlayer(GameObject camera,Vector3 direction,Vector3 rotation,bool is3dcamera)
     {
         // 現在のカメラの位置
         Vector3 NowPos = camera.transform.position;
@@ -116,10 +135,39 @@ public class CameraFollowPlayer : MonoBehaviour
                                        direction.y + playerheight,
                                        Player.transform.position.z+direction.z);
 
+        // カメラの高さを維持する場合
+        if ( (LerpTime == 0) &&
+             ( (IsKeepHeight == Kind_IsKeepHeight.STOP3D2D)                    ||
+               ( (IsKeepHeight == Kind_IsKeepHeight.ONLY2D) && !(is3dcamera) ) ||
+               ( (IsKeepHeight == Kind_IsKeepHeight.ONLY3D) && (is3dcamera)  )    )
+             )
+        {
+            // カメラが移動する前にカメラの高さを取得する
+            float height = camera.transform.position.y;
+
+            // 時間をかけて、カメラはプレイヤーに追従する <カメラのブレ防止>
+            camera.transform.position = Vector3.Lerp(NowPos, NextPos, FollowingTime * Time.deltaTime);
+
+            // カメラの高さのみ維持する
+            camera.transform.position = new Vector3(camera.transform.position.x, height, camera.transform.position.z);
+
+        }
+        else
+        {
+            // 時間をかけて、カメラはプレイヤーに追従する <カメラのブレ防止>
+            camera.transform.position = Vector3.Lerp(NowPos, NextPos, FollowingTime * Time.deltaTime);
+
+            // カメラがプレイヤーに時間を変えて追従するためにラップする処理に掛かる時間を減らす
+            if (LerpTime > 0)
+            {
+                LerpTime += -Time.deltaTime;
+
+                // その時間の範囲
+                if (LerpTime < 0) LerpTime = 0;
+            }
+        }
 
 
-        // 時間をかけて、カメラはプレイヤーに追従する <カメラのブレ防止>
-        camera.transform.position = Vector3.Lerp(NowPos, NextPos, FollowingTime * Time.deltaTime);
 
         // カメラの向きを常にそろえる
         camera.transform.rotation = Quaternion.Euler(rotation);
@@ -136,6 +184,9 @@ public class CameraFollowPlayer : MonoBehaviour
         // プレイヤーが動いてもカメラが上下に揺れないように制限する
         playerheight = playerheight - (playerheight % CameraHeight_NoShake);
 
+        // カメラがプレイヤーに時間を変えて追従するためにラップする処理に掛かる時間をリセットする
+        LerpTime = 0.0f;
+
         // ----------------------------------------------------------------------------------------------------
 
         // 2Dカメラが次へ進む目的地の位置 
@@ -143,8 +194,23 @@ public class CameraFollowPlayer : MonoBehaviour
                                               (float)playerheight         + DirectionCamera2DPlayerPos.y,
                                               Player.transform.position.z + DirectionCamera2DPlayerPos.z);
 
-        // 2Dカメラはプレイヤーに時間かけずに追従する
-        Camera2D.transform.position = Camera2DNextPos;
+        // 2Dカメラのみ高さを維持する場合
+        if((IsKeepHeight == Kind_IsKeepHeight.STOP3D2D) || (IsKeepHeight == Kind_IsKeepHeight.ONLY2D))
+        {
+            // 移動する前に、2Dカメラの高さを取得する
+            float height = Camera2D.transform.position.y;
+
+            // 2Dカメラはプレイヤーに時間かけずに追従する
+            Camera2D.transform.position = Camera2DNextPos;
+
+            // 2Dカメラの高さを維持する
+            Camera2D.transform.position = new Vector3(Camera2D.transform.position.x,height, Camera2D.transform.position.z);
+        }
+        else
+        {
+            // 2Dカメラはプレイヤーに時間かけずに追従する
+            Camera2D.transform.position = Camera2DNextPos;
+        }
 
         // ----------------------------------------------------------------------------------------------------
 
@@ -152,9 +218,24 @@ public class CameraFollowPlayer : MonoBehaviour
         Vector3 Camera3DNextPos = new Vector3(Player.transform.position.x + DirectionCamera3DPlayerPos.x,
                                                (float)playerheight        + DirectionCamera3DPlayerPos.y,
                                               Player.transform.position.z + DirectionCamera3DPlayerPos.z);
+        
+        // 3Dカメラのみ高さを維持する場合
+        if ((IsKeepHeight == Kind_IsKeepHeight.STOP3D2D) || (IsKeepHeight == Kind_IsKeepHeight.ONLY3D))
+        {
+            // 移動する前に、3Dカメラの高さを取得する 
+            float height = Camera2D.transform.position.y;
 
-        // 3Dカメラはプレイヤーに時間かけずに追従する
-        Camera3D.transform.position = Camera3DNextPos;
+            // 3Dカメラはプレイヤーに時間かけずに追従する
+            Camera3D.transform.position = Camera3DNextPos;
+
+            // 3Dカメラのみ高さを維持する
+            Camera3D.transform.position = new Vector3(Camera3D.transform.position.x, height, Camera3D.transform.position.z);
+        }
+        else
+        {
+            // 3Dカメラはプレイヤーに時間かけずに追従する
+            Camera3D.transform.position = Camera3DNextPos;
+        }
     }
 
     /// <summary>
@@ -185,5 +266,20 @@ public class CameraFollowPlayer : MonoBehaviour
             // 2Dカメラとプレイヤーの距離を更新する
             DirectionCamera2DPlayerPos = camerapos - playerpos;
         }
+    }
+
+    /// <summary>
+    /// カメラがプレイヤーに追従するとき、カメラの高さを維持するか決める
+    /// </summary>
+    /// <param name="kind"></param>
+    /// <param name="lerptime">ラップするのにかかる時間</param>
+    public void DecideKeepCameraHeight(Kind_IsKeepHeight kind, float lerptime = 0.0f)
+    {
+        // カメラがプレイヤーに追従するとき、カメラの高さを変えるか 決める
+        IsKeepHeight = kind;
+
+        // カメラがプレイヤーに時間を変えて追従するためにラップする処理に掛かる時間
+        if(lerptime > 0.0f) LerpTime = lerptime;
+
     }
 }
