@@ -90,7 +90,7 @@ public class BalanceController : MonoBehaviour
         m_grandchildMarbleSide = m_childMarbleSide.transform.GetChild(0).gameObject;
 
         m_ironStartPos = m_IronObj.transform.position;
-        Debug.Log(m_ironStartPos);
+
     }
 
     // Update is called once per frame

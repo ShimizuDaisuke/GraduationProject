@@ -20,12 +20,21 @@ public class QRChangeObjct : MonoBehaviour
     [SerializeField]
     private GameObject m_changeObj = null;
 
-    
+    //定規をまとめたオブジェクト
+    [SerializeField]
+    private GameObject m_changeObj_NoMove = null;
+
 
     public void ChangeRuler()
     {
         Destroy(m_nomalObj);
         Instantiate(m_changeObj, Vector3.zero, Quaternion.identity);
+
+        if(m_changeObj_NoMove != null)
+        {
+            Instantiate(m_changeObj_NoMove, Vector3.zero, Quaternion.identity);
+        }
+
     }
 
     void OnCollisionEnter(Collision collider)
