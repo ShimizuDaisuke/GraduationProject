@@ -83,8 +83,8 @@ public class Camera2DHitHightFlag : MonoBehaviour
                 dir3d = m_camera3d.transform.position - m_player.transform.position;
 
                 // 指定された位置にカメラを動かす
-                m_cameraFP.ChangeCameraPos(new Vector3(m_player.transform.position.x, m_cameraHitYPos, m_camera2DposZ), false);                         // 2Dカメラ
-                m_cameraFP.ChangeCameraPos(new Vector3(m_camera3d.transform.position.x, m_camera3dHitYPos, m_camera3d.transform.position.z), true);     // 3Dカメラ
+                if(m_cameraHitYPos != 0) m_cameraFP.ChangeCameraPos(new Vector3(m_player.transform.position.x, m_cameraHitYPos, m_camera2DposZ), false);                         // 2Dカメラ
+                if(m_camera3dHitYPos != 0) m_cameraFP.ChangeCameraPos(new Vector3(m_camera3d.transform.position.x, m_camera3dHitYPos, m_camera3d.transform.position.z), true);     // 3Dカメラ
 
                 // カメラの高さを維持させるか決める
                 m_cameraFP.DecideKeepCameraHeight(IsKeepCameraHeight, time);
