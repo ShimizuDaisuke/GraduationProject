@@ -35,6 +35,10 @@ public class Camera2DHitHightFlag : MonoBehaviour
     [SerializeField]
     private GameObject m_camera3d = null;
 
+    // カメラがプレイヤーに追従するとき、カメラの高さを固定するか
+    [SerializeField]
+    private Kind_IsKeepCameraHeight IsKeepCameraHeight;
+
     // 現在、エリア内にプレイヤーが入っているか
     private bool m_hitNowHightFlag = false;
 
@@ -79,27 +83,25 @@ public class Camera2DHitHightFlag : MonoBehaviour
                 dir3d = m_camera3d.transform.position - m_player.transform.position;
 
                 // 指定された位置にカメラを動かす
-                m_cameraFP.ChangeCameraPos(new Vector3(m_player.transform.position.x, m_cameraHitYPos, m_camera2DposZ), false);
+                m_cameraFP.ChangeCameraPos(new Vector3(m_player.transform.position.x, m_cameraHitYPos, m_camera2DposZ), false);                         // 2Dカメラ
+                m_cameraFP.ChangeCameraPos(new Vector3(m_camera3d.transform.position.x, m_camera3dHitYPos, m_camera3d.transform.position.z), true);     // 3Dカメラ
 
+                // カメラの高さを維持させるか決める
+                m_cameraFP.DecideKeepCameraHeight(IsKeepCameraHeight, time);
 
-
-                // 2Dカメラのみ高さを維持する
-                m_cameraFP.DecideKeepCameraHeight(Kind_IsKeepCameraHeight.ONLY2D, time);
-
-                // m_cameraFP.ChangeCameraPos(new Vector3(m_camera3d.transform.position.x, m_camera3dHitYPos, m_player.transform.position.z), true);
-
+ 
             }
             // エリア内にプレイヤーが入っていない場合
             else
             {
                 // カメラの位置が下記の距離に戻す
-                Vector3 camerabasepos = dir + m_player.transform.position;
+                Vector3 camera2basepos = dir + m_player.transform.position;
 
                 // カメラの位置が下記の距離に戻す
                 Vector3 camera3dBasePos = dir3d + m_player.transform.position;
 
                 //  元の位置に戻す
-                m_cameraFP.ChangeCameraPos(camerabasepos, false);
+                m_cameraFP.ChangeCameraPos(camera2basepos, false);
                 m_cameraFP.ChangeCameraPos(camera3dBasePos, true);
 
                 // 2Dカメラの高さを維持しない
