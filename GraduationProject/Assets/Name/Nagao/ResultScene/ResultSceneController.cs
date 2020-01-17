@@ -1,7 +1,7 @@
 ﻿//======================================================================================= 
 //! @file       ResultSceneController
 //! @brief      Resultからのシーン遷移
-//! @author     長尾昌輝 
+//! @author     長尾昌輝 、橋本奉武
 //! @date       2019/09/27 
 //! @note       無し
 //=======================================================================================
@@ -108,9 +108,11 @@ public class ResultSceneController : MonoBehaviour
     //======================================================================================= 
     public void Scene()
     {
-        //Titleに切り替える切り替える
+        //セレクトシーンに切り替える
         SceneManager.LoadScene("Title");
     }
+
+
 
     // 取得設定関数
     public bool SwitchingFlag { get { return m_switchingFlag; } set { m_switchingFlag = value; } }
