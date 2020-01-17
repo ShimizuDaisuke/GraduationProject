@@ -81,6 +81,8 @@ public class Camera2DHitHightFlag : MonoBehaviour
                 // 指定された位置にカメラを動かす
                 m_cameraFP.ChangeCameraPos(new Vector3(m_player.transform.position.x, m_cameraHitYPos, m_camera2DposZ), false);
 
+
+
                 // 2Dカメラのみ高さを維持する
                 m_cameraFP.DecideKeepCameraHeight(Kind_IsKeepCameraHeight.ONLY2D, time);
 
