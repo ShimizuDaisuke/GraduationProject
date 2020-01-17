@@ -22084,7 +22084,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: bf44055a053966f45b00ec8554985ea0,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Camera2DNoArea
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bf44055a053966f45b00ec8554985ea0,
         type: 3}
@@ -49904,6 +49904,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerType: {fileID: 0}
+  m_seesawChangeRuler: {fileID: 0}
+  m_crayonsChangeNoBrake: {fileID: 0}
+  m_hurikoStopFlag: {fileID: 0}
+  m_playerCon: {fileID: 0}
 --- !u!114 &1527689331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61329,4 +61333,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e4cba27489e0e418d4bde4f318a124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraDirectorObj: {fileID: 270117407}
