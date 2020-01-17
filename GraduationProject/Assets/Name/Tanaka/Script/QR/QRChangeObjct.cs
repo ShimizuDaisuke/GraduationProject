@@ -22,8 +22,9 @@ public class QRChangeObjct : MonoBehaviour
 
     public void ChangeRuler()
     {
-        m_nomalObj.transform.position = m_changeObj.transform.position;
-        m_changeObj.transform.position = Vector3.zero;
+        Destroy(m_nomalObj);
+        Instantiate(m_changeObj, Vector3.zero, Quaternion.identity);
+        //m_changeObj.transform.position = Vector3.zero;
     }
 
     void OnCollisionEnter(Collision collider)
