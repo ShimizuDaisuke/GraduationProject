@@ -74,8 +74,15 @@ public class QRReadID : MonoBehaviour
         // QRTextにアクセス
         qRText = GetComponent<QRText>();
 
-        m_qrChangeRuler = m_seesawChangeRuler.GetComponent<QRChangeObjct>();
-        m_qrChangecrayons = m_crayonsChangeNoBrake.GetComponent<QRChangeObjct>();
+        if (m_seesawChangeRuler != null)
+        {
+            m_qrChangeRuler = m_seesawChangeRuler.GetComponent<QRChangeObjct>();
+        }
+
+        if (m_crayonsChangeNoBrake != null)
+        {
+            m_qrChangecrayons = m_crayonsChangeNoBrake.GetComponent<QRChangeObjct>();
+        }
     }
 
     //=======================================================================================
@@ -127,9 +134,13 @@ public class QRReadID : MonoBehaviour
                 break;
             // 振り子停止
             case (int)ReadResult.HURIKO_STOP:
-                m_hurikoStopFlag.StopFlag = true;
+                if (m_hurikoStopFlag != null)
+                {
+                    m_hurikoStopFlag.StopFlag = true;
+                }
                 break;
-            // プレイヤーの速度UP
+                
+                // プレイヤーの速度UP
             case (int)ReadResult.PLAYER_SPEED_UP:
                 m_playerCon.ChangeVel();
                 break;
