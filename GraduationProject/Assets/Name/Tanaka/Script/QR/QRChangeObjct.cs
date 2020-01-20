@@ -24,16 +24,25 @@ public class QRChangeObjct : MonoBehaviour
     [SerializeField]
     private GameObject m_changeObj_NoMove = null;
 
+    //生成フラグ
+    [SerializeField]
+    private bool m_createFlag = false;
 
     public void ChangeRuler()
     {
-        Destroy(m_nomalObj);
-        Instantiate(m_changeObj, Vector3.zero, Quaternion.identity);
-
-        if(m_changeObj_NoMove != null)
+        if(!m_createFlag)
         {
-            Instantiate(m_changeObj_NoMove, Vector3.zero, Quaternion.identity);
+            Destroy(m_nomalObj);
+            Instantiate(m_changeObj, Vector3.zero, Quaternion.identity);
+
+            if (m_changeObj_NoMove != null)
+            {
+                Instantiate(m_changeObj_NoMove, Vector3.zero, Quaternion.identity);
+            }
+
+            m_createFlag = true;
         }
+        
 
     }
 
