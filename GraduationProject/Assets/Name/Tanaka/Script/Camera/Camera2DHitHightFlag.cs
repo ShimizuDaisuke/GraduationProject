@@ -3,11 +3,14 @@
 //! @brief  カメラ２Dの高さを変える当たり判定の処理
 //! @author 田中歩夢、橋本奉武
 //! @date   01月08日
-//! @note   ない
+//! @note   その当たり判定の幅は広くすること！ by 橋本
 //=======================================================================================
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+// 型名省略
+using Kind_IsKeepCameraHeight = CameraFollowPlayer.Kind_IsKeepHeight;
 
 // カメラ２Dの高さを変える当たり判定の処理
 public class Camera2DHitHightFlag : MonoBehaviour
@@ -32,6 +35,10 @@ public class Camera2DHitHightFlag : MonoBehaviour
     [SerializeField]
     private GameObject m_camera3d = null;
 
+    // カメラがプレイヤーに追従するとき、カメラの高さを固定するか
+    [SerializeField]
+    private Kind_IsKeepCameraHeight IsKeepCameraHeight;
+
     // 現在、エリア内にプレイヤーが入っているか
     private bool m_hitNowHightFlag = false;
 
@@ -49,6 +56,9 @@ public class Camera2DHitHightFlag : MonoBehaviour
 
     // プレイヤーと3dカメラの距離
     private Vector3 dir3d = Vector3.zero;
+
+    // とある時間
+    private float time = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -73,22 +83,31 @@ public class Camera2DHitHightFlag : MonoBehaviour
                 dir3d = m_camera3d.transform.position - m_player.transform.position;
 
                 // 指定された位置にカメラを動かす
-                m_cameraFP.ChangeCameraPos(new Vector3(m_player.transform.position.x, m_cameraHitYPos, m_camera2DposZ), false);
-               // m_cameraFP.ChangeCameraPos(new Vector3(m_camera3d.transform.position.x, m_camera3dHitYPos, m_player.transform.position.z), true);
+                if(m_cameraHitYPos != 0) m_cameraFP.ChangeCameraPos(new Vector3(m_player.transform.position.x, m_cameraHitYPos, m_camera2DposZ), false);                         // 2Dカメラ
+                if(m_camera3dHitYPos != 0) m_cameraFP.ChangeCameraPos(new Vector3(m_camera3d.transform.position.x, m_camera3dHitYPos, m_camera3d.transform.position.z), true);     // 3Dカメラ
 
+                // カメラの高さを維持させるか決める
+                m_cameraFP.DecideKeepCameraHeight(IsKeepCameraHeight, time);
+
+ 
             }
             // エリア内にプレイヤーが入っていない場合
             else
             {
                 // カメラの位置が下記の距離に戻す
-                Vector3 camerabasepos = dir + m_player.transform.position;
+                Vector3 camera2basepos = dir + m_player.transform.position;
 
                 // カメラの位置が下記の距離に戻す
                 Vector3 camera3dBasePos = dir3d + m_player.transform.position;
 
                 //  元の位置に戻す
-                m_cameraFP.ChangeCameraPos(camerabasepos, false);
+                m_cameraFP.ChangeCameraPos(camera2basepos, false);
                 m_cameraFP.ChangeCameraPos(camera3dBasePos, true);
+
+                // 2Dカメラの高さを維持しない
+                m_cameraFP.DecideKeepCameraHeight(Kind_IsKeepCameraHeight.NONE);
+
+
             }
         }
 

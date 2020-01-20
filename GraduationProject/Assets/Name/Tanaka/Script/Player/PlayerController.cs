@@ -70,8 +70,8 @@ public class PlayerController : MonoBehaviour
         // プレイヤーのRigidbodyを探す
         m_rigidbody = PlayerObj.transform.GetComponent<Rigidbody>();
 
-        //初期属性の速度
-        ChangeVel();
+        m_vel = m_eraserVel;
+
     }
 
     // PlayerDirector.cs の Update に移動
@@ -89,26 +89,27 @@ public class PlayerController : MonoBehaviour
         //2Dカメラか3Dカメラかのフラグ
         bool camera2Dor3DFlag = m_cameradirector.IsAppearCamera3D;
 
-        ChangeVel();
-        if (m_playerType.IsPlayerType == PlayerType.Type.IRON)
+        //if (m_playerType.IsPlayerType == PlayerType.Type.IRON)
+        //{
+        //    m_rigidbody.mass = 2;
+        //    m_rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        //}
+        //else
+
+
+        if (!camera2Dor3DFlag)
         {
-            m_rigidbody.mass = 2;
-            m_rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            // m_rigidbody.constraints = RigidbodyConstraints.FreezePositionZ; 消す！！ by 橋本
+            m_rigidbody.mass = 1;
         }
         else
         {
-            if(!camera2Dor3DFlag)
-            {
-                m_rigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
-                m_rigidbody.mass = 1;
-            }
-            else
-            {
-                m_rigidbody.mass = 1;
-                m_rigidbody.constraints = RigidbodyConstraints.None;
-            }
-            
+            m_rigidbody.mass = 1;
+            // m_rigidbody.constraints = RigidbodyConstraints.None;  消す！！ by 橋本
         }
+            
+            
+        
         //m_rigidbody.constraints = RigidbodyConstraints.FreezePositionX;
         
 
@@ -202,22 +203,7 @@ public class PlayerController : MonoBehaviour
     //属性によって速度を変える
     public void ChangeVel()
     {
-        //消しゴムの時
-        if (m_playerType.IsPlayerType == PlayerType.Type.ERASER)
-        {
-            m_vel = m_eraserVel;
-        }
-        //消しゴムの時
-        if (m_playerType.IsPlayerType == PlayerType.Type.IRON)
-        {
-            m_vel = m_eraserVel + 200.0f;
-            
-        }
-        //消しゴムの時
-        if (m_playerType.IsPlayerType == PlayerType.Type.MARBLE)
-        {
-            m_vel = m_marbleVel;
-        }
+        m_vel = m_eraserVel + 200.0f;
     }
 
     //ジョイスティックで動かした方向取得・設定

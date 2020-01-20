@@ -11,24 +11,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class ObjStateByCameraMove2D3D : MonoBehaviour
 {
     // 2Dカメラのみ表示されるオブジェクト
     [SerializeField]
-    private GameObject[] ObjBy2DCamera = default;
+    private List<GameObject> ObjBy2DCamera = default;
 
     // 3Dカメラのみ表示されるオブジェクト
     [SerializeField]
-    private GameObject[] ObjBy3DCamera = default;
+    private List<GameObject> ObjBy3DCamera = default;
 
     // カメラが3D→2Dへ切り替えたときに、一つの軸を中心に揃えるオブジェクト
     [SerializeField]
-    private GameObject[] ObjByOneAxitMove = default;
+    private List<GameObject> ObjByOneAxitMove = default;
 
     // カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域
     [SerializeField]
-    private GameObject[] ObjByCamera2DNoArea = default;
+    private List<GameObject> ObjByCamera2DNoArea = default;
 
 
     /// <summary>
@@ -101,14 +100,7 @@ public class ObjStateByCameraMove2D3D : MonoBehaviour
         }
 
         // カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域を配置する
-        foreach(GameObject objcamera2dnoarea  in ObjByCamera2DNoArea)
-        {
-            // そのオブジェクトがない場合、処理を飛ばす
-            if (objcamera2dnoarea == null) continue;
-
-            objcamera2dnoarea.SetActive(true);
-        }
-
+        ChangeActiveObjByCamera2DNoArea(true);
     }
 
     /// <summary>
@@ -159,13 +151,7 @@ public class ObjStateByCameraMove2D3D : MonoBehaviour
         }
 
         // カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域を配置しない
-        foreach (GameObject objcamera2dnoarea in ObjByCamera2DNoArea)
-        {
-            // そのオブジェクトがない場合、処理を飛ばす
-            if (objcamera2dnoarea == null) continue;
-
-            objcamera2dnoarea.SetActive(false);
-        }
+        ChangeActiveObjByCamera2DNoArea(false);
     }
 
     /// <summary>
@@ -180,8 +166,53 @@ public class ObjStateByCameraMove2D3D : MonoBehaviour
             // そのオブジェクトがない場合、処理を飛ばす
             if (objcamera2dnoarea == null) continue;
 
+            // そのオブジェクトが軸中心に動かすオブジェクトの場合、処理を飛ばす
+            if (objcamera2dnoarea.GetComponent<Obj_OneAxitMove>() != null) continue;
+
             objcamera2dnoarea.SetActive(isactive);
         }
     }
 
+    // ------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// [2Dカメラのみ表示されるオブジェクト]に追加する
+    /// </summary>
+    /// <param name="obj">追加したいオブジェクト</param>
+    public void AddObjBy2DCamera(GameObject obj)
+    {
+        // 新たにオブジェクトを追加する
+        ObjBy2DCamera.Add(obj);
+
+    }
+
+    /// <summary>
+    ///  [3Dカメラのみ表示されるオブジェクト]に追加する
+    /// </summary>
+    /// <param name="obj">追加したいオブジェクト</param>
+    public void AddObjBy3DCamera(GameObject obj)
+    {
+        // 新たにオブジェクトを追加する
+        ObjBy3DCamera.Add(obj);
+    }
+
+    /// <summary>
+    /// [カメラが3D→2Dへ切り替えたときに、一つの軸を中心に揃えるオブジェクト]に追加する
+    /// </summary>
+    /// <param name="obj">追加したいオブジェクト</param>
+    public void AddObjByOneAxitMove(GameObject obj)
+    {
+        // 新たにオブジェクトを追加する
+        ObjByOneAxitMove.Add(obj);
+    }
+
+    /// <summary>
+    /// [カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域]に追加する
+    /// </summary>
+    /// <param name="obj">追加したいオブジェクト</param>
+    public void AddObjByCamera2DNoArea(GameObject obj)
+    {
+        // 新たにオブジェクトを追加する
+        ObjByCamera2DNoArea.Add(obj);
+    }
 }
