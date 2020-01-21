@@ -1,6 +1,18 @@
-﻿using System.Collections;
+﻿//=======================================================================================
+//! @file   EraseThread.cs
+//!
+//! @brief  オブジェクトに重力をつける
+//!
+//! @author 長尾、橋本奉武
+//!
+//! @date   ?月?日
+//=======================================================================================
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+// 型名省略
+using Particle = ParticleManager.Particle;
 
 public class EraseThread : MonoBehaviour
 {
@@ -9,6 +21,9 @@ public class EraseThread : MonoBehaviour
 
     //糸を消す為の時間
     private float m_dTime;
+
+    // 糸が消える最大時間
+    private const float MAXTIME = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +42,7 @@ public class EraseThread : MonoBehaviour
             //消す時間開始
             m_dTime += Time.deltaTime;
 
-            if(m_dTime > 2.0f)
+            if(m_dTime > MAXTIME)
             {
                 //削除
                 Destroy();
@@ -45,6 +60,12 @@ public class EraseThread : MonoBehaviour
         //火に当たったら
         if (collider.gameObject.tag == "Fire")
         {
+            // 当たった位置
+            Vector3 hitPos = collider.ClosestPointOnBounds(this.transform.position);
+
+            // 当たった位置に爆発させる
+            ParticleManager.PlayParticle(Particle.ExplosionEF, hitPos);
+
             //消える前に大きさの変更
             this.transform.localScale = new Vector3(0, 0, 0);
 

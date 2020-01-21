@@ -45,6 +45,10 @@ public class CameraDirector : MonoBehaviour
     // イベント用の監督
     [SerializeField] private GameObject EventDirectorObj = default;
 
+    // 初期、3Dカメラを表示するか(false：2Dカメラで表示している / true：3Dカメラで表示している)
+    [SerializeField]
+    private bool IsNowChange3DCamera = false;
+
     // プレイヤー
     private GameObject PlayerObj;
 
@@ -53,9 +57,6 @@ public class CameraDirector : MonoBehaviour
 
     // カメラの今と前の状態が異なっているか(true:異なっている false:同じ)
     private bool IsDifferCameraStateNowOnce = false;
-
-    // 3Dカメラを表示するか(false：2Dカメラで表示している / true：3Dカメラで表示している)
-    private bool IsNowChange3DCamera = false;
 
     // 2Dカメラと3Dカメラの間へ移動しているか(カメラの状態 :「2D⇔3Dの動き」→「数ミリ秒止める」が含まれる)
     private bool IsMove2DCamera3DCamera = false;
