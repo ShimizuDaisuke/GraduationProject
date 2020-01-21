@@ -168,17 +168,12 @@ public class CameraStop : MonoBehaviour
                         // プレイヤーの「Rigidbody」の位置と回転の固定(フリーズ)を解除する
                         PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
-                            // プレイヤーの「Rigidbody」の一部の位置を固定する
-                            PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
-
-                            // プレイヤーの「Rigidbody」の一部の回転を固定する
-                            PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
+                        // プレイヤーの「Rigidbody」の一部の回転を固定する
+                        PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
                     }
 
-
-                        // カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域を非表示させる
-                        GetComponent<ObjStateByCameraMove2D3D>().ChangeActiveObjByCamera2DNoArea(false);
-
+                    // カメラが3D→2Dへ切り替えたときに、プレイヤーが入っていけいない領域を非表示させる
+                    GetComponent<ObjStateByCameraMove2D3D>().ChangeActiveObjByCamera2DNoArea(false);
                  }
 
                     break;

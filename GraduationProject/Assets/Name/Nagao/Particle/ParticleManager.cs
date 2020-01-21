@@ -25,7 +25,8 @@ public class ParticleManager : MonoBehaviour
         JumpEF,                 //プレイヤーがジャンプしたら、足元に出現するエフェクト
         EventEF,                //イベント用のエフェクト　
         TouchEF,                //ゲームシーン以外でタブレット上でタップしたら、出現するエフェクト
-        CoverDamegeEF           //消しゴムカバーを装備している時に刃物当たった時のエフェクト
+        CoverDamegeEF,           //消しゴムカバーを装備している時に刃物当たった時のエフェクト
+        ExplosionEF             // 爆発
     }
 
 
