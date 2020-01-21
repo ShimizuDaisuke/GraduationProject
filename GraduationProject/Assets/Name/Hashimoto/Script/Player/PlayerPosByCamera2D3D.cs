@@ -15,7 +15,7 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
 {
     // 3Dカメラから2Dカメラに移動する場合のプレイヤーのZ位置
     [SerializeField]
-    private float ZPos_CameraFrom3DTo2D = -2.0f;
+    private float ZPos_CameraFrom3DTo2D = 0.0f;
 
     // 2Dカメラから3Dカメラに移動する場合のプレイヤーのZ位置
     [SerializeField]
@@ -47,6 +47,21 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
     {
         // プレイヤーを探す
         PlayerObj = GameObject.FindGameObjectWithTag("Player");
+
+        // 3Dカメラから2Dカメラに移動する場合のプレイヤーのZ位置が設定されていなかった場合
+        if(ZPos_CameraFrom3DTo2D != 0.0f)
+        {
+            //　現在プレイヤーの位置にする
+            ZPos_CameraFrom3DTo2D = PlayerObj.transform.position.z;
+        }
+
+        // 2Dカメラから3Dカメラに移動する場合のプレイヤーのZ位置が設定されていなかった場合
+        if(ZPos_CameraFrom2DTo3D!=0.0f)
+        {
+            //　現在プレイヤーの位置にする
+            ZPos_CameraFrom2DTo3D = PlayerObj.transform.position.z;
+        }
+
     }
 
     /// <summary>
