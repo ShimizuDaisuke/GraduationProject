@@ -24,6 +24,8 @@ public class QRReadID : MonoBehaviour
         CRAYON_NO_BRAEK = 1 << 6,  // クレヨンが壊れなくなる        0100 0000  64
         HURIKO_STOP = 1 << 7,      // 振り子停止                    1000 0000  128
         PLAYER_SPEED_UP = 1 << 8,  // プレイヤーの速度UP            0001 0000 0000  256
+        TIMESTOP_5 = 1 << 9,       //５秒時間停止
+        TIMESTOP_10 = 1 << 10,     //１０秒時間停止
     }
 
     // 読み込んだQRの結果の格納
@@ -60,6 +62,10 @@ public class QRReadID : MonoBehaviour
     //プレイヤーのController
     [SerializeField]
     private PlayerController m_playerCon = default;
+
+    //QR時間停止
+    [SerializeField]
+    private QRTimeStop m_timeStop = default;
 
     //=======================================================================================
     //! @brief 開始処理
@@ -147,6 +153,16 @@ public class QRReadID : MonoBehaviour
             case (int)ReadResult.PLAYER_SPEED_UP:
                 m_playerCon.ChangeVel();
                 qRText.Player_Speed_Up();
+                break;
+                //５秒時間停止
+            case (int)ReadResult.TIMESTOP_5:
+                m_timeStop.TimeStop = QRTimeStop.TIMESTOP_COUNT.STOP5;
+
+                break;
+                //１０秒時間停止
+            case (int)ReadResult.TIMESTOP_10:
+                m_timeStop.TimeStop = QRTimeStop.TIMESTOP_COUNT.STOP10;
+
                 break;
             // この中の物に属さなかった場合正規のQRじゃない
             default:
