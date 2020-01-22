@@ -57,6 +57,9 @@ public class CameraEvent : MonoBehaviour
         // 「筆箱に入る」イベント
         Script_CameraEventBase[(int)EventKind.PENCILCASE_MOVE_GOOL] = GetComponent<EventCameraPencilcaseMoveGool>();
 
+        // 「スタートからゴールのカメラの動き」イベント
+        Script_CameraEventBase[(int)EventKind.CAMERA_GOAL_FROM_START] = GetComponent<EventCameraGoalFromStart>();
+
     }
 
     /// <summary>

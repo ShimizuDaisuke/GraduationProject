@@ -25,7 +25,7 @@ public class EventDirector : MonoBehaviour
         RULE_CUTTERKNIFE,            //カッターナイフをしまう
         SCISSORS_CUT,               //ハサミ切る
         PENCILCASE_MOVE_GOOL,       //ゴールへ移動
-        CAMERA_START_FROM_GOAL,     //カメラがスタートからゴールへ
+        CAMERA_GOAL_FROM_START,     //カメラがスタートからゴールへ
         MAX,                        //最大イベント数
     };
    
