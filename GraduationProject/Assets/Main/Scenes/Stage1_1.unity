@@ -2093,6 +2093,7 @@ MonoBehaviour:
   MoveFrom2DTo3DCamera: {fileID: 1373601551}
   MoveFrom3DTo2DCamera: {fileID: 1770794857}
   EventDirectorObj: {fileID: 706606845}
+  IsNowChange3DCamera: 0
 --- !u!4 &96591418
 Transform:
   m_ObjectHideFlags: 0
@@ -2253,8 +2254,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera2D: {fileID: 1234216281}
   Camera3D: {fileID: 1209705424}
-  m_camera2DHitHightFlag: {fileID: 0}
-  m_cameraDirector: {fileID: 0}
   m_cameraHight: 0
 --- !u!114 &96591429
 MonoBehaviour:
@@ -11378,6 +11377,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 20.2
       objectReference: {fileID: 0}
+    - target: {fileID: -2911559083550024789, guid: e0ee478d1c043f841ac6ce75171a9362,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15.89
+      objectReference: {fileID: 0}
+    - target: {fileID: -2911559083550024789, guid: e0ee478d1c043f841ac6ce75171a9362,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.08482
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203197145421681114, guid: e0ee478d1c043f841ac6ce75171a9362,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.2
+      objectReference: {fileID: 0}
     - target: {fileID: -8134438308503345781, guid: e0ee478d1c043f841ac6ce75171a9362,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -11402,21 +11416,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.17929195
-      objectReference: {fileID: 0}
-    - target: {fileID: -2911559083550024789, guid: e0ee478d1c043f841ac6ce75171a9362,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 15.89
-      objectReference: {fileID: 0}
-    - target: {fileID: -2911559083550024789, guid: e0ee478d1c043f841ac6ce75171a9362,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.08482
-      objectReference: {fileID: 0}
-    - target: {fileID: 1203197145421681114, guid: e0ee478d1c043f841ac6ce75171a9362,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 20.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0ee478d1c043f841ac6ce75171a9362, type: 3}
