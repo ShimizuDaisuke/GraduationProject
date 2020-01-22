@@ -17,7 +17,7 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour
 {
     // クリアするのに掛かった時間
-    static private int time;
+    static private float time;
 
     // Start is called before the first frame update
     void Start()
@@ -37,5 +37,5 @@ public class TimeManager : MonoBehaviour
     /// </summary>
 
         // クリアするのに掛かった時間
-        public int ClearTime { get { return time; } set { time = value; } }
+        public float ClearTime { get { return time; } set { time = value; } }
 }
