@@ -34,6 +34,11 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject QRUI = default;
 
+    //QRTimeStop
+    [SerializeField]
+    private QRTimeStop m_qrTimeStop = default;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,8 +54,7 @@ public class UIManager : MonoBehaviour
         //イベント中か
         if ((m_event.IsEventKIND != EventDirector.EventKIND.NONE))
         {
-            //ゲーム内の時を止める
-            m_timerController.TimerFlag = false;
+            
             //通常UIの非表示
             NormalUI.SetActive(false);
 
@@ -68,6 +72,9 @@ public class UIManager : MonoBehaviour
                 EventUI.SetActive(false);
                 //QR用UIの非表示
                 QRUI.SetActive(true);
+
+                //ゲーム内の時を止める
+                m_timerController.TimerFlag = false;
             }
 
         }
@@ -81,8 +88,16 @@ public class UIManager : MonoBehaviour
             EventUI.SetActive(false);
             //QR用UIの非表示
             QRUI.SetActive(false);
-            //ゲーム内の時を動かす
-            m_timerController.TimerFlag = true;
+
+            if(m_qrTimeStop.TimeStop == QRTimeStop.TIMESTOP_COUNT.NONE)
+                //ゲーム内の時を動かす
+                m_timerController.TimerFlag = true;
+            else
+                m_timerController.TimerFlag = false;
+
         }
+
+        
+
     }
 }

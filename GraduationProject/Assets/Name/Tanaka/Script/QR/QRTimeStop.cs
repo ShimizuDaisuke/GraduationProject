@@ -18,6 +18,7 @@ public class QRTimeStop : MonoBehaviour
         NONE    = 0,
         STOP5   = 5,
         STOP10  = 10,
+        UNDO_TIME = 1,
         NUM,
     };
 
@@ -30,6 +31,9 @@ public class QRTimeStop : MonoBehaviour
     //カウント
     private float m_count = 0.0f;
 
+    //画面を元に戻すフラグ
+    private bool m_undoTimeFlag = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,9 +44,8 @@ public class QRTimeStop : MonoBehaviour
     void Update()
     {
         if(m_timeStopCount == TIMESTOP_COUNT.NONE)
-        {
             return;
-        }
+
         //時間停止
         m_timerCon.TimerFlag = false;
 
@@ -53,12 +56,30 @@ public class QRTimeStop : MonoBehaviour
         {
             //戻す
             m_timerCon.TimerFlag = true;
-            m_timeStopCount = TIMESTOP_COUNT.NONE;
-            m_count = 0.0f;
+            //画面を元に戻すための時間 
+            if(!m_undoTimeFlag)
+            {
+                m_timeStopCount = TIMESTOP_COUNT.UNDO_TIME;
+                m_count = 0.0f;
+                m_undoTimeFlag = true;
+            }
+            else
+            {
+                m_timeStopCount = TIMESTOP_COUNT.NONE;
+                m_count = 0.0f;
+                m_undoTimeFlag = false;
+            }
+            
+
         }
         else
         {
             m_count += Time.deltaTime;
+        }
+
+        if(m_count < 0.0f)
+        {
+            m_count = 0.0f;
         }
 
     }

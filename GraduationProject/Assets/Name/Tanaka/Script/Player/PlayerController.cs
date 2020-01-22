@@ -89,14 +89,6 @@ public class PlayerController : MonoBehaviour
         //2Dカメラか3Dカメラかのフラグ
         bool camera2Dor3DFlag = m_cameradirector.IsAppearCamera3D;
 
-        //if (m_playerType.IsPlayerType == PlayerType.Type.IRON)
-        //{
-        //    m_rigidbody.mass = 2;
-        //    m_rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-        //}
-        //else
-
-
         if (!camera2Dor3DFlag)
         {
             // m_rigidbody.constraints = RigidbodyConstraints.FreezePositionZ; 消す！！ by 橋本
@@ -181,8 +173,17 @@ public class PlayerController : MonoBehaviour
         // プレイヤーが最大速度より超えていない場合
         if (m_rigidbody.velocity.magnitude < m_maxvel)
         {
-            // 3D空間上によるプレイヤーの移動 
-            m_rigidbody.AddForce(m_vel * direction, ForceMode.Force);
+            if(m_playerType.IsPlayerType == PlayerType.Type.IRON)
+            {
+                PlayerObj.transform.Translate(new Vector3(direction.x, direction.z, 0) * 0.1f);
+            }
+            else
+            {
+                // 3D空間上によるプレイヤーの移動 
+                m_rigidbody.AddForce(m_vel * direction, ForceMode.Force);
+            }
+
+
         }
 
         // プレイヤーの速度を反転させたり加速させた後、プレイヤーの速度が最大速度より超えた場合

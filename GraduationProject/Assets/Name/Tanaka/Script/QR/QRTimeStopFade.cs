@@ -39,8 +39,7 @@ public class QRTimeStopFade : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    { 
         if (m_qrTimeStop.TimeStop == QRTimeStop.TIMESTOP_COUNT.NONE)
         {
             m_alfa = 0.0f;
@@ -52,16 +51,22 @@ public class QRTimeStopFade : MonoBehaviour
             if(!m_initalFlag)
             {
                 m_alfa = m_maxAlfa;
+                SetAlpha();
                 m_initalFlag = true;
             }
 
-            if(m_alfa >= 0.0f)
+            if (m_qrTimeStop.TimeStop == QRTimeStop.TIMESTOP_COUNT.UNDO_TIME)
             {
-                m_alfa = m_alfa - (m_maxAlfa / ((int)m_qrTimeStop.TimeStop * 60.0f));
-                Debug.Log(m_alfa);
-                SetAlpha();
+                
+                if (m_alfa >= 0.0f)
+                {
+                    m_alfa = m_alfa - (m_maxAlfa / ((int)QRTimeStop.TIMESTOP_COUNT.UNDO_TIME * 60.0f));
+                   
+                    SetAlpha();
+                }
+                else
+                    m_alfa = 0.0f;
             }
-            
             
         }
         
