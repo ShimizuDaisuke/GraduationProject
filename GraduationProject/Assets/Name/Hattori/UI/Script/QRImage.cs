@@ -14,37 +14,36 @@ public class QRImage : MonoBehaviour
 {
     SpriteRenderer MainSpriteRenderer;
     public GameObject image;
-    //public enum QRImages
-    //{
-    //    //0,画像無し(読み込めない)
-    //    NULL_IMAGE,
 
-    //    //1,プレイヤーを消しゴムに変更
-    //    CHANGE_ERASER,
+    public enum QRImages
+    {
+        //0,画像無し(読み込めない)
+        NULL_IMAGE,
 
-    //    //2,プレイヤーを鉄に変更
-    //    CHANGE_IRON,
+        //1,プレイヤーを消しゴムに変更
+        CHANGE_ERASER,
 
-    //    //3,シーソーを定規に変更
-    //    CHANGE_RULER,
+        //2,プレイヤーを鉄に変更
+        CHANGE_IRON,
 
-    //    //4,クレヨンが壊れなくなる
-    //    STRANG_CREYON,
+        //3,シーソーを定規に変更
+        CHANGE_RULER,
 
-    //    //5,振り子停止
-    //    STOP_PENDULUM,
+        //4,クレヨンが壊れなくなる
+        STRANG_CREYON,
 
-    //    //6,プレイヤーの速度UP
-    //    PLAYER_SPEED_UP,
+        //5,振り子停止
+        STOP_PENDULUM,
 
-    //    //7,時間停止
-    //    STOP_TIME,
+        //6,プレイヤーの速度UP
+        PLAYER_SPEED_UP,
 
-    //    //この列挙型の最大数
-    //    MAX
-    //}
+        //7,時間停止
+        STOP_TIME,
 
-
+        //この列挙型の最大数
+        MAX
+    }
 
     [SerializeField]
     public Sprite[] sprite;
@@ -60,7 +59,7 @@ public class QRImage : MonoBehaviour
     //=======================================================================================
     public void NullQR_Image()
     {
-        image.gameObject.GetComponent<Image>().sprite = sprite[0];
+        image.gameObject.GetComponent<Image>().sprite = sprite[(int)QRImages.NULL_IMAGE];
     }
 
     //=======================================================================================
@@ -68,7 +67,7 @@ public class QRImage : MonoBehaviour
     //=======================================================================================
     public void PlayerEraser_Image()
     {
-        image.gameObject.GetComponent<Image>().sprite = sprite[1];
+        image.gameObject.GetComponent<Image>().sprite = sprite[(int)QRImages.CHANGE_ERASER];
     }
 
     //=======================================================================================
@@ -76,7 +75,7 @@ public class QRImage : MonoBehaviour
     //=======================================================================================
     public void PlayerIron_Image()
     {
-        image.gameObject.GetComponent<Image>().sprite = sprite[2];
+        image.gameObject.GetComponent<Image>().sprite = sprite[(int)QRImages.CHANGE_IRON];
     }
 
     //=======================================================================================
@@ -84,7 +83,7 @@ public class QRImage : MonoBehaviour
     //=======================================================================================
     public void Seesaw_Chang_Ruler_Image()
     {
-        image.gameObject.GetComponent<Image>().sprite = sprite[3];
+        image.gameObject.GetComponent<Image>().sprite = sprite[(int)QRImages.CHANGE_RULER];
     }
 
     //=======================================================================================
@@ -92,7 +91,7 @@ public class QRImage : MonoBehaviour
     //=======================================================================================
     public void Crayon_No_Break_Image()
     {
-        image.gameObject.GetComponent<Image>().sprite = sprite[4];
+        image.gameObject.GetComponent<Image>().sprite = sprite[(int)QRImages.STRANG_CREYON];
     }
 
     //=======================================================================================
@@ -100,7 +99,7 @@ public class QRImage : MonoBehaviour
     //=======================================================================================
     public void Huriko_Stop_Image()
     {
-        image.gameObject.GetComponent<Image>().sprite = sprite[5];
+        image.gameObject.GetComponent<Image>().sprite = sprite[(int)QRImages.STOP_PENDULUM];
     }
 
     //=======================================================================================
@@ -108,14 +107,14 @@ public class QRImage : MonoBehaviour
     //=======================================================================================
     public void Player_Speed_Up_Image()
     {
-        image.gameObject.GetComponent<Image>().sprite = sprite[6];
+        image.gameObject.GetComponent<Image>().sprite = sprite[(int)QRImages.PLAYER_SPEED_UP];
     }
 
     //=======================================================================================
-    // プレイヤーの速度UP画像
+    // 時が止まる画像
     //=======================================================================================
     public void Stop_Timer_Image()
     {
-        image.gameObject.GetComponent<Image>().sprite = sprite[7];
+        image.gameObject.GetComponent<Image>().sprite = sprite[(int)QRImages.STOP_TIME];
     }
 }
