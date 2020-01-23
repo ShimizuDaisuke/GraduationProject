@@ -68,11 +68,13 @@ public class ResultTimeAndJuni : MonoBehaviour
         // ===================================================================
 
         // タイムの初期化
+        TimeScore[(int)TimeKind.CLEARTIME].OriginalStart();
 
-        //　ベストタイムの
+        //　ベストタイムの初期化
+        TimeScore[(int)TimeKind.BESTTIME].OriginalStart();
 
-        //
-
+        // 順位の初期化
+        Juni.OriginalStart();
 
         // ===================================================================
 
