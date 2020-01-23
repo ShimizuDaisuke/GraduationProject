@@ -15,6 +15,10 @@ using Particle = ParticleManager.Particle;
 
 public class CoverOfEraserHit : MonoBehaviour
 {
+    //プレイヤーの属性
+    [SerializeField]
+    private PlayerType m_playerType = default;
+
     // スクリプト : 消しゴムカバー
     private CoverOfEraser Script_CoverOfEraser;
 
@@ -62,32 +66,34 @@ public class CoverOfEraserHit : MonoBehaviour
         //刃物との当たり判定
         if ((col.gameObject.tag == "Sword") && (Script_PlayerFlashing.IsPlayerFlashing == false))
         {
-            //スクリプト　：
-            EnemyDamage Script_EnemyDamage = col.gameObject.GetComponent<EnemyDamage>();
-            // 障害物のダメージ量
-            int damage = Script_EnemyDamage.IsDamage;
-            // ダメージを受ける
-            Script_CoverOfEraser.EraserHP += -damage;
-      
-            // プレイヤーが刃物に触れた
-            Script_PlayerFlashing.IsPlayerFlashing = true;
+            if (m_playerType.IsPlayerType == PlayerType.Type.ERASER)
+            {
+                //スクリプト　：
+                EnemyDamage Script_EnemyDamage = col.gameObject.GetComponent<EnemyDamage>();
+                // 障害物のダメージ量
+                int damage = Script_EnemyDamage.IsDamage;
+                // ダメージを受ける
+                Script_CoverOfEraser.EraserHP += -damage;
 
-            //SEの再生
-            SoundManager.PlaySE(SoundManager.Sound.SE_PlayerCoverDamage);
+                // プレイヤーが刃物に触れた
+                Script_PlayerFlashing.IsPlayerFlashing = true;
 
-            //プレイヤーの現在の位置を代入
-            m_pos = this.gameObject.transform.position;
+                //SEの再生
+                SoundManager.PlaySE(SoundManager.Sound.SE_PlayerCoverDamage);
 
-            //ランダム後の位置
-            Vector3 m_randPos;
+                //プレイヤーの現在の位置を代入
+                m_pos = this.gameObject.transform.position;
 
-            m_randPos.x = Random.Range((m_pos.x + m_min), (m_pos.x + m_max));
-            m_randPos.y = Random.Range((m_pos.y + m_min), (m_pos.y + m_max));
-            m_randPos.z = Random.Range((m_pos.z + m_min), (m_pos.z + m_max));
+                //ランダム後の位置
+                Vector3 m_randPos;
 
-            //ダメージエフェクト出現
-            ParticleManager.PlayParticle(Particle.CoverDamegeEF, m_randPos);
+                m_randPos.x = Random.Range((m_pos.x + m_min), (m_pos.x + m_max));
+                m_randPos.y = Random.Range((m_pos.y + m_min), (m_pos.y + m_max));
+                m_randPos.z = Random.Range((m_pos.z + m_min), (m_pos.z + m_max));
 
+                //ダメージエフェクト出現
+                ParticleManager.PlayParticle(Particle.CoverDamegeEF, m_randPos);
+            }
 
             // もし消しゴムのカバーによる体力が0以下の場合
             if (Script_CoverOfEraser.EraserHP <= 0)
