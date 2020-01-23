@@ -88,22 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         //2Dカメラか3Dカメラかのフラグ
         bool camera2Dor3DFlag = m_cameradirector.IsAppearCamera3D;
-
-        if (!camera2Dor3DFlag)
-        {
-            // m_rigidbody.constraints = RigidbodyConstraints.FreezePositionZ; 消す！！ by 橋本
-            m_rigidbody.mass = 1;
-        }
-        else
-        {
-            m_rigidbody.mass = 1;
-            // m_rigidbody.constraints = RigidbodyConstraints.None;  消す！！ by 橋本
-        }
-            
-            
-        
-        //m_rigidbody.constraints = RigidbodyConstraints.FreezePositionX;
-        
+       
 
         // 2Dと3Dのカメラの切り替え中フラグ
         bool cameraSwitch2D3D = m_cameradirector.IsMove2D3DCameraPos;
@@ -115,9 +100,6 @@ public class PlayerController : MonoBehaviour
             m_d.x = m_joystick.Horizontal;       // 横軸
             m_d.y = m_joystick.Vertical;         // 縦軸
 
-       
-            
-            
             // カメラが2D空間上を映す場合
             if (!camera2Dor3DFlag)
             {
@@ -175,7 +157,7 @@ public class PlayerController : MonoBehaviour
         {
             if(m_playerType.IsPlayerType == PlayerType.Type.IRON)
             {
-                PlayerObj.transform.Translate(new Vector3(direction.x, direction.z, 0) * 0.1f);
+                PlayerObj.transform.Translate(new Vector3(direction.z, direction.x, 0) * 0.1f);
             }
             else
             {
