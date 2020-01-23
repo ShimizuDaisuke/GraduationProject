@@ -43,20 +43,10 @@ public class PlayerType : MonoBehaviour
 
     void Update()
     {
-        if (m_playerType == Type.ERASER)
-        {
-            //if (m_cameraDirector.IsAppearCamera3D)
-            //    m_rigid.constraints = RigidbodyConstraints.None;
-            //else
-            //    m_rigid.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
-        }
-        else if (m_playerType == Type.IRON)
-        {
-            //角度を固定
-            transform.rotation = Quaternion.Euler(90.0f, 0.0f, 0.0f);
-            ////回転しない
-            //m_rigid.constraints = RigidbodyConstraints.FreezeRotation;
-        }
+        //角度を固定
+        if (m_playerType == Type.IRON)
+            transform.rotation = Quaternion.Euler(270, -90.0f, 0.0f);
+        
     }
 
     //プレイヤーの属性の取得・設定

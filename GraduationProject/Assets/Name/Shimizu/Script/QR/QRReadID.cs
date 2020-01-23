@@ -67,6 +67,10 @@ public class QRReadID : MonoBehaviour
     [SerializeField]
     private QRTimeStop m_timeStop = default;
 
+    //プレイヤーの変更
+    [SerializeField]
+    private PlayerChange m_playerChange = default;
+
     //=======================================================================================
     //! @brief 開始処理
     //! @param[in] なし
@@ -123,11 +127,13 @@ public class QRReadID : MonoBehaviour
             // プレイヤーの変更 (消しゴム)
             case (int)ReadResult.PLAYER_ERASER:
                 m_playerType.IsPlayerType = PlayerType.Type.ERASER;
+                m_playerChange.ChangeModel();
                 qRText.PlayerEraser();
                 break;
             // プレイヤーの変更 (鉄)
             case (int)ReadResult.PLAYER_IRON:
                 m_playerType.IsPlayerType = PlayerType.Type.IRON;
+                m_playerChange.ChangeModel();
                 qRText.PlayerIron();
                 break;
             // シーソーを定規に変更
