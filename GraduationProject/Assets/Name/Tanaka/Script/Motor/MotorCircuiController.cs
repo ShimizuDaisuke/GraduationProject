@@ -30,7 +30,7 @@ public class MotorCircuiController : MonoBehaviour
 
     //橋の１秒当たりの回転量
     [SerializeField]
-    private Vector3 m_rotateBridge = new Vector3(0.0f, 11.0f, 0.0f);
+    private Vector3 m_rotateBridge = new Vector3(0.0f, 0.0f, 11.0f);
 
     //モーターの回転する部分の１秒当たりの回転量
     [SerializeField]
@@ -38,11 +38,11 @@ public class MotorCircuiController : MonoBehaviour
 
     //線の移動量
     [SerializeField]
-    private Vector3 m_velLine = new Vector3(-1.0f, -0.4f, 0.0f);
+    private Vector3 m_velLine = new Vector3(1.0f, -0.4f, 0.0f);
 
     //線のサイズ変更量
     [SerializeField]
-    private Vector3 m_scaleLine = new Vector3(-1.0f, 0.0f, 0.0f);
+    private Vector3 m_scaleLine = new Vector3(1.0f, 0.0f, 0.0f);
 
     //線の速度
     [SerializeField]
@@ -58,10 +58,10 @@ public class MotorCircuiController : MonoBehaviour
     void Update()
     {
         //回路がつながってる時
-        if(m_circuitCon.ConnectFlag)
+        if(!m_circuitCon.ConnectFlag)
         {
-
-            if(m_BridgeObj.transform.eulerAngles.x < 180.0f)
+            Debug.Log(m_rotateBridge);
+            if(m_BridgeObj.transform.eulerAngles.z <= 90.0f)
             {
                 //橋の回転
                 m_BridgeObj.transform.Rotate(m_rotateBridge * Time.deltaTime);
