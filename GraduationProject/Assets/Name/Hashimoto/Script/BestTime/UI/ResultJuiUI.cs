@@ -26,6 +26,14 @@ public class ResultJuiUI : ResultUI
     private GameObject All_Jyui = default;
 
     /// <summary>
+    ///　独自による開始処理
+    public override void OriginalStart()
+    {
+        // 継承先のクラスにある変数をリンクさせる
+        AllTextObj = All_Jyui;
+    }
+
+    /// <summary>
     /// 順位を書く
     /// </summary>
     /// <param name="yourjuni">現在の順位</param>
@@ -37,14 +45,4 @@ public class ResultJuiUI : ResultUI
         // その順位総合を反映させる
         Text_JuniTotal.text = "/ " + jyunitotal.ToString() + " 位中";
     }
-
-    /// <summary>
-    /// UIを非表示させる
-    /// </summary>
-    public override void NoActive()
-    {
-        // 全体的に非表示させる
-        All_Jyui.SetActive(false);
-    }
-
 }

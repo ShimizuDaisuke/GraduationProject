@@ -50,6 +50,7 @@ public class ResultTimeAndJuni : MonoBehaviour
     /// </summary>
     void Start()
     {
+
         // スクリプト：プレイヤーがステージクリアしたか　の取得
         Script_ClearManagement = ClearObject.GetComponent<ClearManagement>();
 
@@ -64,6 +65,16 @@ public class ResultTimeAndJuni : MonoBehaviour
 
         // スクリプト：順位のUI  の取得
         Juni = GetComponent<ResultJuiUI>();
+        // ===================================================================
+
+        // タイムの初期化
+        TimeScore[(int)TimeKind.CLEARTIME].OriginalStart();
+
+        //　ベストタイムの初期化
+        TimeScore[(int)TimeKind.BESTTIME].OriginalStart();
+
+        // 順位の初期化
+        Juni.OriginalStart();
 
         // ===================================================================
 
@@ -103,9 +114,13 @@ public class ResultTimeAndJuni : MonoBehaviour
             // 順位を非表示させる
             Juni.NoActive();
 
-            // 全体的にベストタイムのテキスト(全体)の大きさを変える
-            //All_BestTime.GetComponent<RectTransform>().localScale = BESTTIMESIZE;
+            // 全体的にベストタイムののテキスト(全体)の位置
+            Vector2 besttimeuipos = TimeScore[(int)TimeKind.BESTTIME].GetTextUIPostion();
+            // 全体的にベストタイムののテキスト(全体)の位置を変える
+            TimeScore[(int)TimeKind.BESTTIME].Move(new Vector2(besttimeuipos.x, besttimeuipos.y + BESTTIMEUIPOS_MOVE));
 
+            // 全体的にベストタイムのテキスト(全体)の大きさを変える
+            TimeScore[(int)TimeKind.BESTTIME].Resize(BESTTIMESIZE);
         }
     }
 
