@@ -33,7 +33,11 @@ public class QRChangeObjct : MonoBehaviour
         if(!m_createFlag)
         {
             Destroy(m_nomalObj);
-            Instantiate(m_changeObj, Vector3.zero, Quaternion.identity);
+
+            if (m_changeObj != null)
+            {
+                Instantiate(m_changeObj, Vector3.zero, Quaternion.identity);
+            }
 
             if (m_changeObj_NoMove != null)
             {
