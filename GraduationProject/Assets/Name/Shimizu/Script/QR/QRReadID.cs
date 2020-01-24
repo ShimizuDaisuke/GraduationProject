@@ -111,6 +111,9 @@ public class QRReadID : MonoBehaviour
         // 読み込んだ結果の値をもらう
         result = qrResult.Result;
 
+        // 何も読み込めなかった場合、今後の処理を飛ばす
+        if (result == null) return;
+
         // 文字列を数値に変換
         int.TryParse(result, out num);
 
