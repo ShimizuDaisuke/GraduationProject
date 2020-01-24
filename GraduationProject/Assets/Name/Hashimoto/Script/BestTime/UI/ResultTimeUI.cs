@@ -38,6 +38,14 @@ public class ResultTimeUI : ResultUI
     private GameObject All_Time = default;
 
     /// <summary>
+    ///　独自による開始処理
+    public override void OriginalStart()
+    {
+        // 継承先のクラスにある変数をリンクさせる
+        AllTextObj = All_Time;
+    }
+
+    /// <summary>
     /// ステージクリアするまで掛かった時間を、小数第2位まで切り捨て100倍にする
     /// <例> 12.345 → 1234
     /// </summary>
@@ -64,14 +72,5 @@ public class ResultTimeUI : ResultUI
         // その時間を実際に反映させる
         Text_IntegraTimeScore.text = integraltime.ToString("D2");       // 整数となる部分(分や秒)
         Text_DecimalTimeScore.text = "'" + decimaltime.ToString("D2");    // 小数となる部分(数ミリ秒)
-    }
-
-    /// <summary>
-    /// UIを非表示させる
-    /// </summary>
-    public override void NoActive()
-    {
-        // 全体的に非表示させる
-        All_Time.SetActive(false);
     }
 }
