@@ -19,7 +19,7 @@ public class IceMelt : MonoBehaviour
     void Start()
     {
         //氷のモデルを取得
-        GameObject IceCube = GameObject.Find("IceCube");
+        GameObject IceCube = GameObject.Find("IceBox");
 
         IceCube.transform.localScale = m_IceSize;
     }
