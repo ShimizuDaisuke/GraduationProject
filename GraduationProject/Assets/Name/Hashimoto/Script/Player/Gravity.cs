@@ -25,6 +25,7 @@ public class Gravity : MonoBehaviour
     // 定数：√2の数
     private const float SQUAREROOT_2 = 1.414213f;
 
+    // プレイヤーの種類
     [SerializeField]
     private PlayerType m_playerType = default;
 

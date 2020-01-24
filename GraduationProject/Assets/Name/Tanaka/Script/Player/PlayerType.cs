@@ -28,9 +28,24 @@ public class PlayerType : MonoBehaviour
     [SerializeField]
     private PlayerController m_playerCon = default;
 
+    //カメラディレクター
+    [SerializeField]
+    private CameraDirector m_cameraDirector = default;
+
+    //Rigidbody
+    private Rigidbody m_rigid = default;
+
     // Start is called before the first frame update
     void Start()
     {
+        m_rigid = GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+        //角度を固定
+        if (m_playerType == Type.IRON)
+            transform.rotation = Quaternion.Euler(270, -90.0f, 0.0f);
         
     }
 
@@ -41,7 +56,6 @@ public class PlayerType : MonoBehaviour
         set
         {
             m_playerType = value;
-            m_playerCon.ChangeVel();
         }
     }
 
