@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2254,6 +2254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera2D: {fileID: 1234216281}
   Camera3D: {fileID: 1209705424}
+  m_camera2DHitHightFlag: {fileID: 0}
+  m_cameraDirector: {fileID: 0}
   m_cameraHight: 0
 --- !u!114 &96591429
 MonoBehaviour:
@@ -2490,6 +2492,79 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &101980126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 101980129}
+  - component: {fileID: 101980128}
+  - component: {fileID: 101980127}
+  m_Layer: 5
+  m_Name: QRImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &101980127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101980126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.60784316}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &101980128
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101980126}
+  m_CullTransparentMesh: 0
+--- !u!224 &101980129
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101980126}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1637093765}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 250, y: 250}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &112611020
 GameObject:
   m_ObjectHideFlags: 0
@@ -8811,7 +8886,7 @@ RectTransform:
   m_Children:
   - {fileID: 938133406}
   m_Father: {fileID: 1637093765}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10370,6 +10445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerType: 0
   m_playerCon: {fileID: 423103193}
+  m_cameraDirector: {fileID: 0}
 --- !u!114 &457333950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26246,6 +26322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac46c8eab94c0854cbfc53f6b37cdce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerType: {fileID: 0}
   PlayerDirector: {fileID: 423103195}
   m_max: 50
   m_min: 50
@@ -47827,7 +47904,7 @@ RectTransform:
   - {fileID: 1811883974}
   - {fileID: 2093727976}
   m_Father: {fileID: 1637093765}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -52598,6 +52675,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 101980129}
   - {fileID: 1444082591}
   - {fileID: 389853487}
   m_Father: {fileID: 333214508}
@@ -55616,6 +55694,7 @@ GameObject:
   - component: {fileID: 1762742656}
   - component: {fileID: 1762742655}
   - component: {fileID: 1762742654}
+  - component: {fileID: 1762742658}
   m_Layer: 0
   m_Name: QRDirector
   m_TagString: QRDirector
@@ -55681,6 +55760,8 @@ MonoBehaviour:
   m_crayonsChangeNoBrake: {fileID: 0}
   m_hurikoStopFlag: {fileID: 0}
   m_playerCon: {fileID: 0}
+  m_timeStop: {fileID: 0}
+  m_playerChange: {fileID: 0}
 --- !u!114 &1762742657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55695,6 +55776,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _event: {fileID: 706606847}
   rawImage: {fileID: 1452610674}
+--- !u!114 &1762742658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762742652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3d084984cc77a41b161981379efe1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 101980126}
+  sprite:
+  - {fileID: 21300000, guid: 7bdeac07c7638994daab404bca2f94ad, type: 3}
+  - {fileID: 21300000, guid: ad6b6c525c72efd47ba09c739b54a944, type: 3}
+  - {fileID: 21300000, guid: 71ee34d259b79634e827ed7389f7e307, type: 3}
+  - {fileID: 21300000, guid: a953f8a0e5bdf3341b1ebd2479b532b1, type: 3}
+  - {fileID: 21300000, guid: 0a88f80c42f6ab84fafa3c7a0302cd10, type: 3}
+  - {fileID: 21300000, guid: 6b7f65b39a22eb3469a2ce45187ba090, type: 3}
+  - {fileID: 21300000, guid: 2ef83b4cb11a3ae49b35bf043a5c8482, type: 3}
+  - {fileID: 21300000, guid: c546daec1b675814f973749417c6324f, type: 3}
 --- !u!1001 &1763840619
 PrefabInstance:
   m_ObjectHideFlags: 0
