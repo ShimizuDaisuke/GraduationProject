@@ -28,10 +28,14 @@ public class PencilCaseCoverClose : MonoBehaviour
     [SerializeField]
     private ClearManagement m_clearManager = default;
 
+    //プレイヤー
+    private GameObject m_player = default;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        // プレイヤーを探す
+        m_player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -44,6 +48,8 @@ public class PencilCaseCoverClose : MonoBehaviour
             if(transform.localEulerAngles.z <= COVER_MAXANGLE)
             {
                 transform.Rotate(new Vector3(0, 0, m_rotationAmount) * Time.deltaTime);
+
+                m_player.transform.rotation = Quaternion.RotateTowards(m_player.transform.rotation, Quaternion.Euler(0.0f, 0.0f, 0.0f), 1.0f);
             }
             else
             {

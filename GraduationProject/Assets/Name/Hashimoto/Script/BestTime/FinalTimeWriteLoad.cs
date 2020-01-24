@@ -24,7 +24,10 @@ public class FinalTimeWriteLoad : MonoBehaviour
 
     // 上記のファイルがある相対パス(「@」を付けると、エスケープを行わずに「\」を文字列に含まれる)
     private string FilePath = @"Resources/CSV";
- 
+
+    // 初めてファイルを作成した場合に用意する入れ物の量
+    private const int FIRSTNEWDATA_BOXSIZE = 1;
+
     /// <summary>
     /// 開始処理
     /// </summary>
@@ -70,6 +73,26 @@ public class FinalTimeWriteLoad : MonoBehaviour
         // これまでに保存してきたデータの中で、一番速いタイムスコアを取得する
         besttimescore = saveddata[0];
 
+    }
+
+    /// <summary>
+    /// 一番値が小さいデータを見つける
+    /// </summary>
+    /// <param name="coursename">コース名</param>
+    /// <returns>一番値が小さいデータ</returns>
+    public int FindMiuData(string coursename)
+    {
+        // そのコースによるファイルパス
+        string TheCourseFile = FileName + "_course-" + coursename + ".csv";
+
+        // これまでに保存してきたタイムスコアを書き出す
+        int[] saveddata = Load(TheCourseFile, FilePath);
+
+        // 一番小さいデータを見つける
+        int tmpdata = (saveddata.Length == 0) ? 0 : saveddata[0];
+       
+        // そのデータを渡す
+        return tmpdata;
     }
 
     /// <summary>
@@ -162,6 +185,9 @@ public class FinalTimeWriteLoad : MonoBehaviour
 
             // ファイルを作成する
             using (File.Create(filename)) { }
+        }
+        else
+        {
         }
     }
 

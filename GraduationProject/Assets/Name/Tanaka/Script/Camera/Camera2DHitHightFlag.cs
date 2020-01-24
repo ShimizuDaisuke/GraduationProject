@@ -101,8 +101,8 @@ public class Camera2DHitHightFlag : MonoBehaviour
                 Vector3 camera3dBasePos = dir3d + m_player.transform.position;
 
                 //  元の位置に戻す
-                m_cameraFP.ChangeCameraPos(camera2basepos, false);
-                m_cameraFP.ChangeCameraPos(camera3dBasePos, true);
+                if(m_cameraHitYPos != 0) m_cameraFP.ChangeCameraPos(camera2basepos, false);
+                if (m_camera3dHitYPos != 0) m_cameraFP.ChangeCameraPos(camera3dBasePos, true);
 
                 // 2Dカメラの高さを維持しない
                 m_cameraFP.DecideKeepCameraHeight(Kind_IsKeepCameraHeight.NONE);

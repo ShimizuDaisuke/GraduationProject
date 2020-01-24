@@ -24,6 +24,8 @@ public class QRReadID : MonoBehaviour
         CRAYON_NO_BRAEK = 1 << 6,  // クレヨンが壊れなくなる        0100 0000  64
         HURIKO_STOP = 1 << 7,      // 振り子停止                    1000 0000  128
         PLAYER_SPEED_UP = 1 << 8,  // プレイヤーの速度UP            0001 0000 0000  256
+        TIMESTOP_5 = 1 << 9,       //５秒時間停止
+        TIMESTOP_10 = 1 << 10,     //１０秒時間停止
     }
 
     // 読み込んだQRの結果の格納
@@ -34,6 +36,9 @@ public class QRReadID : MonoBehaviour
 
     // テキスト変更の関数を呼ぶ変数
     QRText qRText = default;
+
+    // イメージ変更の関数を呼ぶ変数
+    QRImage qRImage = default;
 
     // 変換先
     int num = -1;
@@ -61,6 +66,14 @@ public class QRReadID : MonoBehaviour
     [SerializeField]
     private PlayerController m_playerCon = default;
 
+    //QR時間停止
+    [SerializeField]
+    private QRTimeStop m_timeStop = default;
+
+    //プレイヤーの変更
+    [SerializeField]
+    private PlayerChange m_playerChange = default;
+
     //=======================================================================================
     //! @brief 開始処理
     //! @param[in] なし
@@ -73,6 +86,8 @@ public class QRReadID : MonoBehaviour
         qrResult = GetComponent<SampleQRReader>();
         // QRTextにアクセス
         qRText = GetComponent<QRText>();
+        // QRImageにアクセス
+        qRImage = GetComponent<QRImage>();
 
         if (m_seesawChangeRuler != null)
         {
@@ -117,22 +132,28 @@ public class QRReadID : MonoBehaviour
             // プレイヤーの変更 (消しゴム)
             case (int)ReadResult.PLAYER_ERASER:
                 m_playerType.IsPlayerType = PlayerType.Type.ERASER;
+                m_playerChange.ChangeModel();
                 qRText.PlayerEraser();
+                qRImage.PlayerEraser_Image();
                 break;
             // プレイヤーの変更 (鉄)
             case (int)ReadResult.PLAYER_IRON:
                 m_playerType.IsPlayerType = PlayerType.Type.IRON;
+                m_playerChange.ChangeModel();
                 qRText.PlayerIron();
+                qRImage.PlayerIron_Image();
                 break;
             // シーソーを定規に変更
             case (int)ReadResult.SEESAW_CHANG_RULER:
                 m_qrChangeRuler.ChangeRuler();
                 qRText.Seesaw_Chang_Ruler();
+                qRImage.Seesaw_Chang_Ruler_Image();
                 break;
             // クレヨンが壊れなくなる
             case (int)ReadResult.CRAYON_NO_BRAEK:
                 m_qrChangecrayons.ChangeRuler();
                 qRText.Crayon_No_Break();
+                qRImage.Crayon_No_Break_Image();
                 break;
             // 振り子停止
             case (int)ReadResult.HURIKO_STOP:
@@ -141,17 +162,30 @@ public class QRReadID : MonoBehaviour
                     m_hurikoStopFlag.StopFlag = true;
                 }
                 qRText.Huriko_Stop();
+                qRImage.Huriko_Stop_Image();
                 break;
                 
                 // プレイヤーの速度UP
             case (int)ReadResult.PLAYER_SPEED_UP:
                 m_playerCon.ChangeVel();
                 qRText.Player_Speed_Up();
+                qRImage.Player_Speed_Up_Image();
+                break;
+                //５秒時間停止
+            case (int)ReadResult.TIMESTOP_5:
+                m_timeStop.TimeStop = QRTimeStop.TIMESTOP_COUNT.STOP5;
+
+                break;
+                //１０秒時間停止
+            case (int)ReadResult.TIMESTOP_10:
+                m_timeStop.TimeStop = QRTimeStop.TIMESTOP_COUNT.STOP10;
+
                 break;
             // この中の物に属さなかった場合正規のQRじゃない
             default:
                 num = 0;
                 qRText.NOQR();
+                qRImage.NullQR_Image();
                 break;
         }
     }

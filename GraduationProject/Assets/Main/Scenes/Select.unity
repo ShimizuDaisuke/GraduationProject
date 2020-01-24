@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca90ac4478a22574ca88d45218da72a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectScene: Stage1
+  SelectScene: Stage1-3
   FadeObject: {fileID: 1218218821}
   m_maxTimer: 0
 --- !u!114 &258103235
@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca90ac4478a22574ca88d45218da72a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectScene: Base
+  SelectScene: Stage1-4
   FadeObject: {fileID: 1218218821}
   m_maxTimer: 0
 --- !u!114 &647871235
@@ -2166,6 +2166,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350851606}
   m_CullTransparentMesh: 0
+--- !u!1 &1417347362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1417347364}
+  - component: {fileID: 1417347363}
+  m_Layer: 0
+  m_Name: SceneChangeGoalFromStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1417347363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417347362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a417fb03eaf61b74c832ff38058f0c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1417347364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417347362}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 37.171875, y: 24.261719, z: -0.6484375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1423676075
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,7 +2228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1423676076
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2218,7 +2261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca90ac4478a22574ca88d45218da72a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectScene: Stage1
+  SelectScene: Tanaka
   FadeObject: {fileID: 1218218821}
   m_maxTimer: 0
 --- !u!114 &1423676078

@@ -59,9 +59,6 @@ public class TimerController : MonoBehaviour
         {
             if (timerFlag)
             {
-                // スコアに
-                Script_Time.ClearTime = seconds;
-
                 //フレームごとにフレームの秒数を引いてる
                 totalTime += Time.deltaTime;
 
@@ -71,19 +68,8 @@ public class TimerController : MonoBehaviour
                 //文字列にしてからテキストに表示
                 timerText.text = seconds.ToString();
 
-                ////もしタイマーが0以下になりそうになったら
-                //if (seconds < 0)
-                //{
-                //    //タイマーを停止
-                //    timerFlag = false;
-
-                //    //タイマーを0にする
-                //    seconds = 0;
-                //    totalTime = 0.0f;
-
-                //    SceneManager.LoadScene("Result");
-                //}
-
+                // ステージを冒険し始めてから掛かった時間を取得する
+                Script_Time.ClearTime = totalTime;
             }
         }
        
