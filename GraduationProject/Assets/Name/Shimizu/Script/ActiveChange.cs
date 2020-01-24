@@ -17,7 +17,7 @@ public class ActiveChange : MonoBehaviour
 
     // textPanelの変数
     [SerializeField]
-    GameObject textPanel;
+    GameObject qRImage;
 
     //=======================================================================================
     //! @brief カメラパネルの取得設定
@@ -33,5 +33,5 @@ public class ActiveChange : MonoBehaviour
     //! @param[out] なし
     //! @return なし
     //=======================================================================================
-    public GameObject TextPanel { get { return textPanel; }set { textPanel = value; } }
+    public GameObject QRImage { get { return qRImage; }set { qRImage = value; } }
 }

@@ -205,7 +205,7 @@ public class SampleQRReader : MonoBehaviour
                     // カメラのスイッチ OFF
                     _switch = false;
                     // テキストPanelの表示
-                    activeChange.TextPanel.SetActive(true);
+                    activeChange.QRImage.SetActive(true);
 
                     int.TryParse(_result, out num);
                 }
@@ -217,15 +217,15 @@ public class SampleQRReader : MonoBehaviour
 
         // テキストの非表示処理==============================================================
         // テキストPanelが表示されているかどうか
-        if (activeChange.TextPanel.activeInHierarchy)
+        if (activeChange.QRImage.activeInHierarchy)
         {
             // 秒数を数える
             timer += Time.deltaTime;
             // 5秒たったら
-            if(timer > 5.0f)
+            if(timer > 8.0f)
             {
                 // テキストPanelを非表示にする
-                activeChange.TextPanel.SetActive(false);
+                activeChange.QRImage.SetActive(false);
 
                 // イベントを空にする
                 _event.IsEventKIND = EventDirector.EventKIND.NONE;
