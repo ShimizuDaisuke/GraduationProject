@@ -49,7 +49,7 @@ public class PencilCaseCoverClose : MonoBehaviour
             {
                 transform.Rotate(new Vector3(0, 0, m_rotationAmount) * Time.deltaTime);
 
-                m_player.transform.rotation = Quaternion.RotateTowards(m_player.transform.rotation, Quaternion.Euler(0.0f, 0.0f, 0.0f), 1.0f);
+                m_player.transform.rotation = Quaternion.RotateTowards(m_player.transform.rotation, Quaternion.Euler(0.0f, 0.0f, 0.0f), 90.0f);
             }
             else
             {
