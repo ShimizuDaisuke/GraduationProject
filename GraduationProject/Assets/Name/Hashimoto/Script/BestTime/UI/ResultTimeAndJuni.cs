@@ -30,7 +30,7 @@ public class ResultTimeAndJuni : MonoBehaviour
 
     // ステージで取得したタイムスコアを調べられるオブジェクト
     [SerializeField]
-    private GameObject TimeScoreObj = default;
+    private GameObject TimeManagerObj = default;
     // スクリプト：ステージで取得したタイムスコア
     private TimeManager Script_ScoreManager;
 
@@ -55,7 +55,7 @@ public class ResultTimeAndJuni : MonoBehaviour
         Script_ClearManagement = ClearObject.GetComponent<ClearManagement>();
 
         // スクリプト：ステージで取得したタイムスコア数 の取得
-        Script_ScoreManager = TimeScoreObj.GetComponent<TimeManager>();
+        Script_ScoreManager = TimeManagerObj.GetComponent<TimeManager>();
 
         // スクリプト：タイムスコア  の取得
         Script_FinalTimeWriteLoad = GetComponent<FinalTimeWriteLoad>();
