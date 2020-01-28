@@ -16,9 +16,6 @@ using CameraState = CameraDirector.CameraState;     // カメラの状態
 
 public class CameraStop : MonoBehaviour
 {
-    // 初期プレイヤーの向き(コード上汚い)
-    private Vector3 PlayerStartDirec = new Vector3(-90.0f, 0.0f, 0.0f);
-
     // 時間 : カメラの動きを止めてから、カメラを2D⇔3Dへ動かすまでの時間
     private float StopTime_NextMove2D3D = 1.5f;
 
@@ -159,9 +156,6 @@ public class CameraStop : MonoBehaviour
                    // プレイヤーが地面以外のオブジェクトに当たった情報をリセットする(当たり判定による情報がtrueへ更新し続けたため)
                    Script_PlayerPosByCamera2D3D.IsHitPlayerNoGroundObj = false;
 
-                   // プレイヤーの向きを変える
-                   PlayerObj.transform.rotation = Quaternion.Euler(PlayerStartDirec);
-
                    // 最終的に3Dカメラを写す場合
                    if (Script_CameraDirector.IsAppearCamera3D)
                     {
@@ -175,7 +169,7 @@ public class CameraStop : MonoBehaviour
                         PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
                         // プレイヤーの「Rigidbody」の一部の回転を固定する
-                        PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+                        PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                         
                     }
 
