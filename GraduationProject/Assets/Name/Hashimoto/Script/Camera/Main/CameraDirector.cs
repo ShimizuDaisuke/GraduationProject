@@ -61,6 +61,9 @@ public class CameraDirector : MonoBehaviour
     // 2Dカメラと3Dカメラの間へ移動しているか(カメラの状態 :「2D⇔3Dの動き」→「数ミリ秒止める」が含まれる)
     private bool IsMove2DCamera3DCamera = false;
 
+    // プレイヤーの初期向き
+    private Vector3 PlayerStartDirec = new Vector3(-90.0f, 0.0f, 90.0f);
+
     // スクリプト：カメラがプレイヤーに追従する
     private CameraFollowPlayer Script_CameraFollowPlayer;
 
@@ -127,14 +130,13 @@ public class CameraDirector : MonoBehaviour
     void Update()
     {
         // <テスト>----------------------------------------------------------------
-#if true
+#if false
         // スペースキーを押されたらカメラを切り替える
         if (Input.GetKeyDown(KeyCode.Space)&&(Script_EventDirector.IsEventKIND == EventKind.NONE))
         {
             // カメラが2D⇔3Dへ切り替える準備を行う
             ChangeCamera2D3D();
         }
-
 #endif
 
         // -------------------------------------------------------------------------
@@ -208,7 +210,8 @@ public class CameraDirector : MonoBehaviour
             case CameraState.STOP:
             {
                 // カメラの動きを止める
-                Script_CameraStop.Stop(ref NowState, ref IsDifferCameraStateNowOnce);
+                
+                    Script_CameraStop.Stop(ref NowState, ref IsDifferCameraStateNowOnce);
                 
                 break;
             }
@@ -251,7 +254,7 @@ public class CameraDirector : MonoBehaviour
             Script_PlayerDeecidePosBeforeMoveCamera2D3D.DecidePlayerPosBeforeMoveCamera2D3D(IsNowChange3DCamera);
 
             // プレイヤーの向きをリセットする
-            PlayerObj.transform.rotation = Quaternion.Euler(Vector3.zero);
+            PlayerObj.transform.rotation = Quaternion.Euler(PlayerStartDirec);
 
             // プレイヤーの位置が変わったため、カメラの位置もプレイヤーの位置に合わせて変える
             Script_CameraFollowPlayer.FllowPlayerNoSlowy();
