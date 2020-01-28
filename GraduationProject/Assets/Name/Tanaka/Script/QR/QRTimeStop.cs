@@ -53,6 +53,7 @@ public class QRTimeStop : MonoBehaviour
             if(!m_countUpFlag)
             {
                 m_countUpFlag = true;
+                m_count = 0.0f;
             }
         }
 

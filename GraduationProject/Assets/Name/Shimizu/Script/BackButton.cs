@@ -31,6 +31,7 @@ public class BackButton : MonoBehaviour
     float timer = 0.0f;
 
     bool pushFlag = false;
+
     //=======================================================================================
     //! @brief 開始処理
     //! @param[in] なし

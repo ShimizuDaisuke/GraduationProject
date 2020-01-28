@@ -15,9 +15,6 @@ public class QRReadID : MonoBehaviour
     enum ReadResult
     {
         // 二進数       1   桁
-        INCREASE_TIME = 1 << 0,    // 残りの時間が増える            0000 0001  1
-        DEF_UP        = 1 << 1,    // カバーを付ける 　             0000 0010  2
-        REMAINING_UP  = 1 << 2,    // 残機を増やす                  0000 0100  4
         PLAYER_ERASER = 1 << 3,    // プレイヤーの変更(消しゴム)    0000 1000  8
         PLAYER_IRON   = 1 << 4,    // プレイヤーの変更(鉄)       　 0001 0000  16
         SEESAW_CHANG_RULER = 1 << 5,    //シーソーを定規に変更      0010 0000  32
@@ -74,6 +71,9 @@ public class QRReadID : MonoBehaviour
     [SerializeField]
     private PlayerChange m_playerChange = default;
 
+    //QRスポット
+    private GameObject m_hitQRObject = default;
+
     //=======================================================================================
     //! @brief 開始処理
     //! @param[in] なし
@@ -112,7 +112,7 @@ public class QRReadID : MonoBehaviour
         result = qrResult.Result;
 
         // 何も読み込めなかった場合、今後の処理を飛ばす
-        if (result == null) return;
+        //if (result == null) return;
 
         // 文字列を数値に変換
         int.TryParse(result, out num);
@@ -120,24 +120,13 @@ public class QRReadID : MonoBehaviour
         // ID処理
         switch (num)
         {
-            // 時間を増やす
-            case (int)ReadResult.INCREASE_TIME:
-                qRText.IncreaseTime();
-                break;
-            // カバーをつける
-            case (int)ReadResult.DEF_UP:
-                qRText.DefenseUp();
-                break;
-            // 残機アップ
-            case (int)ReadResult.REMAINING_UP:
-                qRText.RemainingUp();
-                break;
             // プレイヤーの変更 (消しゴム)
             case (int)ReadResult.PLAYER_ERASER:
                 m_playerType.IsPlayerType = PlayerType.Type.ERASER;
                 m_playerChange.ChangeModel();
                 qRText.PlayerEraser();
                 qRImage.PlayerEraser_Image();
+                m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
                 break;
             // プレイヤーの変更 (鉄)
             case (int)ReadResult.PLAYER_IRON:
@@ -145,6 +134,7 @@ public class QRReadID : MonoBehaviour
                 m_playerChange.ChangeModel();
                 qRText.PlayerIron();
                 qRImage.PlayerIron_Image();
+                m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
                 break;
             // シーソーを定規に変更
             case (int)ReadResult.SEESAW_CHANG_RULER:
@@ -153,12 +143,14 @@ public class QRReadID : MonoBehaviour
                     m_qrChangeRuler.ChangeRuler();
                     qRText.Seesaw_Chang_Ruler();
                     qRImage.Seesaw_Chang_Ruler_Image();
+                    m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
                 }
                 else
                 {
                     num = 0;
                     qRText.NOQR();
                     qRImage.NullQR_Image();
+                    m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = false;
                 }
                 break;
             // クレヨンが壊れなくなる
@@ -168,12 +160,14 @@ public class QRReadID : MonoBehaviour
                     m_qrChangecrayons.ChangeRuler();
                     qRText.Crayon_No_Break();
                     qRImage.Crayon_No_Break_Image();
+                    m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
                 }
                 else
                 {
                     num = 0;
                     qRText.NOQR();
                     qRImage.NullQR_Image();
+                    m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = false;
                 }
                 break;
             // 振り子停止
@@ -181,6 +175,7 @@ public class QRReadID : MonoBehaviour
                 if (m_hurikoStopFlag != null)
                 {
                     m_hurikoStopFlag.StopFlag = true;
+                    m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
                 }
                 qRText.Huriko_Stop();
                 qRImage.Huriko_Stop_Image();
@@ -191,22 +186,25 @@ public class QRReadID : MonoBehaviour
                 m_playerCon.ChangeVel();
                 qRText.Player_Speed_Up();
                 qRImage.Player_Speed_Up_Image();
+                m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
                 break;
                 //５秒時間停止
             case (int)ReadResult.TIMESTOP_5:
                 m_timeStop.TimeStop = QRTimeStop.TIMESTOP_COUNT.STOP5;
-
+                m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
                 break;
                 //１０秒時間停止
             case (int)ReadResult.TIMESTOP_10:
                 m_timeStop.TimeStop = QRTimeStop.TIMESTOP_COUNT.STOP10;
-
+                m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
                 break;
             // この中の物に属さなかった場合正規のQRじゃない
             default:
                 num = 0;
                 qRText.NOQR();
                 qRImage.NullQR_Image();
+                m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = false;
+                m_timeStop.TimeStop = QRTimeStop.TIMESTOP_COUNT.STOP5;
                 break;
         }
     }
@@ -218,4 +216,6 @@ public class QRReadID : MonoBehaviour
     //! @return なし
     //=======================================================================================
     public int Num { get { return num; } private set { num = value; } }
+
+    public GameObject QRSpotObj { get { return m_hitQRObject; } set { m_hitQRObject = value; } }
 }

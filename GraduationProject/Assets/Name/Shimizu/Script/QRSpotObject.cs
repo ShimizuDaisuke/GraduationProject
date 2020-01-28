@@ -27,6 +27,13 @@ public class QRSpotObject : MonoBehaviour
     // プレイヤーのRigidbody
     Rigidbody rgb;
 
+    //使用フラグ
+    public bool m_useFlag = false;
+
+    //このスクリプトがついてるオブジェクト
+    [SerializeField]
+    private GameObject m_thisObj = null;
+
     //=======================================================================================
     //! @brief 開始処理
     //! @param[in] なし
@@ -51,20 +58,27 @@ public class QRSpotObject : MonoBehaviour
     //=======================================================================================
     void OnTriggerEnter(Collider col)
     {
-        if (cameraDirector.GetComponent<CameraDirector>().IsMove2D3DCameraPos != true)
+        if(!m_thisObj.GetComponent<QRSpotObject>().UseFlag)
         {
-            // Playerに当たったら
-            if (col.gameObject.tag == "Player")
+            if (cameraDirector.GetComponent<CameraDirector>().IsMove2D3DCameraPos != true)
             {
-                // プレイヤーのRigidBodyをフリーズさせる
-                rgb.constraints = RigidbodyConstraints.FreezeAll;
+                // Playerに当たったら
+                if (col.gameObject.tag == "Player")
+                {
+                    qRDirector.GetComponent<QRReadID>().QRSpotObj = this.gameObject;
 
-                // カメラをオンにするフラグをtrueにする
-                spot.QRSpot = true;
+                    // プレイヤーのRigidBodyをフリーズさせる
+                    rgb.constraints = RigidbodyConstraints.FreezeAll;
 
-                // イベントを設定する
-                _event.IsEventKIND = EventDirector.EventKIND.RULE_QR;
+                    // カメラをオンにするフラグをtrueにする
+                    spot.QRSpot = true;
+
+                    // イベントを設定する
+                    _event.IsEventKIND = EventDirector.EventKIND.RULE_QR;
+                }
             }
         }
     }
+
+    public bool UseFlag { get { return m_useFlag; } set { m_useFlag = value; } }
 }
