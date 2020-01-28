@@ -169,7 +169,7 @@ public class CameraStop : MonoBehaviour
                         PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
                         // プレイヤーの「Rigidbody」の一部の回転を固定する
-                        PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                        PlayerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
                         
                     }
 
