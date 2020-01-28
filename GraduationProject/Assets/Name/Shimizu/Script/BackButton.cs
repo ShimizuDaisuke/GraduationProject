@@ -65,8 +65,8 @@ public class BackButton : MonoBehaviour
             timer += Time.deltaTime;
         }
 
-        // 5秒たったら
-        if (timer > 1.0f)
+        // 1秒たったら
+        if (timer > 0.2f)
         {
             // イベントを空にする
             _event.IsEventKIND = EventDirector.EventKIND.NONE;

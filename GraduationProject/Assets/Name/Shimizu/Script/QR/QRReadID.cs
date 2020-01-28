@@ -23,6 +23,7 @@ public class QRReadID : MonoBehaviour
         PLAYER_SPEED_UP = 1 << 8,  // プレイヤーの速度UP            0001 0000 0000  256
         TIMESTOP_5 = 1 << 9,       //５秒時間停止
         TIMESTOP_10 = 1 << 10,     //１０秒時間停止
+        NONE = 1<<11,
     }
 
     // 読み込んだQRの結果の格納
@@ -112,7 +113,7 @@ public class QRReadID : MonoBehaviour
         result = qrResult.Result;
 
         // 何も読み込めなかった場合、今後の処理を飛ばす
-        //if (result == null) return;
+        if (result == null) return;
 
         // 文字列を数値に変換
         int.TryParse(result, out num);
@@ -192,11 +193,17 @@ public class QRReadID : MonoBehaviour
             case (int)ReadResult.TIMESTOP_5:
                 m_timeStop.TimeStop = QRTimeStop.TIMESTOP_COUNT.STOP5;
                 m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
+                num = (int)ReadResult.NONE;
+                result = null;
+                qrResult.Result = null;
                 break;
                 //１０秒時間停止
             case (int)ReadResult.TIMESTOP_10:
                 m_timeStop.TimeStop = QRTimeStop.TIMESTOP_COUNT.STOP10;
                 m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
+                num = (int)ReadResult.NONE;
+                result = null;
+                qrResult.Result = null;
                 break;
             // この中の物に属さなかった場合正規のQRじゃない
             default:

@@ -221,8 +221,8 @@ public class SampleQRReader : MonoBehaviour
         {
             // 秒数を数える
             timer += Time.deltaTime;
-            // 5秒たったら
-            if(timer > 8.0f)
+            // 3秒たったら
+            if(timer > 3.0f)
             {
                 // テキストPanelを非表示にする
                 activeChange.QRImage.SetActive(false);
