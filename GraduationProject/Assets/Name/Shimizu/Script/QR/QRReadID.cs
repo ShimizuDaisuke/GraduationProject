@@ -203,7 +203,6 @@ public class QRReadID : MonoBehaviour
                 num = 0;
                 qRText.NOQR();
                 qRImage.NullQR_Image();
-                m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = false;
                 m_timeStop.TimeStop = QRTimeStop.TIMESTOP_COUNT.STOP5;
                 break;
         }
