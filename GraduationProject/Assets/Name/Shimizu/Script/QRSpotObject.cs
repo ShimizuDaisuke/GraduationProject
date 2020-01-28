@@ -28,7 +28,7 @@ public class QRSpotObject : MonoBehaviour
     Rigidbody rgb;
 
     //使用フラグ
-    public bool m_useFlag = false;
+    private bool m_useFlag = false;
 
     //このスクリプトがついてるオブジェクト
     [SerializeField]
