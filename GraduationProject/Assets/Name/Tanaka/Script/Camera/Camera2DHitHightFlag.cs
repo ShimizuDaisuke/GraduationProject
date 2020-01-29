@@ -58,7 +58,7 @@ public class Camera2DHitHightFlag : MonoBehaviour
     private Vector3 dir3d = Vector3.zero;
 
     // とある時間
-    private float time = 100.0f;
+    private float time = 1.0f;
 
     // Start is called before the first frame update
     void Start()
