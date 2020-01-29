@@ -56,7 +56,7 @@ public class QRTimeStop : MonoBehaviour
                 m_count = 0.0f;
             }
         }
-
+        Debug.Log(m_count);
         if(m_countUpFlag)
         {
             //時間停止
@@ -79,11 +79,10 @@ public class QRTimeStop : MonoBehaviour
                 else
                 {
                     m_timeStopCount = TIMESTOP_COUNT.NONE;
+
                     m_count = 0.0f;
                     m_undoTimeFlag = false;
                 }
-
-
             }
             else
             {
