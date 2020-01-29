@@ -90,10 +90,13 @@ public class SeesawController : MonoBehaviour
         if(collider.gameObject.tag == "Player")
         {
             //プレイヤーを投げる
-            m_throwingObj.ThrowingObj();
-            m_throwFlag = true;
-            //投げられたイベントにする
-            m_event.IsEventKIND = EventDirector.EventKIND.RULE_THOW;
+            if(!m_throwFlag)
+            {
+                m_throwingObj.ThrowingObj();
+                m_throwFlag = true;
+                //投げられたイベントにする
+                m_event.IsEventKIND = EventDirector.EventKIND.RULE_THOW;
+            }
         }
     }
 
