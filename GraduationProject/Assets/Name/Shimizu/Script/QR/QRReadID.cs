@@ -191,6 +191,7 @@ public class QRReadID : MonoBehaviour
                 break;
                 //５秒時間停止
             case (int)ReadResult.TIMESTOP_5:
+                qRImage.Stop_Timer_Image();
                 m_timeStop.TimeStop = QRTimeStop.TIMESTOP_COUNT.STOP5;
                 m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
                 num = (int)ReadResult.NONE;
@@ -199,6 +200,7 @@ public class QRReadID : MonoBehaviour
                 break;
                 //１０秒時間停止
             case (int)ReadResult.TIMESTOP_10:
+                qRImage.Stop_Timer_Image();
                 m_timeStop.TimeStop = QRTimeStop.TIMESTOP_COUNT.STOP10;
                 m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
                 num = (int)ReadResult.NONE;
