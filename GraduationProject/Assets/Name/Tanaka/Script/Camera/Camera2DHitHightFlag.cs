@@ -58,7 +58,7 @@ public class Camera2DHitHightFlag : MonoBehaviour
     private Vector3 dir3d = Vector3.zero;
 
     // とある時間
-    private float time = 1.0f;
+    private float time = 100.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -70,50 +70,30 @@ public class Camera2DHitHightFlag : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 現在と過去でフラグが異なっている場合
-        if (m_hitNowHightFlag != m_hitOnceHightFlag)
+        // 現在と過去でフラグが異なっている場合 かつ 現在プレイヤーがエリア内にプレイヤーが入った場合
+        if ((m_hitNowHightFlag != m_hitOnceHightFlag)&&(m_hitNowHightFlag == true))
         {
-            // 現在、プレイヤーがエリア内にプレイヤーが入った場合
-            if(m_hitNowHightFlag)
-            {
-                // 現在のプレイヤーとカメラの距離を計算
-                dir = m_camera2d.transform.position - m_player.transform.position;
+            // 現在のプレイヤーとカメラの距離を計算
+            dir = m_camera2d.transform.position - m_player.transform.position;
 
-                // 現在のプレイヤーと3dカメラの距離を計算
-                dir3d = m_camera3d.transform.position - m_player.transform.position;
+            // 現在のプレイヤーと3dカメラの距離を計算
+            dir3d = m_camera3d.transform.position - m_player.transform.position;
 
-                // 指定された位置にカメラを動かす
-                if(m_cameraHitYPos != 0) m_cameraFP.ChangeCameraPos(new Vector3(m_player.transform.position.x, m_cameraHitYPos, m_camera2DposZ), false);                         // 2Dカメラ
-                if(m_camera3dHitYPos != 0) m_cameraFP.ChangeCameraPos(new Vector3(m_camera3d.transform.position.x, m_camera3dHitYPos, m_camera3d.transform.position.z), true);     // 3Dカメラ
+            // 指定された位置にカメラを動かす
+            if(m_cameraHitYPos != 0)   m_cameraFP.ChangeCameraPos(new Vector3(m_player.transform.position.x, m_cameraHitYPos, m_camera2DposZ), false);                         // 2Dカメラ
+            if(m_camera3dHitYPos != 0) m_cameraFP.ChangeCameraPos(new Vector3(m_camera3d.transform.position.x, m_camera3dHitYPos, m_camera3d.transform.position.z), true);     // 3Dカメラ
 
-                // カメラの高さを維持させるか決める
-                m_cameraFP.DecideKeepCameraHeight(IsKeepCameraHeight, time);
+            // カメラの高さを維持させるか決める
+            m_cameraFP.DecideKeepCameraHeight(IsKeepCameraHeight, time);
 
- 
-            }
-            // エリア内にプレイヤーが入っていない場合
-            else
-            {
-                // カメラの位置が下記の距離に戻す
-                Vector3 camera2basepos = dir + m_player.transform.position;
-
-                // カメラの位置が下記の距離に戻す
-                Vector3 camera3dBasePos = dir3d + m_player.transform.position;
-
-                //  元の位置に戻す
-                if(m_cameraHitYPos != 0) m_cameraFP.ChangeCameraPos(camera2basepos, false);
-                if (m_camera3dHitYPos != 0) m_cameraFP.ChangeCameraPos(camera3dBasePos, true);
-
-                // 2Dカメラの高さを維持しない
-                m_cameraFP.DecideKeepCameraHeight(Kind_IsKeepCameraHeight.NONE);
-
-
-            }
+            // リセットする
+            m_hitNowHightFlag = false;
         }
 
         // 常に過去にエリア内にプレイヤーが入ったか　更新する
         m_hitOnceHightFlag = m_hitNowHightFlag;
     }
+
     //衝突判定
     void OnTriggerEnter(Collider collider)
     {
@@ -124,19 +104,4 @@ public class Camera2DHitHightFlag : MonoBehaviour
             m_hitNowHightFlag = true;
         }
     }
-
-    //衝突判定
-    void OnTriggerExit(Collider collider)
-    {
-        //電気が当たったら
-        if (collider.gameObject.tag == "Player")
-        {
-            // エリア外へプレイヤーが出た
-            m_hitNowHightFlag = false;
-        }
-    }
-
-    // フラグ
-    public bool HitHightFlag { get { return m_hitNowHightFlag; } set { m_hitNowHightFlag = value; } }
-
 }
