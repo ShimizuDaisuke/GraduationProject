@@ -239,9 +239,6 @@ public class QRReadID : MonoBehaviour
             default:
                 qRText.NOQR();
                 qRImage.NullQR_Image();
-
-                //QRリセット
-                QRReset();
                 break;
         }
     }
