@@ -128,6 +128,9 @@ public class QRReadID : MonoBehaviour
                 qRText.PlayerEraser();
                 qRImage.PlayerEraser_Image();
                 m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
+
+                //QRリセット
+                QRReset();
                 break;
             // プレイヤーの変更 (鉄)
             case (int)ReadResult.PLAYER_IRON:
@@ -136,7 +139,11 @@ public class QRReadID : MonoBehaviour
                 qRText.PlayerIron();
                 qRImage.PlayerIron_Image();
                 m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
+
+                //QRリセット
+                QRReset();
                 break;
+
             // シーソーを定規に変更
             case (int)ReadResult.SEESAW_CHANG_RULER:
                 if (m_seesawChangeRuler != null)
@@ -148,12 +155,15 @@ public class QRReadID : MonoBehaviour
                 }
                 else
                 {
-                    num = 0;
                     qRText.NOQR();
                     qRImage.NullQR_Image();
                     m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = false;
+
+                    //QRリセット
+                    QRReset();
                 }
                 break;
+
             // クレヨンが壊れなくなる
             case (int)ReadResult.CRAYON_NO_BRAEK:
                 if (m_crayonsChangeNoBrake != null)
@@ -165,55 +175,83 @@ public class QRReadID : MonoBehaviour
                 }
                 else
                 {
-                    num = 0;
                     qRText.NOQR();
                     qRImage.NullQR_Image();
                     m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = false;
+
+                    //QRリセット
+                    QRReset();
                 }
                 break;
+
             // 振り子停止
             case (int)ReadResult.HURIKO_STOP:
                 if (m_hurikoStopFlag != null)
                 {
                     m_hurikoStopFlag.StopFlag = true;
                     m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
+                    qRText.Huriko_Stop();
+                    qRImage.Huriko_Stop_Image();
                 }
-                qRText.Huriko_Stop();
-                qRImage.Huriko_Stop_Image();
+                else
+                {
+                    qRText.NOQR();
+                    qRImage.NullQR_Image();
+
+                    //QRリセット
+                    QRReset();
+                }
+                    
                 break;
                 
-                // プレイヤーの速度UP
+            // プレイヤーの速度UP
             case (int)ReadResult.PLAYER_SPEED_UP:
                 m_playerCon.ChangeVel();
                 qRText.Player_Speed_Up();
                 qRImage.Player_Speed_Up_Image();
                 m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
+
+                //QRリセット
+                QRReset();
                 break;
-                //５秒時間停止
+
+            //５秒時間停止
             case (int)ReadResult.TIMESTOP_5:
                 qRImage.Stop_Timer_Image();
                 m_timeStop.TimeStop = QRTimeStop.TIMESTOP_COUNT.STOP5;
                 m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
-                num = (int)ReadResult.NONE;
-                result = null;
-                qrResult.Result = null;
+
+                //QRリセット
+                QRReset();
                 break;
-                //１０秒時間停止
+
+            //１０秒時間停止
             case (int)ReadResult.TIMESTOP_10:
                 qRImage.Stop_Timer_Image();
                 m_timeStop.TimeStop = QRTimeStop.TIMESTOP_COUNT.STOP10;
                 m_hitQRObject.GetComponent<QRSpotObject>().UseFlag = true;
-                num = (int)ReadResult.NONE;
-                result = null;
-                qrResult.Result = null;
+
+                //QRリセット
+                QRReset();
                 break;
+
             // この中の物に属さなかった場合正規のQRじゃない
             default:
-                num = 0;
                 qRText.NOQR();
                 qRImage.NullQR_Image();
+
+                //QRリセット
+                QRReset();
                 break;
         }
+    }
+
+    //QRのリセット
+    private void QRReset()
+    {
+        num = (int)ReadResult.NONE;
+        result = null;
+        qrResult.Result = null;
     }
 
     //=======================================================================================

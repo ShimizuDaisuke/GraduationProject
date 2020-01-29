@@ -65,7 +65,7 @@ public class QRTimeStop : MonoBehaviour
             //止める時間
             int maxTime = (int)m_timeStopCount;
 
-            if (m_count > maxTime*60.0f)
+            if (m_count > maxTime)
             {
                 //戻す
                 m_timerCon.TimerFlag = true;
@@ -86,7 +86,7 @@ public class QRTimeStop : MonoBehaviour
             }
             else
             {
-                m_count +=1.0f;
+                m_count += Time.deltaTime;
             }
         }
         
