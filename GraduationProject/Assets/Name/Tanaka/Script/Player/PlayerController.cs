@@ -16,9 +16,9 @@ using UnityEngine;
 //プレイヤーの操作クラス
 public class PlayerController : MonoBehaviour
 {
-    //2Dカメラ ↔ 3Dカメラへ動くクラス
+    //　カメラの監督
     [SerializeField]
-    private CameraDirector m_cameradirector = default;
+    private GameObject m_cameradirector = default;
 
     //イベント管理クラス
     [SerializeField]
@@ -61,6 +61,12 @@ public class PlayerController : MonoBehaviour
     //ジョイスティックで動かした方向X
     private Vector2 m_d = Vector2.zero;
 
+    // スクリプト： 2D↔3Dへカメラが動く
+    private CameraDirector s_cameradirector;
+
+    // スクリプト： カメラがプレイヤーに追従する
+    private CameraFollowPlayer s_camerafollowplayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,9 +76,15 @@ public class PlayerController : MonoBehaviour
         // プレイヤーのRigidbodyを探す
         m_rigidbody = PlayerObj.transform.GetComponent<Rigidbody>();
 
+        // 速度を初期化
         m_vel = m_eraserVel;
 
-    }
+        // スクリプト： 2D↔3Dへカメラが動く 取得
+        s_cameradirector = m_cameradirector.GetComponent<CameraDirector>();
+
+        // スクリプト： カメラがプレイヤーに追従する 取得
+        s_camerafollowplayer = m_cameradirector.GetComponent<CameraFollowPlayer>();
+    } 
 
     // PlayerDirector.cs の Update に移動
     //void Update()
@@ -87,11 +99,11 @@ public class PlayerController : MonoBehaviour
     public void Move()
     {
         //2Dカメラか3Dカメラかのフラグ
-        bool camera2Dor3DFlag = m_cameradirector.IsAppearCamera3D;
+        bool camera2Dor3DFlag = s_cameradirector.IsAppearCamera3D;
        
 
         // 2Dと3Dのカメラの切り替え中フラグ
-        bool cameraSwitch2D3D = m_cameradirector.IsMove2D3DCameraPos;
+        bool cameraSwitch2D3D = s_cameradirector.IsMove2D3DCameraPos;
 
         //2Dと3Dのカメラの切り替え中かどうか,イベントが何も起きていないか
         if ((!cameraSwitch2D3D) && (m_event.IsEventKIND == EventDirector.EventKIND.NONE))
@@ -114,6 +126,9 @@ public class PlayerController : MonoBehaviour
             {
                 // 3D空間上のプレイヤーの移動速度を取得する
                 Vector3 movevellocity = new Vector3(m_d.y, 0.0f, -m_d.x);
+
+                // 3Dカメラがプレイヤーより手前に引くか決める
+                s_camerafollowplayer.Judge3DCameraPlayerBack(new Vector2(-m_d.x,m_d.y));
 
                 // 実際にプレイヤーを動かす
                 MoveByDirection(movevellocity);
