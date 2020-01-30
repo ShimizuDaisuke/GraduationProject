@@ -42,14 +42,20 @@ public class CameraFollowPlayer : MonoBehaviour
     [SerializeField]
     private float m_cameraHight = 0.0f;
 
+    // プレイヤー
+    private GameObject Player;
+
     // 2Dカメラとプレイヤーの距離
     private Vector3 DirectionCamera2DPlayerPos;
 
     // 3Dカメラとプレイヤーの距離
     private Vector3 DirectionCamera3DPlayerPos;
 
-    // プレイヤー
-    private GameObject Player;
+    // 3Dカメラでプレイヤーが後ろ向きに進む場合、カメラの位置を手前に引くか
+    private bool Is3DCameraPlayerBack = false;
+
+    // 3Dカメラでプレイヤーが後ろ向きに進む場合、カメラの位置を手前に引く距離
+    private float Direction_3DCameraPlayerBack = -2.5f;
 
     // カメラがプレイヤーに追従するのにかかる時間(/s) <カメラのブレを防止するため>
     private float FollowingTime = 5.0f;
@@ -62,7 +68,6 @@ public class CameraFollowPlayer : MonoBehaviour
 
     // プレイヤーが動いても、カメラが上下に揺れてないように制限をつける高さ
     private int CameraHeight_NoShake = 5;
-
 
     // カメラがプレイヤーに追従するとき、カメラの高さを維持するか
     private Kind_IsKeepHeight IsKeepHeight;
@@ -281,5 +286,60 @@ public class CameraFollowPlayer : MonoBehaviour
         // カメラがプレイヤーに時間を変えて追従するためにラップする処理に掛かる時間
         if(lerptime > 0.0f) LerpTime = lerptime;
 
+    }
+
+    /// <summary>
+    /// 「3Dカメラでプレイヤーが後ろ向きに進む場合、カメラの位置を手前に引く」か判断する
+    /// </summary>
+    /// <param name="vell">プレイヤーの速度</param>
+    public void Judge3DCameraPlayerBack(Vector2 vell)
+    {
+        // Y軸方向に移動速度が小さい場合
+        if(vell.y < 0)
+        {
+            // カメラの位置を手前に引くようにする
+            Create3DCameraPlayerBack();
+        }
+        else
+        {
+            // リセットする
+            Reset3DCameraPlayerBack();
+        }
+    }
+
+    /// <summary>
+    /// 「3Dカメラでプレイヤーが後ろ向きに進む場合、カメラの位置を手前に引く」ようにする
+    /// </summary>
+    private void Create3DCameraPlayerBack()
+    {
+        // 以前までカメラの位置が手前に引くようにしていなかった場合
+        if(!Is3DCameraPlayerBack)
+        {
+            // カメラの位置を手前に引くようにする
+            Is3DCameraPlayerBack = true;
+
+            // 3Dカメラとプレイヤーの距離を更新する
+            DirectionCamera3DPlayerPos = new Vector3(DirectionCamera3DPlayerPos.x + Direction_3DCameraPlayerBack,
+                                                     DirectionCamera3DPlayerPos.y,
+                                                     DirectionCamera3DPlayerPos.z);
+        }
+    }
+
+    /// <summary>
+    /// 「3Dカメラでプレイヤーが後ろ向きに進む場合、カメラの位置を手前に引かない」ようにリセットする
+    /// </summary>
+    public void Reset3DCameraPlayerBack()
+    {
+        // 3Dカメラでプレイヤーが後ろ向きに進む時に、カメラの位置が手前に引くようにした場合
+        if (Is3DCameraPlayerBack)
+        {
+            // カメラの位置を手前に引かないようにリセットする
+            Is3DCameraPlayerBack = false;
+
+            // 3Dカメラとプレイヤーの距離をリセットする
+            DirectionCamera3DPlayerPos = new Vector3(DirectionCamera3DPlayerPos.x - Direction_3DCameraPlayerBack,
+                                                     DirectionCamera3DPlayerPos.y,
+                                                     DirectionCamera3DPlayerPos.z);
+        }
     }
 }

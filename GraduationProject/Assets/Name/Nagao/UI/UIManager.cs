@@ -53,9 +53,6 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        // 筆箱に入るイベントならリターン
-        if(m_event.IsEventKIND == EventDirector.EventKIND.PENCILCASE_MOVE_GOOL) return;
-
         //イベント中か
         if ((m_event.IsEventKIND != EventDirector.EventKIND.NONE))
         {
@@ -73,6 +70,19 @@ public class UIManager : MonoBehaviour
                 EventUI.SetActive(true);
                 //QR用UIの非表示
                 QRUI.SetActive(false);
+            }
+            else if (m_event.IsEventKIND == EventDirector.EventKIND.PENCILCASE_MOVE_GOOL)
+            {
+                //時間UIの表示
+                m_timeUI.SetActive(false);
+
+                //イベント用UIの表示
+                EventUI.SetActive(false);
+                //QR用UIの非表示
+                QRUI.SetActive(true);
+
+                //ゲーム内の時を止める
+                m_timerController.TimerFlag = false;
             }
             else
             {

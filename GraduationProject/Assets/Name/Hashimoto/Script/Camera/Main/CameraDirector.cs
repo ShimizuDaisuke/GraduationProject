@@ -210,8 +210,7 @@ public class CameraDirector : MonoBehaviour
             case CameraState.STOP:
             {
                 // カメラの動きを止める
-                
-                    Script_CameraStop.Stop(ref NowState, ref IsDifferCameraStateNowOnce);
+                Script_CameraStop.Stop(ref NowState, ref IsDifferCameraStateNowOnce);
                 
                 break;
             }
@@ -258,6 +257,9 @@ public class CameraDirector : MonoBehaviour
 
             // プレイヤーの位置が変わったため、カメラの位置もプレイヤーの位置に合わせて変える
             Script_CameraFollowPlayer.FllowPlayerNoSlowy();
+
+            // 3Dカメラでプレイヤーが後ろ向きに進む場合、カメラの位置を手前に引かないようにする
+            Script_CameraFollowPlayer.Reset3DCameraPlayerBack();
         }
     }
 
