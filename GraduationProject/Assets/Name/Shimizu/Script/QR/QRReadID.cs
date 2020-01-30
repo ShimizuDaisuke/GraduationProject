@@ -74,6 +74,7 @@ public class QRReadID : MonoBehaviour
 
     //QRスポット
     private GameObject m_hitQRObject = default;
+    
 
     //=======================================================================================
     //! @brief 開始処理

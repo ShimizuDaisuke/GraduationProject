@@ -98,13 +98,13 @@ public class BalanceController : MonoBehaviour
     {
         if(m_cameraDirector.IsAppearCamera3D)
         {
-            m_IronObj.transform.position = new Vector3(m_IronObj.transform.position.x, m_IronObj.transform.position.y, 14.0f);
+            m_IronObj.transform.position = new Vector3(m_IronObj.transform.position.x, m_IronObj.transform.position.y, 14.5f);
         }
         else
         {
             if(!m_ironHitFlag)
             {
-                m_IronObj.transform.position = new Vector3(m_IronObj.transform.position.x, m_IronObj.transform.position.y, 14.0f);
+                m_IronObj.transform.position = new Vector3(m_IronObj.transform.position.x, m_IronObj.transform.position.y, 14.5f);
             }
             else
             {
