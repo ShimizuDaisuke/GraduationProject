@@ -100,7 +100,7 @@ public class ResultTimeAndJuni : MonoBehaviour
             TimeScore[(int)TimeKind.CLEARTIME].Write(itime);
 
             // ベストタイムを描画する
-            TimeScore[(int)TimeKind.BESTTIME].Write(itime);
+            TimeScore[(int)TimeKind.BESTTIME].Write(besttimescore);
 
             // 順位を描画する
             Juni.Write(jyui, jyuitotal);
