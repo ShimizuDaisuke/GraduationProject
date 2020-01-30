@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject ClearObject = null;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         //リザルトメインのスクリプトの割り当て
