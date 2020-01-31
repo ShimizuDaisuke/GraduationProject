@@ -74,7 +74,7 @@ public class PlayerHit : MonoBehaviour
                 //SoundManager.PlaySE(SoundManager.Sound.SE_CoverComesOn);
 
                 // 消しゴムにカバーを付けた
-                IsFixCover = true;
+                //IsFixCover = true;
             }
 
             //絵の具と当たった時
