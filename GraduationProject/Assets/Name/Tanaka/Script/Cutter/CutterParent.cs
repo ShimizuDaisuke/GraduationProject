@@ -37,7 +37,10 @@ public class CutterParent : MonoBehaviour
         {
             //回転をZだけ解除
             m_rigd.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+            //transform.parent = null;
         }
+
+
     }
 
 
