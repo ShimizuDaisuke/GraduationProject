@@ -117,5 +117,15 @@ public class EventCameraGoalFromStart : CameraEventBase
             m_eventDirector.IsEventKIND = EventDirector.EventKIND.NONE;
         }
         
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            if(!m_goalFlag)
+            {
+                m_fade.FadeOut = true;
+                m_goalFlag = true;
+            }
+        }
+
     }
 }

@@ -16,8 +16,8 @@ public class QRTimeStop : MonoBehaviour
     public enum TIMESTOP_COUNT
     {
         NONE    = 0,
-        STOP5   = 5,
-        STOP10  = 10,
+        STOP5   = 8,
+        STOP10  = 13,
         UNDO_TIME = 1,
         NUM,
     };
@@ -56,7 +56,7 @@ public class QRTimeStop : MonoBehaviour
                 m_count = 0.0f;
             }
         }
-        Debug.Log(m_count);
+        //Debug.Log(m_count);
         if(m_countUpFlag)
         {
             //時間停止
