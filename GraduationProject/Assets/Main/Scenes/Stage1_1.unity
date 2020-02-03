@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.65597194, g: 0.8092664, b: 0.9999694, a: 1}
+  m_IndirectSpecularColor: {r: 0.6559253, g: 0.80927783, b: 0.99995214, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -34497,7 +34497,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 1.3347e-41, w: 1.05e-43}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -98076,7 +98076,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ad6b6c525c72efd47ba09c739b54a944, type: 3}
   - {fileID: 21300000, guid: 71ee34d259b79634e827ed7389f7e307, type: 3}
   - {fileID: 21300000, guid: a953f8a0e5bdf3341b1ebd2479b532b1, type: 3}
-  - {fileID: 21300000, guid: 0a88f80c42f6ab84fafa3c7a0302cd10, type: 3}
+  - {fileID: 21300000, guid: 4c6d965b2e9667e45ad0aebb71c871d6, type: 3}
   - {fileID: 21300000, guid: 6b7f65b39a22eb3469a2ce45187ba090, type: 3}
   - {fileID: 21300000, guid: 2ef83b4cb11a3ae49b35bf043a5c8482, type: 3}
   - {fileID: 21300000, guid: c546daec1b675814f973749417c6324f, type: 3}
@@ -110689,6 +110689,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1142873192}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 007ea41fa3952d142ae8e8d535246a0e,
+        type: 3}
+      propertyPath: m_Name
+      value: ruler
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 007ea41fa3952d142ae8e8d535246a0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 007ea41fa3952d142ae8e8d535246a0e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 007ea41fa3952d142ae8e8d535246a0e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -110758,21 +110773,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.57506
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 007ea41fa3952d142ae8e8d535246a0e,
-        type: 3}
-      propertyPath: m_Name
-      value: ruler
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 007ea41fa3952d142ae8e8d535246a0e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 007ea41fa3952d142ae8e8d535246a0e,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 007ea41fa3952d142ae8e8d535246a0e,
         type: 3}
