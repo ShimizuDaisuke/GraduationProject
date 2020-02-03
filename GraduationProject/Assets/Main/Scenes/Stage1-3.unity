@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6563518, g: 0.80947703, b: 0.9999661, a: 1}
+  m_IndirectSpecularColor: {r: 0.6559426, g: 0.80924976, b: 0.99994415, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -46416,35 +46416,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 220544344}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1253442805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253442804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 315250d6278b9ce46a06903c875d949d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHP: 50
---- !u!114 &1253442806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253442804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac46c8eab94c0854cbfc53f6b37cdce5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_playerType: {fileID: 2143525900}
-  PlayerDirector: {fileID: 1964389286}
-  m_max: 50
-  m_min: 50
 --- !u!65 &1253442807
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -79747,32 +79718,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerDirector: {fileID: 1964389286}
---- !u!114 &2143525891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2143525887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8adf7823c247f048941dcb9795f3d14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_score: {fileID: 0}
---- !u!114 &2143525892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2143525887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8adcd093ee7a29448481900ffd32b62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MAX1UP_LIFEGAGE: 100
 --- !u!114 &2143525893
 MonoBehaviour:
   m_ObjectHideFlags: 0
