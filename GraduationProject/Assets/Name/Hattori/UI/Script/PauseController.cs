@@ -195,6 +195,8 @@ public class PauseController : MonoBehaviour
 
         //時が動き出す
         Time.timeScale = 1.0f;
+
+        pauseCounter++;
     }
 
     //======================================================================================= 
@@ -255,5 +257,16 @@ public class PauseController : MonoBehaviour
             //ジョイスティックコントローラーのジョイスティックコントローラーを止める
             joystickDirector.GetComponent<JoystickController>().enabled = stopormove;
         }
+    }
+
+
+    //ボタンが押されたとき
+    public void OnClick()
+    {
+
+       
+        //SEの再生
+        SoundManager.PlaySE(SoundManager.Sound.SE_Change2D3DButton);
+
     }
 }
