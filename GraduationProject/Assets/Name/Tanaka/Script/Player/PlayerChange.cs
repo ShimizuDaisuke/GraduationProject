@@ -69,7 +69,7 @@ public class PlayerChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(Input.GetMouseButton(0))
+        //if (Input.GetMouseButton(0))
         //{
         //    ChangeModel();
         //}
@@ -86,10 +86,8 @@ public class PlayerChange : MonoBehaviour
             transform.localScale = new Vector3(13, 13, 13);
             m_boxCol.size = new Vector3(0.08f, 0.08f, 0.08f);
 
-            if(m_playerHit.FixCover)
-            {
-                m_coverObj.transform.position = m_playerObj.transform.position;
-            }
+            m_coverObj.transform.position = m_playerObj.transform.position;
+            
 
         }
         if (m_playerType.IsPlayerType == PlayerType.Type.IRON)
@@ -99,10 +97,8 @@ public class PlayerChange : MonoBehaviour
             transform.localScale = new Vector3(58, 58, 58);
             m_boxCol.size = new Vector3(0.04f, 0.02f, 0.01f);
 
-            if (m_playerHit.FixCover)
-            {
-                m_coverObj.transform.position = new Vector3(0.0f, 100.0f, 0.0f);
-            }
+            m_coverObj.transform.position = new Vector3(0.0f, 100.0f, 0.0f);
+            
         }
     }
 
