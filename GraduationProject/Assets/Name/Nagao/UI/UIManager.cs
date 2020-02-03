@@ -60,42 +60,55 @@ public class UIManager : MonoBehaviour
             //通常UIの非表示
             NormalUI.SetActive(false);
 
-            //ＱＲコードを読み込む以外のイベントか
-            if ((m_event.IsEventKIND != EventDirector.EventKIND.RULE_QR))
+            switch (m_event.IsEventKIND)
             {
-                //時間UIの表示
-                m_timeUI.SetActive(true);
+                case EventDirector.EventKIND.RULE_QR:
+                    //時間UIの表示
+                    m_timeUI.SetActive(false);
 
-                //イベント用UIの表示
-                EventUI.SetActive(true);
-                //QR用UIの非表示
-                QRUI.SetActive(false);
-            }
-            else if (m_event.IsEventKIND == EventDirector.EventKIND.PENCILCASE_MOVE_GOOL)
-            {
-                //時間UIの表示
-                m_timeUI.SetActive(false);
+                    //イベント用UIの表示
+                    EventUI.SetActive(false);
+                    //QR用UIの非表示
+                    QRUI.SetActive(true);
+                    //ゲーム内の時を止める
+                    m_timerController.TimerFlag = false;
+                    break;
+                case EventDirector.EventKIND.PENCILCASE_MOVE_GOOL:
+                    //時間UIの表示
+                    m_timeUI.SetActive(true);
 
-                //イベント用UIの表示
-                EventUI.SetActive(false);
-                //QR用UIの非表示
-                QRUI.SetActive(true);
+                    //イベント用UIの表示
+                    EventUI.SetActive(true);
+                    //QR用UIの非表示
+                    QRUI.SetActive(false);
 
-                //ゲーム内の時を止める
-                m_timerController.TimerFlag = false;
-            }
-            else
-            {
-                //時間UIの表示
-                m_timeUI.SetActive(false);
+                    //ゲーム内の時を止める
+                    m_timerController.TimerFlag = false;
+                    break;
+                case EventDirector.EventKIND.CAMERA_GOAL_FROM_START:
+                    //時間UIの表示
+                    m_timeUI.SetActive(false);
 
-                //イベント用UIの表示
-                EventUI.SetActive(false);
-                //QR用UIの非表示
-                QRUI.SetActive(true);
+                    //イベント用UIの表示
+                    EventUI.SetActive(true);
+                    //QR用UIの非表示
+                    QRUI.SetActive(false);
 
-                //ゲーム内の時を止める
-                m_timerController.TimerFlag = false;
+                    //ゲーム内の時を止める
+                    m_timerController.TimerFlag = false;
+                    break;
+                default:
+                    //時間UIの表示
+                    m_timeUI.SetActive(true);
+
+                    //イベント用UIの表示
+                    EventUI.SetActive(true);
+                    //QR用UIの非表示
+                    QRUI.SetActive(false);
+
+                    //ゲーム内の時を止める
+                    m_timerController.TimerFlag = true;
+                    break;
             }
 
         }
