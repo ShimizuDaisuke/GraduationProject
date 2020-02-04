@@ -27,8 +27,14 @@ public class SceneChangeGoalFromStart : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         m_eventDirectorObj = GameObject.Find("Director/EventDirector");
-        m_eventDirector = m_eventDirectorObj.GetComponent<EventDirector>();
+        if (m_eventDirectorObj != null)
+        {
+            m_eventDirector = m_eventDirectorObj.GetComponent<EventDirector>();
+        }
 
-        m_eventDirector.IsEventKIND = EventDirector.EventKIND.CAMERA_GOAL_FROM_START;
+        if (m_eventDirector != null)
+        {
+            m_eventDirector.IsEventKIND = EventDirector.EventKIND.CAMERA_GOAL_FROM_START;
+        }
     }
 }
