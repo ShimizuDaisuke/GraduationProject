@@ -7,6 +7,10 @@ public class TextColor : MonoBehaviour
 {
     private float speed = 1.0f;
 
+    // 文字の色
+    [SerializeField]
+    private Color color;
+         
     //α値
     private float alpha = 1.0f;
 
@@ -30,6 +34,6 @@ public class TextColor : MonoBehaviour
         alpha = Mathf.Sin(time) * 0.5f + 0.5f;
 
         // 色を指定
-        text.color = new Color(0.0f, 0.0f, 0.0f, alpha);
+        text.color = new Color(color.r, color.b, color.g, alpha);
     }
 }
