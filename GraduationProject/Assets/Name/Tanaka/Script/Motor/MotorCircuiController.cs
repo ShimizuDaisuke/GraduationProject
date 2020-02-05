@@ -60,7 +60,6 @@ public class MotorCircuiController : MonoBehaviour
         //回路がつながってる時
         if(!m_circuitCon.ConnectFlag)
         {
-            Debug.Log(m_rotateBridge);
             if(m_BridgeObj.transform.eulerAngles.z <= 90.0f)
             {
                 //橋の回転

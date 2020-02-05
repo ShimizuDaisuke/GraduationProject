@@ -12,6 +12,10 @@ using UnityEngine;
 //電気の生成処理クラス
 public class CreateElectricity : MonoBehaviour
 {
+    // 回線を流す位置
+    [SerializeField]
+    private Vector3 StartPos = default;
+
     //回路クラス
     [SerializeField]
     private CircuitController m_circuitCon = default;
@@ -45,7 +49,11 @@ public class CreateElectricity : MonoBehaviour
             //生成できるか
             if (!m_createFlag)
             {
-                Create(transform.position);
+                // 電灯を作成する位置
+                Vector3 pos = (StartPos != Vector3.zero) ? StartPos : transform.position;
+
+                // 電灯を作成する
+                Create(pos);
                 m_createFlag = true;
             }
             
