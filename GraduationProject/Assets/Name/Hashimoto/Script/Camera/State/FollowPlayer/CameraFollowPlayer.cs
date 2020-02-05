@@ -75,6 +75,16 @@ public class CameraFollowPlayer : MonoBehaviour
     // カメラがプレイヤーに時間を変えて追従するためにラップする処理に掛かる時間
     private float LerpTime = 0.0f;
 
+    // ----------------------------------------------------------------------------------------
+
+    // 加速度
+    Rigidbody rigidbody;
+
+    // カメラが前後に動かす加速度の目安
+    float acceleration = 1.0f;
+
+    // ----------------------------------------------------------------------------------------
+
     /// <summary>
     /// 開始処理
     /// </summary>
@@ -96,13 +106,16 @@ public class CameraFollowPlayer : MonoBehaviour
         playerheight = playerheight - (playerheight % CameraHeight_NoShake);
 
         // プレイヤーの位置
-        Vector3 playerpos = new Vector3(Player.transform.position.x, (float)playerheight, Player.transform.position.z);
+        Vector3 playerpos =  new Vector3(Player.transform.position.x, (float)playerheight, Player.transform.position.z);
 
         // 2Dカメラとプレイヤーの距離を計る
         DirectionCamera2DPlayerPos = Camera2D.transform.position - playerpos;
 
         // 3Dカメラとプレイヤーの距離を計る
         DirectionCamera3DPlayerPos = Camera3D.transform.position - playerpos;
+
+        //「Rigidbody」の初期化
+        rigidbody = Player.GetComponent<Rigidbody>();
     }
 
     /// <summary>
@@ -294,13 +307,18 @@ public class CameraFollowPlayer : MonoBehaviour
     /// <param name="vell">プレイヤーの速度</param>
     public void Judge3DCameraPlayerBack(Vector2 vell)
     {
+        // 加速度が小さい場合、何もしない
+        if (rigidbody.velocity.magnitude < acceleration) return;
+
         // Y軸方向に移動速度が小さい場合
-        if(vell.y < 0)
+        if (vell.y < 0)
         {
             // カメラの位置を手前に引くようにする
             Create3DCameraPlayerBack();
         }
         else
+        // Y軸方向に移動速度が大きい場合
+        if (vell.y > 0)
         {
             // リセットする
             Reset3DCameraPlayerBack();

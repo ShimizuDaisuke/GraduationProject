@@ -167,7 +167,8 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
         if ((CameraDirectorObj.GetComponent<CameraDirector>().IsMove2D3DCameraPos) && (CameraDirectorObj.GetComponent<CameraDirector>().IsAppearCamera3D == false))
         {
             // 当たったオブジェクトが カメラ2Dの時にプレイヤーが入ってはいけない領域の場合
-            if ((collision.gameObject.tag == "Camera2DNoArea"))
+            if (   ( (collision.gameObject.tag == "Camera2DNoArea") ||(collision.gameObject.GetComponent<Obj_OneAxitMove>() != null) ) 
+                &&   (collision.gameObject.tag != "EraserDustCover") )
             {
                 // 「プレイヤーが地面以外のオブジェクトに当たった」とする
                 IsHitNoGroundObj = true;

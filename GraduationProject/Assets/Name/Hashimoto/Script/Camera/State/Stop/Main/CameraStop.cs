@@ -100,7 +100,7 @@ public class CameraStop : MonoBehaviour
                 // --------------------------------------------------------------------------------------
 
                 // プレイヤーの真下に1つの軸を中心に動かすオブジェクトの場合
-                if(HitPlayer_ObjOneAxitsMove())
+                if(HitPlayer_ObjOneAxitsMove(Script_PlayerPosByCamera2D3D.PlayerHitObjNoGround))
                 {
                     // リセットする
                     Script_PlayerPosByCamera2D3D.IsHitPlayerNoGroundObj = false;
@@ -256,24 +256,31 @@ public class CameraStop : MonoBehaviour
     }
 
     /// <summary>
-    /// プレイヤーの真下に1つの軸を中心に動かすオブジェクトなのか確認する
+    /// プレイヤーの真下や真横に1つの軸を中心に動かすオブジェクトなのか確認する
     /// </summary>
+    /// <param name="hitobj">プレイヤーに当たったオブジェクト</param>
     /// <returns>そのオブジェクトは1つの軸を中心に動かすものか</returns>
-    private bool HitPlayer_ObjOneAxitsMove()
+    private bool HitPlayer_ObjOneAxitsMove(GameObject hitobj)
     {
         // プレイヤーから飛ばすレイを作成する
-        Ray ray =  new Ray(PlayerObj.transform.position, Vector3.down);
+        Ray[] rays = {new Ray(PlayerObj.transform.position, Vector3.down),
+                      new Ray(PlayerObj.transform.position, Vector3.right),
+                      new Ray(PlayerObj.transform.position, Vector3.left)};
+
 
         // プレイヤーから飛ばしたレイに当たったオブジェクトの入れ物
         RaycastHit hit;
 
-        // プレイヤーからレイを飛ばして何からのオブジェクトに衝突した場合
-        if (Physics.Raycast(ray, out hit, RayDistance))
+        foreach(Ray ray in rays)
         {
-            // プレイヤーが衝突したオブジェクトは軸中心に動かすオブジェクトの場合
-            if (hit.transform.gameObject.GetComponent<Obj_OneAxitMove>() != null)
+            // プレイヤーからレイを飛ばして何からのオブジェクトに衝突した場合
+            if (Physics.Raycast(ray, out hit, RayDistance))
             {
-                return true;
+                // プレイヤーが衝突したオブジェクトは軸中心に動かすオブジェクトの場合
+                if ((hit.transform.gameObject.GetComponent<Obj_OneAxitMove>() != null) && (hit.transform.gameObject == hitobj))
+                {
+                    return true;
+                }
             }
         }
 
