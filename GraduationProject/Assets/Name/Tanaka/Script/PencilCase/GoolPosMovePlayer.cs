@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //当たったらゴール座標に移動のクラス
 public class GoolPosMovePlayer : MonoBehaviour
@@ -33,6 +34,14 @@ public class GoolPosMovePlayer : MonoBehaviour
     //移動止めるフラグオブジェ
     [SerializeField]
     private MoveStopCol m_moveStopCol = default;
+
+    //フェード
+    [SerializeField]
+    private Fade m_fade = default;
+
+    //リザルトメインのスクリプト
+    [SerializeField]
+    private ClearManagement m_clearManager = default;
 
 
     // Start is called before the first frame update
@@ -91,6 +100,20 @@ public class GoolPosMovePlayer : MonoBehaviour
 
                     //移動する
                     m_playerController.MoveByDirection(new Vector3(targetPos.x, targetPos.y, targetPos.z));
+
+                    // クリア演出をスキップする場合
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        // フェードアウトする
+                        m_fade.FadeOut = true;
+
+                        // クリアした
+                        m_clearManager.GetComponent<ClearManagement>().IsPlayerClear = true;
+                        
+                        //リザルトシーンへ遷移する
+                        SceneManager.LoadScene("Result");
+
+                    }
                 }
             }
         }
