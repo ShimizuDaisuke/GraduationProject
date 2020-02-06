@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DominoEnd : MonoBehaviour
 {
+    // プレイヤーがカメラに入ってはいけない領域
+    [SerializeField]
+    private GameObject Camera2DNoArea = default;
 
     //イベント管理クラス
     [SerializeField]
@@ -32,6 +35,12 @@ public class DominoEnd : MonoBehaviour
 
             //弾の削除
             Destroy(collider.gameObject);
+
+            // プレイヤーが2Dカメラに入ってはいけない領域を消す
+            if(Camera2DNoArea != null)
+            {
+                Destroy(Camera2DNoArea);
+            }
 
             Destroy(this.gameObject);
         }

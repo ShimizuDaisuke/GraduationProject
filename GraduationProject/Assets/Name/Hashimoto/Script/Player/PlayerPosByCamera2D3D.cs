@@ -179,6 +179,28 @@ public class PlayerPosByCamera2D3D : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 当たり判定
+    /// </summary>
+    /// <param name="collision"></param>
+    void OnTriggerStay(Collider collision)
+    {
+        // 2Dカメラ⇔3Dカメラに移動している場合  かつ カメラが3D→2Dへ切り替えるとき
+        if ((CameraDirectorObj.GetComponent<CameraDirector>().IsMove2D3DCameraPos) && (CameraDirectorObj.GetComponent<CameraDirector>().IsAppearCamera3D == false))
+        {
+            // 当たったオブジェクトが カメラ2Dの時にプレイヤーが入ってはいけない領域の場合
+            if (((collision.gameObject.tag == "Camera2DNoArea") || (collision.gameObject.GetComponent<Obj_OneAxitMove>() != null))
+                && (collision.gameObject.tag != "EraserDustCover"))
+            {
+                // 「プレイヤーが地面以外のオブジェクトに当たった」とする
+                IsHitNoGroundObj = true;
+
+                // プレイヤーに当たったオブジェクトを記憶する
+                ObjHitNoGround = collision.gameObject;
+            }
+        }
+    }
+
     // ===============================================================================================
 
     /// <summary>
