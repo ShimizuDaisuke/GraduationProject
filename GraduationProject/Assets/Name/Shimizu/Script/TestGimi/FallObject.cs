@@ -24,6 +24,12 @@ public class FallObject : MonoBehaviour
     [SerializeField]
     private float m_fallPos = 0.0f;
 
+    // プレイヤーがエリアに入ってから物を落とすまでの時間
+    [SerializeField]
+    private float time_satrtfalling = 0.0f;
+
+    // プレイヤーがエリアに入ってから掛かった時間
+    private float time = 0.0f;
 
     //=======================================================================================
     //! @brief 更新処理
@@ -39,8 +45,15 @@ public class FallObject : MonoBehaviour
             // 判定内に入ったか
             if (fallColFlag)
             {
-                // 下に移動させる
-                FallingObject.transform.position += new Vector3(0, -0.3f, 0);
+                // 常に時間を計る
+                time += Time.deltaTime;
+
+                // プレイヤーがエリアに入ってから物を落とすまでの時間になった場合
+                if(time >= time_satrtfalling)
+                {
+                    // 下に移動させる
+                    FallingObject.transform.position += new Vector3(0, -0.3f, 0);
+                }
             }
 
             // 落下物のオブジェクトを消す処理
