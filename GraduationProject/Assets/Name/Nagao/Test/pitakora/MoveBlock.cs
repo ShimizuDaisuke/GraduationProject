@@ -14,6 +14,9 @@ public class MoveBlock : MonoBehaviour
     [SerializeField]
     private float width = 5.0f;
 
+    // 初速度
+    private float miuspeed = 0.9f;
+
     float a;
 
     void Start()
@@ -27,6 +30,6 @@ public class MoveBlock : MonoBehaviour
 
         a += Time.deltaTime;
 
-        rigid.MovePosition(new Vector3(defaultPos.x, defaultPos.y + (Mathf.Sin(a * 2.3f) * width), defaultPos.z));
+        rigid.MovePosition(new Vector3(defaultPos.x, defaultPos.y + miuspeed *(Mathf.Sin(a * 2.3f) * width), defaultPos.z));
     }
 }
