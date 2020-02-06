@@ -22,6 +22,12 @@ public class ResultTimeAndJuni : MonoBehaviour
     // ゲームオーバーの時のベストタイムのUIの大きさ
     private Vector2 BESTTIMESIZE = Vector2.one;
 
+    // 「ゲームオーバー」のテキストでずらしたい位置
+    private Vector2 MAINTEXTPOS = new Vector2(0.0f,-200.0f);
+
+    // 「ゲームオーバー」のテキストの大きさ
+    private Vector2 MAINTEXTSIZE = new Vector2(1.5f, 1.5f);
+
     // プレイヤーがステージクリアしたか確認できるオブジェクト
     [SerializeField]
     private GameObject ClearObject = default;
@@ -39,6 +45,10 @@ public class ResultTimeAndJuni : MonoBehaviour
 
     // スクリプト：順位のUI
     private ResultJuiUI Juni;
+
+    // 「ゲームクリア」や「ゲームオーバー」用のテキスト
+    [SerializeField]
+    private RectTransform maintext_recttransform;
 
     // --------------------------------------------------------------
 
@@ -108,19 +118,49 @@ public class ResultTimeAndJuni : MonoBehaviour
         else
         // ゲームオーバーの場合
         {
-            // ステージクリアするまで掛かった時間を非表示させる
-            TimeScore[(int)TimeKind.CLEARTIME].NoActive();
+            // ベストタイムを取得する
+            int beattime = Script_FinalTimeWriteLoad.FindMiuData(Script_ClearManagement.PlayingStageName);
 
-            // 順位を非表示させる
-            Juni.NoActive();
+            // ベストタイムがない場合
+            if(beattime == 0)
+            {
+                // ステージクリアするまで掛かった時間を非表示させる
+                TimeScore[(int)TimeKind.CLEARTIME].NoActive();
 
-            // 全体的にベストタイムののテキスト(全体)の位置
-            Vector2 besttimeuipos = TimeScore[(int)TimeKind.BESTTIME].GetTextUIPostion();
-            // 全体的にベストタイムののテキスト(全体)の位置を変える
-            TimeScore[(int)TimeKind.BESTTIME].Move(new Vector2(besttimeuipos.x, besttimeuipos.y + BESTTIMEUIPOS_MOVE));
+                // 順位を非表示させる
+                Juni.NoActive();
 
-            // 全体的にベストタイムのテキスト(全体)の大きさを変える
-            TimeScore[(int)TimeKind.BESTTIME].Resize(BESTTIMESIZE);
+                // ベストタイムを非表示させる
+                TimeScore[(int)TimeKind.BESTTIME].NoActive();
+
+                // 「ゲームクリア」や「ゲームオーバー」用のテキストをずらす
+                maintext_recttransform.localPosition = new Vector2(maintext_recttransform.localPosition.x + MAINTEXTPOS.x, maintext_recttransform.localPosition.y + MAINTEXTPOS.y);
+
+                // 「ゲームクリア」や「ゲームオーバー」用のテキストのサイズを変える
+                maintext_recttransform.localScale = MAINTEXTSIZE;
+
+
+            }
+            else
+            // ベストタイムがある場合
+            {
+                // ステージクリアするまで掛かった時間を非表示させる
+                TimeScore[(int)TimeKind.CLEARTIME].NoActive();
+
+                // 順位を非表示させる
+                Juni.NoActive();
+
+                // 全体的にベストタイムののテキスト(全体)の位置
+                Vector2 besttimeuipos = TimeScore[(int)TimeKind.BESTTIME].GetTextUIPostion();
+                // 全体的にベストタイムののテキスト(全体)の位置を変える
+                TimeScore[(int)TimeKind.BESTTIME].Move(new Vector2(besttimeuipos.x, besttimeuipos.y + BESTTIMEUIPOS_MOVE));
+
+                // 全体的にベストタイムのテキスト(全体)の大きさを変える
+                TimeScore[(int)TimeKind.BESTTIME].Resize(BESTTIMESIZE);
+                // ベストタイムを描画する
+                TimeScore[(int)TimeKind.BESTTIME].Write(beattime);
+            }
+ 
         }
     }
 
